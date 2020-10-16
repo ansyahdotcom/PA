@@ -1,6 +1,12 @@
 <div class="card">
   <div class="card-body login-card-body">
-    <p class="login-box-msg">Silahkan login terlebih dahulu</p>
+    <div class="login-logo">
+        <a href="<?= base_url('')?>">
+          <img src="<?= base_url(); ?>assets/dist/img/PA01.png" alt="PA Logo" class="brand-image" width="150px" style="opacity: .8">
+        </a>
+    </div>
+    <!-- /.login-logo -->
+    <p class="login-box-msg"><b>Log</b>-in Form</p>
 
     <form action="../../index3.html" method="post">
       <div class="input-group mb-3">

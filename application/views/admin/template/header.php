@@ -22,7 +22,3 @@
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            <a href="<?= base_url('')?>"><b>Preneur Academy</b></a>
-        </div>
-        <!-- /.login-logo -->
