@@ -1,8 +1,10 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     15/10/2020 23:20:21                          */
+/* Created on:     16/10/2020 17:17:08                          */
 /*==============================================================*/
 
+
+drop table if exists ADMIN;
 
 drop table if exists CATEGORY;
 
@@ -14,7 +16,15 @@ drop table if exists POST_VIEW;
 
 drop table if exists TAGS;
 
-drop table if exists USER;
+/*==============================================================*/
+/* Table: ADMIN                                                 */
+/*==============================================================*/
+create table ADMIN
+(
+   ID_ADM               char(10) not null,
+   NM_ADM               varchar(100),
+   primary key (ID_ADM)
+);
 
 /*==============================================================*/
 /* Table: CATEGORY                                              */
@@ -44,10 +54,10 @@ create table POST
 (
    ID_POST              char(10) not null,
    ID_CT                char(10) not null,
-   ID_USER              char(10) not null,
+   ID_ADM               char(10) not null,
    ID_TAGS              char(10) not null,
    JUDUL_POST           varchar(200),
-   KONTEN_POST          text,
+   KONTEN_POST          varchar(1000),
    TGL_POST             varchar(20),
    FOTO_POST            varchar(100),
    UPDT_TRAKHIR         varchar(20),
@@ -76,21 +86,11 @@ create table TAGS
    primary key (ID_TAGS)
 );
 
-/*==============================================================*/
-/* Table: USER                                                  */
-/*==============================================================*/
-create table USER
-(
-   ID_USER              char(10) not null,
-   NM_USER              varchar(100),
-   primary key (ID_USER)
-);
-
 alter table POST add constraint FK_RELATIONSHIP_1 foreign key (ID_CT)
       references CATEGORY (ID_CT) on delete restrict on update restrict;
 
-alter table POST add constraint FK_RELATIONSHIP_2 foreign key (ID_USER)
-      references USER (ID_USER) on delete restrict on update restrict;
+alter table POST add constraint FK_RELATIONSHIP_2 foreign key (ID_ADM)
+      references ADMIN (ID_ADM) on delete restrict on update restrict;
 
 alter table POST add constraint FK_RELATIONSHIP_3 foreign key (ID_TAGS)
       references TAGS (ID_TAGS) on delete restrict on update restrict;
