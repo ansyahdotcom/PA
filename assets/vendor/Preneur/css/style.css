@@ -108,7 +108,7 @@
 .site-main .program-area .program-title h2>span {
 	display: block;
 	font: normal bold 35px var(--roboto);
-	letter-spacing: 15px;
+	letter-spacing: 10px;
 }
 
 .site-main .program-area .card {
