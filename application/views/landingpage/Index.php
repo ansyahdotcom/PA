@@ -6,7 +6,7 @@
     <header class="header_area">
         <div class="main-menu">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="index.html"><img src="./img/logo.png" width="130" alt="logo"></a>
+                <a class="navbar-brand" href=""><img src="<?= base_url(); ?>assets/dist/img/logo.png" width="130" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -59,15 +59,15 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 banner-image">
-                        <img src="./img/banner/instruktur.svg" alt="banner-img" class="img-fluid">
+                        <img src="<?= base_url(); ?>assets/dist/img/banner/instruktur.svg" alt="banner-img" class="img-fluid">
                     </div>
                 </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#FFBE4A" fill-opacity="1" d="M0,64L60,96C120,128,240,192,360,192C480,192,600,128,720,112C840,96,960,128,1080,160C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                <path fill="#FFC107" fill-opacity="1" d="M0,64L60,96C120,128,240,192,360,192C480,192,600,128,720,112C840,96,960,128,1080,160C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
             </svg>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#FFBE4A" fill-opacity="1" d="M0,288L60,256C120,224,240,160,360,160C480,160,600,224,720,213.3C840,203,960,117,1080,106.7C1200,96,1320,160,1380,192L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+                <path fill="#FFC107" fill-opacity="1" d="M0,288L60,256C120,224,240,160,360,160C480,160,600,224,720,213.3C840,203,960,117,1080,106.7C1200,96,1320,160,1380,192L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
             </svg>
         </section>
         <!--  ======================= Batas Banner =======================  -->
@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="about-image">
-                            <img src="./img/about-us.png" alt="About us" class="img-fluid">
+                            <img src="<?= base_url(); ?>assets/dist/img/about-us.png" alt="About us" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 about-title">
@@ -113,7 +113,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <div class="about-image">
-                            <img src="./img/setup.svg" alt="About us" class="img-fluid">
+                            <img src="<?= base_url(); ?>assets/dist/img/setup.svg" alt="About us" class="img-fluid">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 program-title">
@@ -125,7 +125,7 @@
                             <div class="card mb-3 bg-warning" style="max-width: 540px;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="img/program/study.svg" class="card-img p-3" alt="gambar kelas">
+                                        <img src="<?= base_url(); ?>assets/dist/img/program/study.svg" class="card-img p-3" alt="gambar kelas">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -139,7 +139,7 @@
                             <div class="card mb-3 bg-warning" style="max-width: 540px;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="img/program/team.svg" class="card-img p-3" alt="gambar komunitas">
+                                        <img src="<?= base_url(); ?>assets/dist/img/program/team.svg" class="card-img p-3" alt="gambar komunitas">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -176,7 +176,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="services">
                                 <div class="sevices-img text-center py-4">
-                                    <img src="./img/services/business.svg" class="img-fluid p-5" alt="Services-1">
+                                    <img src="<?= base_url(); ?>assets/dist/img/services/business.svg" class="img-fluid p-5" alt="Services-1">
                                 </div>
                                 <div class="card-body text-center">
                                     <h5 class="card-title text-uppercase font-roboto">Program 1.001 Wirausaha Baru</h5>                                 </h5>
@@ -193,7 +193,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="services">
                                 <div class="sevices-img text-center py-4">
-                                    <img src="./img/services/book.svg" class="img-fluid p-5" alt="Services-2">
+                                    <img src="<?= base_url(); ?>assets/dist/img/services/book.svg" class="img-fluid p-5" alt="Services-2">
                                 </div>
                                 <div class="card-body text-center">
                                     <h5 class="card-title text-uppercase font-roboto">Kurikulum 6 semester</h5>
@@ -210,7 +210,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="services">
                                 <div class="sevices-img text-center py-4">
-                                    <img src="./img/services/realtime.svg" class="img-fluid p-5" alt="Services-3">
+                                    <img src="<?= base_url(); ?>assets/dist/img/services/realtime.svg" class="img-fluid p-5" alt="Services-3">
                                 </div>
                                 <div class="card-body text-center">
                                     <h5 class="card-title text-uppercase font-roboto">Pendampingan Seumur Hidup</h5>
@@ -227,7 +227,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="services">
                                 <div class="sevices-img text-center py-4">
-                                    <img src="./img/services/graduate.svg" class="img-fluid p-5" alt="Services-4">
+                                    <img src="<?= base_url(); ?>assets/dist/img/services/graduate.svg" class="img-fluid p-5" alt="Services-4">
                                 </div>
                                 <div class="card-body text-center">
                                     <h5 class="card-title text-uppercase font-roboto">E-Sertifikat</h5>
@@ -270,7 +270,7 @@
                         <div class="mb-3" style="max-width: 540px;">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="./img/blog/t1.jpg" class="card-img" alt="...">
+                                    <img src="<?= base_url(); ?>assets/dist/img/blog/t1.jpg" class="card-img" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -287,7 +287,7 @@
                         <div class="mb-3" style="max-width: 540px;">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="./img/blog/t2.jpg" class="card-img" alt="...">
+                                    <img src="<?= base_url(); ?>assets/dist/img/blog/t2.jpg" class="card-img" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -304,7 +304,7 @@
                         <div class="mb-3" style="max-width: 540px;">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="./img/blog/t1.jpg" class="card-img" alt="...">
+                                    <img src="<?= base_url(); ?>assets/dist/img/blog/t1.jpg" class="card-img" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -321,7 +321,7 @@
                         <div class="mb-3" style="max-width: 540px;">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="./img/blog/t2.jpg" class="card-img" alt="...">
+                                    <img src="<?= base_url(); ?>assets/dist/img/blog/t2.jpg" class="card-img" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -338,7 +338,7 @@
                         <div class="mb-3" style="max-width: 540px;">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="./img/blog/t1.jpg" class="card-img" alt="...">
+                                    <img src="<?= base_url(); ?>assets/dist/img/blog/t1.jpg" class="card-img" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -355,7 +355,7 @@
                         <div class="mb-3" style="max-width: 540px;">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="./img/blog/t2.jpg" class="card-img" alt="...">
+                                    <img src="<?= base_url(); ?>assets/dist/img/blog/t2.jpg" class="card-img" alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -406,77 +406,3 @@
 
     </main>
     <!--  ======================= End Main Area ================================ -->
-
-    <footer class="footer-area bg-warning">
-        <div class="container">
-            <div class="">
-                <div class="site-logo text-center py-4">
-                    <a href="#"><img src="./img/logo.png" width="150" alt="logo"></a>
-                </div>
-                    <div class="container-fluid text-center text-md-left">
-                    <div class="row">
-                        <div class="col-md-6 mt-md-0 mt-3">
-                        <h5 class="text-uppercase">Alamat</h5>
-                        <p>Bengawan Solo Regency Kav 3-4,<br> Jl. Bengawan Solo, Kota Jember<br> 66122</p>
-                        </div>
-                        <hr class="clearfix w-100 d-md-none pb-3">
-                        <div class="col-md-3 mb-md-0 mb-3">
-                        <h5 class="text-uppercase">Menu</h5>
-                        <ul class="list-unstyled">
-                            <li>
-                            <a href="">Beranda</a>
-                            </li>
-                            <li>
-                            <a href="#">Kelas</a>
-                            </li>
-                            <li>
-                            <a href="#">Blog</a>
-                            </li>
-                        </ul>
-                        </div>
-                        <div class="col-md-3 mb-md-0 mb-3">
-                            <img src="./img/contact.svg" alt="banner-img" class="img-fluid">
-                        </div>
-                    </div>
-                    </div>
-
-                <div class="social text-center">
-                    <h6 class="text-uppercase">Ikuti akun sosial media kami</h6>
-                    <a href="https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i class="fab fa-youtube"></i></a>
-                    <a href="https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>
-                </div>
-                <div class="copyrights text-center">
-                    <p class="para">
-                        Copyright ©2020 All rights reserved by
-                        <a href="#"><span style="color: var(--primary-color);">Preneur Academy</span></a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    <!--  Jquery js file  -->
-    <script src="./js/jquery.3.4.1.js"></script>
-
-    <!--  Bootstrap js file  -->
-    <script src="./js/bootstrap.min.js"></script>
-
-    <!--  isotope js library  -->
-    <script src="./vendor/isotope/isotope.min.js"></script>
-
-    <!--  Magnific popup script file  -->
-    <script src="./vendor/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
-
-    <!--  Owl-carousel js file  -->
-    <script src="./vendor/owl-carousel/js/owl.carousel.min.js"></script>
-
-    <!--  custom js file  -->
-    <script src="./js/main.js"></script>
-
-
-</body>
-
-</html>

@@ -10,7 +10,8 @@ class Auth extends CI_Controller {
     /** Menampilkan Form Login */
 	public function index()
 	{
-		$this->load->view("landingpage/template/header");
+		$data['judul'] = 'Masuk akun';
+		$this->load->view("landingpage/template/header", $data);
 		$this->load->view("landingpage/auth/login");
 		$this->load->view("landingpage/template/footer");
 	}

@@ -1,20 +1,74 @@
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-  <!--  Jquery js file  -->
-  <script src="./js/jquery.3.4.1.js"></script>
+    <footer class="footer-area bg-warning">
+        <div class="container">
+            <div class="">
+                <div class="site-logo text-center py-4">
+                    <a href="#"><img src="<?= base_url(); ?>assets/dist/img/logo.png" width="150" alt="logo"></a>
+                </div>
+                    <div class="container-fluid text-center text-md-left">
+                    <div class="row">
+                        <div class="col-md-6 mt-md-0 mt-3">
+                        <h5 class="text-uppercase">Alamat</h5>
+                        <p>Bengawan Solo Regency Kav 3-4,<br> Jl. Bengawan Solo, Kota Jember<br> 66122</p>
+                        </div>
+                        <hr class="clearfix w-100 d-md-none pb-3">
+                        <div class="col-md-3 mb-md-0 mb-3">
+                        <h5 class="text-uppercase">Menu</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                            <a href="">Beranda</a>
+                            </li>
+                            <li>
+                            <a href="#">Kelas</a>
+                            </li>
+                            <li>
+                            <a href="#">Blog</a>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="col-md-3 mb-md-0 mb-3">
+                            <img src="<?= base_url(); ?>assets/dist/img/contact.svg" alt="banner-img" class="img-fluid">
+                        </div>
+                    </div>
+                    </div>
 
-<!--  Bootstrap js file  -->
-<script src="./js/bootstrap.min.js"></script>
+                <div class="social text-center">
+                    <h6 class="text-uppercase">Ikuti akun sosial media kami</h6>
+                    <a href="https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="copyrights text-center">
+                    <p class="para">
+                        Copyright ©2020 All rights reserved by
+                        <a href="#"><span style="color: var(--primary-color);">Preneur Academy</span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<!--  isotope js library  -->
-<script src="./vendor/isotope/isotope.min.js"></script>
 
-<!--  Magnific popup script file  -->
-<script src="./vendor/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
+    <!--  Jquery js file  -->
+    <script src="<?= base_url(); ?>assets/dist/js/jquery.3.4.1.js"></script>
 
-<!--  Owl-carousel js file  -->
-<script src="./vendor/owl-carousel/js/owl.carousel.min.js"></script>
+    <!--  Bootstrap js file  -->
+    <script src="<?= base_url(); ?>assets/dist/js/bootstrap.min.js"></script>
 
-<!--  custom js file  -->
-<script src="./js/main.js"></script>
+    <!--  isotope js library  -->
+    <script src="<?= base_url(); ?>assets/dist/js/plugin/isotope/isotope.min.js"></script>
+
+    <!--  Magnific popup script file  -->
+    <script src="<?= base_url(); ?>assets/dist/js/plugin/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
+
+    <!--  Owl-carousel js file  -->
+    <script src="<?= base_url(); ?>assets/dist/js/plugin/owl-carousel/js/owl.carousel.min.js"></script>
+
+    <!--  custom js file  -->
+    <script src="<?= base_url(); ?>assets/dist/js/main.js"></script>
+
+
+</body>
+
+</html>
