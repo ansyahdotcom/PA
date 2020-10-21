@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="stylesheet" href="./css/login.css">
 
-        <title>Login Page</title>
+        <title>Register Page</title>
     </head>
     <body>
         <div class="container">
@@ -19,21 +19,32 @@
                         <div class="card-img-left d-none d-md-flex">
                         </div>
                         <div class="card-body">
-                        <h5 class="card-title text-center">Masuk Akun</h5>
+                        <h5 class="card-title text-center">Daftar Akun</h5>
                         <form class="form-signin">
+                            <div class="form-label-group">
+                            <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+                            <label for="inputUserame">Nama Lengkap</label>
+                            </div>
             
                             <div class="form-label-group">
                             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
                             <label for="inputEmail">Alamat Email</label>
                             </div>
             
+                            <hr>
+            
                             <div class="form-label-group">
                             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                             <label for="inputPassword">Kata Sandi</label>
                             </div>
                             
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Masuk</button>
-                            <a class="d-block text-center mt-2 small" href="register.html">Belum punya akun?</a>
+                            <div class="form-label-group">
+                            <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                            <label for="inputConfirmPassword">Konfirmasi Kata Sandi</label>
+                            </div>
+            
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Daftar</button>
+                            <a class="d-block text-center mt-2 small" href="login.html">Sudah punya akun?</a>
                             <a class="d-block text-center mt-2 small" href="forgot.html">Lupa kata sandi?</a>
                             <hr class="my-4">
                             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Daftar dengan Google</button>
