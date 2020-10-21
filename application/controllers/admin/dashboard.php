@@ -8,13 +8,17 @@ class Dashboard extends CI_Controller
     }
 
 
-    /** Menampilkan Form Login */
+    /** Menampilkan Dashboard Admin */
     public function index()
     {
-        $this->load->view("admin/template/v_header");
-        $this->load->view("admin/template/v_navbar");
-        $this->load->view("admin/template/v_sidebar");
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+        $this->load->view("admin/template_adm/v_header", $data);
+        $this->load->view("admin/template_adm/v_navbar", $data);
+        $this->load->view("admin/template_adm/v_sidebar", $data);
         $this->load->view("admin/index");
-        $this->load->view("admin/template/v_footer");
+        $this->load->view("admin/template_adm/v_footer");
     }
 }
