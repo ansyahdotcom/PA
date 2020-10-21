@@ -14,7 +14,7 @@
                     <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="<?= base_url('admin/auth/logout'); ?>" class="d-block"><?= $admin['NM_ADM']; ?></a>
                 </div>
             </div>
 
@@ -63,5 +63,6 @@
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
+        <?= $this->session->flashdata('message'); ?>
         </div>
         <!-- /.content-header -->

@@ -1,30 +1,34 @@
 <div class="card">
   <div class="card-body login-card-body">
     <div class="login-logo">
-        <a href="<?= base_url('')?>">
-          <img src="<?= base_url(); ?>assets/dist/img/PA01.png" alt="PA Logo" class="brand-image" width="150px" style="opacity: .8">
-        </a>
+      <a href="<?= base_url('admin/auth') ?>">
+        <img src="<?= base_url(); ?>assets/dist/img/PA-white.svg" alt="PA Logo" class="brand-image" width="150px" style="opacity: .8">
+      </a>
     </div>
     <!-- /.login-logo -->
-    <p class="login-box-msg"><b>Log</b>-in Form</p>
+    <p class="login-box-msg"><b>Log</b>-in Page</p>
+    <?= $this->session->flashdata('message'); ?>
 
-    <form action="../../index3.html" method="post">
+    <form action="<?= base_url('admin/auth'); ?>" method="post">
       <div class="input-group mb-3">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" class="form-control" name="email" placeholder="Email">
         <div class="input-group-append">
           <div class="input-group-text">
-            <span class="fas fa-envelope"></span>
+            <span class="fas fa-envelope logos"></span>
           </div>
         </div>
       </div>
+      <?= form_error('email', '<small class="text-danger">', '</small>'); ?>  
+
       <div class="input-group mb-3">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password">
         <div class="input-group-append">
           <div class="input-group-text">
-            <span class="fas fa-lock"></span>
+            <span class="fas fa-lock logos"></span>
           </div>
         </div>
       </div>
+      <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
       <div class="row">
         <!-- <div class="col-8">
             <div class="icheck-primary">
@@ -35,8 +39,8 @@
             </div>
           </div> -->
         <!-- /.col -->
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+        <div class="col-12 btn-login">
+          <button type="submit" class="btn btn-light btn-block">Masuk</button>
         </div>
         <!-- /.col -->
       </div>
@@ -54,10 +58,7 @@
     <!-- /.social-auth-links -->
 
     <p class="mb-1">
-      <a href="forgot-password.html">Lupa password?</a>
-    </p>
-    <p class="mb-0">
-      <a href="register.html  " class="text-center">Buat akun baru?</a>
+      <a href="<?= base_url('admin/auth/forgotpsw'); ?>">Lupa password?</a>
     </p>
   </div>
   <!-- /.login-card-body -->
