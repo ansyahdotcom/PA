@@ -42,13 +42,22 @@
                             </li>
                         </ul>
 
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <a href="pendaftaran" class="nav-link active">
+                            <!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
                             <p>
-                                Blog
+                                Web Utama
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <!-- SUBMENU -->
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="blog" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Blog</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -57,23 +66,4 @@
         <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        <?= $this->session->flashdata('message'); ?>
-        </div>
-        <!-- /.content-header -->
+    
