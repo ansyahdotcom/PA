@@ -6,7 +6,7 @@
       </a>
     </div>
     <!-- /.login-logo -->
-    <p class="login-box-msg"><b>Log</b>-in Page</p>
+    <p class="login-box-msg">Halaman <b>Log</b>-in</p>
     <?= $this->session->flashdata('message'); ?>
 
     <form action="<?= base_url('admin/auth'); ?>" method="post">
@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <?= form_error('email', '<small class="text-danger">', '</small>'); ?>  
+      <?= form_error('email', '<small class="text-danger mt-3">', '</small>'); ?>  
 
       <div class="input-group mb-3">
         <input type="password" class="form-control" name="password" placeholder="Password">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+      <?= form_error('password', '<small class="text-danger mt-3">', '</small>'); ?>
       <div class="row">
         <!-- <div class="col-8">
             <div class="icheck-primary">

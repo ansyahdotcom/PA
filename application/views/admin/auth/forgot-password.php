@@ -6,7 +6,8 @@
         </a>
       </div>
       <!-- /.login-logo -->
-      <p class="login-box-msg"><b>Forgot</b> Password</p>
+      <p class="login-box-msg"><b>Lupa</b> Password</p>
+      <?= $this->session->flashdata('message'); ?>
       <form action="<?= base_url('admin/auth/forgotpsw'); ?>" method="post">
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" placeholder="Email">
