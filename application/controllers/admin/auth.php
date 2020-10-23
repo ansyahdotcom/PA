@@ -122,8 +122,8 @@ class Auth extends CI_Controller
                                 </head>
                                 <body>
                                     <h2>Yang terhormat saudara " . $name['user']['NM_ADM'] . "</h2>
-                                    <p>Akun Anda</p>
-                                    <p>Email : " . $email . "</p>
+                                    <p>Anda ingin mengubah password akun anda</p>
+                                    <p>Email anda : " . $email . "</p>
                                     <p>Klik link di bawah ini untuk mengubah password anda!</p>
                                     <h4><a href='" . base_url() . "admin/auth/ubahpassword?email=" . $email . "&token=" . urlencode($token) . "'>Ubah Password!!</a></h4>
                                 </body>
