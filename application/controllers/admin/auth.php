@@ -98,7 +98,7 @@ class Auth extends CI_Controller
 		])->row_array();
 		$this->email->from('turtleninjaaa77@gmail.com', 'Preneur Academy');
 		$this->email->to($email);
-		
+
 		// $AktivasiEmail = "
 		//                         <html>
 		//                         <head>
@@ -116,18 +116,18 @@ class Auth extends CI_Controller
 
 		/**Pesan email jika ubah password */
 		$UbahPassword = "
-                                <html>
-                                <head>
-                                    <title>Kode Ubah Password</title>
-                                </head>
-                                <body>
-                                    <h2>Yang terhormat saudara " . $name['user']['NM_ADM'] . "</h2>
-                                    <p>Anda ingin mengubah password akun anda</p>
-                                    <p>Email anda : " . $email . "</p>
-                                    <p>Klik link di bawah ini untuk mengubah password anda!</p>
-                                    <h4><a href='" . base_url() . "admin/auth/ubahpassword?email=" . $email . "&token=" . urlencode($token) . "'>Ubah Password!!</a></h4>
-                                </body>
-                                </html>
+			<html>
+			<head>
+				<title>Kode Ubah Password</title>
+			</head>
+			<body>
+				<h2>Yang terhormat saudara " . $name['user']['NM_ADM'] . "</h2>
+				<p>Anda ingin mengubah password akun anda</p>
+				<p>Email anda : " . $email . "</p>
+				<p>Klik link di bawah ini untuk mengubah password anda!</p>
+				<h4><a href='" . base_url() . "admin/auth/ubahpassword?email=" . $email . "&token=" . urlencode($token) . "'>Ubah Password!!</a></h4>
+			</body>
+			</html>
         ";
 
 		if ($type == 'forgot') {
@@ -205,15 +205,31 @@ class Auth extends CI_Controller
 			])->row_array();
 
 			if ($user_token) {
-				$this->session->set_userdata('reset_email', $email);
-				$this->recoverpsw();
+				if (time() - $user_token['DATE'] < (60 * 60 * 48)) {
+
+					$this->session->set_userdata('reset_email', $email);
+					$this->recoverpsw();
+
+					$this->db->delete('TOKEN', [
+						'EMAIL' => $email
+					]);
+				} else {
+
+					$this->db->delete('TOKEN', [
+						'EMAIL' => $email
+					]);
+
+					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<p><i class="icon fas fa-ban"></i> Token sudah kadaluarsa!</p></div>');
+					redirect('admin/auth');
+				}
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<p><i class="icon fas fa-ban"></i> Reset password gagal! token salah</p></div>');
 				redirect('admin/auth');
 			}
-
 		} else {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -231,8 +247,8 @@ class Auth extends CI_Controller
 
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|matches[newpassword]', [
 			'required' => 'Kolom ini harus diisi',
-			'min_length' => 'Password minimal berjumlah 8 karakter',
-			'matches' => 'Konfirmasi password salah'
+			'min_length' => 'Password terlalu pendek',
+			'matches' => ''
 		]);
 
 		$this->form_validation->set_rules('newpassword', 'Newpassword', 'trim|required|min_length[8]|matches[password]', [

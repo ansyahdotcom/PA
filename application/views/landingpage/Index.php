@@ -26,10 +26,10 @@
                     <div class="mr-auto"></div>
                     <ul class="navbar-nav">
                         <li class="nav-item mr-2 ml-2 mb-2">
-                            <a class="nav-link btn btn-primary">Masuk</a>
+                            <a href="<?= base_url('peserta/auth/login'); ?>" class="nav-link btn btn-primary">Masuk</a>
                         </li>
                         <li class="nav-item ml-2 mr-2 mb-2">
-                            <a class="nav-link btn btn-warning">Daftar</a>
+                            <a href="<?= base_url('peserta/auth/register'); ?>" class="nav-link btn btn-warning">Daftar</a>
                         </li>
                     </ul>
                 </div>

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="">
                 <div class="site-logo text-center py-4">
-                    <a href="#"><img src="<?= base_url(); ?>assets/dist/img/logo.png" width="150" alt="logo"></a>
+                    <a href="<?= base_url('peserta/auth'); ?>"><img src="<?= base_url(); ?>assets/dist/img/logo.png" width="150" alt="logo"></a>
                 </div>
                     <div class="container-fluid text-center text-md-left">
                     <div class="row">
@@ -34,15 +34,15 @@
 
                 <div class="social text-center">
                     <h6 class="text-uppercase">Ikuti akun sosial media kami</h6>
-                    <a href="https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i class="fab fa-youtube"></i></a>
-                    <a href="https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>
+                    <a href="<?= base_url(); ?>https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
+                    <a href="<?= base_url(); ?>https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
+                    <a href="<?= base_url(); ?>https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i class="fab fa-youtube"></i></a>
+                    <a href="<?= base_url(); ?>https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>
                 </div>
                 <div class="copyrights text-center">
                     <p class="para">
                         Copyright ©2020 All rights reserved by
-                        <a href="#"><span style="color: var(--primary-color);">Preneur Academy</span></a>
+                        <a href="<?= base_url('peserta/auth'); ?>"><span style="color: var(--primary-color);">Preneur Academy</span></a>
                     </p>
                 </div>
             </div>

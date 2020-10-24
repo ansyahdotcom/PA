@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/js/plugin/owl-carousel/css/owl.theme.default.min.css">
 
         <!-- Font google font -->
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+        <link href="<?= base_url(); ?>https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
         <!--  custom css file  -->
         <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/css/style.css">
 

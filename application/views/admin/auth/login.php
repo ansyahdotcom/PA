@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <?= form_error('email', '<small class="text-danger mt-3">', '</small>'); ?>  
+      <?= form_error('email', '<small class="text-danger">', '</small>'); ?>  
 
       <div class="input-group mb-3">
         <input type="password" class="form-control" name="password" placeholder="Password">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <?= form_error('password', '<small class="text-danger mt-3">', '</small>'); ?>
+      <?= form_error('password', '<small class="text-dange">', '</small>'); ?>
       <div class="row">
         <!-- <div class="col-8">
             <div class="icheck-primary">
