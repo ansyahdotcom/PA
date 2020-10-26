@@ -1,41 +1,75 @@
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-xl-9 mx-auto">
-                <div class="card card-signin flex-row my-5">
-                    <div class="card-img-left d-none d-md-flex">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Masuk Akun</h5>
-                        <?= $this->session->flashdata('message'); ?>
-                        <form class="form-signin" method="POST" action="<?= base_url('peserta/auth/login'); ?>">
-                            <div class="form-label-group">
-                                <label for="inputEmail">Alamat Email</label>
-                                <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
-                            </div>
+<body style="background-color: #666666;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+            <?= $this->session->flashdata('message'); ?>
+				<form class="login100-form validate-form" method="POST" action="<?= base_url('peserta/auth/login'); ?>">
+					<span class="login100-form-title p-b-43">
+						LOGIN
+					</span>
+					
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="email" name="email" required>  
+						<span class="focus-input100"></span>
+						<span class="label-input100">Email</span>
+					</div>
+					
+					
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100" id="password" type="password" name="password" required>
+						<span class="focus-input100"></span>
+						<span class="label-input100">Password</span>
+					</div>
 
-                            <div class="form-label-group mt-3">
-                                <label for="inputEmail">Password</label>
-                                <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
-                            </div>
+					<div class="flex-sb-m w-full p-t-3 p-b-32">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Ingat Saya
+							</label>
+						</div>
 
-                            <div class="mt-3">
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">Masuk</button>
-                            </div>
-                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/register'); ?>">Belum punya akun?</a>
-                            <a class="d-block text-center mt-2 small" href="forgot.html">Lupa kata sandi?</a>
-                            <hr class="my-4">
-                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Daftar dengan Google</button>
-                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Daftar dengan Facebook</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div>
+							<a href="<?= base_url('peserta/auth/register'); ?>" class="txt1">
+								Belum punya akun ?
+                            </a>
+                            <br>
+                            <a href="forgot.html" class="txt1">
+								Lupa kata sandi ?
+							</a>
+                        </div>
+                    
+					</div>
+			
 
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Login
+						</button>
+					</div>
+					
+					<div class="text-center p-t-46 p-b-20">
+						<span class="txt2">
+							atau daftar menggunakan
+						</span>
+					</div>
 
+					<div class="login100-form-social flex-c-m">
+						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+							<i class="fa fa-facebook" aria-hidden="true"></i>
+						</a>
 
-</body>
+						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+							<i class="fa fa-twitter" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
 
-</html>
+				<div class="login100-more">
+				<img src="<?=base_url()?>assets/icon/Sketsa.svg">
+				</div>
+			</div>
+		</div>
+	</div>

@@ -113,6 +113,7 @@ class Auth extends CI_Controller
 			redirect('peserta/auth/login');
 		}
 	}
+	
 
 	/**Konfigurasi kirim email */
 	private function _sendMail($token, $type)
