@@ -124,7 +124,8 @@ class Auth extends CI_Controller
 				<h2>Yang terhormat saudara " . $name['user']['NM_ADM'] . "</h2>
 				<p>Anda ingin mengubah password akun anda</p>
 				<p>Email anda : " . $email . "</p>
-				<p>Klik link di bawah ini untuk mengubah password anda!</p>
+				<p>Klik link di bawah ini untuk mengubah password anda !,</p> 
+				<p>link otomatis akan kadaluarsa dalam waktu 2 jam. </p>
 				<h4><a href='" . base_url() . "admin/auth/ubahpassword?email=" . $email . "&token=" . urlencode($token) . "'>Ubah Password!!</a></h4>
 			</body>
 			</html>
@@ -158,7 +159,7 @@ class Auth extends CI_Controller
 			$this->load->view("admin/auth/forgot-password");
 			$this->load->view("admin/template_adm/footer");
 		} else {
-			$email = $this->input->post('email', true);
+			$email = htmlspecialchars($this->input->post('email', true));
 			$user = $this->db->get_where('admin', [
 				'EMAIL_ADM' => $email,
 				'ACTIVE' => 1
@@ -200,22 +201,23 @@ class Auth extends CI_Controller
 		])->row_array();
 
 		if ($user) {
+
 			$user_token = $this->db->get_where('token', [
 				'TOKEN' => $token
 			])->row_array();
 
 			if ($user_token) {
-				if (time() - $user_token['DATE'] < (60 * 60 * 48)) {
+				if (time() - $user_token['DATE'] < (60 * 60 * 2)) {
 
 					$this->session->set_userdata('reset_email', $email);
 					$this->recoverpsw();
 
-					$this->db->delete('TOKEN', [
+					$this->db->delete('token', [
 						'EMAIL' => $email
 					]);
 				} else {
 
-					$this->db->delete('TOKEN', [
+					$this->db->delete('token', [
 						'EMAIL' => $email
 					]);
 
