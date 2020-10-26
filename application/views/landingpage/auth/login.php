@@ -3,24 +3,20 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-            <?= $this->session->flashdata('message'); ?>
 				<form class="login100-form validate-form" method="POST" action="<?= base_url('peserta/auth/login'); ?>">
 					<span class="login100-form-title p-b-43">
 						LOGIN
 					</span>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="email" name="email" required>  
-						<span class="focus-input100"></span>
-						<span class="label-input100">Email</span>
+					<?= $this->session->flashdata('message'); ?>
+					<div class="form-group">
+						<label for="email_ps">Email</label>
+						<input type="email" class="form-control" id="email" aria-describedby="emailHelp">
 					</div>
 					
 					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" id="password" type="password" name="password" required>
-						<span class="focus-input100"></span>
-						<span class="label-input100">Password</span>
+					<div class="form-group">
+						<label for="psw_ps">Password</label>
+						<input type="password" class="form-control" id="password">
 					</div>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
