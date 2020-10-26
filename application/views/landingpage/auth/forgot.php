@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="stylesheet" href="./css/login.css">
 
-        <title>Forgot Page</title>
+        <title><?= $tittle; ?></title>
     </head>
     <body>
         <div class="container">
@@ -20,18 +20,21 @@
                         </div>
                         <div class="card-body">
                         <h5 class="card-title text-center">Lupa Kata Sandi</h5>
-                        <form class="form-signin text-center">
+                        <?= $this->session->flashdata('message'); ?>
+                        <form class="form-signin text-center" action="<?= base_url('peserta/auth/lupapsw'); ?>" method="POST">
                             <img src="./img/forgot.svg" width="150" alt="lupasandi">
                             <div class="form-label-group text-left">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
                                 <label for="inputEmail">Alamat Email</label>
+                                <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
                             </div>
-                            <small class="text-success">
+                            <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+
+                            <small class="text-success mt-1">
                                 <p>Masukkan Email Anda, Kami akan mengirimkan link untuk mengganti password</p>
                             </small>
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Kirim</button>
-                            <a class="d-block text-center mt-2 small" href="login.html">Sudah punya akun?</a>
-                            <a class="d-block text-center mt-2 small" href="register.html">Belum punya akun?</a>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Kirim</button>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/login'); ?>">Sudah punya akun?</a>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/register'); ?>">Belum punya akun?</a>
                         </form>
                         </div>
                     </div>

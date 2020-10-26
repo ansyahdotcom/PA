@@ -8,22 +8,25 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Masuk Akun</h5>
                         <?= $this->session->flashdata('message'); ?>
+                        <!-- <h6 class="tex-center"><b>Email Anda: </b><?= $this->session->userdata('email'); ?></h6> -->
                         <form class="form-signin" method="POST" action="<?= base_url('peserta/auth/login'); ?>">
                             <div class="form-label-group">
                                 <label for="inputEmail">Alamat Email</label>
                                 <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
                             </div>
+                            <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
 
                             <div class="form-label-group mt-3">
                                 <label for="inputEmail">Password</label>
                                 <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
                             </div>
+                            <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
 
                             <div class="mt-3">
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">Masuk</button>
                             </div>
                             <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/register'); ?>">Belum punya akun?</a>
-                            <a class="d-block text-center mt-2 small" href="forgot.html">Lupa kata sandi?</a>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/lupapsw'); ?>">Lupa kata sandi?</a>
                             <hr class="my-4">
                             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Daftar dengan Google</button>
                             <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Daftar dengan Facebook</button>

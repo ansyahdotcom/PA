@@ -25,12 +25,18 @@
                     </ul>
                     <div class="mr-auto"></div>
                     <ul class="navbar-nav">
+                    <?php if ($this->session->userdata('email') == "") { ?>
                         <li class="nav-item mr-2 ml-2 mb-2">
                             <a href="<?= base_url('peserta/auth/login'); ?>" class="nav-link btn btn-primary">Masuk</a>
                         </li>
                         <li class="nav-item ml-2 mr-2 mb-2">
                             <a href="<?= base_url('peserta/auth/register'); ?>" class="nav-link btn btn-warning">Daftar</a>
                         </li>
+                    <?php } else { ?>
+                        <li class="nav-item ml-2 mr-2 mb-2">
+                            <a href="<?= base_url('peserta/auth/logout'); ?>" class="nav-link btn btn-outline-dark">Logout</a>
+                        </li>
+                    <?php } ?>
                     </ul>
                 </div>
             </nav>
@@ -42,10 +48,10 @@
     <!--  ======================= Awalan Area Utama ================================ -->
     <main class="site-main">
 
-
         <!--  ======================= Awalan Banner=======================  -->
         <section class="site-banner">
             <div class="container">
+            <?= $this->session->flashdata('message'); ?>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 site-title">
                         <h3 class="title-text">lorem ipsum</h3>
