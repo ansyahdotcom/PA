@@ -89,6 +89,18 @@
                                     <p>Blog</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/kategori'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kategori</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/tags'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Tags</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

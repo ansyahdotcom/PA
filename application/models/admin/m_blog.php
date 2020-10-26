@@ -20,8 +20,14 @@ class M_blog extends CI_Model{
     }
 
     function tampil_tags(){
-        $data=$this->db->query("SELECT ID_TAGS, NM_TAGS FROM tags ORDER BY ID_TAGS ASC");
+        $data=$this->db->query("SELECT ID_TAGS, NM_TAGS FROM tags ORDER BY NM_TAGS ASC");
         return $data;
+    }
+
+    function selectMaxID_POST(){
+        $query = $this->db->query("SELECT MAX(ID_POST) AS ID_POST FROM post");
+        $hasil = $query->row();
+        return $hasil->ID_POST;
     }
     
     function selectMaxID_CT(){
@@ -30,10 +36,27 @@ class M_blog extends CI_Model{
         return $hasil->ID_CT;       
     }
 
-    function tmbh_kategori($ID_CT, $NM_CT)
-        {
-                $this->db->query("INSERT INTO category ( ID_CT, NM_CT ) VALUES('$ID_CT', '$NM_CT')");
-        }
+    function tmbh_kategori($ID_CT, $NM_CT){
+        $this->db->query("INSERT INTO category ( ID_CT, NM_CT ) VALUES('$ID_CT', '$NM_CT')");
+    }
+
+    function selectMaxID_TAGS(){
+        $query = $this->db->query("SELECT MAX(ID_TAGS) AS ID_TAGS FROM tags");
+        $hasil = $query->row();
+        return $hasil->ID_TAGS;
+    }
+
+    function tmbh_tags($ID_TAGS, $NM_TAGS){
+        $this->db->query("INSERT INTO tags ( ID_TAGS, NM_TAGS ) VALUES ('$ID_TAGS', '$NM_TAGS')");
+    }
+
+    function tmbh_blog($data, $table){
+        $this->db->insert($table, $data);
+    }
+
+    function tmbh_dt_tags($dt_tags, $table){
+        $this->db->insert($table, $dt_tags);
+    }
 }
 
 ?>
