@@ -1,5 +1,5 @@
 <body style="background-color: #666666;">
-	
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -7,22 +7,18 @@
 					<span class="login100-form-title p-b-43">
 						LOGIN
 					</span>
-            		<?= $this->session->flashdata('message'); ?>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="email" name="email" required>  
-						<span class="focus-input100"></span>
-						<span class="label-input100">Email</span>
+					<?= $this->session->flashdata('message'); ?>
+					<div class="form-group">
+						<label for="email_ps">Email</label>
+						<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
 					</div>
-                    <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" id="password" type="password" name="password" required>
-						<span class="focus-input100"></span>
-						<span class="label-input100">Password</span>
+					<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+
+					<div class="form-group">
+						<label for="psw_ps">Password</label>
+						<input type="password" class="form-control" id="password" name="password">
 					</div>
-                    <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+					<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
@@ -32,25 +28,25 @@
 							</label>
 						</div>
 
-                        <div>
+						<div>
 							<a href="<?= base_url('peserta/auth/register'); ?>" class="txt1">
 								Belum punya akun ?
-                            </a>
-                            <br>
-                            <a href="<?= base_url('peserta/auth/lupapsw'); ?>" class="txt1">
+							</a>
+							<br>
+							<a href="<?= base_url('peserta/auth/lupapsw'); ?>" class="txt1">
 								Lupa kata sandi ?
 							</a>
-                        </div>
-                    
+						</div>
+
 					</div>
-			
+
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Login
 						</button>
 					</div>
-					
+
 					<div class="text-center p-t-46 p-b-20">
 						<span class="txt2">
 							atau daftar menggunakan
@@ -69,7 +65,7 @@
 				</form>
 
 				<div class="login100-more">
-				<img src="<?=base_url()?>assets/icon/Sketsa.svg">
+					<img src="<?= base_url() ?>assets/icon/Sketsa.svg">
 				</div>
 			</div>
 		</div>
