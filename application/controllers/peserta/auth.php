@@ -109,7 +109,7 @@ class Auth extends CI_Controller
 			$id = "PSR" . $num;
 		}
 
-		$this->form_validation->set_rules('name', 'Name', 'required|trim', [
+		$this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
 			'required' => 'Kolom ini harus diisi'
 		]);
 
@@ -119,13 +119,19 @@ class Auth extends CI_Controller
 			'is_unique' => 'Email ini sudah terdaftar'
 		]);
 
+		$this->form_validation->set_rules('nomorwa', 'Nomorwa', 'required|trim|min_length[11]|max_length[13]', [
+			'required' => 'Kolom ini harus diisi',
+			'min_length' => 'Nomor terlalu pendek',
+			'max_length' => 'Nomor terlalu panjang'
+		]);
+
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password1]', [
 			'required' => 'Kolom ini harus diisi',
 			'min_length' => 'Password terlalu pendek',
 			'matches' => ''
 		]);
 
-		$this->form_validation->set_rules('password1', 'Password1', 'required|trim|min_length[8]|matches[password1]', [
+		$this->form_validation->set_rules('password1', 'Password1', 'required|trim|min_length[8]|matches[password]', [
 			'required' => 'Kolom ini harus diisi',
 			'min_length' => 'Password terlalu pendek',
 			'matches' => 'Konfirmasi password salah'
@@ -138,8 +144,9 @@ class Auth extends CI_Controller
 			$this->load->view("landingpage/template/footer");
 		} else {
 			/** Proses insert ke database */
-			$name = htmlspecialchars($this->input->post('name', true));
+			$name = htmlspecialchars($this->input->post('nama', true));
 			$email = htmlspecialchars($this->input->post('email', true));
+			$nohp = htmlspecialchars($this->input->post('nomorwa', true));
 			$password = htmlspecialchars(password_hash($this->input->post('password1', true), PASSWORD_DEFAULT));
 
 			/** membuat token untuk aktivasi */
@@ -153,6 +160,7 @@ class Auth extends CI_Controller
 			$register = [
 				'ID_PS' => $id,
 				'NM_PS' => $name,
+				'HP_PS' => $nohp,
 				'EMAIL_PS' => $email,
 				'PSW_PS' => $password,
 				'ID_ROLE' => 2,
