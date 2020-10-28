@@ -22,7 +22,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="psw_ps">No. WhatsApp</label>
+						<label for="hp_ps">No. WhatsApp</label>
 						<input type="number" class="form-control" id="nomorwa" name="nomorwa">
 						<?= form_error('nomorwa', '<small class="text-danger">', '</small>'); ?>
 					</div>
