@@ -10143,6 +10143,9 @@ a.text-dark:hover, a.text-dark:focus {
   visibility: hidden !important;
 }
 
+.trash{padding:2px; border:1px solid red; margin-left:10px; background-color:red; color:#fff}
+td{padding:5px}
+
 @media print {
   *,
   *::before,

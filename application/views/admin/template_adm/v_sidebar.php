@@ -23,7 +23,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                     <!-- MENU -->
-                    
+
                     <!-- ini menu yang ga ada sub menunya -->
                     <!-- kalo ngopy codingan menunya dari sini -->
                     <li class="nav-item">
@@ -57,7 +57,7 @@
                                 </a>
                             </li>
                             <!-- sampe sini -->
-                            
+
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -73,7 +73,7 @@
                         </ul>
                     </li>
                     <!-- akhir ngopy sampai sini -->
-                
+
                     <li class="nav-item has-treeview menu-open">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-blog"></i>

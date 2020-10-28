@@ -29,24 +29,22 @@
 
 					</div>
 					<!-- /.card-header -->
-					<form action="<?= base_url('admin/blog/pr_tmbh_blog'); ?>" method="post" enctype="multipart/form-data"
-						class="form-horizontal">
+					<form action="<?= base_url('admin/blog/pr_tmbh_blog'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 						<div class="card-body">
 							<input type="hidden" name="ID_POST" value="<?= $ID_POST; ?>">
 							<input type="hidden" name="ID_ADM" value="<?= $ID_ADM; ?>">
-							<input class="form-control" type="text" autocomplete="off" name="JUDUL_POST"
-								placeholder="Judul">
+							<label for="JUDUL_POST">Judul</label>
+							<input class="form-control" type="text" autocomplete="off" name="JUDUL_POST" placeholder="Tambahkan Judul">
 							<br>
 							<!-- Kategori -->
 							<label for="ID_CT">Kategori</label>
 							<select name="ID_CT" id="ID_CT" class="form-control">
-								<option value=""></option>
-								<?php foreach($category as $ct){ ?>
-								<option value="<?= $ct->ID_CT; ?>"><?= $ct->NM_CT; ?></option>
+								<option selected disabled>Pilih Kategori</option>
+								<?php foreach ($category as $ct) { ?>
+									<option value="<?= $ct->ID_CT; ?>"><?= $ct->NM_CT; ?></option>
 								<?php } ?>
 							</select>
-							<button type="button" id="tambah_kategori" class="btn btn-primary btn-xs btn-round"
-								data-toggle="modal" data-target="#modal_tambah_kategori">Tambah kategori baru</button>
+							<button type="button" id="tambah_kategori" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_kategori">Tambah kategori baru</button>
 							<br>
 							<br>
 							<!-- Tags -->
@@ -56,16 +54,18 @@
 								data-toggle="modal" data-target="#modal_tampil_tags">Pilih tags</button> -->
 
 							<select name="ID_TAGS" id="ID_TAGS" class="form-control">
-								<option value=""> </option>
-								<?php foreach($tags as $tg){ ?>
-								<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
+								<option selected disabled>Pilih Tags</option>
+								<?php foreach ($tags as $tg) { ?>
+									<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
 								<?php } ?>
 							</select>
-							<button type="button" id="tambah_tags" class="btn btn-primary btn-xs btn-round"
-								data-toggle="modal" data-target="#modal_tambah_tags">Tambah tags baru</button>
+							<button type="button" id="tambah_tags" class="btn btn-primary btn-xs btn-round">Tambah tags lain</button>
+							<button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button>
+							<br> <br>
+							<label for="FOTO_POST">Foto</label>
+							<input type="file" class="form-control" id="FOTO_POST">
 							<hr>
-							<textarea class="form-control" name="KONTEN_POST" id="KONTEN_POST" cols="30" rows="50"
-								placeholder="Isi artikel disini..."></textarea>
+							<textarea class="form-control" name="KONTEN_POST" id="KONTEN_POST" cols="30" rows="50" placeholder="Isi artikel disini..."></textarea>
 							<br>
 							<button class="btn btn-primary btn-round">Pratinjau</button>
 							<button type="submit" class="btn btn-success btn-round">Simpan</button>
@@ -121,11 +121,10 @@
 			<form method="POST" action="<?= base_url('admin/blog/pr_pilih_tags'); ?>">
 				<div class="modal-body">
 					<div class="form-check">
-						<?php foreach($tags as $tg){ ?>
-						<input type="checkbox" id="ID_TAGS" name="ID_TAGS" class="form-check-input"
-							value="<?= $tg->ID_TAGS?>">
-						<label for="ID_TAGS" class="form-check-label"> <?= $tg->NM_TAGS;?> </label>
-						<br>
+						<?php foreach ($tags as $tg) { ?>
+							<input type="checkbox" id="ID_TAGS" name="ID_TAGS" class="form-check-input" value="<?= $tg->ID_TAGS ?>">
+							<label for="ID_TAGS" class="form-check-label"> <?= $tg->NM_TAGS; ?> </label>
+							<br>
 						<?php } ?>
 					</div>
 				</div>
@@ -137,17 +136,17 @@
 	</div>
 </div>
 
-<!-- Modal tambah tags -->
-<div class="modal fade" id="modal_tambah_tags" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Modal buat tags -->
+<div class="modal fade" id="modal_buat_tags" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title title-1" id="myModalLabel">Tambah tags</h4>
+				<h4 class="modal-title title-1" id="myModalLabel">Buat tags</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="post" action="<?= base_url('admin/blog/pr_tmbh_tags'); ?>">
+			<form method="post" action="<?= base_url('admin/blog/pr_buat_tags'); ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="hidden" class="form-control" name="ID_TAGS" value="<?= $ID_TAGS; ?>">
@@ -155,7 +154,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
+					<button type="submit" id="save-btn" class="btn btn-success">Buat</button>
 				</div>
 			</form>
 		</div>
