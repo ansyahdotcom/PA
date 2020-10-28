@@ -11,41 +11,41 @@
 					<div class="form-group">
 						<label for="nm_ps">Nama lengkap</label>
 						<input type="text" class="form-control" id="nama" name="nama" required>
+						<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
 					</div>
-					<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
 
 
 					<div class="form-group">
 						<label for="email_ps">Email</label>
-						<input type="email" class="form-control" id="email" nama="email" aria-describedby="emailHelp">
+						<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+						<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
 					</div>
-					<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
 
 					<div class="form-group">
 						<label for="psw_ps">No. WhatsApp</label>
-						<input type="number" class="form-control" id="nomorwa" nama="nomorwa">
+						<input type="number" class="form-control" id="nomorwa" name="nomorwa">
+						<?= form_error('nomorwa', '<small class="text-danger">', '</small>'); ?>
 					</div>
-					<?= form_error('nomorwa', '<small class="text-danger">', '</small>'); ?>
 
 					<div class="form-group">
 						<label for="psw_ps">Password</label>
 						<input type="password" class="form-control" id="password" name="password">
+						<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
 					</div>
-					<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
 
 					<div class="form-group">
 						<label for="psw_ps">Ulangi Password</label>
 						<input type="password" class="form-control" id="password1" name="password1">
+						<?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
 					</div>
-					<?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
+						<!-- <div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 							<label class="label-checkbox100" for="ckb1">
 								Ingat Saya
 							</label>
-						</div>
+						</div> -->
 
 						<div>
 							<a href="<?= base_url('peserta/auth/login'); ?>" class="txt1">
