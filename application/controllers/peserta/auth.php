@@ -324,8 +324,10 @@ class Auth extends CI_Controller
 		]);
 
 		if ($this->form_validation->run() == false) {
-			$data['tittle'] = 'Preneur Academy | Lupa Password';
-			$this->load->view("landingpage/auth/forgot", $data);
+			$data['judul'] = 'Preneur Academy | Lupa Password';
+			$this->load->view("landingpage/template/header", $data);
+			$this->load->view("landingpage/auth/forgot");
+			$this->load->view("landingpage/template/footer");
 		} else {
 			$email = htmlspecialchars($this->input->post('email', true));
 			$user = $this->m_auth->activacount($email);

@@ -42,7 +42,7 @@
                 <div class="copyrights text-center">
                     <p class="para">
                         Copyright ©2020 All rights reserved by
-                        <a href="<?= base_url('peserta/auth'); ?>"><span style="color: var(--primary-color);">Preneur Academy</span></a>
+                        <a href="<?= base_url(); ?>"><span style="color: var(--primary-color);">Preneur Academy</span></a>
                     </p>
                 </div>
             </div>

@@ -1,76 +1,47 @@
-<body style="background-color: #666666;">
-
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="POST" action="<?= base_url('peserta/auth/register'); ?>">
-					<span class="login100-form-title p-b-43">
-						DAFTAR AKUN
-					</span>
-					<?= $this->session->flashdata('message'); ?>
-					<div class="form-group">
-						<label for="nm_ps">Nama lengkap</label>
-						<input type="text" class="form-control" id="nama" name="nama" required>
-						<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
-					</div>
-
-
-					<div class="form-group">
-						<label for="email_ps">Email</label>
-						<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-						<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-					</div>
-
-					<div class="form-group">
-						<label for="hp_ps">No. WhatsApp</label>
-						<input type="number" class="form-control" id="nomorwa" name="nomorwa">
-						<?= form_error('nomorwa', '<small class="text-danger">', '</small>'); ?>
-					</div>
-
-					<div class="form-group">
-						<label for="psw_ps">Password</label>
-						<input type="password" class="form-control" id="password" name="password">
-						<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
-					</div>
-
-					<div class="form-group">
-						<label for="psw_ps">Ulangi Password</label>
-						<input type="password" class="form-control" id="password1" name="password1">
-						<?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
-					</div>
-
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<!-- <div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Ingat Saya
-							</label>
-						</div> -->
-
-						<div>
-							<a href="<?= base_url('peserta/auth/login'); ?>" class="txt1">
-								Sudah daftar ?
-							</a>
-							<br>
-							<a href="<?= base_url('peserta/auth/lupapsw'); ?>" class="txt1">
-								Lupa password ?
-							</a>
-						</div>
-
-					</div>
-
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Daftar
-						</button>
-					</div>
-
-				</form>
-
-				<div class="login100-more">
-					<img src="<?= base_url() ?>assets/icon/Sketsa.svg">
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+                        <div class="card-img-left d-none d-md-flex">
+                        </div>
+                        <div class="card-body">
+                        <h5 class="card-title text-center">Daftar Akun</h5>
+						<form class="form-signin" method="POST" action="<?= base_url('peserta/auth/register'); ?>">
+						<?= $this->session->flashdata('message'); ?>
+                            <div class="form-label-group">
+                            <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+                            <label for="inputUserame">Nama Lengkap</label>
+                            </div>
+							<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+                            <div class="form-label-group">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
+                            <label for="inputEmail">Alamat Email</label>
+							</div>
+							<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                            <div class="form-label-group">
+                            <input type="number" id="nomorwa" name="nomorwa" class="form-control" placeholder="Email address" required>
+                            <label for="inputEmail">Nomer WhatsApp</label>
+							</div>
+							<?= form_error('nomorwa', '<small class="text-danger">', '</small>'); ?>
+                            <div class="form-label-group">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                            <label for="inputPassword">Kata Sandi</label>
+                            </div>
+                            <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+                            <div class="form-label-group">
+                            <input type="password" id="password1" name="password1" class="form-control" placeholder="Password" required>
+                            <label for="inputConfirmPassword">Konfirmasi Kata Sandi</label>
+                            </div>
+							<?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Daftar</button>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/login'); ?>">Sudah punya akun?</a>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/lupapsw'); ?>">Lupa kata sandi?</a>
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Daftar dengan Google</button>
+                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Daftar dengan Facebook</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

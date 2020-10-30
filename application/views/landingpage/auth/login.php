@@ -1,72 +1,32 @@
-<body style="background-color: #666666;">
-
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form" method="POST" action="<?= base_url('peserta/auth/login'); ?>">
-					<span class="login100-form-title p-b-43">
-						LOGIN
-					</span>
-					<?= $this->session->flashdata('message'); ?>
-					<div class="form-group">
-						<label for="email_ps">Email</label>
-						<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-					</div>
-					<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-
-					<div class="form-group">
-						<label for="psw_ps">Password</label>
-						<input type="password" class="form-control" id="password" name="password">
-					</div>
-					<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
-
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Ingat Saya
-							</label>
-						</div>
-
-						<div>
-							<a href="<?= base_url('peserta/auth/register'); ?>" class="txt1">
-								Belum punya akun ?
-							</a>
-							<br>
-							<a href="<?= base_url('peserta/auth/lupapsw'); ?>" class="txt1">
-								Lupa kata sandi ?
-							</a>
-						</div>
-
-					</div>
-
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
-
-					<div class="text-center p-t-46 p-b-20">
-						<span class="txt2">
-							atau daftar menggunakan
-						</span>
-					</div>
-
-					<div class="login100-form-social flex-c-m">
-						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-							<i class="fa fa-facebook" aria-hidden="true"></i>
-						</a>
-
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-						</a>
-					</div>
-				</form>
-
-				<div class="login100-more">
-					<img src="<?= base_url() ?>assets/icon/Sketsa.svg">
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+                        <div class="card-img-left d-none d-md-flex">
+                        </div>
+                        <div class="card-body">
+                        <h5 class="card-title text-center">Masuk Akun</h5>
+                        <form class="form-signin" method="POST" action="<?= base_url('peserta/auth/login'); ?>">
+						<?= $this->session->flashdata('message'); ?>
+                            <div class="form-label-group">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Masukkan Email">
+                            <label for="inputUserame">Email</label>
+							</div>
+							<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                            <div class="form-label-group">
+                            <input type="password" id="password" class="form-control" placeholder="Masukkan Kata sandi">
+                            <label for="inputPassword">Kata Sandi</label>
+                            </div>
+							<?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Masuk</button>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/register'); ?>">Sudah punya akun?</a>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/lupapsw'); ?>">Lupa kata sandi?</a>
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Daftar dengan Google</button>
+                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Daftar dengan Facebook</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
