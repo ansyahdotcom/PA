@@ -9,30 +9,30 @@
 						<form class="form-signin" method="POST" action="<?= base_url('peserta/auth/register'); ?>">
 						<?= $this->session->flashdata('message'); ?>
                             <div class="form-label-group">
-                            <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
-                            <label for="inputUserame">Nama Lengkap</label>
-                            </div>
+                            <input type="text" id="nama" name="nama" class="form-control" placeholder="Username" required autofocus>
+                            <label for="nama">Nama Lengkap</label>
 							<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+                            </div>
                             <div class="form-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
-                            <label for="inputEmail">Alamat Email</label>
-							</div>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+                            <label for="email">Alamat Email</label>
 							<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-                            <div class="form-label-group">
-                            <input type="number" id="nomorwa" name="nomorwa" class="form-control" placeholder="Email address" required>
-                            <label for="inputEmail">Nomer WhatsApp</label>
 							</div>
+                            <div class="form-label-group">
+                            <input type="number" id="nomorwa" name="nomorwa" class="form-control" placeholder="Email address" required autofocus>
+                            <label for="nomorwa">Nomer WhatsApp</label>
 							<?= form_error('nomorwa', '<small class="text-danger">', '</small>'); ?>
+							</div>
                             <div class="form-label-group">
-                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                            <label for="inputPassword">Kata Sandi</label>
-                            </div>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required autofocus>
+                            <label for="password">Kata Sandi</label>
                             <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
-                            <div class="form-label-group">
-                            <input type="password" id="password1" name="password1" class="form-control" placeholder="Password" required>
-                            <label for="inputConfirmPassword">Konfirmasi Kata Sandi</label>
                             </div>
+                            <div class="form-label-group">
+                            <input type="password" id="password1" name="password1" class="form-control" placeholder="Password" required autofocus>
+                            <label for="password1">Konfirmasi Kata Sandi</label>
 							<?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
+                            </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Daftar</button>
                             <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/login'); ?>">Sudah punya akun?</a>
                             <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/lupapsw'); ?>">Lupa kata sandi?</a>

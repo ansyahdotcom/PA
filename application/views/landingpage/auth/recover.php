@@ -1,4 +1,3 @@
-<body>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-9 mx-auto">
@@ -8,19 +7,19 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Ubah Password</h5>
                         <?= $this->session->flashdata('message'); ?>
-                        <h6 class="tex-center"><b>Email Anda: </b><?= $this->session->userdata('reset_email'); ?></h6>
+                        <h6 class="text-center"><b>Email Anda: </b><?= $this->session->userdata('reset_email'); ?></h6>
                         <form class="form-signin" method="POST" action="<?= base_url('peserta/auth/recoverpsw'); ?>">
                             <div class="form-label-group">
-                                <label for="inputEmail">Password Baru</label>
                                 <input type="password" id="password" class="form-control" name="password" placeholder="Password Baru" required>
+                                <label for="password">Password Baru</label>
+                                <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
                             </div>
-                            <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
 
-                            <div class="form-label-group mt-3">
-                                <label for="inputEmail">Konformasi Password</label>
+                            <div class="form-label-group">
                                 <input type="password" id="password1" class="form-control" name="password1" placeholder="Konfirmasi Password" required>
+                                <label for="password1">Konfirmasi Password</label>
+                                <?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
                             </div>
-                            <?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
 
                             <div class="mt-3">
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">Ubah Password</button>

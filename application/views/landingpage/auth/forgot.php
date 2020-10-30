@@ -9,14 +9,14 @@
                         <form class="form-signin text-center" action="<?= base_url('peserta/auth/lupapsw'); ?>" method="POST">
                         <?= $this->session->flashdata('message'); ?>
                             <img src="<?=base_url();?>assets/dist/img/forgot.svg" width="150" alt="lupasandi">
-                            <div class="form-label-group text-left">
-                                <input type="email" id="email" class="form-control" name="email" placeholder="Email address" required>
-                                <label for="inputEmail">Alamat Email</label>
-                            </div>
                             <small class="text-success">
                                 <p>Masukkan Email Anda, Kami akan mengirimkan link untuk mengganti password</p>
                             </small>
-                            <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                            <div class="form-label-group text-left">
+                                <input type="email" id="email" class="form-control" name="email" placeholder="Email address" required>
+                                <label for="email">Alamat Email</label>
+                                <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                            </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Kirim</button>
                             <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/login'); ?>">Sudah punya akun?</a>
                             <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/register'); ?>">Belum punya akun?</a>
