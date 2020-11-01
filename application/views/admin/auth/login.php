@@ -10,25 +10,33 @@
     <?= $this->session->flashdata('message'); ?>
 
     <form action="<?= base_url('admin/auth'); ?>" method="post">
-      <div class="input-group mb-3">
-        <input type="email" class="form-control" name="email" placeholder="Email">
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-envelope logos"></span>
+      <div class="mb-3">
+        <div class="input-group">
+          <input type="email" class="form-control" name="email" placeholder="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope logos"></span>
+            </div>
           </div>
         </div>
+        <div>
+          <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+        </div>
       </div>
-      <?= form_error('email', '<small class="text-danger">', '</small>'); ?>  
 
-      <div class="input-group mb-3">
-        <input type="password" class="form-control" name="password" placeholder="Password">
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fas fa-lock logos"></span>
+      <div class="mb-3">
+        <div class="input-group">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock logos"></span>
+            </div>
           </div>
         </div>
+        <div>
+          <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+        </div>
       </div>
-      <?= form_error('password', '<small class="text-dange">', '</small>'); ?>
       <div class="row">
         <!-- <div class="col-8">
             <div class="icheck-primary">

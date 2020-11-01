@@ -5,16 +5,13 @@ class Dashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        adm_logged_in();
     }
 
 
     /** Menampilkan Dashboard Admin */
     public function index()
     {
-        if (!$this->session->userdata('email')) {
-			redirect('admin/auth');
-        }
-        
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>
             $this->session->userdata('email')

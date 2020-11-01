@@ -15,7 +15,7 @@
                             <div class="form-label-group text-left">
                                 <input type="email" id="email" class="form-control" name="email" placeholder="Email address" required>
                                 <label for="email">Alamat Email</label>
-                                <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                                <?= form_error('email', '<small class="text-danger p-3">', '</small>'); ?>
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Kirim</button>
                             <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/login'); ?>">Sudah punya akun?</a>
