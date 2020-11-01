@@ -13,9 +13,9 @@ class Auth extends CI_Controller
 	/** Menampilkan Form Login */
 	public function index()
 	{
-		if ($this->session->userdata('email')) {
-			redirect('admin/auth');
-		}
+		// if ($this->session->userdata('email')) {
+		// 	redirect('admin/auth');
+		// }
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
 			'required' => 'Kolom ini harus di isi',
 			'valid_email' => 'Email tidak valid'

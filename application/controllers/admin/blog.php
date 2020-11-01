@@ -6,7 +6,8 @@ class Blog extends CI_Controller
     {
         parent::__construct();
         $this->load->model('admin/m_blog');
-        $this->load->helper('form', 'url');
+        // $this->load->helper('form', 'url');
+        adm_logged_in();
     }
 
     public function index()
