@@ -25,4 +25,14 @@
             $this->load->view("admin/peserta/v_peserta", $data);
             $this->load->view("admin/template_adm/v_footer");
         }
+
+        public function hapus()
+        {
+            $id = $this->input->post('id');
+            $this->m_peserta->delps($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-check"></i> Data berhasil dihapus!</h5></div>');
+            redirect('admin/peserta');
+        }
     }
