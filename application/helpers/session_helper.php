@@ -24,11 +24,12 @@
         $var_ci = get_instance();
         $data = $var_ci->session->userdata('email');
 
-        $user = $var_ci->db->get_where('peserta', [
-            'EMAIL_PS' => $data
+        $user = $var_ci->db->get_where('admin', [
+            'EMAIL_ADM' => $data
         ])->row_array();
-        if($user['ID_ROLE'] == 2) {
+        if($user['ID_ROLE'] != 1) {
             redirect('peserta/auth');
+            die;
         }
     }
 ?>
