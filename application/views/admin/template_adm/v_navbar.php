@@ -113,7 +113,13 @@
                         <?= $admin['NM_ADM']; ?> <?= $level; ?>
 
                     </p>
-                    <small>Terdaftar <?= date('d F Y', $admin['DATE_CREATE']); ?></small>
+                    <small>
+                        <?php if ($admin['DATE_CREATE'] != 0) { ?>
+                            Terdaftar <?= date('d F Y', $admin['DATE_CREATE']); ?>
+                        <?php } else {?>
+                            Terdaftar <span title='caption' class='badge badge-secondary'>---</span>
+                        <?php } ?>
+                    </small>
                 </li>
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
