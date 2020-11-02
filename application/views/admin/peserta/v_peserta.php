@@ -57,13 +57,24 @@
                       <td class="text-center">
                         <?php if ($status == 0) { ?>
                           <span class="badge-pill bg-danger"><b>Belum Aktivasi</b></span>
-                        <?php } else { ?>
+                        <?php } elseif ($status == 1) { ?>
                           <span class="badge-pill bg-success"><b>Sudah Aktif</b></span>
+                        <?php } else { ?>
+                          <span class="badge-pill bg-dark"><b>Terblokir</b></span>
                         <?php } ?>
                       </td>
                       <td class="text-center">
                         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-detail<?= $id; ?>"><b>Detail</b></button>
                         <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><b>Hapus</b></button>
+                        <?php if ($status == 0) { ?>
+
+                        <?php } else {?>
+                          <?php if ($status == 1) { ?>
+                            <button class="btn btn-sm btn-dark" data-toggle="modal" data-target="#modal-blok<?= $id; ?>"><b>Blokir</b></button>
+                          <?php } elseif ($status == 2) { ?>
+                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-unblok<?= $id; ?>"><b>Buka Blokir</b></button>
+                          <?php } ?>
+                        <?php } ?>
                       </td>
                     </tr>
                     <?php $no++; ?>
@@ -180,6 +191,60 @@
           <form action="<?= base_url('admin/peserta/hapus'); ?>" method="POST">
             <div class="modal-body">
               <p>Apakah anda yakin ingin menghapus data dari <b><?= $nama; ?></b>?</p>
+              <input type="hidden" name="id" value="<?= $id; ?>">
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+              <button type="submit" class="btn btn-danger">Ya</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- Modal Blokir Data -->
+    <div class="modal fade" id="modal-blok<?= $id; ?>">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Blokir</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="<?= base_url('admin/peserta/blok'); ?>" method="POST">
+            <div class="modal-body">
+              <p>Apakah anda yakin ingin memblokir akun <b><?= $nama; ?></b>?</p>
+              <input type="hidden" name="id" value="<?= $id; ?>">
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+              <button type="submit" class="btn btn-danger">Ya</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- Modal Unblok Data -->
+    <div class="modal fade" id="modal-unblok<?= $id; ?>">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Buka Blokir</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="<?= base_url('admin/peserta/unblok'); ?>" method="POST">
+            <div class="modal-body">
+              <p>Apakah anda yakin ingin membuka blokir akun <b><?= $nama; ?></b>?</p>
               <input type="hidden" name="id" value="<?= $id; ?>">
             </div>
             <div class="modal-footer justify-content-between">

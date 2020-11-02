@@ -35,4 +35,24 @@
             <h5><i class="icon fas fa-check"></i> Data berhasil dihapus!</h5></div>');
             redirect('admin/peserta');
         }
+
+        public function blok()
+        {
+            $id = $this->input->post('id');
+            $this->m_peserta->blokps($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-check"></i> Akun telah diblokir!</h5></div>');
+            redirect('admin/peserta');
+        }
+
+        public function unblok()
+        {
+            $id = $this->input->post('id');
+            $this->m_peserta->unblokps($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-check"></i> Akun telah diaktifkan kembali!</h5></div>');
+            redirect('admin/peserta');
+        }
     }

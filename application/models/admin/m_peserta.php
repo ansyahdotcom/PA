@@ -13,5 +13,21 @@
             $this->db->delete('peserta');
             return $this->db;
         }
+
+        public function blokps($id)
+        {
+            $this->db->set('ACTIVE', 2);
+            $this->db->where('ID_PS', $id);
+            $this->db->update('peserta');
+            return $this->db;
+        }
+
+        public function unblokps($id)
+        {
+            $this->db->set('ACTIVE', 1);
+            $this->db->where('ID_PS', $id);
+            $this->db->update('peserta');
+            return $this->db;
+        }
     }
 ?>
