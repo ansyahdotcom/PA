@@ -37,6 +37,7 @@ class Auth extends CI_Controller
 	/**Fungsi Login */
 	private function _login()
 	{
+
 		$email = htmlspecialchars(($this->input->post('email')));
 		$password = htmlspecialchars(($this->input->post('password')));
 		$user = $this->db->get_where('admin', ['EMAIL_ADM' => $email])->row_array();
@@ -55,7 +56,7 @@ class Auth extends CI_Controller
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 						<h5><i class="icon fas fa-check"></i> Anda berhasil login!</h5></div>');
 						redirect('admin/dashboard');
-					}
+					} 
 				} else {
 					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

@@ -5,7 +5,11 @@
         <!--  ======================= Awalan Banner=======================  -->
         <section class="site-banner">
             <div class="container">
-                <?= $this->session->flashdata('message'); ?>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <?= $this->session->flashdata('message'); ?>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 site-title">
                         <h3 class="title-text">lorem ipsum</h3>

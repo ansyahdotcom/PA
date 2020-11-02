@@ -4,14 +4,18 @@
         $var_ci = get_instance();
         if (!$var_ci->session->userdata('email')) {
             redirect('admin/auth');
+        } else {
+            // redirect('admin/dashboard');
         }
     }
 
-    // function adm_logged_out()
+    // function ps_logged_in()
     // {
     //     $var_ci = get_instance();
-    //     if (!$var_ci->session->unset_userdata('email')) {
-    //         redirect('admin/dashboard');
+    //     if ($var_ci->session->userdata('email')) {
+    //         redirect('peserta/auth');
+    //     } else {
+    //         // redirect('admin/dashboard');
     //     }
     // }
 ?>

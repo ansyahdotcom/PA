@@ -94,6 +94,62 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
+
+        <li class="nav-item dropdown user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
+                <span class="d-none d-md-inline"><?= $admin['NM_ADM']; ?></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <!-- User image -->
+                <li class="user-header bg-primary">
+                    <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <?php
+                    if ($admin['ID_ROLE'] == 1) {
+                        $level = "<span title='ADMIN' class='badge badge-danger'>ADMIN</span>";
+                    }
+                    ?>
+                    <p>
+                        <?= $admin['NM_ADM']; ?> <?= $level; ?>
+
+                    </p>
+                    <small>Terdaftar <?= date('d F Y', $admin['DATE_CREATE']); ?></small>
+                </li>
+                <!-- Menu Body -->
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                    <a href="<?= base_url('user/profil'); ?>" class="btn btn-outline-primary">Profil</a>
+                    <button type="button" class="btn btn-outline-danger float-right" data-toggle="modal" data-target="#modal-sm">Logout</button>
+                </li>
+            </ul>
+        </li>
     </ul>
+    <!-- <ul class="navbar-nav ml-auto">
+        
+    </ul> -->
 </nav>
 <!-- /.navbar -->
+
+<!-- Modal Logout -->
+<div class="modal fade" id="modal-sm">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Logout</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin ingin logout?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                <a href="<?= base_url('admin/auth/logout'); ?>" type="button" class="btn btn-danger" >Ya</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

@@ -12,9 +12,6 @@ class Auth extends CI_Controller
 	/** Menampilkan Form beranda */
 	public function index()
 	{
-		// if (!$this->session->userdata('email')) {
-		// 	redirect('peserta/auth');
-		// }
 		$data['judul'] = 'Preneur Academy | Beranda';
 		$this->load->view("landingpage/template/header", $data);
 		$this->load->view("landingpage/index");
@@ -62,25 +59,25 @@ class Auth extends CI_Controller
 					];
 					$this->session->set_userdata($data);
 					if ($user['ID_ROLE'] == 2) {
-						$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">
+						$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-center" role="alert">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 						<h5><i class="icon fas fa-check"></i> Anda berhasil login!</h5></div>');
 						redirect('peserta/auth');
 					}
 				} else {
-					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<h5><i class="icon fas fa-ban"></i> Email/Password salah!</h5></div>');
 					redirect('peserta/auth/login');
 				}
 			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<h5><i class="icon fas fa-ban"></i> Email belum diaktivasi!</h5></div>');
 				redirect('peserta/auth/login');
 			}
 		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			<h5><i class="icon fas fa-ban"></i> Email belum terdaftar!</h5></div>');
 			redirect('peserta/auth/login');
@@ -174,7 +171,7 @@ class Auth extends CI_Controller
 
 			$this->_sendMail($token, 'verify');
 
-			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-center">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			<p class="text-center"><i class="icon fas fa-check"></i><b> Buat akun baru berhasil </b></br></hr>silahkan cek email anda untuk mengaktivasi akun anda!</p></div>');
 			redirect('peserta/auth/login');
@@ -279,7 +276,7 @@ class Auth extends CI_Controller
 					$this->db->delete('token', [
 						'EMAIL' => $email
 					]);
-					$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+					$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-text-center">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<p class="text-center"><i class="icon fas fa-check"></i><b> Akun berhasil di aktivasi </b></br>silahkan login!</p></div>');
 					redirect('peserta/auth/login');
@@ -290,7 +287,7 @@ class Auth extends CI_Controller
 						'EMAIL' => $email
 					]);
 
-					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<p class="text-center"><i class="icon fas fa-ban"></i><b> Token sudah kadaluarsa!</b></p></div>');
 					redirect('peserta/auth/login');
@@ -302,13 +299,13 @@ class Auth extends CI_Controller
 					'EMAIL' => $email
 				]);
 
-				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<p class="text-center"><i class="icon fas fa-ban"></i><b> Token anda salah!</b></p></div>');
 				redirect('peserta/auth/login');
 			}
 		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			<p class="text-center"><i class="icon fas fa-ban"></i><b> Aktivasi akun gagal!</b></p></div>');
 			redirect('peserta/auth/login');
@@ -343,13 +340,13 @@ class Auth extends CI_Controller
 				$this->db->insert('token', $user_token);
 				$this->_sendMail($token, 'forgot');
 
-				$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+				$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-center">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<p class="text-center"><i class="icon fas fa-check"></i><b> Silahkan cek email anda untuk ubah password!</b></p></div>');
 				redirect('peserta/auth/lupapsw');
 			} else {
 
-				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<p class="text-center"><i class="icon fas fa-ban"></i><b> Email belum terdaftar/aktif!</b></p></div>');
 				redirect('peserta/auth/lupapsw');
@@ -386,19 +383,19 @@ class Auth extends CI_Controller
 						'EMAIL' => $email
 					]);
 
-					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<p class="text-center"><i class="icon fas fa-ban"></i><b> Token sudah kadaluarsa!</b></p></div>');
 					redirect('peserta/auth/login');
 				}
 			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<p class="text-center"><i class="icon fas fa-ban"></i><b> Reset password gagal!</b> token salah</p></div>');
 				redirect('peserta/auth/login');
 			}
 		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			<p class="text-center"><i class="icon fas fa-ban"></i><b> Reset password gagal!</b> email salah</p></div>');
 			redirect('peserta/auth/login');
@@ -437,7 +434,7 @@ class Auth extends CI_Controller
 
 			$this->session->unset_userdata('reset_email');
 
-			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible">
+			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-center">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			<p class="text-center"><i class="icon fas fa-check"></i><b> Password berhasil diubah!</b> Silahkan login kembali</p></div>');
 			redirect('peserta/auth/login');
@@ -449,7 +446,7 @@ class Auth extends CI_Controller
 	{
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role');
-		$this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
+		$this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible text-center">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		<h5 class="text-center"><i class="icon fas fa-exclamation-triangle"></i> Anda telah keluar!</h5></div>');
 		redirect('peserta/auth');

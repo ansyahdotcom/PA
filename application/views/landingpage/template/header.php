@@ -64,7 +64,7 @@
                         </li>
                     <?php } else { ?>
                         <li class="nav-item ml-2 mr-2 mb-2">
-                            <a href="<?= base_url('peserta/auth/logout'); ?>" class="nav-link btn btn-outline-dark">Logout</a>
+                            <button class="nav-link btn btn-outline-dark" data-toggle="modal" data-target="#modal-sm">Logout</button>
                         </li>
                     <?php } ?>
                     </ul>
@@ -72,3 +72,27 @@
             </nav>
         </div>
     </header>
+
+    <!-- Modal Logout -->
+    <div class="modal fade" id="modal-sm">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Logout</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin ingin logout?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="nav-link btn btn-outline-dark" data-dismiss="modal">Tidak</button>
+                <a href="<?= base_url('peserta/auth/logout'); ?>" class="nav-link btn btn-outline-warning" >Ya</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

@@ -12,6 +12,9 @@ class Dashboard extends CI_Controller
     /** Menampilkan Dashboard Admin */
     public function index()
     {
+        // if ($this->session->userdata('email')) {
+        //     redirect('admin/dashboard');
+        // }
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>
             $this->session->userdata('email')
