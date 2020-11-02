@@ -161,8 +161,10 @@
                   <b>Status akun:</b>
                   <?php if ($status == 0) { ?>
                     <span class="badge-pill bg-danger"><b>Belum Aktivasi</b></span>
-                  <?php } else { ?>
+                  <?php } elseif ($status == 1) { ?>
                     <span class="badge-pill bg-success"><b>Sudah Aktif</b></span>
+                  <?php } else {?>
+                    <span class="badge-pill bg-dark"><b>Terblokir</b></span>
                   <?php } ?>
                 </div>
               </div>

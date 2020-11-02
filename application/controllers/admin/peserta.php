@@ -7,6 +7,7 @@
             $this->load->model('admin/m_peserta');
             // $this->load->helper('form', 'url');
             adm_logged_in();
+            cekadm();
         }
     
         public function index()

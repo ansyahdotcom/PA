@@ -8,6 +8,7 @@ class Blog extends CI_Controller
         $this->load->model('admin/m_blog');
         // $this->load->helper('form', 'url');
         adm_logged_in();
+        cekadm();
     }
 
     public function index()

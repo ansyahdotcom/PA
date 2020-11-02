@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         adm_logged_in();
+        cekadm();
     }
 
 
