@@ -31,14 +31,14 @@
               </div>
 
               <h3 class="profile-username text-center"><?= $admin['NM_ADM']; ?></h3>
-              <?php 
-                if ($admin['ID_ROLE'] == 1) {
-                  $role = "ADMIN";
-                } 
-              
-                if ($admin['DATE_CREATE'] == 0 ){
-                  $tgl = "--";
-                }
+              <?php
+              if ($admin['ID_ROLE'] == 1) {
+                $role = "ADMIN";
+              }
+
+              if ($admin['DATE_CREATE'] == 0) {
+                $tgl = "--";
+              }
               ?>
 
               <ul class="list-group list-group-unbordered mb-3">
@@ -50,36 +50,44 @@
                 </li>
               </ul>
 
-              <button class="btn btn-primary btn-block" data-toggle="tab" data-target="#profil"><b>Selengkapnya</b></button>
+              <button class="btn btn-primary btn-block btn-file"><i class="fas fa-images"></i> <b>Ubah Foto Profil</b></button>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
         </div>
         <!-- /.col -->
+
         <div class="col-md-9">
-          <div class="card">
-            <div class="card-header p-2">
-              <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link active" href="#profil" data-toggle="tab">Profil</a></li>
-                <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit Profil</a></li>
-                <li class="nav-item"><a class="nav-link" href="#ubahpsw" data-toggle="tab">Ubah Password</a></li>
+          <div class="card card-primary card-outline card-outline-tabs">
+            <div class="card-header p-0 border-bottom-0">
+              <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Profil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Edit Profil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Ubah Password</a>
+                </li>
               </ul>
-            </div><!-- /.card-header -->
+            </div>
             <div class="card-body">
-              <div class="tab-content">
-                <div class="active tab-pane" id="profil">
+              <div class="tab-content" id="custom-tabs-four-tabContent">
+                <!-- Profil -->
+                <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                   <form class="form-horizontal">
                     <div class="form-group row">
-                      <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                      <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                        <input type="text" class="form-control text-capitalize" id="nama" name="nama" placeholder="Name" value="<?= $admin['NM_ADM']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                      <label for="email" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?= $admin['EMAIL_ADM']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -102,25 +110,25 @@
                     </div>
                     <div class="form-group row">
                       <div class="offset-sm-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-primary" data-toggle="tab" data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
                       </div>
                     </div>
                   </form>
                 </div>
-                <!-- /.tab-pane -->
 
-                <div class="tab-pane" id="edit">
+                <!-- Edit Profil -->
+                <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
                   <form class="form-horizontal">
                     <div class="form-group row">
-                      <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                      <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputName" placeholder="Name">
+                        <input type="text" class="form-control text-capitalize" id="nama" name="nama" placeholder="Name" value="<?= $admin['NM_ADM']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                      <label for="email" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?= $admin['EMAIL_ADM']; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -143,14 +151,14 @@
                     </div>
                     <div class="form-group row">
                       <div class="offset-sm-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                        <button type="button" class="btn btn-primary" data-toggle="tab" data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
                       </div>
                     </div>
                   </form>
                 </div>
-                <!-- /.tab-pane -->
 
-                <div class="tab-pane" id="ubahpsw">
+                <!-- Ubah Password -->
+                <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
                   <form class="form-horizontal">
                     <div class="form-group row">
                       <label for="pswlma" class="col-sm-2 col-form-label">Password Lama</label>
@@ -177,17 +185,14 @@
                     </div>
                   </form>
                 </div>
-                <!-- /.tab-pane -->
               </div>
-              <!-- /.tab-content -->
-            </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
           </div>
-          <!-- /.nav-tabs-custom -->
         </div>
-        <!-- /.col -->
       </div>
       <!-- /.row -->
-    </div><!-- /.container-fluid -->
+      </><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 </div>
