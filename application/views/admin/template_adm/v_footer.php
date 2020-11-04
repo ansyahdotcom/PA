@@ -53,6 +53,30 @@
 <script src="<?= base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- Enable/Disabled Form Edit -->
+<script>
+    $(document).ready(function(){
+        $("#btn-edit").click(function() {
+			$(".tittle").html("Edit Profil");
+            $("#btn-edit").prop('hidden', true);
+            $("#btn-save").prop('hidden', false);
+            $("#btn-cancel").prop('hidden', false);
+            $("#nm").prop('disabled', false);
+            $("#hp").prop('disabled', false);
+            $("#almt").prop('disabled', false);
+        });
+
+        $("#btn-cancel").click(function() {
+			$(".tittle").html("Profil");
+            $("#btn-edit").prop('hidden', false);
+            $("#btn-save").prop('hidden', true);
+            $("#btn-cancel").prop('hidden', true);
+            $("#nm").prop('disabled', true);
+            $("#hp").prop('disabled', true);
+            $("#almt").prop('disabled', true);
+        });
+    });
+</script>
 
 <script>
     $(function() {

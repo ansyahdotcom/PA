@@ -123,8 +123,8 @@ class Auth extends CI_Controller
 
 		$this->form_validation->set_rules('nomorwa', 'Nomorwa', 'required|trim|min_length[11]|max_length[13]', [
 			'required' => 'Kolom ini harus diisi',
-			'min_length' => 'Nomor terlalu pendek',
-			'max_length' => 'Nomor terlalu panjang'
+			'min_length' => 'Format yang anda masukkan salah',
+			'max_length' => 'Format yang anda masukkan salah'
 		]);
 
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password1]', [
