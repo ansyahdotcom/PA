@@ -6,7 +6,7 @@ class Blog extends CI_Controller
     {
         parent::__construct();
         $this->load->model('admin/m_blog');
-        // $this->load->helper('form', 'url');
+        $this->load->library('upload');
         adm_logged_in();
         cekadm();
     }
@@ -103,26 +103,47 @@ class Blog extends CI_Controller
         $JUDUL_POST = htmlspecialchars($this->input->post('JUDUL_POST'));
         $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
         $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
-        $FOTO_POST = htmlspecialchars($this->input->post('ID_TAGS'));
+        $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
         $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
+        $TGL_POST = date('Y-m-d');
 
-        $data = array(
-            'ID_POST' => $ID_POST,
-            'ID_ADM' => $ID_ADM,
-            'JUDUL_POST' => $JUDUL_POST,
-            'ID_CT' => $ID_CT,
-            'FOTO_POST' => $FOTO_POST,
-            'KONTEN_POST' => $KONTEN_POST
-        );
+        // untuk upload proposal
+        $config['upload_path']          = './assets/fotoblog/';
+        $config['allowed_types']        = 'jpg|jpeg|png';
+        $config['max_size']             = 0;
+        // $config['encrypt_name']         = true;
 
-        $dt_tags = array(
-            'ID_POST' => $ID_POST,
-            'ID_TAGS' => $ID_TAGS
-        );
+        $this->load->library('upload');
+        $this->upload->initialize($config);
 
-        $this->m_blog->tmbh_blog($data, 'post');
-        $this->m_blog->tmbh_dt_tags($dt_tags, 'detail_tags');
-        redirect('admin/blog');
+        if ( ! $this->upload->do_upload('FOTO_POST'))
+        {
+                $error = array('error' => $this->upload->display_errors());
+
+                $this->load->view('admin/blog', $error);
+        }
+        else
+        {
+            $upload_data = $this->upload->data();
+            $data = array(
+                'ID_POST' => $ID_POST,
+                'ID_ADM' => $ID_ADM,
+                'JUDUL_POST' => $JUDUL_POST,
+                'ID_CT' => $ID_CT,
+                'FOTO_POST' => $upload_data['file_name'],
+                'KONTEN_POST' => $KONTEN_POST,
+                'TGL_POST' => $TGL_POST
+            );
+
+            $dt_tags = array(
+                'ID_POST' => $ID_POST,
+                'ID_TAGS' => $ID_TAGS
+            );
+
+            $this->m_blog->tmbh_blog($data, 'post');
+            $this->m_blog->tmbh_dt_tags($dt_tags, 'detail_tags');
+            redirect('admin/blog');
+        }
     }
 
     public function hapus_artikel($ID_POST)
@@ -140,7 +161,17 @@ class Blog extends CI_Controller
         redirect('admin/blog');
     }
 
-    public function edit()
+    public function ubah_blog()
     {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+
+        $this->load->view("admin/template_adm/v_header", $data);
+        $this->load->view("admin/template_adm/v_navbar", $data);
+        $this->load->view("admin/template_adm/v_sidebar", $data);
+        $this->load->view("admin/blog/v_ubah_blog", $data);
+        $this->load->view("admin/template_adm/v_footer");
     }
 }
