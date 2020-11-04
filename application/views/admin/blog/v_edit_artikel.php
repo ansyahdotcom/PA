@@ -51,7 +51,8 @@
 										<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
 									<?php } ?>
 								</select>
-								<br>
+								<button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button>
+								<br> <br>
 								<label for="FOTO_POST">Foto</label>
 								<input type="text" class="form-control" name="FOTO_POST" value="<?php echo $blg->FOTO_POST ?>">
 								<br>
@@ -74,3 +75,53 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<!-- Modal tambah kategori -->
+<div class="modal fade" id="modal_tambah_kategori" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title title-1" id="myModalLabel">Tambah Kategori Blog</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form method="post" action="<?= base_url('admin/blog/pr_tmbh_kategori2'); ?>">
+				<div class="modal-body">
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="ID_CT" value="<?= $ID_CT; ?>">
+						<input type="text" class="form-control" name="NM_CT" autocomplete="off" autofocus>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Modal buat tags -->
+<div class="modal fade" id="modal_buat_tags" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title title-1" id="myModalLabel">Buat tags</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form method="post" action="<?= base_url('admin/blog/pr_buat_tags2'); ?>">
+				<div class="modal-body">
+					<div class="form-group">
+						<input type="hidden" class="form-control" name="ID_TAGS" value="<?= $ID_TAGS; ?>">
+						<input type="text" class="form-control" name="NM_TAGS" autocomplete="off">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="save-btn" class="btn btn-success">Buat</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
