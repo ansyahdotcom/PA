@@ -55,9 +55,9 @@
 <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Enable/Disabled Form Edit -->
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $("#btn-edit").click(function() {
-			$(".tittle").html("Edit Profil");
+            $(".tittle").html("Edit Profil");
             $("#btn-edit").prop('hidden', true);
             $("#btn-save").prop('hidden', false);
             $("#btn-cancel").prop('hidden', false);
@@ -67,7 +67,7 @@
         });
 
         $("#btn-cancel").click(function() {
-			$(".tittle").html("Profil");
+            $(".tittle").html("Profil");
             $("#btn-edit").prop('hidden', false);
             $("#btn-save").prop('hidden', true);
             $("#btn-cancel").prop('hidden', true);
@@ -76,6 +76,38 @@
             $("#almt").prop('disabled', true);
         });
     });
+</script>
+
+<!-- Ubah gambar -->
+<script>
+    $(document).ready(function() {
+        $("#btn-ubhgbr").click(function() {
+            $("#imgedit").prop('hidden', false);
+            $("#img").prop('hidden', true);
+        });
+
+        $("#btn-btlubh").click(function() {
+            $("#imgedit").prop('hidden', true);
+            $("#img").prop('hidden', false);
+        });
+    });
+</script>
+
+<!-- Upload gambar -->
+<script>
+    function triggerClick(b) {
+        document.querySelector('#profileImage').click();
+    }
+
+    function displayImage(b) {
+        if (b.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(b) {
+                document.querySelector('#profileDisplay').setAttribute('src', b.target.result);
+            }
+            reader.readAsDataURL(b.files[0]);
+        }
+    }
 </script>
 
 <script>

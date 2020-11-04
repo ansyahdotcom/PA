@@ -97,13 +97,13 @@
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="<?= base_url(); ?>assets/dist/img/<?= $admin['FTO_ADM']; ?>" class="user-image img-circle elevation-2" alt="User Image">
+                <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" class="user-image img-circle elevation-2" alt="User Image">
                 <span class="d-none d-md-inline"><?= $admin['NM_ADM']; ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="<?= base_url(); ?>assets/dist/img/<?= $admin['FTO_ADM']; ?>" class="img-circle elevation-2" alt="User Image">
+                    <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" class="img-circle elevation-2" alt="User Image">
                     <?php
                     if ($admin['ID_ROLE'] == 1) {
                         $level = "<span title='ADMIN' class='badge badge-danger'>ADMIN</span>";

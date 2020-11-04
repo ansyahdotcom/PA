@@ -26,9 +26,9 @@
 
           <!-- Profile Image -->
           <div class="card card-primary card-outline">
-            <div class="card-body box-profile">
+            <div class="card-body box-profile" id="img">
               <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle" src="<?= base_url(); ?>assets//dist/img/<?= $admin['FTO_ADM']; ?>" alt="User profile picture">
+                <img class="profile-user-img img-fluid img-circle" src="<?= base_url(); ?>assets//dist/img/admin/<?= $admin['FTO_ADM']; ?>" alt="User profile picture">
               </div>
 
               <h3 class="profile-username text-center"><?= $admin['NM_ADM']; ?></h3>
@@ -50,8 +50,32 @@
                   <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl ?></span>
                 </li>
               </ul>
+              <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button>
+            </div>
 
-              <button class="btn btn-primary btn-block btn-file"><i class="fas fa-images"></i> <b>Ubah Foto Profil</b></button>
+            <div class="card-body box-profil" id="imgedit" hidden>
+              <form action="<?= base_url('admin/profile/ubahgbr'); ?>" method="post">
+                <div class="form-group">
+                  <div class="form-group text-center" style="position: relative;">
+                    <span class="img-div">
+                      <div class="text-center img-placeholder" onClick="triggerClick()">
+                        <h3 class="profile-username text-center">Unggah Gambar</h3>
+                        <label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
+                      </div>
+                      <div>
+                        <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
+                      </div>
+                    </span>
+                    <input type="file" name="image" value="" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
+                    <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <label>Gambar Profil</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="btn-spngbr"><i class="fas fa-save"></i> Simpan</button>
+              </form>
+              <div class="mt-1">
+                <button type="button" class="btn btn-default btn-block" id="btn-btlubh"><i class="fas fa-arrow-circle-left"></i> Batal</button>
+              </div>
             </div>
             <!-- /.card-body -->
           </div>

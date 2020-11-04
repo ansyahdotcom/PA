@@ -110,4 +110,47 @@
                 }
             }
         }
+
+        public function ubahgbr()
+        {   
+            $email = $this->session->userdata('email');
+            $data['tittle'] = "Profil Saya";
+            /** Ambil data admin */
+            $data['admin'] = $this->m_admin->admin($email);
+            
+            if ($this->form_validation->run() == false) {
+                $this->load->view("admin/template_adm/v_header", $data);
+                $this->load->view("admin/template_adm/v_navbar", $data);
+                $this->load->view("admin/template_adm/v_sidebar", $data);
+                $this->load->view("admin/profile/v_profile", $data);
+                $this->load->view("admin/template_adm/v_footer");
+            } else {
+                $upload_image = $_FILES['image'];
+
+                if ($upload_image) {
+                    $config['allowed_types'] = 'gif|jpg|jpeg|png';
+                    $config['max_size'] = '2048';
+                    $config['upload_path'] = './assets/dist/img/admin/';
+
+                    $this->load->library('upload', $config);
+
+                    if ($this->upload->do_upload('image')) {
+                        $old_image = $data['admin']['FTO_ADM'];
+                        if ($old_image != 'default.jpg') {
+                            unlink(FCPATH . 'assets/dist/img/admin/' . $old_image);
+                        }
+                        $new_image = $this->upload->data('file_name');
+                        // $this->db->set('image', $new_image);
+                        
+                        $this->m_admin->editimg($new_image, $email);
+                        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i> Gambar profil berhasil diubah!</h5></div>');
+                        redirect('admin/profile');
+                    } else {
+                        echo $this->upload->display_errors();
+                    }
+                }
+            }
+        }
     }
