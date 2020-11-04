@@ -39,7 +39,7 @@
 								<br>
 								<label for="ID_CT">Kategori</label>
 								<select name="ID_CT" id="ID_CT" class="form-control">
-									<option selected disabled>Pilih Kategori</option>
+									<option disabled>Pilih Kategori</option>
 									<?php foreach ($category as $ct) { ?>
 										<option value="<?= $ct->ID_CT; ?>" <?= $ct->ID_CT == $blg->ID_CT ? "selected" : null ?>><?= $ct->NM_CT; ?></option>
 									<?php } ?>
@@ -48,6 +48,7 @@
 								<br> <br>
 								<label for="ID_TAGS">Tags</label>
 								<select name="ID_TAGS" id="ID_TAGS" class="form-control">
+									<option disabled>Pilih Tags</option>
 									<?php foreach ($tags as $tg) { ?>
 										<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
 									<?php } ?>
