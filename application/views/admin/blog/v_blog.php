@@ -46,7 +46,7 @@
 													</button>
 												</a>
 											</span>
-											<span class="description"><?= $blg->NM_CT . " | " . $blg->TGL_POST; ?></span>
+											<span class="description"><?= $blg->NM_CT . " | " . $blg->TGL_POST = date('d F Y'); ?></span>
 										</div>
 										<!-- /.user-block -->
 										<p>
