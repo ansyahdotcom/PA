@@ -116,27 +116,30 @@
 
                 <!-- Ubah Password -->
                 <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
-                  <form class="form-horizontal">
+                  <form class="form-horizontal" action="<?= base_url('admin/profile/editpsw'); ?>" method="POST">
                     <div class="form-group row">
-                      <label for="pswlma" class="col-sm-2 col-form-label">Password Lama</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" id="pswlma" name="pswlma" placeholder="Password Lama">
+                      <label for="pswlma" class="col-sm-3 col-form-label">Password Sekarang</label>
+                      <div class="col-sm-9">
+                        <input type="password" class="form-control" id="pswlma" name="pswlma" placeholder="Password Sekarang">
+                        <?= form_error('pswlma', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="pswbru" class="col-sm-2 col-form-label">Password Baru</label>
-                      <div class="col-sm-10">
+                      <label for="pswbru" class="col-sm-3 col-form-label">Password Baru</label>
+                      <div class="col-sm-9">
                         <input type="password" class="form-control" id="pswbru" name="pswbru" placeholder="Password Baru">
+                        <?= form_error('pswbru', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="pswbru1" class="col-sm-2 col-form-label">Konfirmasi</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" id="pswbru1" name="pswbru1" placeholder="Konfirmasi Password Baru">
+                      <label for="pswbru1" class="col-sm-3 col-form-label">Ulangi Password Baru</label>
+                      <div class="col-sm-9">
+                        <input type="password" class="form-control" id="pswbru1" name="pswbru1" placeholder="Ulangi Password Baru">
+                        <?= form_error('pswbru1', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
+                      <div class="offset-sm-3 col-sm-9">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
                       </div>
                     </div>

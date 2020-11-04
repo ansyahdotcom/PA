@@ -16,5 +16,13 @@
             $this->db->update('admin');
             return $this->db;
         }
+
+        function ubhpsw($pswhash, $email)
+        {
+            $this->db->set('PSW_ADM', $pswhash);
+            $this->db->where('EMAIL_ADM', $email);
+            $this->db->update('admin');
+            return $this->db;
+        }
     }
 ?>

@@ -124,7 +124,7 @@
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    <a href="<?= base_url('user/profil'); ?>" class="btn btn-outline-primary">Profil</a>
+                    <a href="<?= base_url('admin/profile'); ?>" class="btn btn-outline-primary">Profil</a>
                     <button type="button" class="btn btn-outline-danger float-right" data-toggle="modal" data-target="#modal-sm">Logout</button>
                 </li>
             </ul>
