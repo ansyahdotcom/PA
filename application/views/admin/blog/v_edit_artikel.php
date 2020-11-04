@@ -16,6 +16,7 @@
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container-fluid -->
+		<?= $this->session->flashdata('message'); ?>
 	</div>
 	<!-- /.content-header -->
 

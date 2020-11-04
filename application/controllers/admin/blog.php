@@ -111,6 +111,7 @@ class Blog extends CI_Controller
         $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
         $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
         $TGL_POST = date('Y-m-d');
+        $UPDT_TRAKHIR = date('Y-m-d');
 
         // untuk upload proposal
         $config['upload_path']          = './assets/fotoblog/';
@@ -134,7 +135,8 @@ class Blog extends CI_Controller
                 'ID_CT' => $ID_CT,
                 'FOTO_POST' => $upload_data['file_name'],
                 'KONTEN_POST' => $KONTEN_POST,
-                'TGL_POST' => $TGL_POST
+                'TGL_POST' => $TGL_POST,
+                'UPDT_TRAKHIR' => $UPDT_TRAKHIR
             );
 
             $dt_tags = array(
@@ -239,13 +241,17 @@ class Blog extends CI_Controller
         $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
         $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
         $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
+        $TGL_POST = date('Y-m-d');
+        $UPDT_TRAKHIR = date('Y-m-d');
 
         $data = array(
             'JUDUL_POST' => $JUDUL_POST,
             'ID_ADM' => $ID_ADM,
             'ID_CT' => $ID_CT,
             'FOTO_POST' => $FOTO_POST,
-            'KONTEN_POST' => $KONTEN_POST
+            'KONTEN_POST' => $KONTEN_POST,
+            'TGL_POST' => $TGL_POST,
+            'UPDT_TRAKHIR' => $UPDT_TRAKHIR
         );
 
         $dt_tags = array(
