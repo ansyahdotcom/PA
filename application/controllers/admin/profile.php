@@ -17,18 +17,17 @@
             /** Ambil data admin */
             $data['admin'] = $this->m_admin->admin($email);
 
-            $this->form_validation->set_rules('nama', 'Nama', 'trim|required|alpha', [
+            $this->form_validation->set_rules('nama', 'Nama', 'trim|required', [
                 'required' => 'kolom ini harus diisi',
-                'alpha' => 'harus berisi huruf'
             ]);
 
             $this->form_validation->set_rules('hp', 'Hp', 'trim|numeric|min_length[11]|max_length[13]', [
-                'numeric' => 'harus berisi angka',
+                'numeric' => 'kolom ini harus berisi angka',
                 'min_length' => 'format yang di masukkan salah',
                 'max_length' => 'format yang di masukkan salah'
             ]);
 
-            $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
+            $this->form_validation->set_rules('alamat', 'Alamat', 'trim');
 
             if ($this->form_validation->run() == false) {
                 $this->load->view("admin/template_adm/v_header", $data);
