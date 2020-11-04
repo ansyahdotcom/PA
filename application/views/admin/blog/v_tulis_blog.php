@@ -48,22 +48,18 @@
 							<br>
 							<br>
 							<!-- Tags -->
-							<label for="ID_TAGS">Tags</label>
-
-							<!-- <button type="button" id="tampil_tags" class="btn btn-primary btn-xs btn-round"
-								data-toggle="modal" data-target="#modal_tampil_tags">Pilih tags</button> -->
-
+							<label for="ID_TAGS">Tags</label><br>
 							<select name="ID_TAGS" id="ID_TAGS" class="form-control">
-								<option selected disabled>Pilih Tags</option>
+								<option selected disabled>Pilih Tags </option>
 								<?php foreach ($tags as $tg) { ?>
 									<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
 								<?php } ?>
 							</select>
-							<button type="button" id="tambah_tags" class="btn btn-primary btn-xs btn-round">Tambah tags lain</button>
 							<button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button>
 							<br> <br>
 							<label for="FOTO_POST">Foto</label>
-							<input type="file" class="form-control" id="FOTO_POST">
+							<input type="file" class="form-control" name="FOTO_POST" id="FOTO_POST">
+							<br>
 							<hr>
 							<textarea class="form-control" name="KONTEN_POST" id="KONTEN_POST" cols="30" rows="50" placeholder="Isi artikel disini..."></textarea>
 							<br>
@@ -104,34 +100,6 @@
 					<button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
 				</div>
 			</form>
-		</div>
-	</div>
-</div>
-
-<!-- Modal tampil tags -->
-<div class="modal fade" id="modal_tampil_tags" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title title-1" id="myModalLabel">pilih tags</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<form method="POST" action="<?= base_url('admin/blog/pr_pilih_tags'); ?>">
-				<div class="modal-body">
-					<div class="form-check">
-						<?php foreach ($tags as $tg) { ?>
-							<input type="checkbox" id="ID_TAGS" name="ID_TAGS" class="form-check-input" value="<?= $tg->ID_TAGS ?>">
-							<label for="ID_TAGS" class="form-check-label"> <?= $tg->NM_TAGS; ?> </label>
-							<br>
-						<?php } ?>
-					</div>
-				</div>
-			</form>
-			<div class="modal-footer">
-				<button type="submit" id="save-btn" class="btn btn-success">Pilih</button>
-			</div>
 		</div>
 	</div>
 </div>

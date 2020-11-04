@@ -14,6 +14,7 @@
           </ol>
         </div>
       </div>
+      <?= $this->session->flashdata('message'); ?>
     </div><!-- /.container-fluid -->
   </section>
 
@@ -25,9 +26,9 @@
 
           <!-- Profile Image -->
           <div class="card card-primary card-outline">
-            <div class="card-body box-profile">
+            <div class="card-body box-profile" id="img">
               <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle" src="<?= base_url(); ?>assets//dist/img/<?= $admin['FTO_ADM']; ?>" alt="User profile picture">
+                <img class="profile-user-img img-fluid img-circle" src="<?= base_url(); ?>assets//dist/img/admin/<?= $admin['FTO_ADM']; ?>" alt="User profile picture">
               </div>
 
               <h3 class="profile-username text-center"><?= $admin['NM_ADM']; ?></h3>
@@ -49,8 +50,32 @@
                   <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl ?></span>
                 </li>
               </ul>
+              <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button>
+            </div>
 
-              <button class="btn btn-primary btn-block btn-file"><i class="fas fa-images"></i> <b>Ubah Foto Profil</b></button>
+            <div class="card-body box-profil" id="imgedit" hidden>
+              <form action="<?= base_url('admin/profile/ubahgbr'); ?>" method="post">
+                <div class="form-group">
+                  <div class="form-group text-center" style="position: relative;">
+                    <span class="img-div">
+                      <div class="text-center img-placeholder" onClick="triggerClick()">
+                        <h3 class="profile-username text-center">Unggah Gambar</h3>
+                        <label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
+                      </div>
+                      <div>
+                        <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
+                      </div>
+                    </span>
+                    <input type="file" name="image" value="" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
+                    <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <label>Gambar Profil</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="btn-spngbr"><i class="fas fa-save"></i> Simpan</button>
+              </form>
+              <div class="mt-1">
+                <button type="button" class="btn btn-default btn-block" id="btn-btlubh"><i class="fas fa-arrow-circle-left"></i> Batal</button>
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
@@ -63,10 +88,7 @@
             <div class="card-header p-0 border-bottom-0">
               <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Profil</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Edit Profil</a>
+                  <a class="nav-link active tittle" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Profil</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Ubah Password</a>
@@ -77,81 +99,60 @@
               <div class="tab-content" id="custom-tabs-four-tabContent">
                 <!-- Profil -->
                 <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                  <form class="form-horizontal">
+                  <form class="form-horizontal" action="<?= base_url('admin/profile'); ?>" method="POST">
                     <div class="form-group row">
                       <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control text-capitalize" id="nama" name="nama" placeholder="Name" value="<?= $admin['NM_ADM']; ?>">
+                      <div class="input-group mb-1 col-sm-10">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="nm" name="nama" placeholder="Nama Lengkap" value="<?= $admin['NM_ADM']; ?>" disabled>
+                      </div>
+                      <div class="offset-sm-2">
+                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="email" class="col-sm-2 col-form-label">Email</label>
-                      <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?= $admin['EMAIL_ADM']; ?>">
+                      <div class="input-group mb-1 col-sm-10">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" id="em" name="email" placeholder="Email" value="<?= $admin['EMAIL_ADM']; ?>" disabled>
+                      </div>
+                      <div class="offset-sm-2">
+                        <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                      <label for="hp" class="col-sm-2 col-form-label">No Handphone</label>
+                      <div class="input-group mb-1 col-sm-10">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        <input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="<?= $admin['HP_ADM']; ?>" disabled>
+                      </div>
+                      <div class="offset-sm-2">
+                        <?= form_error('hp', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                      <div class="col-sm-10">
-                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                      <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                      <div class="input-group mb-1 col-sm-10">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat" value="<?= $admin['ALMT_ADM']; ?>" disabled>
                       </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
-                        <button type="button" class="btn btn-primary" data-toggle="tab" data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-
-                <!-- Edit Profil -->
-                <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                  <form class="form-horizontal">
-                    <div class="form-group row">
-                      <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control text-capitalize" id="nama" name="nama" placeholder="Name" value="<?= $admin['NM_ADM']; ?>">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="email" class="col-sm-2 col-form-label">Email</label>
-                      <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?= $admin['EMAIL_ADM']; ?>">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                      <div class="col-sm-10">
-                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                      <div class="offset-sm-2">
+                        <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
                       <div class="offset-sm-2 col-sm-10">
-                        <button type="button" class="btn btn-primary" data-toggle="tab" data-target="#edit"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
+                        <button type="submit" class="btn btn-primary" id="btn-save" hidden><i class="fas fa-save"></i> Simpan</button>
+                        <button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i> Edit</button>
                       </div>
                     </div>
                   </form>
@@ -159,27 +160,45 @@
 
                 <!-- Ubah Password -->
                 <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
-                  <form class="form-horizontal">
+                  <form class="form-horizontal" action="<?= base_url('admin/profile/editpsw'); ?>" method="POST">
                     <div class="form-group row">
-                      <label for="pswlma" class="col-sm-2 col-form-label">Password Lama</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" id="pswlma" name="pswlma" placeholder="Password Lama">
+                      <label for="pswlma" class="col-sm-3 col-form-label">Password Sekarang</label>
+                      <div class="input-group mb-1 col-sm-9">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" id="pswlma" name="pswlma" placeholder="Password Sekarang">
+                      </div>
+                      <div class="offset-sm-3">
+                        <?= form_error('pswlma', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="pswbru" class="col-sm-2 col-form-label">Password Baru</label>
-                      <div class="col-sm-10">
+                      <label for="pswbru" class="col-sm-3 col-form-label">Password Baru</label>
+                      <div class="input-group mb-1 col-sm-9">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
                         <input type="password" class="form-control" id="pswbru" name="pswbru" placeholder="Password Baru">
                       </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="pswbru1" class="col-sm-2 col-form-label">Konfirmasi</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" id="pswbru1" name="pswbru1" placeholder="Konfirmasi Password Baru">
+                      <div class="offset-sm-3">
+                        <?= form_error('pswbru', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
+                      <label for="pswbru1" class="col-sm-3 col-form-label">Ulangi Password Baru</label>
+                      <div class="input-group mb-1 col-sm-9">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" id="pswbru1" name="pswbru1" placeholder="Ulangi Password Baru">
+                      </div>
+                      <div class="offset-sm-3">
+                        <?= form_error('pswbru1', '<small class="text-danger">', '</small>'); ?>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="offset-sm-3 col-sm-9">
                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
                       </div>
                     </div>
