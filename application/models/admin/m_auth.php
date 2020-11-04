@@ -1,5 +1,5 @@
 <?php
-    class model_auth extends CI_Model
+    class M_auth extends CI_Model
     {
         // function hapus_token($email)
         // {
@@ -7,4 +7,3 @@
         //     return $hasil;
         // }
     }
-?>

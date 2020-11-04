@@ -70,6 +70,11 @@ class Auth extends CI_Controller
 					<h5><i class="icon fas fa-ban"></i> Email/Password salah!</h5></div>');
 					redirect('peserta/auth/login');
 				}
+			} elseif ($user['ACTIVE'] == 2) {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<h5><i class="icon fas fa-ban"></i> Maaf akun anda telah diblokir </br>untuk sementara waktu!</h5></div>');
+				redirect('peserta/auth/login');
 			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -118,8 +123,8 @@ class Auth extends CI_Controller
 
 		$this->form_validation->set_rules('nomorwa', 'Nomorwa', 'required|trim|min_length[11]|max_length[13]', [
 			'required' => 'Kolom ini harus diisi',
-			'min_length' => 'Nomor terlalu pendek',
-			'max_length' => 'Nomor terlalu panjang'
+			'min_length' => 'Format yang anda masukkan salah',
+			'max_length' => 'Format yang anda masukkan salah'
 		]);
 
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password1]', [

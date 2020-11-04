@@ -5,14 +5,12 @@ class M_blog extends CI_Model
 
     function tampil_blog()
     {
-        $data = $this->db->query("SELECT post.ID_POST, post.ID_CT, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST,
-                                detail_tags.ID_TAGS,
-                                category.NM_CT, GROUP_CONCAT(tags.NM_TAGS) as NM_TAGS
-                                FROM post, category, tags, detail_tags
-                                WHERE post.ID_POST = detail_tags.ID_POST AND detail_tags.ID_TAGS = tags.ID_TAGS 
-                                AND post.ID_CT = category.ID_CT
-                                GROUP BY post.ID_POST
-                                ORDER BY post.ID_POST ASC");
+        $data = $this->db->query("SELECT post.ID_POST, post.ID_CT, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST, GROUP_CONCAT(tags.NM_TAGS) AS NM_TAGS,
+        category.NM_CT
+        FROM post, category, detail_tags, tags
+        WHERE post.ID_CT = category.ID_CT AND post.ID_POST = detail_tags.ID_POST AND detail_tags.ID_TAGS = tags.ID_TAGS
+        GROUP BY post.ID_POST
+        ORDER BY post.ID_POST ASC");
         return $data;
     }
 
@@ -79,5 +77,22 @@ class M_blog extends CI_Model
     {
         $this->db->where($where);
         $this->db->delete($table);
+    }
+
+    function edit_artikel($where, $table)
+    {
+        return $this->db->get_where($table, $where);
+    }
+
+    function update_artikel($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+
+    function update_dt_tags($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
     }
 }

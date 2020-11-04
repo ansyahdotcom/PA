@@ -34,7 +34,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Konfigurasi Profil
+                                Profil
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -42,25 +42,12 @@
                         <ul class="nav nav-treeview">
                             <!-- kalo ngopy sub menu dari sini -->
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('admin/profile'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Profil</p>
+                                    <p>Konfigurasi Profil</p>
                                 </a>
                             </li>
                             <!-- sampe sini -->
-
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Edit Profil</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Ganti Password</p>
-                                </a>
-                            </li>
                         </ul>
                     </li>
                     <!-- akhir ngopy sampai sini -->
@@ -105,7 +92,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('admin/navigasi');?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Navigasi</p>
                                 </a>

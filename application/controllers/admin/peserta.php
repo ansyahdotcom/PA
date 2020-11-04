@@ -7,6 +7,7 @@
             $this->load->model('admin/m_peserta');
             // $this->load->helper('form', 'url');
             adm_logged_in();
+            cekadm();
         }
     
         public function index()
@@ -24,5 +25,35 @@
             $this->load->view("admin/template_adm/v_sidebar", $data);
             $this->load->view("admin/peserta/v_peserta", $data);
             $this->load->view("admin/template_adm/v_footer");
+        }
+
+        public function hapus()
+        {
+            $id = $this->input->post('id');
+            $this->m_peserta->delps($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-check"></i> Data berhasil dihapus!</h5></div>');
+            redirect('admin/peserta');
+        }
+
+        public function blok()
+        {
+            $id = $this->input->post('id');
+            $this->m_peserta->blokps($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-check"></i> Akun telah diblokir!</h5></div>');
+            redirect('admin/peserta');
+        }
+
+        public function unblok()
+        {
+            $id = $this->input->post('id');
+            $this->m_peserta->unblokps($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-check"></i> Akun telah diaktifkan kembali!</h5></div>');
+            redirect('admin/peserta');
         }
     }

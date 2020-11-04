@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-primary navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -97,13 +97,13 @@
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
+                <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" class="user-image img-circle elevation-2" alt="User Image">
                 <span class="d-none d-md-inline"><?= $admin['NM_ADM']; ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="<?= base_url(); ?>assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" class="img-circle elevation-2" alt="User Image">
                     <?php
                     if ($admin['ID_ROLE'] == 1) {
                         $level = "<span title='ADMIN' class='badge badge-danger'>ADMIN</span>";
@@ -117,14 +117,14 @@
                         <?php if ($admin['DATE_CREATE'] != 0) { ?>
                             Terdaftar <?= date('d F Y', $admin['DATE_CREATE']); ?>
                         <?php } else {?>
-                            Terdaftar <span title='caption' class='badge badge-secondary'>---</span>
+                            Terdaftar <span title='caption' class='badge badge-secondary'></span>
                         <?php } ?>
                     </small>
                 </li>
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    <a href="<?= base_url('user/profil'); ?>" class="btn btn-outline-primary">Profil</a>
+                    <a href="<?= base_url('admin/profile'); ?>" class="btn btn-outline-primary">Profil</a>
                     <button type="button" class="btn btn-outline-danger float-right" data-toggle="modal" data-target="#modal-sm">Logout</button>
                 </li>
             </ul>
