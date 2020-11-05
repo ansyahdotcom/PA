@@ -78,4 +78,21 @@ class M_blog extends CI_Model
         $this->db->where($where);
         $this->db->delete($table);
     }
+
+    function edit_artikel($where, $table)
+    {
+        return $this->db->get_where($table, $where);
+    }
+
+    function update_artikel($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+
+    function update_dt_tags($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
 }

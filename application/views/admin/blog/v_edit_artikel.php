@@ -5,13 +5,13 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0 text-dark">Tulis Artikel</h1>
+					<h1 class="m-0 text-dark">Edit Artikel</h1>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
 						<li class="breadcrumb-item"><a href="<?= base_url('admin/blog'); ?>">Blog</a></li>
-						<li class="breadcrumb-item active">Tulis Artikel</li>
+						<li class="breadcrumb-item active">Edit Artikel</li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -29,44 +29,43 @@
 
 					</div>
 					<!-- /.card-header -->
-					<form action="<?= base_url('admin/blog/pr_tmbh_blog'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-						<div class="card-body">
-							<input type="hidden" name="ID_POST" value="<?= $ID_POST; ?>">
-							<input type="hidden" name="ID_ADM" value="<?= $ID_ADM; ?>">
-							<label for="JUDUL_POST">Judul</label>
-							<input class="form-control" type="text" autocomplete="off" name="JUDUL_POST" placeholder="Tambahkan Judul">
-							<br>
-							<!-- Kategori -->
-							<label for="ID_CT">Kategori</label>
-							<select name="ID_CT" id="ID_CT" class="form-control">
-								<option selected disabled>Pilih Kategori</option>
-								<?php foreach ($category as $ct) { ?>
-									<option value="<?= $ct->ID_CT; ?>"><?= $ct->NM_CT; ?></option>
-								<?php } ?>
-							</select>
-							<button type="button" id="tambah_kategori" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_kategori">Tambah kategori baru</button>
-							<br>
-							<br>
-							<!-- Tags -->
-							<label for="ID_TAGS">Tags</label><br>
-							<select name="ID_TAGS" id="ID_TAGS" class="form-control">
-								<option selected disabled>Pilih Tags </option>
-								<?php foreach ($tags as $tg) { ?>
-									<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
-								<?php } ?>
-							</select>
-							<button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button>
-							<br> <br>
-							<label for="FOTO_POST">Foto</label>
-							<input type="file" class="form-control" name="FOTO_POST" id="FOTO_POST">
-							<br>
-							<hr>
-							<textarea class="form-control" name="KONTEN_POST" id="KONTEN_POST" cols="30" rows="50" placeholder="Isi artikel disini..."></textarea>
-							<br>
-							<button class="btn btn-primary btn-round">Pratinjau</button>
-							<button type="submit" class="btn btn-success btn-round">Simpan</button>
-						</div>
-					</form>
+					<?php foreach ($post as $blg) { ?>
+						<form action="<?php echo base_url() . 'admin/blog/update_artikel'; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+							<div class="card-body">
+								<input type="hidden" name="ID_POST" value="<?php echo $blg->ID_POST ?>">
+								<input type="hidden" name="ID_ADM" value="<?php echo $blg->ID_ADM ?>">
+								<label for="JUDUL_POST">Judul</label>
+								<input type="text" class="form-control" name="JUDUL_POST" value="<?php echo $blg->JUDUL_POST ?>">
+								<br>
+								<label for="ID_CT">Kategori</label>
+								<select name="ID_CT" id="ID_CT" class="form-control">
+									<option disabled>Pilih Kategori</option>
+									<?php foreach ($category as $ct) { ?>
+										<option value="<?= $ct->ID_CT; ?>" <?= $ct->ID_CT == $blg->ID_CT ? "selected" : null ?>><?= $ct->NM_CT; ?></option>
+									<?php } ?>
+								</select>
+								<button type="button" id="tambah_kategori" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_kategori">Tambah kategori baru</button>
+								<br> <br>
+								<label for="ID_TAGS">Tags</label>
+								<select name="ID_TAGS" id="ID_TAGS" class="form-control">
+									<option disabled>Pilih Tags</option>
+									<?php foreach ($tags as $tg) { ?>
+										<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
+									<?php } ?>
+								</select>
+								<button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button>
+								<br> <br>
+								<label for="FOTO_POST">Foto</label>
+								<input type="text" class="form-control" name="FOTO_POST" value="<?php echo $blg->FOTO_POST ?>">
+								<br>
+								<label for="KONTEN_POST">Konten</label>
+								<input type="text" class="form-control" name="KONTEN_POST" value="<?php echo $blg->KONTEN_POST ?>">
+								<br>
+								<button class="btn btn-primary btn-round">Batal</button>
+								<button type="submit" class="btn btn-success btn-round">Simpan</button>
+							</div>
+						</form>
+					<?php } ?>
 					<!-- /.card-body -->
 				</div>
 				<!-- /.card -->
@@ -89,7 +88,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="post" action="<?= base_url('admin/blog/pr_tmbh_kategori'); ?>">
+			<form method="post" action="<?= base_url('admin/blog/pr_tmbh_kategori2'); ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="hidden" class="form-control" name="ID_CT" value="<?= $ID_CT; ?>">
@@ -114,7 +113,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="post" action="<?= base_url('admin/blog/pr_buat_tags'); ?>">
+			<form method="post" action="<?= base_url('admin/blog/pr_buat_tags2'); ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="hidden" class="form-control" name="ID_TAGS" value="<?= $ID_TAGS; ?>">

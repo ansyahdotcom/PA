@@ -17,6 +17,9 @@ class Blog extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
+        $data['tittle'] = "Data Blog";
+
+        /** Ambil data blog */
         $data['blog'] = $this->m_blog->tampil_blog()->result();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
@@ -31,6 +34,7 @@ class Blog extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
+        $data['tittle'] = "Tulis Artikel";
 
         // nyari id_adm yg login
         $email = $this->session->userdata('email');
@@ -79,6 +83,7 @@ class Blog extends CI_Controller
         $this->load->view("admin/template_adm/v_footer");
     }
 
+    //tambah kategori di tulis blog
     public function pr_tmbh_kategori()
     {
         $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
@@ -87,6 +92,7 @@ class Blog extends CI_Controller
         redirect('admin/blog/tulis_blog');
     }
 
+    //buat tags di tulis blog
     public function pr_buat_tags()
     {
         $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
@@ -94,7 +100,6 @@ class Blog extends CI_Controller
         $this->m_blog->buat_tags($ID_TAGS, $NM_TAGS);
         redirect('admin/blog/tulis_blog');
     }
-
 
     public function pr_tmbh_blog()
     {
@@ -106,6 +111,7 @@ class Blog extends CI_Controller
         $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
         $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
         $TGL_POST = date('Y-m-d');
+        $UPDT_TRAKHIR = date('Y-m-d');
 
         // untuk upload proposal
         $config['upload_path']          = './assets/fotoblog/';
@@ -116,14 +122,11 @@ class Blog extends CI_Controller
         $this->load->library('upload');
         $this->upload->initialize($config);
 
-        if ( ! $this->upload->do_upload('FOTO_POST'))
-        {
-                $error = array('error' => $this->upload->display_errors());
+        if (!$this->upload->do_upload('FOTO_POST')) {
+            $error = array('error' => $this->upload->display_errors());
 
-                $this->load->view('admin/blog', $error);
-        }
-        else
-        {
+            $this->load->view('admin/blog', $error);
+        } else {
             $upload_data = $this->upload->data();
             $data = array(
                 'ID_POST' => $ID_POST,
@@ -132,7 +135,8 @@ class Blog extends CI_Controller
                 'ID_CT' => $ID_CT,
                 'FOTO_POST' => $upload_data['file_name'],
                 'KONTEN_POST' => $KONTEN_POST,
-                'TGL_POST' => $TGL_POST
+                'TGL_POST' => $TGL_POST,
+                'UPDT_TRAKHIR' => $UPDT_TRAKHIR
             );
 
             $dt_tags = array(
@@ -142,6 +146,12 @@ class Blog extends CI_Controller
 
             $this->m_blog->tmbh_blog($data, 'post');
             $this->m_blog->tmbh_dt_tags($dt_tags, 'detail_tags');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
+															Artikel berhasil dibuat!
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>');
             redirect('admin/blog');
         }
     }
@@ -151,9 +161,8 @@ class Blog extends CI_Controller
         $where = array('ID_POST' => $ID_POST);
         $this->m_blog->hapus_artikel_dttags($where, 'detail_tags');
         $this->m_blog->hapus_artikel_post($where, 'post');
-        $this->session->set_userdata('hapus_sukses', 'ubah');
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show">
-															Data berhasil dihapus!
+															Data telah dihapus!
 															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
@@ -161,17 +170,105 @@ class Blog extends CI_Controller
         redirect('admin/blog');
     }
 
-    public function ubah_blog()
+    public function edit_artikel($ID_POST)
+    {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+        $data['tittle'] = "Edit Artikel";
+        $where = array('ID_POST' => $ID_POST);
+
+        // buat id kategori
+        $ID_K = $this->m_blog->selectMaxID_CT();
+        if ($ID_K == NULL) {
+            $data['ID_CT'] = 'CT0001';
+        } else {
+            $noK = substr($ID_K, 2, 4);
+            $IDK = $noK + 1;
+            $data['ID_CT'] = 'CT' . sprintf("%04s", $IDK);
+        }
+
+        // buat id tags
+        $ID_T = $this->m_blog->selectMaxID_TAGS();
+        if ($ID_T == NULL) {
+            $data['ID_TAGS'] = 'TG0001';
+        } else {
+            $noT = substr($ID_T, 2, 4);
+            $IDT = $noT + 1;
+            $data['ID_TAGS'] = 'TG' . sprintf("%04s", $IDT);
+        }
+
+        $data['post'] = $this->m_blog->edit_artikel($where, 'post')->result();
+        $data['category'] = $this->m_blog->tampil_kategori()->result();
+        $data['tags'] = $this->m_blog->tampil_tags()->result();
+        $this->load->view("admin/template_adm/v_header", $data);
+        $this->load->view("admin/template_adm/v_navbar", $data);
+        $this->load->view("admin/template_adm/v_sidebar", $data);
+        $this->load->view("admin/blog/v_edit_artikel", $data);
+        $this->load->view("admin/template_adm/v_footer");
+    }
+
+    //tambah kategori di edit artikel
+    public function pr_tmbh_kategori2()
+    {
+        $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
+        $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
+        $this->m_blog->tmbh_kategori($ID_CT, $NM_CT);
+        redirect('admin/blog/edit_artikel');
+    }
+
+    //buat tags di edit artikel
+    public function pr_buat_tags2()
+    {
+        $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
+        $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
+        $this->m_blog->buat_tags($ID_TAGS, $NM_TAGS);
+        redirect('admin/blog/edit_artikel');
+    }
+
+    public function update_artikel()
     {
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
 
-        $this->load->view("admin/template_adm/v_header", $data);
-        $this->load->view("admin/template_adm/v_navbar", $data);
-        $this->load->view("admin/template_adm/v_sidebar", $data);
-        $this->load->view("admin/blog/v_ubah_blog", $data);
-        $this->load->view("admin/template_adm/v_footer");
+        $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
+        $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
+        $JUDUL_POST = htmlspecialchars($this->input->post('JUDUL_POST'));
+        $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
+        $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
+        $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
+        $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
+        $TGL_POST = date('Y-m-d');
+        $UPDT_TRAKHIR = date('Y-m-d');
+
+        $data = array(
+            'JUDUL_POST' => $JUDUL_POST,
+            'ID_ADM' => $ID_ADM,
+            'ID_CT' => $ID_CT,
+            'FOTO_POST' => $FOTO_POST,
+            'KONTEN_POST' => $KONTEN_POST,
+            'TGL_POST' => $TGL_POST,
+            'UPDT_TRAKHIR' => $UPDT_TRAKHIR
+        );
+
+        $dt_tags = array(
+            'ID_POST' => $ID_POST,
+            'ID_TAGS' => $ID_TAGS
+        );
+
+        $where = array('ID_POST' => $ID_POST);
+
+        $this->m_blog->update_artikel($where, $data, 'post');
+        $this->m_blog->update_dt_tags($where, $dt_tags, 'detail_tags');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
+															Artikel berhasil diedit!
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>');
+        redirect('admin/blog');
     }
 }
