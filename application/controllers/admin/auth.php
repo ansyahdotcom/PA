@@ -13,9 +13,10 @@ class Auth extends CI_Controller
 	/** Menampilkan Form Login */
 	public function index()
 	{
-		// if ($this->session->userdata('email')) {
-		// 	redirect('admin/auth');
-		// }
+		if ($this->session->userdata('email')) {
+			redirect('admin/dashboard');
+		}
+
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
 			'required' => 'Kolom ini harus di isi',
 			'valid_email' => 'Email tidak valid'
@@ -149,6 +150,10 @@ class Auth extends CI_Controller
 	/**Fungsi untuk meminta link form ubah password yang dikirim lewat email */
 	public function forgotpsw()
 	{
+		if ($this->session->userdata('email')) {
+			redirect('admin/dashboard');
+		}
+		
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
 			'required' => 'Kolom ini harus diisi',
 			'valid_email' => 'Email tidak valid'
