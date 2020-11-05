@@ -7,7 +7,7 @@
       </div>
       <!-- /.login-logo -->
       <p class="login-box-msg"><b>Lupa</b> Password</p>
-      <?= $this->session->flashdata('message'); ?>
+      <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
       <form action="<?= base_url('admin/auth/forgotpsw'); ?>" method="post">
         <div class="input-group mb-3">
           <div class="input-group">

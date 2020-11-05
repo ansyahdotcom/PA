@@ -31,9 +31,7 @@
         {
             $id = $this->input->post('id');
             $this->m_peserta->delps($id);
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h5><i class="icon fas fa-check"></i> Data berhasil dihapus!</h5></div>');
+            $this->session->set_flashdata('message', 'hapusps');
             redirect('admin/peserta');
         }
 
@@ -41,9 +39,7 @@
         {
             $id = $this->input->post('id');
             $this->m_peserta->blokps($id);
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h5><i class="icon fas fa-check"></i> Akun telah diblokir!</h5></div>');
+            $this->session->set_flashdata('message', 'Blok');
             redirect('admin/peserta');
         }
 
@@ -51,9 +47,7 @@
         {
             $id = $this->input->post('id');
             $this->m_peserta->unblokps($id);
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h5><i class="icon fas fa-check"></i> Akun telah diaktifkan kembali!</h5></div>');
+            $this->session->set_flashdata('message', 'Unblok');
             redirect('admin/peserta');
         }
     }

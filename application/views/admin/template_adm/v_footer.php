@@ -48,11 +48,16 @@
 <script src="<?= base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>assets/dist/js/demo.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?= base_url(); ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- DataTables -->
 <script src="<?= base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- Showing Sweet Alert -->
+<script src="<?= base_url(); ?>assets/dist/js/myscript.js"></script>
+
 <!-- Enable/Disabled Form Edit -->
 <script>
     $(document).ready(function() {

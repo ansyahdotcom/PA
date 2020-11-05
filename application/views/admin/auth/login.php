@@ -7,7 +7,7 @@
     </div>
     <!-- /.login-logo -->
     <p class="login-box-msg">Halaman <b>Log</b>-in</p>
-    <?= $this->session->flashdata('message'); ?>
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 
     <form action="<?= base_url('admin/auth'); ?>" method="post">
       <div class="mb-3">

@@ -16,9 +16,7 @@
             </div>/.col -->
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-        <div>
-          <?= $this->session->flashdata('message'); ?>
-        </div>
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
       </div>
       <!-- /.content-header -->
       <!-- Main content -->

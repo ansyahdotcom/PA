@@ -13,7 +13,7 @@
     </div>
 
 
-    <?= $this->session->flashdata('message'); ?>
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
     <form action="<?= base_url('admin/auth/recoverpsw'); ?>" method="post">
       <div class="input-group mb-3">
         <div class="input-group">

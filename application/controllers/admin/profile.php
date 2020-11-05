@@ -72,9 +72,7 @@
                 $this->db->set($edit);
                 $this->db->where('EMAIL_ADM', $email);
                 $t = $this->db->update('admin');
-                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-check"></i> Profil berhasil diubah!</h5></div>');
+                $this->session->set_flashdata('message', 'Ubah Profil');
                 redirect('admin/profile');
             }
         }
@@ -114,22 +112,16 @@
                 $pswbru1 = $this->input->post(htmlspecialchars('pswbru1'));
 
                 if (!password_verify($pswlma, $data['admin']['PSW_ADM'])) { 
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5><i class="icon fas fa-ban"></i> Password sekarang salah!</h5></div>');
+                    $this->session->set_flashdata('message', 'Pswslh');
                     redirect('admin/profile');
                 } else {
                     if ($pswlma == $pswbru1){
-                        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-ban"></i> Password baru tidak boleh sama dengan password sekarang!</h5></div>');
+                        $this->session->set_flashdata('message', 'Pswbaru=Pswlama');
                         redirect('admin/profile');
                     } else {
                         $pswhash = password_hash($pswbru1, PASSWORD_DEFAULT);
                         $this->m_admin->ubhpsw($pswhash, $email);
-                        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-check"></i> Ubah password berhasil!</h5></div>');
+                        $this->session->set_flashdata('message', 'Password');
                         redirect('admin/profile');
                     }
                 }
