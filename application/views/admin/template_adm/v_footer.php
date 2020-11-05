@@ -64,6 +64,8 @@
             $("#nm").prop('disabled', false);
             $("#hp").prop('disabled', false);
             $("#almt").prop('disabled', false);
+            $("#imgedit").prop('hidden', false);
+            $("#img").prop('hidden', true);
         });
 
         $("#btn-cancel").click(function() {
@@ -74,19 +76,6 @@
             $("#nm").prop('disabled', true);
             $("#hp").prop('disabled', true);
             $("#almt").prop('disabled', true);
-        });
-    });
-</script>
-
-<!-- Ubah gambar -->
-<script>
-    $(document).ready(function() {
-        $("#btn-ubhgbr").click(function() {
-            $("#imgedit").prop('hidden', false);
-            $("#img").prop('hidden', true);
-        });
-
-        $("#btn-btlubh").click(function() {
             $("#imgedit").prop('hidden', true);
             $("#img").prop('hidden', false);
         });

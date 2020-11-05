@@ -9,8 +9,9 @@
             return $admin;
         }
 
-        function edit($edit, $email)
+        function edit($edit, $gbr, $email)
         {
+            $gbr;
             $this->db->set($edit);
             $this->db->where('EMAIL_ADM', $email);
             $this->db->update('admin');
@@ -20,14 +21,6 @@
         function ubhpsw($pswhash, $email)
         {
             $this->db->set('PSW_ADM', $pswhash);
-            $this->db->where('EMAIL_ADM', $email);
-            $this->db->update('admin');
-            return $this->db;
-        }
-
-        function editimg($new_image, $email)
-        {
-            $this->db->set('FOTO_ADM', $new_image);
             $this->db->where('EMAIL_ADM', $email);
             $this->db->update('admin');
             return $this->db;

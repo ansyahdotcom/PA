@@ -28,10 +28,11 @@
           <div class="card card-primary card-outline">
             <div class="card-body box-profile" id="img">
               <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle" src="<?= base_url(); ?>assets//dist/img/admin/<?= $admin['FTO_ADM']; ?>" alt="User profile picture">
+                <!-- <img class="profile-user-img img-circle" src="<?= base_url(); ?>assets//dist/img/admin/<?= $admin['FTO_ADM']; ?>" alt="User profile picture"> -->
+                <img class="img-fluid img-thumbnail" src="<?= base_url(); ?>assets//dist/img/admin/<?= $admin['FTO_ADM']; ?>" alt="User profile picture">
               </div>
 
-              <h3 class="profile-username text-center"><?= $admin['NM_ADM']; ?></h3>
+              <h3 class="profile-username text-center text-bold"><?= $admin['NM_ADM']; ?></h3>
               <?php
               if ($admin['ID_ROLE'] == 1) {
                 $role = "ADMIN";
@@ -42,7 +43,7 @@
               }
               ?>
 
-              <ul class="list-group list-group-unbordered mb-3">
+              <ul class="list-group mb-3">
                 <li class="list-group-item">
                   <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $role ?></span>
                 </li>
@@ -50,32 +51,30 @@
                   <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl ?></span>
                 </li>
               </ul>
-              <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button>
+              <!-- <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button> -->
             </div>
 
             <div class="card-body box-profil" id="imgedit" hidden>
-              <form action="<?= base_url('admin/profile/ubahgbr'); ?>" method="post">
+              <?= form_open_multipart('admin/profile'); ?>
                 <div class="form-group">
                   <div class="form-group text-center" style="position: relative;">
                     <span class="img-div">
                       <div class="text-center img-placeholder" onClick="triggerClick()">
-                        <h3 class="profile-username text-center">Unggah Gambar</h3>
+                        <h3 class="profile-username text-center text-bold">Edit Foto Profil</h3>
                         <label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
                       </div>
                       <div>
                         <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
                       </div>
                     </span>
-                    <input type="file" name="image" value="" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
+                    <input type="file" name="image" value="<?= $admin['FTO_ADM']; ?>" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
                     <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
-                    <label>Gambar Profil</label>
+                    <label class="text-bold text-gray">Foto Profil</label>
+                    <div>
+                      <small class="text-danger text-bold">(Ukuran file gambar max 2 mb.)</small>
+                    </div>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block" id="btn-spngbr"><i class="fas fa-save"></i> Simpan</button>
-              </form>
-              <div class="mt-1">
-                <button type="button" class="btn btn-default btn-block" id="btn-btlubh"><i class="fas fa-arrow-circle-left"></i> Batal</button>
-              </div>
             </div>
             <!-- /.card-body -->
           </div>
@@ -99,7 +98,7 @@
               <div class="tab-content" id="custom-tabs-four-tabContent">
                 <!-- Profil -->
                 <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                  <form class="form-horizontal" action="<?= base_url('admin/profile'); ?>" method="POST">
+                  <!-- <form class="form-horizontal" action="<?= base_url('admin/profile'); ?>" method="POST"> -->
                     <div class="form-group row">
                       <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                       <div class="input-group mb-1 col-sm-10">
@@ -155,7 +154,7 @@
                         <button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i> Edit</button>
                       </div>
                     </div>
-                  </form>
+                  <?= form_close() ?>
                 </div>
 
                 <!-- Ubah Password -->
