@@ -21,9 +21,9 @@ class Auth extends CI_Controller
 	/** Menampilkan Login */
 	public function login()
 	{
-		// if ($this->session->userdata('email')) {
-		// 	redirect('peserta/auth');
-		// }
+		if ($this->session->userdata('email')) {
+			redirect('peserta/auth');
+		}
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
 			'required' => 'Kolom ini harus di isi',
 			'valid_email' => 'Email tidak valid'
@@ -92,9 +92,10 @@ class Auth extends CI_Controller
 	/** Menampilkan Register */
 	public function register()
 	{
-		// if ($this->session->userdata('email')) {
-		// 	redirect('peserta/auth');
-		// }
+		
+		if ($this->session->userdata('email')) {
+			redirect('peserta/auth');
+		}
 
 		$tabel = $this->m_auth->idpsr();
 		$num = $tabel + 1;
@@ -320,6 +321,9 @@ class Auth extends CI_Controller
 	/**Fungsi untuk meminta link form ubah password yang dikirim lewat email */
 	public function lupapsw()
 	{
+		if ($this->session->userdata('email')) {
+			redirect('peserta/auth');
+		}
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
 			'required' => 'Kolom ini harus diisi',
 			'valid_email' => 'Email tidak valid'
