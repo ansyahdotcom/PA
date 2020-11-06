@@ -115,19 +115,27 @@ class Blog extends CI_Controller
 
         // untuk upload proposal
         $config['upload_path']          = './assets/fotoblog/';
-        $config['allowed_types']        = 'jpg|jpeg|png';
+        $config['allowed_types']        = 'jpg|jpeg|JPG';
         $config['max_size']             = 0;
         // $config['encrypt_name']         = true;
 
         $this->load->library('upload');
         $this->upload->initialize($config);
 
-        if (!$this->upload->do_upload('FOTO_POST')) {
-            $error = array('error' => $this->upload->display_errors());
-
-            $this->load->view('admin/blog', $error);
-        } else {
+        if ($this->upload->do_upload('FOTO_POST')) {
             $upload_data = $this->upload->data();
+            //Compress Image buat foto web
+            $config['image_library']='gd2';
+            $config['source_image']='./assets/fotoblog/'.$upload_data['file_name'];
+            $config['create_thumb']= FALSE;
+            $config['maintain_ratio']= FALSE;
+            $config['quality']= '50%';
+            $config['width']= 160;
+            $config['height']= 130;
+            $config['new_image']= './assets/fotoblog/fotoweb/'.$upload_data['file_name'];
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+
             $data = array(
                 'ID_POST' => $ID_POST,
                 'ID_ADM' => $ID_ADM,
@@ -152,6 +160,25 @@ class Blog extends CI_Controller
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>');
+            redirect('admin/blog');
+        } else {
+            $error = array('error' => $this->upload->display_errors());
+            $this->load->view('admin/blog', $error);
+        }
+    }
+
+    public function pr_posting()
+    {
+        $ST_POST = htmlspecialchars($this->input->post('ST_POST'));
+        $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
+        
+        if ($ST_POST == 0) {
+            $ST_POST++;
+            $this->m_blog->posting($ST_POST, $ID_POST);
+            redirect('admin/blog');
+        } else {
+            $ST_POST--;
+            $this->m_blog->posting($ST_POST, $ID_POST);
             redirect('admin/blog');
         }
     }

@@ -28,58 +28,131 @@
 			</div>
 		</div>
 		<?php foreach ($blog as $blg) { ?>
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-body">
-							<div class="tab-content">
-								<div class="active tab-pane" id="activity">
-									<!-- Post -->
-									<div class="post">
-										<div class="user-block">
-											<img class="img-circle img-bordered-sm" src="assets/fotoblog/Screenshot_(226).png">
-											<span class="username">
-												<label><?= $blg->JUDUL_POST; ?></label>
-												<a href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>">
-													<button type="button" class="btn btn-primary btn-circle btn-sm">
-														<i class="fas fa-edit" style="color: white"></i> Edit
-													</button>
-												</a>
-											</span>
-											<span class="description"><?= $blg->NM_CT . " | " . $blg->TGL_POST = date('d F Y'); ?></span>
-										</div>
-										<!-- /.user-block -->
-										<p>
-											<?= $blg->KONTEN_POST ?>
-										</p>
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="tab-content">
+							<div class="active tab-pane" id="activity">
+								<!-- Post -->
+								<div class="post">
+									<div class="user-block">
+										<!-- <img class="img-circle img-bordered-sm"
+											src="<?= base_url('assets/fotoicon/'. $blg->FOTO_POST); ?>"> -->
+										<span class="username">
+											<a
+												href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
 
-										<p>
-											<a href="#" class="link-black text-sm mr-2"></i>
-												<?= $blg->NM_TAGS; ?></a>
+										</span>
+										<span>
+											<i class="fa fa-folder"></i>
+											<a class="link-black text-sm"
+												href="<?= base_url('admin/blog/lihat_kategori'); ?>"><?= $blg->NM_CT; ?></a>
 
-											<span class="float-right">
-												<a href="">Pratinjau</a>
-												<a href="">Posting</a>
-												<a href="<?= base_url('admin/blog/hapus_artikel/' .  $blg->ID_POST); ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')">
-													<button type="button" class="btn btn-danger btn-circle btn-sm" style="color: white">
-														<i class="fas fa-trash"></i> Hapus
-													</button>
-												</a>
-											</span>
-										</p>
+										</span>
 									</div>
-									<!-- /.post -->
+									<!-- /.user-block -->
+									<!-- <p>
+											<?= $blg->KONTEN_POST ?>
+										</p> -->
+
+									<p>
+										<?php 
+										if ($blg->ST_POST == 0) {
+											echo '<label for="">Draf</label>';
+										} else {
+											echo '<label for="">Dipublikasikan</label>';
+										}
+										?>
+										
+										<label for="TGL_POST"
+											class="text-sm mr-2"><?= ' | '. date('d F Y', strtotime($blg->TGL_POST)); ?></label>
+										<span class="float-right">
+											<a href="">Pratinjau</a>
+											<?php 
+											if ($blg->ST_POST == 0) {
+												echo '<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
+												data-toggle="modal" data-target="#modal_posting'. $blg->ID_POST.'">
+												<i class="fas fa-arrow-circle-right"></i> Publikasikan</button>';
+											} else {
+												echo '<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
+												data-toggle="modal" data-target="#modal_posting'. $blg->ID_POST.'">
+												<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';	
+											}
+											 ?>
+											
+												<a href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>">
+												<button type="button" class="btn btn-primary btn-circle btn-sm">
+													<i class="fas fa-edit" style="color: white"></i> Edit
+												</button>
+											</a>
+											<a href="<?= base_url('admin/blog/hapus_artikel/' .  $blg->ID_POST); ?>"
+												onclick="return confirm('Anda yakin mau menghapus data ini ?')">
+												<button type="button" class="btn btn-danger btn-circle btn-sm"
+													style="color: white">
+													<i class="fas fa-trash"></i> Hapus
+												</button>
+											</a>
+										</span>
+									</p>
 								</div>
-								<!-- /.tab-pane -->
+								<!-- /.post -->
 							</div>
-							<!-- /.tab-content -->
+							<!-- /.tab-pane -->
 						</div>
-						<!-- /.card-body -->
+						<!-- /.tab-content -->
 					</div>
+					<!-- /.card-body -->
 				</div>
 			</div>
+		</div>
 		<?php } ?>
 	</section>
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<?php 
+foreach ($blog as $blg) { 
+	$ID_POST = $blg->ID_POST;
+	$ST_POST = $blg->ST_POST;	
+	?>
+<div class="modal fade" id="modal_posting<?= $ID_POST; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<?php 
+			if ($ST_POST == 0) {
+				echo '<div class="modal-header">
+						<h3 class="modal-title" id="myModalLabel">Publikasikan Artikel</h3>
+					</div>
+					<form action="'. base_url('admin/blog/pr_posting').'" method="post" class="form-horizontal">
+						<div class="modal-body">
+							<p>Apakah Anda yakin ingin mempublikasikan artikel ini?</p>
+						</div>
+						<div class="modal-footer">
+							<input type="hidden" name="ST_POST" value="'. $ST_POST. '">
+							<input type="hidden" name="ID_POST" value="'. $ID_POST. '">
+							<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+							<button class="btn btn-danger">Hapus</button>
+						</div>
+					</form>';
+			} else {
+				echo '<div class="modal-header">
+						<h3 class="modal-title" id="myModalLabel">Kembalikan ke Draf</h3>
+					</div>
+					<form action="'. base_url('admin/blog/pr_posting').'" method="post" class="form-horizontal">
+						<div class="modal-body">
+							<p>Apakah Anda ingin mengembalikan artikel ke draf?</p>
+						</div>
+						<div class="modal-footer">
+							<input type="hidden" name="ST_POST" value="'. $ST_POST. '">
+							<input type="hidden" name="ID_POST" value="'. $ID_POST. '">
+							<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+							<button class="btn btn-danger">Hapus</button>
+						</div>
+					</form>';
+			}
+			?>
+		</div>
+	</div>
+</div>
+<?php } ?>

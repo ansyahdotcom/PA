@@ -5,12 +5,13 @@ class M_blog extends CI_Model
 
     function tampil_blog()
     {
-        $data = $this->db->query("SELECT post.ID_POST, post.ID_CT, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST, GROUP_CONCAT(tags.NM_TAGS) AS NM_TAGS,
-        category.NM_CT
-        FROM post, category, detail_tags, tags
-        WHERE post.ID_CT = category.ID_CT AND post.ID_POST = detail_tags.ID_POST AND detail_tags.ID_TAGS = tags.ID_TAGS
-        GROUP BY post.ID_POST
-        ORDER BY post.ID_POST ASC");
+        $data = $this->db->query("SELECT post.ID_POST, post.ID_CT, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST,
+                                post.FOTO_POST, post.ST_POST, GROUP_CONCAT(tags.NM_TAGS) AS NM_TAGS, category.NM_CT
+                                FROM post, category, detail_tags, tags
+                                WHERE post.ID_CT = category.ID_CT AND post.ID_POST = detail_tags.ID_POST 
+                                AND detail_tags.ID_TAGS = tags.ID_TAGS
+                                GROUP BY post.ID_POST
+                                ORDER BY post.ID_POST ASC");
         return $data;
     }
 
@@ -50,6 +51,11 @@ class M_blog extends CI_Model
         $query = $this->db->query("SELECT MAX(ID_TAGS) AS ID_TAGS FROM tags");
         $hasil = $query->row();
         return $hasil->ID_TAGS;
+    }
+
+    function posting($ST_POST, $ID_POST)
+    {
+        $this->db->query("UPDATE post SET ST_POST = '$ST_POST' WHERE ID_POST = '$ID_POST'");
     }
 
     function buat_tags($ID_TAGS, $NM_TAGS)
