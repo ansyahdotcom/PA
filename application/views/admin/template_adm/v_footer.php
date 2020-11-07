@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2020 - 2021 <a href="#">Preneur Academy</a>.</strong>
+    <strong>Copyright &copy; <?= date('Y');?> <a href="<?=base_url('admin/dashboard')?>">Preneur Academy</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0.0

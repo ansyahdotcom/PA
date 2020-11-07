@@ -47,10 +47,56 @@
                                     <p>Konfigurasi Profil</p>
                                 </a>
                             </li>
-                            <!-- sampe sini -->
                         </ul>
                     </li>
-                    <!-- akhir ngopy sampai sini -->
+
+                    <li class="nav-header">Transaksi</li>
+
+                    <li class="nav-item">
+                        <a href="<?= base_url('admin/#'); ?>" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            Transaksi
+                            <span class="badge badge-info right">2</span>
+                        </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('admin/#'); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-history"></i>
+                        <p>
+                            Histori 
+                        </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-header">Kelas</li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fab fa-leanpub"></i>
+                            <p>
+                                Manajemen Kelas
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/#'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Buat Materi Kelas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/#'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pengumpulan</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-header">Website</li>
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
@@ -84,7 +130,7 @@
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-key"></i>
+                            <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Setting Website
                                 <i class="right fas fa-angle-left"></i>
@@ -98,31 +144,33 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('admin/website');?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Website</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/medsos');?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Media Sosial</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Tentang</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('admin/kebijakan');?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Kebijakan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('admin/key');?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Key API</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-header">Master</li>
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
@@ -140,14 +188,31 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="<?= base_url('admin/#'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Kelas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/#'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data Kupon</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
 
+                </ul>
+
+                <ul class="nav nav-pills bg-danger nav-sidebar flex-column mt-4 mb-4" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-sm">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Logout
+                        </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

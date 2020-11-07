@@ -5,7 +5,8 @@ class Navigasi extends CI_Controller
 
     function __construct(){
 		parent::__construct();
-		$this->load->model('admin/m_navbar','navbar_model');
+        $this->load->model('admin/m_navbar','navbar_model');
+        $this->load->library('form_validation');
         // $this->load->helper('text');
         adm_logged_in();
         cekadm();
@@ -16,7 +17,7 @@ class Navigasi extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-        $data['tittle'] = "Data Navigasi";
+        $data['tittle'] = "Data Navigasi Menu";
 		$data['data'] = $this->navbar_model->get_navbar();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
@@ -51,7 +52,7 @@ class Navigasi extends CI_Controller
             $name = htmlspecialchars($this->input->post('nama'));
             $slug = htmlspecialchars($this->input->post('link'));
             $this->navbar_model->update_navbar($id,$name,$slug);
-            $this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">Data Berhasil Diubah</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Data Berhasil Diubah</div>');
             redirect('admin/navigasi');
         }
 	}

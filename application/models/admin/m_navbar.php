@@ -4,7 +4,7 @@ class M_navbar extends CI_Model{
 	
 	function get_navbar(){
 		$query = $this->db->get_where('navbar', array('PR_ID' => '0'));
-		return $query;
+		return $query->result_array();
 	}
 
 	function insert_navbar($name,$slug){
