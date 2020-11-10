@@ -27,7 +27,7 @@ class M_key extends CI_Model{
 	}
 
 	function delete_key($id){
-		$query = $this->db->query("DELETE FROM key WHERE ID_KEY='$id'");
+		$query = $this->db->delete('key', array('ID_KEY' => $id));
         return $query;
 	}
 

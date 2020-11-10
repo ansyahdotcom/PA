@@ -107,5 +107,20 @@ $(function() {
             icon: 'danger',
             title:'Menu berhasil di Hapus!',
         });
+    }else if(flashData == 'keyDelete'){
+        Toast.fire({
+            icon: 'danger',
+            title:'API berhasil di Hapus!',
+        });
+    }else if(flashData == 'keyUpdate'){
+        Toast.fire({
+            icon: 'warning',
+            title:'API berhasil di Ubah!',
+        });
+    }else if(flashData == 'keySuccess'){
+        Toast.fire({
+            icon: 'success',
+            title:'API berhasil di Tambahkan!',
+        });
     }
 });

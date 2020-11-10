@@ -39,7 +39,7 @@ class Key extends CI_Controller
 		    $key2 = htmlspecialchars(trim($this->input->post('key2',TRUE)),ENT_QUOTES);
 		    $status = htmlspecialchars(trim($this->input->post('status',TRUE)),ENT_QUOTES);
             $this->key_model->insert($name,$key1,$key2,$status);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');
+            $this->session->set_flashdata('message', 'keySuccess');
             redirect('admin/key');
         }
 	}
@@ -51,7 +51,7 @@ class Key extends CI_Controller
         $this->form_validation->set_rules('status', 'Status', 'required');
 
         if($this->form_validation->run() == false){
-            redirect('admin/navigasi');
+            redirect('admin/key');
         }else{
             $id = htmlspecialchars($this->input->post('id_key'));
             $name = htmlspecialchars($this->input->post('nama'));
@@ -59,15 +59,15 @@ class Key extends CI_Controller
             $key2 = htmlspecialchars($this->input->post('key2'));
             $status = htmlspecialchars($this->input->post('status'));
             $this->key_model->update_key($id,$name,$key1,$key2,$status);
-            $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Data Berhasil Diubah</div>');
+            $this->session->set_flashdata('message', 'keyUpdate');
             redirect('admin/key');
         }
 	}
 
 	function delete(){
 		$id = $this->input->post('id_delete',TRUE);
-		$this->navbar_model->delete_navbar($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Berhasil Dihapus</div>');
+		$this->key_model->delete_key($id);
+        $this->session->set_flashdata('message', 'keyDelete');
         redirect('admin/key');
 	}
 }
