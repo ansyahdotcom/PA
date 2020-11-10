@@ -54,7 +54,7 @@
 
                     <li class="nav-item">
                         <a href="<?= base_url('admin/#'); ?>" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <i class="nav-icon fas fa-receipt"></i>
                         <p>
                             Transaksi
                             <span class="badge badge-info right">2</span>
@@ -90,7 +90,7 @@
                             <li class="nav-item">
                                 <a href="<?= base_url('admin/#'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Pengumpulan</p>
+                                    <p>Pengumpulan Tugas</p>
                                 </a>
                             </li>
                         </ul>

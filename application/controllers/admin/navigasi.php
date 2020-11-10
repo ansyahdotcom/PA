@@ -31,12 +31,16 @@ class Navigasi extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('link', 'Link', 'required');
         if($this->form_validation->run() == false){
-            redirect('admin/navigasi');
+            $this->load->view("admin/template_adm/v_header", $data);
+            $this->load->view("admin/template_adm/v_navbar", $data);
+            $this->load->view("admin/template_adm/v_sidebar", $data);
+            $this->load->view("admin/setting/v_navigasi", $data);
+            $this->load->view("admin/template_adm/v_footer"); 
         }else{
             $name = htmlspecialchars($this->input->post('nama',TRUE),ENT_QUOTES);
 		    $slug = htmlspecialchars(trim($this->input->post('link',TRUE)),ENT_QUOTES);
             $this->navbar_model->insert_navbar($name,$slug);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');
+            $this->session->set_flashdata('message', 'navSuccess');
             redirect('admin/navigasi');
         }
 	}
@@ -46,13 +50,17 @@ class Navigasi extends CI_Controller
         $this->form_validation->set_rules('link', 'Link', 'required');
 
         if($this->form_validation->run() == false){
-            redirect('admin/navigasi');
+            $this->load->view("admin/template_adm/v_header", $data);
+            $this->load->view("admin/template_adm/v_navbar", $data);
+            $this->load->view("admin/template_adm/v_sidebar", $data);
+            $this->load->view("admin/setting/v_navigasi", $data);
+            $this->load->view("admin/template_adm/v_footer"); 
         }else{
             $id = htmlspecialchars($this->input->post('id_navbar'));
             $name = htmlspecialchars($this->input->post('nama'));
             $slug = htmlspecialchars($this->input->post('link'));
             $this->navbar_model->update_navbar($id,$name,$slug);
-            $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Data Berhasil Diubah</div>');
+            $this->session->set_flashdata('message', 'navUpdate');
             redirect('admin/navigasi');
         }
 	}
@@ -60,7 +68,7 @@ class Navigasi extends CI_Controller
 	function delete(){
 		$id = $this->input->post('id_delete',TRUE);
 		$this->navbar_model->delete_navbar($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Berhasil Dihapus</div>');
+        $this->session->set_flashdata('message', 'navDelete');
         redirect('admin/navigasi');
 	}
 
@@ -68,13 +76,17 @@ class Navigasi extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('link', 'Link', 'required');
         if($this->form_validation->run() == false){
-            redirect('admin/navigasi');  
+            $this->load->view("admin/template_adm/v_header", $data);
+            $this->load->view("admin/template_adm/v_navbar", $data);
+            $this->load->view("admin/template_adm/v_sidebar", $data);
+            $this->load->view("admin/setting/v_navigasi", $data);
+            $this->load->view("admin/template_adm/v_footer");  
         }else{
             $id = $this->input->post('id_submenu',TRUE);
             $name = htmlspecialchars($this->input->post('nama',TRUE),ENT_QUOTES);
 		    $slug = htmlspecialchars(trim($this->input->post('link',TRUE)),ENT_QUOTES);
             $this->navbar_model->insert_subnavbar($name,$slug,$id);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Ditambahkan</div>');
+            $this->session->set_flashdata('message', 'navSub');
             redirect('admin/navigasi');
         }
 	}

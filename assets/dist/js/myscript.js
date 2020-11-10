@@ -87,5 +87,25 @@ $(function() {
             icon: 'info',
             title:'Anda Telah Logout!',
         });
+    } else if(flashData == 'navSuccess'){
+        Toast.fire({
+            icon: 'success',
+            title:'Menu berhasil di Tambahkan!',
+        });
+    }else if(flashData == 'navSub'){
+        Toast.fire({
+            icon: 'success',
+            title:'SubMenu berhasil di Tambahkan!',
+        });
+    }else if(flashData == 'navUpdate'){
+        Toast.fire({
+            icon: 'info',
+            title:'Menu berhasil di Ubah!',
+        });
+    }else if(flashData == 'navDelete'){
+        Toast.fire({
+            icon: 'danger',
+            title:'Menu berhasil di Hapus!',
+        });
     }
 });

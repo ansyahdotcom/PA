@@ -104,6 +104,50 @@
     }
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+      
+      $("#key-click").click(function(){
+        $("#icon").toggleClass('fa-eye-slash');
+
+        var input = $("#key1");
+
+        if(input.attr("type")==="password")
+        {
+            input.attr("type","text");
+        }
+        else
+        {
+            input.attr("type","password");
+        }
+        
+      });
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      
+      $("#key-click1").click(function(){
+        $("#icon1").toggleClass('fa-eye-slash');
+
+        var input = $("#key2");
+
+        if(input.attr("type")==="password")
+        {
+            input.attr("type","text");
+        }
+        else
+        {
+            input.attr("type","password");
+        }
+        
+      });
+
+    });
+</script>
+
 <script>
     $(function() {
         $("#example1").DataTable({
