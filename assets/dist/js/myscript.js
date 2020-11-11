@@ -7,7 +7,14 @@ $(function() {
     });
 
     const flashData = $('.flash-data').data('flashdata');
-    if(flashData == 'Ubah Profil'){
+    if(flashData == 'isLogin'){
+        Toast.fire({
+            icon: 'success',
+            title:'Anda Berhasil Login!',
+        });
+    }
+
+    else if(flashData == 'Ubah Profil'){
         Toast.fire({
             icon: 'success',
             title:'Profil Anda Berhasil Diubah',

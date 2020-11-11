@@ -29,5 +29,11 @@
             $this->db->update('peserta');
             return $this->db;
         }
+
+        public function jmlps()
+        {
+            $jml = $this->db->get('peserta')->num_rows();
+            return $jml;
+        }
     }
 ?>
