@@ -34,12 +34,10 @@
 
                 <div class="social text-center">
                     <h6 class="text-uppercase">Ikuti akun sosial media kami</h6>
-                    <?php foreach ($data as $row) :
-                        $icon = $row['IC_MS'];
-                        $link = $row['LINK_MS'];
-                    ?>
-                    <a href="<?= base_url(); ?><?= $link;?>"><i class="<?= $icon;?>" target="_blank"></i></a>
-                    <?php endforeach;?>
+                    <a href="<?= base_url(); ?>https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
+                    <a href="<?= base_url(); ?>https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
+                    <a href="<?= base_url(); ?>https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i class="fab fa-youtube"></i></a>
+                    <a href="<?= base_url(); ?>https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>
                 </div>
                 <div class="copyrights text-center">
                     <p class="para">

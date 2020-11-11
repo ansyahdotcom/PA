@@ -129,20 +129,5 @@ $(function() {
             icon: 'success',
             title:'API berhasil di Tambahkan!',
         });
-    }else if(flashData == 'socialSuccess'){
-        Toast.fire({
-            icon: 'success',
-            title:'Pintasan berhasil di Tambahkan!',
-        });
-    }else if(flashData == 'socialUpdate'){
-        Toast.fire({
-            icon: 'warning',
-            title:'Pintasan berhasil di Ubah!',
-        });
-    }else if(flashData == 'socialDelete'){
-        Toast.fire({
-            icon: 'success',
-            title:'Pintasan berhasil di Hapus!',
-        });
     }
 });
