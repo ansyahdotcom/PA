@@ -5,7 +5,7 @@ class Key extends CI_Controller
 
     function __construct(){
 		parent::__construct();
-		// $this->load->model('admin/m_key','key_model');
+		$this->load->model('admin/m_key','key_model');
         adm_logged_in();
         cekadm();
     }
@@ -17,71 +17,57 @@ class Key extends CI_Controller
         ])->row_array();
 
         $data['tittle'] = 'Data API Key';
-        
-        $this->form_validation->set_rules('nama', 'Nama', 'trim|required', [
-            'required' => 'kolom ini harus diisi',
-        ]);
+        $data['data'] = $this->key_model->get_key(); 
+        $this->load->view("admin/template_adm/v_header", $data);
+        $this->load->view("admin/template_adm/v_navbar", $data);
+        $this->load->view("admin/template_adm/v_sidebar", $data);
+        $this->load->view("admin/setting/v_key", $data);
+        $this->load->view("admin/template_adm/v_footer");
 
-        $this->form_validation->set_rules('hp', 'Hp', 'trim|numeric|min_length[11]|max_length[13]', [
-            'numeric' => 'kolom ini harus berisi angka',
-            'min_length' => 'format yang di masukkan salah',
-            'max_length' => 'format yang di masukkan salah'
-        ]);
+    }
 
-        $this->form_validation->set_rules('alamat', 'Alamat', 'trim');
-
-        if ($this->form_validation->run() == false) {
-            $this->load->view("admin/template_adm/v_header", $data);
-            $this->load->view("admin/template_adm/v_navbar", $data);
-            $this->load->view("admin/template_adm/v_sidebar", $data);
-            $this->load->view("admin/setting/v_key", $data);
-            $this->load->view("admin/template_adm/v_footer");
-        } else {
-            $nama = htmlspecialchars($this->input->post('nama'));
-            $hp = htmlspecialchars($this->input->post('hp'));
-            $alamat = htmlspecialchars($this->input->post('alamat'));
-
-            /** Proses Edit Gambar */
-            $upload_image = $_FILES['image']['name'];
-
-            if ($upload_image) {
-                    $config['allowed_types'] = 'gif|jpg|jpeg|png';
-                    $config['max_size'] = '2048';
-                    $config['upload_path'] = './assets/dist/img/admin/';
-
-                    $this->upload->initialize($config);
-
-                    if ($this->upload->do_upload('image')) {
-                        $old_image = $data['admin']['FTO_ADM'];
-                        if ($old_image != 'default.jpg') {
-                            unlink(FCPATH . 'assets/dist/img/admin/' . $old_image);
-                        }
-                        $new_image = $this->upload->data('file_name');
-                        $this->db->set('FTO_ADM', $new_image);
-                    } else {
-                        echo $this->upload->display_errors();
-                    }
-            }        
-
-            $edit = [
-                'NM_ADM' => $nama,
-                'HP_ADM' => $hp,
-                'ALMT_ADM' => $alamat,
-            ];
-
-            $this->db->set($edit);
-            $this->db->where('EMAIL_ADM', $email);
-            $t = $this->db->update('admin');
-            $this->session->set_flashdata('message', 'Ubah Profil');
-            redirect('admin/profile');
+    function insert(){
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('key1', 'Key1', 'required');
+        $this->form_validation->set_rules('key2', 'Key2', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        if($this->form_validation->run() == false){
+            redirect('admin/key');
+        }else{
+            $name = htmlspecialchars($this->input->post('nama',TRUE),ENT_QUOTES);
+		    $key1 = htmlspecialchars(trim($this->input->post('key1',TRUE)),ENT_QUOTES);
+		    $key2 = htmlspecialchars(trim($this->input->post('key2',TRUE)),ENT_QUOTES);
+		    $status = htmlspecialchars(trim($this->input->post('status',TRUE)),ENT_QUOTES);
+            $this->key_model->insert($name,$key1,$key2,$status);
+            $this->session->set_flashdata('message', 'keySuccess');
+            redirect('admin/key');
         }
-    }
+	}
 
-    function update(){
+	function update(){
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('key1', 'Key1', 'required');
+        $this->form_validation->set_rules('key2', 'Key2', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
 
-    }
+        if($this->form_validation->run() == false){
+            redirect('admin/key');
+        }else{
+            $id = htmlspecialchars($this->input->post('id_key'));
+            $name = htmlspecialchars($this->input->post('nama'));
+            $key1 = htmlspecialchars($this->input->post('key1'));
+            $key2 = htmlspecialchars($this->input->post('key2'));
+            $status = htmlspecialchars($this->input->post('status'));
+            $this->key_model->update_key($id,$name,$key1,$key2,$status);
+            $this->session->set_flashdata('message', 'keyUpdate');
+            redirect('admin/key');
+        }
+	}
 
-    function delete(){
-
-    }
+	function delete(){
+		$id = $this->input->post('id_delete',TRUE);
+		$this->key_model->delete_key($id);
+        $this->session->set_flashdata('message', 'keyDelete');
+        redirect('admin/key');
+	}
 }

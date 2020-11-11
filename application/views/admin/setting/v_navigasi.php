@@ -1,22 +1,22 @@
-    <div class="content-wrapper">
-        <section class="content-header">
+<div class="content-wrapper">
+    <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+        <div class="row mb-2">
             <div class="col-sm-6">
-                <h1><?= $tittle?></h1>
+            <h1><?= $tittle; ?></h1>
             </div>
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
+            <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active"><?= $tittle?></li>
-                </ol>
+                <li class="breadcrumb-item active"><?= $tittle; ?></li>
+            </ol>
             </div>
-            </div>
-            <?= $this->session->flashdata('message'); ?>
         </div>
-        </section>
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+        </div>
+    </section>
 
-        <section class="content">
+    <section class="content">
         <div class="card">
             <div class="card-header">
             <h3 class="card-title pt-2">Navigasi Halaman</h3>
@@ -69,8 +69,8 @@
                 <?php endforeach;?>
             </div>
         </div>
-        </section>
-    </div>
+    </section>
+</div>
 
     <form action="<?php echo base_url().'admin/navigasi/insert'?>" method="post" enctype="multipart/form-data">
     <div class="modal fade" id="modalAdd" aria-hidden="true">

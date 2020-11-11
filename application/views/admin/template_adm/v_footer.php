@@ -87,6 +87,34 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $("#btn-edit").click(function() {
+            $(".tittle").html("Edit Profil");
+            $("#btn-edit").prop('hidden', true);
+            $("#btn-save").prop('hidden', false);
+            $("#btn-cancel").prop('hidden', false);
+            $("#nm").prop('disabled', false);
+            $("#hp").prop('disabled', false);
+            $("#almt").prop('disabled', false);
+            $("#imgedit").prop('hidden', false);
+            $("#img").prop('hidden', true);
+        });
+
+        $("#btn-cancel").click(function() {
+            $(".tittle").html("Profil");
+            $("#btn-edit").prop('hidden', false);
+            $("#btn-save").prop('hidden', true);
+            $("#btn-cancel").prop('hidden', true);
+            $("#nm").prop('disabled', true);
+            $("#hp").prop('disabled', true);
+            $("#almt").prop('disabled', true);
+            $("#imgedit").prop('hidden', true);
+            $("#img").prop('hidden', false);
+        });
+    });
+</script>
+
 <!-- Upload gambar -->
 <script>
     function triggerClick(b) {
@@ -102,6 +130,50 @@
             reader.readAsDataURL(b.files[0]);
         }
     }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      
+      $("#key-click").click(function(){
+        $("#icon").toggleClass('fa-eye-slash');
+
+        var input = $("#key1");
+
+        if(input.attr("type")==="password")
+        {
+            input.attr("type","text");
+        }
+        else
+        {
+            input.attr("type","password");
+        }
+        
+      });
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      
+      $("#key-click1").click(function(){
+        $("#icon1").toggleClass('fa-eye-slash');
+
+        var input = $("#key2");
+
+        if(input.attr("type")==="password")
+        {
+            input.attr("type","text");
+        }
+        else
+        {
+            input.attr("type","password");
+        }
+        
+      });
+
+    });
 </script>
 
 <script>

@@ -94,5 +94,40 @@ $(function() {
             icon: 'info',
             title:'Anda Telah Logout!',
         });
+    } else if(flashData == 'navSuccess'){
+        Toast.fire({
+            icon: 'success',
+            title:'Menu berhasil di Tambahkan!',
+        });
+    }else if(flashData == 'navSub'){
+        Toast.fire({
+            icon: 'success',
+            title:'SubMenu berhasil di Tambahkan!',
+        });
+    }else if(flashData == 'navUpdate'){
+        Toast.fire({
+            icon: 'info',
+            title:'Menu berhasil di Ubah!',
+        });
+    }else if(flashData == 'navDelete'){
+        Toast.fire({
+            icon: 'danger',
+            title:'Menu berhasil di Hapus!',
+        });
+    }else if(flashData == 'keyDelete'){
+        Toast.fire({
+            icon: 'danger',
+            title:'API berhasil di Hapus!',
+        });
+    }else if(flashData == 'keyUpdate'){
+        Toast.fire({
+            icon: 'warning',
+            title:'API berhasil di Ubah!',
+        });
+    }else if(flashData == 'keySuccess'){
+        Toast.fire({
+            icon: 'success',
+            title:'API berhasil di Tambahkan!',
+        });
     }
 });
