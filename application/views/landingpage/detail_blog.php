@@ -91,14 +91,13 @@
 
 						<!-- Date/Time -->
 						<span>
-							<p><i class="fas fa-calendar"></i><?= date(' d F Y', strtotime($blg->TGL_POST)); ?></p>
+							<p><i class="fas fa-calendar"></i><?= date(' d F Y', strtotime($blg->TGL_POST)); ?>
 							<i class="fa fa-folder"></i>
-							<a class="link-black text-sm"
-								href="<?= base_url('admin/blog/lihat_post_ktg/'. $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
+							<a class="link-black text-sm" href="<?= base_url('admin/blog/lihat_post_ktg/'. $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
 							<i class="fas fa-tag"></i>
 							<?php foreach ($detail_tags as $dttags) {?>
 							<a href="<?= base_url('admin/blog/lihat_post_tag/'. $dttags->NM_TAGS); ?>"><?= $dttags->NM_TAGS; ?></a>
-							<?php } ?>
+							<?php } ?></p>
 
 						</span>
 						<hr>
@@ -126,7 +125,7 @@
 										<ul class="list-unstyled mb-0">
 											<?php foreach ($kategori as $ktg) { ?>
 											<li>
-												<a href="<?= base_url('admin/blog/lihat_post_ktg/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
+												<a class="text-dark" href="<?= base_url('admin/blog/lihat_post_ktg/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
 											</li>
 											<?php } ?>
 										</ul>

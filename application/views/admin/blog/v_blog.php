@@ -39,8 +39,8 @@
 									<div class="user-block">
 										<!-- <img class="img-circle img-bordered-sm"
 											src="<?= base_url('assets/fotoicon/'. $blg->FOTO_POST); ?>"> -->
-										<span class="username">
-											<a class="text-dark" style="text-align:left;" href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
+										<span class="username m-0 text-lg">
+											<a class="text-dark" href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
 
 										</span>
 										<hr>
