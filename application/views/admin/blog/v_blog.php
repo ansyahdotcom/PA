@@ -40,13 +40,13 @@
 										<!-- <img class="img-circle img-bordered-sm"
 											src="<?= base_url('assets/fotoicon/'. $blg->FOTO_POST); ?>"> -->
 										<span class="username">
-											<a
-												href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
+											<a class="text-dark" style="text-align:left;" href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
 
 										</span>
+										<hr>
 										<span>
 											<i class="fa fa-folder"></i>
-											<a class="link-black text-sm"
+											<a class="link-black text-lg"
 												href="<?= base_url('admin/blog/lihat_post_ktg'); ?>"><?= $blg->NM_CT; ?></a>
 
 										</span>
@@ -71,7 +71,7 @@
 											class="text-sm mr-2"><?= ' | '. date('d F Y', strtotime($blg->TGL_POST)); ?></label>
 										<span class="float-right">
 											<!-- dilihat tampilan blognya sebelum diposting -->
-											<a href="<?= base_url('admin/blog/detail_blog/'.$blg->ID_POST);?>">Pratinjau</a>
+											<a class="text-secondary" href="<?= base_url('admin/blog/detail_blog/'.$blg->ID_POST);?>">Pratinjau</a>
 											<!-- Nyari status post trus mau diposting apa nggak -->
 											<?php 
 											if ($blg->ST_POST == 0) {
