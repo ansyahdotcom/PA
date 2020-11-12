@@ -3,10 +3,12 @@
     {
         function admin($email)
         {
-            $admin = $this->db->get_where('admin', [
-                'EMAIL_ADM' => $email
-            ])->row_array();
-            return $admin;
+            $this->db->select('*');
+            $this->db->from('admin');
+            $this->db->join('role', 'role.ID_ROLE=admin.ID_ROLE');
+            $this->db->where('EMAIL_ADM', $email);
+            $query = $this->db->get()->row_array();
+            return $query;
         }
 
         function edit($edit, $gbr, $email)

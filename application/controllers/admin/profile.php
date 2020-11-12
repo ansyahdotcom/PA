@@ -71,7 +71,7 @@
 
                 $this->db->set($edit);
                 $this->db->where('EMAIL_ADM', $email);
-                $t = $this->db->update('admin');
+                $this->db->update('admin');
                 $this->session->set_flashdata('message', 'Ubah Profil');
                 redirect('admin/profile');
             }

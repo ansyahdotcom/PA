@@ -34,9 +34,9 @@
 
               <h3 class="profile-username text-center text-bold"><?= $admin['NM_ADM']; ?></h3>
               <?php
-              if ($admin['ID_ROLE'] == 1) {
-                $role = "ADMIN";
-              }
+              // if ($admin['ID_ROLE'] == 1) {
+              //   $role = "ADMIN";
+              // }
 
               if ($admin['DATE_CREATE'] == 0) {
                 $tgl = "--";
@@ -45,7 +45,7 @@
 
               <ul class="list-group mb-3">
                 <li class="list-group-item">
-                  <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $role ?></span>
+                  <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $admin['ROLE'] ?></span>
                 </li>
                 <li class="list-group-item">
                   <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl ?></span>

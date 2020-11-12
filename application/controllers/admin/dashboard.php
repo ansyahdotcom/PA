@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
         $data['jmlps'] = $this->m_peserta->jmlps();
-        var_dump($data['jmlps']);
+        
         $data['tittle'] = "Dashboard";
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
