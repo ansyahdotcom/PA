@@ -39,24 +39,26 @@
 									<div class="user-block">
 										<!-- <img class="img-circle img-bordered-sm"
 											src="<?= base_url('assets/fotoicon/'. $blg->FOTO_POST); ?>"> -->
-										<span class="username">
-											<a
-												href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
+										<span class="username m-0 text-lg">
+											<a class="text-dark" href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
 
 										</span>
+										<hr>
 										<span>
 											<i class="fa fa-folder"></i>
-											<a class="link-black text-sm"
-												href="<?= base_url('admin/blog/lihat_kategori'); ?>"><?= $blg->NM_CT; ?></a>
+											<a class="link-black text-lg"
+												href="<?= base_url('admin/blog/lihat_post_ktg'); ?>"><?= $blg->NM_CT; ?></a>
 
 										</span>
 									</div>
 									<!-- /.user-block -->
+									<!-- Karepnya nampilin sebagian kalimat di artikel -->
 									<!-- <p>
 											<?= $blg->KONTEN_POST ?>
 										</p> -->
-
+										
 									<p>
+									<!-- Nyari status post trus ditampilkan sesuai status post -->
 										<?php 
 										if ($blg->ST_POST == 0) {
 											echo '<label for="">Draf</label>';
@@ -64,11 +66,13 @@
 											echo '<label for="">Dipublikasikan</label>';
 										}
 										?>
-										
+
 										<label for="TGL_POST"
 											class="text-sm mr-2"><?= ' | '. date('d F Y', strtotime($blg->TGL_POST)); ?></label>
 										<span class="float-right">
-											<a href="">Pratinjau</a>
+											<!-- dilihat tampilan blognya sebelum diposting -->
+											<a class="text-secondary" href="<?= base_url('admin/blog/detail_blog/'.$blg->ID_POST);?>">Pratinjau</a>
+											<!-- Nyari status post trus mau diposting apa nggak -->
 											<?php 
 											if ($blg->ST_POST == 0) {
 												echo '<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
@@ -80,12 +84,13 @@
 												<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';	
 											}
 											 ?>
-											
-												<a href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>">
+											<!-- edit artikel -->
+											<a href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>">
 												<button type="button" class="btn btn-primary btn-circle btn-sm">
 													<i class="fas fa-edit" style="color: white"></i> Edit
 												</button>
 											</a>
+											<!-- hapus artikel -->
 											<a href="<?= base_url('admin/blog/hapus_artikel/' .  $blg->ID_POST); ?>"
 												onclick="return confirm('Anda yakin mau menghapus data ini ?')">
 												<button type="button" class="btn btn-danger btn-circle btn-sm"
@@ -111,6 +116,8 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<!-- modal posting -->
 <?php 
 foreach ($blog as $blg) { 
 	$ID_POST = $blg->ID_POST;
@@ -132,7 +139,7 @@ foreach ($blog as $blg) {
 							<input type="hidden" name="ST_POST" value="'. $ST_POST. '">
 							<input type="hidden" name="ID_POST" value="'. $ID_POST. '">
 							<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
-							<button class="btn btn-danger">Hapus</button>
+							<button class="btn btn-primary">Ya</button>
 						</div>
 					</form>';
 			} else {
@@ -147,7 +154,7 @@ foreach ($blog as $blg) {
 							<input type="hidden" name="ST_POST" value="'. $ST_POST. '">
 							<input type="hidden" name="ID_POST" value="'. $ID_POST. '">
 							<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
-							<button class="btn btn-danger">Hapus</button>
+							<button class="btn btn-primary">Ya</button>
 						</div>
 					</form>';
 			}

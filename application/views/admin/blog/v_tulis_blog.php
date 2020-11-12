@@ -32,7 +32,7 @@
 					<form action="<?= base_url('admin/blog/pr_tmbh_blog'); ?>" method="post"
 						enctype="multipart/form-data" class="form-horizontal">
 						<div class="card-body">
-							<input type="hidden" name="ID_POST" value="<?= $ID_POST; ?>">
+							<input type="text" name="ID_POST" value="<?= $ID_POST; ?>">
 							<input type="hidden" name="ID_ADM" value="<?= $ID_ADM; ?>">
 							<label for="JUDUL_POST">Judul</label>
 							<input class="form-control" type="text" autocomplete="off" name="JUDUL_POST"
@@ -121,7 +121,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="post" action="<?= base_url('admin/blog/pr_buat_tags'); ?>">
+			<form method="post" action="<?= base_url('admin/blog/pr_tmbh_tags'); ?>">
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="hidden" class="form-control" name="ID_TAGS" value="<?= $ID_TAGS; ?>">

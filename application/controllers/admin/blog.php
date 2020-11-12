@@ -28,6 +28,12 @@ class Blog extends CI_Controller
         $this->load->view("admin/template_adm/v_footer");
     }
 
+    // buat id blog
+    // public function buat_id_blog()
+    // {
+        
+    // }
+
     public function tulis_blog()
     {
         $data['admin'] = $this->db->get_where('admin', [
@@ -47,11 +53,15 @@ class Blog extends CI_Controller
         // buat id blog
         $ID_P = $this->m_blog->selectMaxID_POST();
         if ($ID_P == NULL) {
-            $data['ID_POST'] = 'PS00001';
+            $data1['ID_POST'] = 'PS00001';
+            $data = $data1;
+            return $data;
         } else {
             $noP = substr($ID_P, 2, 5);
             $IDP = $noP + 1;
-            $data['ID_POST'] = 'PS' . sprintf("%05s", $IDP);
+            $data1['ID_POST'] = 'PS' . sprintf("%05s", $IDP);
+            $data = $data1;
+            return $data;
         }
 
         // buat id kategori
@@ -92,15 +102,16 @@ class Blog extends CI_Controller
         redirect('admin/blog/tulis_blog');
     }
 
-    //buat tags di tulis blog
-    public function pr_buat_tags()
+    //tambah tags di tulis blog
+    public function pr_tmbh_tags()
     {
         $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
         $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
-        $this->m_blog->buat_tags($ID_TAGS, $NM_TAGS);
+        $this->m_blog->tmbh_tags($ID_TAGS, $NM_TAGS);
         redirect('admin/blog/tulis_blog');
     }
 
+    // proses tambah artikel
     public function pr_tmbh_blog()
     {
         $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
@@ -167,6 +178,7 @@ class Blog extends CI_Controller
         }
     }
 
+    // proses posting artikel
     public function pr_posting()
     {
         $ST_POST = htmlspecialchars($this->input->post('ST_POST'));
@@ -175,11 +187,24 @@ class Blog extends CI_Controller
         if ($ST_POST == 0) {
             $ST_POST++;
             $this->m_blog->posting($ST_POST, $ID_POST);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
+															Artikel berhasil dipublikasikan!
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>');
             redirect('admin/blog');
         } else {
             $ST_POST--;
             $this->m_blog->posting($ST_POST, $ID_POST);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
+															Artikel dikembalikan ke draf!
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>');
             redirect('admin/blog');
+            
         }
     }
 
@@ -245,7 +270,7 @@ class Blog extends CI_Controller
         redirect('admin/blog/edit_artikel');
     }
 
-    //buat tags di edit artikel
+    //tambah tags di edit artikel
     public function pr_buat_tags2()
     {
         $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
@@ -297,5 +322,43 @@ class Blog extends CI_Controller
 															</button>
 														</div>');
         redirect('admin/blog');
+    }
+
+    // pratinjau / lihat post / lihat artikel
+    public function detail_blog($ID_POST)
+    {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+        
+        $data['blog'] = $this->m_blog->tampil_dt_blog($ID_POST, 'post')->result();
+        $data['detail_tags'] = $this->m_blog->tampil_dt_tags($ID_POST, 'detail_tags')->result();
+        $data['kategori'] = $this->m_blog->tampil_kategori()->result();
+        $this->load->view('landingpage/detail_blog', $data);
+    }
+
+    // lihat artikel yg kategori sama
+    public function lihat_post_ktg($NM_CT)
+    {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+
+        $data['blog'] = $this->m_blog->post_ktg($NM_CT, 'post')->result();
+        $this->load->view('landingpage/v_post_ktg', $data);
+    }
+
+    // lihat artikel yg tag sama
+    public function lihat_post_tag($NM_TAGS)
+    {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+
+        $data['dt_tags'] = $this->m_blog->post_tag($NM_TAGS, 'detail_tags')->result();
+        $this->load->view('landingpage/v_post_tag', $data);
     }
 }

@@ -194,7 +194,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                <h4 class="modal-title">Hapus Menu</h4>
+                <h4 class="modal-title">Hapus Key</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -202,7 +202,7 @@
                 <div class="modal-body justify-content-center">
                     <div class="text-center">
                         <img class="mt-2 mb-2" src="<?= base_url();?>assets/dist/img/hapus.svg" width=80% alt="delete-img">
-                        <h4 class="mb-4">Apakah anda yakin untuk menghapus menu ini?</h4>
+                        <h4 class="mb-4">Apakah anda yakin untuk menghapus key ini?</h4>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
