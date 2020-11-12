@@ -36,7 +36,6 @@ class Blog extends CI_Controller
 
     public function tulis_blog()
     {
-        // $this->buat_id_blog();
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>
             $this->session->userdata('email')
