@@ -26,8 +26,8 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Tabel <?= $tittle; ?></h3>
-              <a href="<?= base_url('admin/kelas/addkelas'); ?>" class="btn btn-primary text-bold float-right"><i class="fas fa-plus"></i> Data Kelas</a>
+              <h3 class="card-title float-left">Tabel <?= $tittle; ?></h3>
+              <button class="btn btn-primary text-bold float-right" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus-circle"></i> Data Kelas</button>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -118,8 +118,86 @@
     $status = $k['STAT'];
   ?>
 
-    <!-- Modal Detail Data
-    <div class="modal fade" id="modal-detail<?= $id; ?>">
+    <!-- Modal Detail Data -->
+    <div class="modal fade" id="modal-tambah">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Tambah <?= $tittle; ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!-- <form role="form"> -->
+            <?= form_open_multipart('admin/kelas/saveall', ['class' => 'form-saveall']); ?>
+            <div class="card-body">
+              <table id="example1" class="table table-sm table-bordered table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>Nama Kelas</th>
+                    <th>Link Kelas</th>
+                    <th>Kategori Kelas</th>
+                    <th>Harga</th>
+                    <th>Diskon</th>
+                    <th>Deskripsi</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="add-form">
+                  <tr class="text-center">
+                    <td>
+                      <input type="text" class="form-control" name="nama[]">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" name="link[]">
+                    </td>
+                    <td>
+                      <select name="ktg[]" id="ktg" class="custom-select slct-ktg">
+
+                      </select>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" name="hrg[]">
+                    </td>
+                    <td>
+                      <input type="text" class="form-control" name="disc[]">
+                    </td>
+                    <td>
+                      <textarea class="form-control" name="deskripsi[]"></textarea>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm btn-plusfrm text-bold"><i class="fas fa-plus"></i> Form</button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr class="text-center">
+                    <th>Nama Kelas</th>
+                    <th>Link Kelas</th>
+                    <th>Kategori Kelas</th>
+                    <th>Harga</th>
+                    <th>Diskon</th>
+                    <th>Deskripsi</th>
+                    <th>Aksi</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <div class="modal-footer justify-content-right">
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
+              <button type="submit" class="btn btn-primary btn-saveall"><i class="fas fa-save"></i> Simpan</button>
+            </div>
+          <!-- </form> -->
+          <?= form_close(); ?>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- Modal Detail Data -->
+    <!-- <div class="modal fade" id="modal-detail<?= $id; ?>">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">

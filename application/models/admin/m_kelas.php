@@ -16,7 +16,7 @@
             return $ktg;
         }
 
-        public function savekelas($data)
+        public function savekls($data)
         {
             $save = $this->db->insert_batch('kelas', $data);
             return $save;
