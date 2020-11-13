@@ -6,6 +6,7 @@ class Blog extends CI_Controller
     {
         parent::__construct();
         $this->load->model('admin/m_blog');
+        $this->load->model('admin/m_medsos');
         $this->load->library('upload');
         adm_logged_in();
         cekadm();
@@ -331,11 +332,15 @@ class Blog extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-        
+
+        $data['judul'] = "Detail Blog";
+        $data['data'] = $this->m_medsos->get_data();
         $data['blog'] = $this->m_blog->tampil_dt_blog($ID_POST, 'post')->result();
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($ID_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
+        $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view('landingpage/detail_blog', $data);
+        $this->load->view("landingpage/template/footer" , $data);
     }
 
     // lihat artikel yg kategori sama

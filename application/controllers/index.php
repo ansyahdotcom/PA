@@ -7,6 +7,7 @@ class index extends CI_Controller
         parent::__construct();
         $this->load->model('m_landingpage');
         $this->load->model('admin/m_medsos');
+        $this->load->model('admin/m_blog');
     }
 
 
@@ -20,9 +21,16 @@ class index extends CI_Controller
         $this->load->view("landingpage/index");
         $this->load->view("landingpage/template/footer" , $data);
     }
-
+    
     public function detail_blog()
     {
+        $data['blog'] = $this->m_blog->tampil_dt_blog($ID_POST, 'post')->result();
+        $data['detail_tags'] = $this->m_blog->tampil_dt_tags($ID_POST, 'detail_tags')->result();
+        $data['kategori'] = $this->m_blog->tampil_kategori()->result();
+        $data['data'] = $this->m_medsos->get_data();
+        $data['judul'] = 'Post Blog';
+        $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view("landingpage/detail_blog");
+        $this->load->view("landingpage/template/footer" , $data);
     }
 }
