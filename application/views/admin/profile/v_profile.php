@@ -34,13 +34,9 @@
 
               <h3 class="profile-username text-center text-bold"><?= $admin['NM_ADM']; ?></h3>
               <?php
-              // if ($admin['ID_ROLE'] == 1) {
-              //   $role = "ADMIN";
-              // }
-
-              if ($admin['DATE_CREATE'] == 0) {
-                $tgl = "--";
-              }
+                if ($admin['DATE_CREATE'] == 0) {
+                  $tgl = "--";
+                }
               ?>
 
               <ul class="list-group mb-3">

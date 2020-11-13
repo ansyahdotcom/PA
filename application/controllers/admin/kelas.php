@@ -26,23 +26,6 @@
             $this->load->view('admin/kelas/v_kelas', $data);
             $this->load->view('admin/template_adm/v_footer');
         }
-
-        /** Tambah data kelas */
-        public function addkelas()
-        {
-            $email = $this->session->userdata('email');
-            $data['admin'] = $this->db->get_where('admin', [
-                'EMAIL_ADM' => $email
-            ])->row_array();
-            $data['tittle'] = 'Tambah Kelas';
-
-            $this->load->view('admin/template_adm/v_header', $data);
-            $this->load->view('admin/template_adm/v_navbar', $data);
-            $this->load->view('admin/template_adm/v_sidebar', $data);
-            $this->load->view('admin/kelas/v_addkelas', $data);
-            $this->load->view('admin/template_adm/v_footer');
-        }
-
         
         /** Mengambil data kategori kelas */
         public function get_ktgkls()
@@ -51,7 +34,7 @@
             echo json_encode($ktgkls);
         }
 
-        public function savekelas()
+        public function saveall()
         {
             $tabel = $this->db->get('kelas')->num_rows();
             $num = $tabel + 1;
@@ -68,36 +51,42 @@
                 $id = "PSR" . $num;
             }
 
-            return $id;
-            var_dump($id);
-            $kelas = htmlspecialchars($this->input->post('namakls'));
-            $link = htmlspecialchars($this->input->post('link'));
-            $harga = htmlspecialchars($this->input->post('harga'));
-            $diskon = htmlspecialchars($this->input->post('diskon'));
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
-            $data = array();
+            if($this->request->isAjax()) {
+                $id;
+                $nama = $this->request->getVar('nama');
+                $link = $this->request->getVar('link');
+                $hrg = $this->request->getVar('hrg');
+                $disc = $this->request->getVar('disc');
+                $deskripsi = $this->request->getVar('deskripsi');
+                $b = 0;
 
-            $index = 0;
-            foreach ($id as $i) {
-                array_push($data, array(
-                    'ID_KLS' => $i,
-                    'TITTLE' => $kelas[$index],
-                    'PERMALINK' => $link[$index],
-                    'GBR_KLS' => "",
-                    'DESKRIPSI' => $deskripsi[$index],
-                    'PRICE' => $harga[$index],
-                    'DISC' => $diskon[$index],
-                    'STAT' => 0,
-                    'ID_KTGKLS' => "",
-                    'DATE_CREATE' => time(),
-                    'LAST_UPDATE' => 0
-                ));
-                $index++;
+                $jmldata = count($id);
+
+                for($i = 0; $i < $jmldata; $i++) {
+                    $datakls = [
+                        'ID_KLS' => $id[$i],
+                        'TITTLE' => $nama[$i],
+                        'PERMALINK' => $link[$i],
+                        'GBR_KLS' => 'default.jpg'[$i],
+                        'DESKRIPSI' => $deskripsi[$i],
+                        'PRICE' => $hrg[$i],
+                        'DISC' => $disc[$i],
+                        'STAT' => $b[$i],
+                        'ID_KTGKLS' => $b[$i],
+                        'DATE_CREATE' => time()[$i],
+                        'LAST_UPDATE' => $b[$i],
+                    ];
+
+                    $this->m_kelas->savekls($datakls);
+                }
+
+                $msg = [
+                    'sukses' => "$jmldata data kelas berhasil disimpan"
+                ];
+
+                echo json_encode($msg);
             }
-
-            $sve = $this->m_kelas->savekelas($data);
-            var_dump($sve);
-            redirect('admin/kelas');
+            
         }
     }
 

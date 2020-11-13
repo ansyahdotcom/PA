@@ -64,15 +64,15 @@
                         <?php } ?>
                       </td>
                       <td class="text-center">
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-detail<?= $id; ?>"><b>Detail</b></button>
-                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><b>Hapus</b></button>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-detail<?= $id; ?>"><b><i class="fas fa-edit"></i> Detail</b></button>
+                        <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><i class="fas fa-trash"></i> <b>Hapus</b></button>
                         <?php if ($status == 0) { ?>
 
                         <?php } else {?>
                           <?php if ($status == 1) { ?>
-                            <button class="btn btn-sm btn-dark" data-toggle="modal" data-target="#modal-blok<?= $id; ?>"><b>Blokir</b></button>
+                            <button class="btn btn-sm btn-dark" data-toggle="modal" data-target="#modal-blok<?= $id; ?>"><i class="fas fa-ban"></i> <b>Blokir</b></button>
                           <?php } elseif ($status == 2) { ?>
-                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-unblok<?= $id; ?>"><b>Buka Blokir</b></button>
+                            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-unblok<?= $id; ?>"><i class="fas fa-check"></i> <b>Buka Blokir</b></button>
                           <?php } ?>
                         <?php } ?>
                       </td>

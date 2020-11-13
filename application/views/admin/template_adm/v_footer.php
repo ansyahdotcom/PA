@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; <?= date('Y');?> <a href="<?=base_url('admin/dashboard')?>">Preneur Academy</a>.</strong>
+    <strong>Copyright &copy; <?= date('Y'); ?> <a href="<?= base_url('admin/dashboard') ?>">Preneur Academy</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0.0
@@ -51,7 +51,7 @@
 <!-- SweetAlert2 -->
 <script src="<?= base_url(); ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <!-- Multiple Insert -->
-<script src="<?= base_url(); ?>assets/dist/js/multipleinsert.js"></script>
+<!-- <script src="<?= base_url(); ?>assets/dist/js/multipleinsert.js"></script> -->
 <!-- DataTables -->
 <script src="<?= base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -59,6 +59,128 @@
 <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Showing Sweet Alert -->
 <script src="<?= base_url(); ?>assets/dist/js/myscript.js"></script>
+
+<!-- Get Data Kategori Kelas -->
+<script>
+    ambilData();
+    function ambilData(){
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url('admin/kelas/get_ktgkls'); ?>',
+            dataType: 'json',
+            success: function(data) {
+                var ktgklss='';
+                for(var i=0; i<data.length; i++) {
+                    ktgklss += '<option value=' + data[i].ID_KTGKLS + '>' + data[i].KTGKLS + '</option>'
+                }
+                $(".slct-ktg").html(ktgklss);
+            }
+        });
+    }
+</script>
+
+<!-- Add Multiple Form -->
+<script>
+    $(document).ready(function() {
+        $(".btn-plusfrm").click(function(e) {
+            e.preventDefault();
+            ambilData();
+            $(".add-form").append(`
+            <tr class="text-center">
+                <td>
+                <input type="text" class="form-control" name="nama[]">
+                </td>
+                <td>
+                <input type="text" class="form-control" name="link[]">
+                </td>
+                <td>
+                    <select name="ktg[]" id="ktg" class="custom-select slct-ktg">
+                    
+                    </select>
+                </td>
+                <td>
+                <input type="text" class="form-control" name="hrg[]">
+                </td>
+                <td>
+                <input type="text" class="form-control" name="disc[]">
+                </td>
+                <td>
+                <textarea class="form-control" name="deskripsi[]"></textarea>
+                </td>
+                <td>
+                <button type="button" class="btn btn-danger btn-sm btn-dellfrm text-bold"><i class="fas fa-trash"></i> Form</button>
+                </td>
+            </tr>
+            `);
+        });
+    });
+
+    /** to delete form */
+    $(document).on('click', '.btn-dellfrm', function(e) {
+        e.preventDefault();
+
+        $(this).parents('tr').remove();
+    });
+</script>
+
+<!-- Multiple Insert Kelas -->
+<script>
+    $(document).ready(function() {
+        $(".form-saveall").submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: "json",
+                beforeSend: function() {
+                    $(".btn-saveall").attr('disable', 'disabled');
+                    $(".btn-saveall").html('<i class="fas fa-spin fa-spinner"></i>');
+                },
+                complete: function() {
+                    $(".btn-saveall").removeAttr('disable');
+                    $(".btn-saveall").html('<i class="fas fa-save"></i> Simpan');
+                },
+                success: function(response) {
+                    if (response.sukses) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top',
+                            showConfirmButton: false,
+                            timer: 5000
+                        });
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Data berhasil disimpan',
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href("<?= site_url('admin/kelas'); ?>");
+                            }
+                        });
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    $(function() {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top',
+                            showConfirmButton: false,
+                            timer: 5000
+                        });
+
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Gagal menambahkan data!',
+                        });
+                    });
+                    // alert(xhr.status + "\n" + xhr.responseText + "\n" +
+                    // thrownError);
+                }
+            });
+        });
+    });
+</script>
 
 <!-- Enable/Disabled Form Edit -->
 <script>
@@ -135,45 +257,39 @@
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-      
-      $("#key-click").click(function(){
-        $("#icon").toggleClass('fa-eye-slash');
+    $(document).ready(function() {
 
-        var input = $("#key1");
+        $("#key-click").click(function() {
+            $("#icon").toggleClass('fa-eye-slash');
 
-        if(input.attr("type")==="password")
-        {
-            input.attr("type","text");
-        }
-        else
-        {
-            input.attr("type","password");
-        }
-        
-      });
+            var input = $("#key1");
+
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+
+        });
 
     });
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-      
-      $("#key-click1").click(function(){
-        $("#icon1").toggleClass('fa-eye-slash');
+    $(document).ready(function() {
 
-        var input = $("#key2");
+        $("#key-click1").click(function() {
+            $("#icon1").toggleClass('fa-eye-slash');
 
-        if(input.attr("type")==="password")
-        {
-            input.attr("type","text");
-        }
-        else
-        {
-            input.attr("type","password");
-        }
-        
-      });
+            var input = $("#key2");
+
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+
+        });
 
     });
 </script>
