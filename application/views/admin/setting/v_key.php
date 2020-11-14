@@ -26,7 +26,6 @@
             </div>
             </div>
             <div class="card-body">
-                    <div class="container">
                         <div class="row">
                                 <?php foreach($data as $row):
                                 $id = $row['ID_KEY'];
@@ -82,7 +81,6 @@
                             </div>
                             <?php endforeach;?>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -170,9 +168,10 @@
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">
                                 <?php foreach ($data as $i) :
+                                $id_i  = $i['ID_KEY'];
                                 $status = $i['STATUS'];
                                 ?>
-                                    <option value="<?= $status;?>"><?= $status;?></option>
+                                    <option value="<?= $id_i;?>"><?= $status;?></option>
                                 <?php endforeach;?>
                             </select>
                             <?= form_error('status', '<small class="text-danger col-md">', '</small>'); ?>

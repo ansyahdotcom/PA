@@ -15,15 +15,14 @@
                         <div class="col-md-3 mb-md-0 mb-3">
                         <h5 class="text-uppercase">Menu</h5>
                         <ul class="list-unstyled">
+                            <?php foreach ($header as $h) :
+                            $name = $h['NM_NV'];
+                            $link = $h['LINK_NV'];
+                            ?>
                             <li>
-                            <a href="<?= base_url();?>">Beranda</a>
+                            <a href="<?= $link;?>"><?= $name;?></a>
                             </li>
-                            <li>
-                            <a href="#">Kelas</a>
-                            </li>
-                            <li>
-                            <a href="#">Blog</a>
-                            </li>
+                            <?php endforeach;?>
                         </ul>
                         </div>
                         <div class="col-md-3 mb-md-0 mb-3">
@@ -34,15 +33,21 @@
 
                 <div class="social text-center">
                     <h6 class="text-uppercase">Ikuti akun sosial media kami</h6>
-                    <?php foreach ($data as $row) :
-                        $icon = $row['IC_MS'];
-                        $link = $row['LINK_MS'];
+                    <?php foreach ($footer as $f) :
+                        $icon = $f['IC_MS'];
+                        $link = $f['LINK_MS'];
                     ?>
-                    <a href="<?= base_url(); ?><?= $link;?>"><i class="<?= $icon;?>" target="_blank"></i></a>
+                    <a href="<?= $link;?>" target="_blank"><i class="<?= $icon;?>"></i></a>
                     <?php endforeach;?>
                 </div>
                 <div class="copyrights text-center">
-                    <p class="para">
+                <?php foreach ($kebijakan as $k) :
+                                $name = $k['NM_KB'];
+                                $link = $k['LINK_KB'];
+                                ?>
+                                <a class="mt-4 mb-4 mr-2 ml-2" href="<?= $link;?>" target="_blank"><?= $name;?></a>
+                            <?php endforeach;?>
+                    <p class="para mt-4">
                         Copyright ©<?= date('Y')?> All rights reserved by
                         <a href="<?= base_url(); ?>"><span style="color: var(--primary-color);">Preneur Academy</span></a>
                     </p>

@@ -43,15 +43,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
+                    <?php foreach ($header as $h) :
+                        $name = $h['NM_NV'];
+                        $link = $h['LINK_NV'];
+                    ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url();?>">Beranda</a>
+                            <a class="nav-link" href="<?= $link;?>"><?= $name;?></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Kelas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html">Blog</a>
-                        </li>
+                    <?php endforeach;?>
                     </ul>
                     <div class="mr-auto"></div>
                     <ul class="navbar-nav">

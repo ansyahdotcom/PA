@@ -22,6 +22,8 @@
     <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/dist/img/favicon/favicon-16x16.png" sizes="16x16" />
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/css/adminlte.min.css">
+    <!-- Drop Image -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/css/drop.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->

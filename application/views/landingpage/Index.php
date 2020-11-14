@@ -134,7 +134,7 @@
 
     	<!--  ====================== Awalan Fitur =============================  -->
 
-    	<section class="services-area">
+    	<section class="services-area h-100">
     		<div class="container">
     			<div class="row">
     				<div class="col-lg-12 text-center services-title">
@@ -248,13 +248,13 @@
     				<?php foreach ($blog as $blg) { ?>
     				<div class="client row">
     					<div class="mb-3" style="max-width: 540px;">
-    						<div class="row no-gutters">
-    							<div class="col-md-4">
-    								<img src="<?= base_url('assets/fotopost/'. $blg->FOTO_POST); ?>" class="card-img" alt="...">
+    						<div class="row card no-gutters">
+    							<div class="col-md-5">
+    								<img src="<?= base_url('assets/fotoblog/'.$blg->FOTO_POST); ?>" class="card-img" alt="...">
     							</div>
-    							<div class="col-md-8">
+    							<div class="col-md-7">
     								<div class="card-body">
-    									<h5 class="card-title"><?= $blg->JUDUL_POST; ?></h5>
+    									<h6 class="card-title"><?= $blg->JUDUL_POST; ?></h6>
     									<p class="card-text"><small class="text-muted"><?= date('d F Y', strtotime($blg->TGL_POST)); ?></small></p>
     									<!-- <p class="card-text"><?= $blg->KONTEN_POST; ?></p> -->
     									<a class="btn btn-primary" href="<?= base_url('index/detail_blog');?>">Lihat Post</a>

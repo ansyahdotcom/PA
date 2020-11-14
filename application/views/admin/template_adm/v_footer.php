@@ -59,6 +59,9 @@
 <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- Showing Sweet Alert -->
 <script src="<?= base_url(); ?>assets/dist/js/myscript.js"></script>
+<!-- Drop Image -->
+<script src="<?= base_url(); ?>assets/dist/js/app.js"></script>
+
 
 <!-- Get Data Kategori Kelas -->
 <script>
