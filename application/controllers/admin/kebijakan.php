@@ -61,7 +61,7 @@ class Kebijakan extends CI_Controller
             }
 
             $this->kebijakan_model->insert($name,$link,$isi);
-            $this->session->set_flashdata('message', 'keySuccess');
+            $this->session->set_flashdata('message', 'kbSuccess');
             redirect('admin/kebijakan');
         }
 	}
@@ -100,7 +100,7 @@ class Kebijakan extends CI_Controller
             $link = htmlspecialchars($this->input->post('link'));
             $isi = htmlspecialchars($this->input->post('isi'));
             $this->kebijakan_model->update($id,$name,$link,$isi);
-            $this->session->set_flashdata('message', 'keyUpdate');
+            $this->session->set_flashdata('message', 'kbUpdate');
             redirect('admin/kebijakan');
         }
 	}
@@ -108,7 +108,7 @@ class Kebijakan extends CI_Controller
 	function delete(){
 		$id = $this->input->post('id_delete',TRUE);
 		$this->kebijakan_model->delete($id);
-        $this->session->set_flashdata('message', 'keyDelete');
+        $this->session->set_flashdata('message', 'kbDelete');
         redirect('admin/kebijakan');
 	}
 }

@@ -144,5 +144,20 @@ $(function() {
             icon: 'warning',
             title:'Pintasan berhasil di Hapus!',
         });
+    }else if(flashData == 'kbSuccess'){
+        Toast.fire({
+            icon: 'success',
+            title:'Data berhasil di Tambahkan!',
+        });
+    }else if(flashData == 'kbUpdate'){
+        Toast.fire({
+            icon: 'info',
+            title:'Data berhasil di Ubah!',
+        });
+    }else if(flashData == 'kbDelete'){
+        Toast.fire({
+            icon: 'warning',
+            title:'Data berhasil di Hapus!',
+        });
     }
 });
