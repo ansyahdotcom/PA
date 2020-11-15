@@ -19,6 +19,16 @@ class Kategori extends CI_Controller
         ])->row_array();
         $data['tittle'] = "Data Kategori";
 
+        // buat id kategori
+        $ID_K = $this->m_kategori->selectMaxID_CT();
+        if ($ID_K == NULL) {
+            $data['ID_CTT'] = 'CT0001';
+        } else {
+            $noK = substr($ID_K, 2, 4);
+            $IDK = $noK + 1;
+            $data['ID_CTT'] = 'CT' . sprintf("%04s", $IDK);
+        }
+
         /** Ambil data kategori */
         $data['kategori'] = $this->m_kategori->tampil_kategori()->result();
         $this->load->view("admin/template_adm/v_header", $data);
@@ -44,15 +54,7 @@ class Kategori extends CI_Controller
     //tambah kategori di kategori
     public function tambah_kategori()
     {
-        // buat id kategori
-        $ID_K = $this->m_kategori->selectMaxID_CT();
-        if ($ID_K == NULL) {
-            $data['ID_CT'] = 'CT0001';
-        } else {
-            $noK = substr($ID_K, 2, 4);
-            $IDK = $noK + 1;
-            $data['ID_CT'] = 'CT' . sprintf("%04s", $IDK);
-        }
+        
 
         $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
         $NM_CT = htmlspecialchars($this->input->post('NM_CT'));

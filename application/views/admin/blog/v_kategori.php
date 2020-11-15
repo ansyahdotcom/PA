@@ -142,7 +142,7 @@ foreach ($kategori as $ktg) {
             <form method="post" action="<?= base_url('admin/kategori/tambah_kategori'); ?>">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" readonly class="form-control" id="ID_CT" name="ID_CT" value="<?= $ID_CT; ?>">
+                        <input type="hidden" class="form-control" id="ID_CT" name="ID_CT" value="<?= $ID_CTT; ?>">
                         <input type="text" class="form-control" name="NM_CT" autocomplete="off" autofocus>
                     </div>
                 </div>
