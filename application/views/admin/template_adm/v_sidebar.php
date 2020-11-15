@@ -54,19 +54,19 @@
 
                     <li class="nav-item">
                         <a href="<?= base_url('admin/#'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-receipt"></i>
-                        <p>
-                            Transaksi
-                            <span class="badge badge-info right">2</span>
-                        </p>
+                            <i class="nav-icon fas fa-receipt"></i>
+                            <p>
+                                Transaksi
+                                <span class="badge badge-info right">2</span>
+                            </p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="<?= base_url('admin/#'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-history"></i>
-                        <p>
-                            Histori 
-                        </p>
+                            <i class="nav-icon fas fa-history"></i>
+                            <p>
+                                Histori
+                            </p>
                         </a>
                     </li>
 
@@ -138,31 +138,31 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/navigasi');?>" class="nav-link">
+                                <a href="<?= base_url('admin/navigasi'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Navigasi</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/website');?>" class="nav-link">
+                                <a href="<?= base_url('admin/website'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Website</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/medsos');?>" class="nav-link">
+                                <a href="<?= base_url('admin/medsos'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Media Sosial</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/kebijakan');?>" class="nav-link">
+                                <a href="<?= base_url('admin/kebijakan'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Kebijakan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/key');?>" class="nav-link">
+                                <a href="<?= base_url('admin/key'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Key API</p>
                                 </a>
@@ -213,10 +213,10 @@
                 <ul class="nav nav-pills bg-danger nav-sidebar flex-column mt-4 mb-4" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
                         <a href="#" class="nav-link" data-toggle="modal" data-target="#modal-sm">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>
-                            Logout
-                        </p>
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Logout
+                            </p>
                         </a>
                     </li>
                 </ul>

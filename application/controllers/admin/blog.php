@@ -32,7 +32,7 @@ class Blog extends CI_Controller
     // buat id blog
     // public function buat_id_blog()
     // {
-        
+
     // }
 
     public function tulis_blog()
@@ -137,14 +137,14 @@ class Blog extends CI_Controller
         if ($this->upload->do_upload('FOTO_POST')) {
             $upload_data = $this->upload->data();
             //Compress Image buat foto web
-            $config['image_library']='gd2';
-            $config['source_image']='./assets/fotoblog/'.$upload_data['file_name'];
-            $config['create_thumb']= FALSE;
-            $config['maintain_ratio']= FALSE;
-            $config['quality']= '50%';
-            $config['width']= 160;
-            $config['height']= 130;
-            $config['new_image']= './assets/fotoblog/fotoweb/'.$upload_data['file_name'];
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = './assets/fotoblog/' . $upload_data['file_name'];
+            $config['create_thumb'] = FALSE;
+            $config['maintain_ratio'] = FALSE;
+            $config['quality'] = '50%';
+            $config['width'] = 160;
+            $config['height'] = 130;
+            $config['new_image'] = './assets/fotoblog/fotoweb/' . $upload_data['file_name'];
             $this->load->library('image_lib', $config);
             $this->image_lib->resize();
 
@@ -184,7 +184,7 @@ class Blog extends CI_Controller
     {
         $ST_POST = htmlspecialchars($this->input->post('ST_POST'));
         $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
-        
+
         if ($ST_POST == 0) {
             $ST_POST++;
             $this->m_blog->posting($ST_POST, $ID_POST);
@@ -205,7 +205,6 @@ class Blog extends CI_Controller
 															</button>
 														</div>');
             redirect('admin/blog');
-            
         }
     }
 
@@ -338,9 +337,9 @@ class Blog extends CI_Controller
         $data['blog'] = $this->m_blog->tampil_dt_blog($ID_POST, 'post')->result();
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($ID_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
-        $this->load->view("landingpage/template/headerblog" , $data);
+        $this->load->view("landingpage/template/headerblog", $data);
         $this->load->view('landingpage/detail_blog', $data);
-        $this->load->view("landingpage/template/footer" , $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
 
     // lihat artikel yg kategori sama
