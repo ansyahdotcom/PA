@@ -16,7 +16,7 @@
         </div>
       </div><!-- /.container-fluid -->
       <div>
-      <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
       </div>
     </section>
 
@@ -68,7 +68,7 @@
                         <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><i class="fas fa-trash"></i> <b>Hapus</b></button>
                         <?php if ($status == 0) { ?>
 
-                        <?php } else {?>
+                        <?php } else { ?>
                           <?php if ($status == 1) { ?>
                             <button class="btn btn-sm btn-dark" data-toggle="modal" data-target="#modal-blok<?= $id; ?>"><i class="fas fa-ban"></i> <b>Blokir</b></button>
                           <?php } elseif ($status == 2) { ?>
@@ -163,7 +163,7 @@
                     <span class="badge-pill bg-danger"><b>Belum Aktivasi</b></span>
                   <?php } elseif ($status == 1) { ?>
                     <span class="badge-pill bg-success"><b>Sudah Aktif</b></span>
-                  <?php } else {?>
+                  <?php } else { ?>
                     <span class="badge-pill bg-dark"><b>Terblokir</b></span>
                   <?php } ?>
                 </div>

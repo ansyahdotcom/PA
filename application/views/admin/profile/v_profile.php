@@ -29,7 +29,7 @@
             <div class="card-body box-profile" id="img">
               <div class="text-center">
                 <!-- <img class="profile-user-img img-circle" src="<?= base_url(); ?>assets//dist/img/admin/<?= $admin['FTO_ADM']; ?>" alt="User profile picture"> -->
-                <img class="img-fluid img-thumbnail" src="<?= base_url(); ?>assets//dist/img/admin/<?= $admin['FTO_ADM']; ?>" alt="User profile picture">
+                <img class="img-fluid img-thumbnail" src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" alt="User profile picture">
               </div>
 
               <h3 class="profile-username text-center text-bold"><?= $admin['NM_ADM']; ?></h3>

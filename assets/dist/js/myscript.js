@@ -12,9 +12,7 @@ $(function() {
             icon: 'success',
             title:'Anda Berhasil Login!',
         });
-    }
-
-    else if(flashData == 'Ubah Profil'){
+    } else if(flashData == 'Ubah Profil'){
         Toast.fire({
             icon: 'success',
             title:'Profil Anda Berhasil Diubah',

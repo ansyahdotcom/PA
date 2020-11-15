@@ -10,6 +10,14 @@
             return $query;
         }
 
+        public function getgambar()
+        {
+            $this->db->select('GBR_KLS');
+            $this->db->from('kelas');
+            $query = $this->db->get()->result();
+            return $query;
+        }
+
         public function getktg()
         {
             $ktg = $this->db->get('ktg_kelas')->result_array();
@@ -20,6 +28,29 @@
         {
             $save = $this->db->insert_batch('kelas', $data);
             return $save;
+        }
+
+        public function delkls($id)
+        {
+            $this->db->where('ID_KLS', $id);
+            $this->db->delete('kelas');
+            return $this->db;
+        }
+
+        public function drftkls($id)
+        {
+            $this->db->set('STAT', 0);
+            $this->db->where('ID_KLS', $id);
+            $this->db->update('kelas');
+            return $this->db;
+        }
+
+        public function pubkls($id)
+        {
+            $this->db->set('STAT', 1);
+            $this->db->where('ID_KLS', $id);
+            $this->db->update('kelas');
+            return $this->db;
         }
     }
 ?>
