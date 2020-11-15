@@ -23,7 +23,7 @@
 	<section class="content">
 		<div class="card-header">
 			<div class="text-right">
-				<a class="btn btn-primary" href="<?= base_url('admin/blog/tulis_blog'); ?>">Tulis
+				<a class="btn btn-primary" href="<?= base_url('admin/blog/tulis_blog'); ?>"><i class="fas fa-plus"></i> Tulis
 					artikel</a>
 			</div>
 		</div>
@@ -71,7 +71,7 @@
 											class="text-sm mr-2"><?= ' | '. date('d F Y', strtotime($blg->TGL_POST)); ?></label>
 										<span class="float-right">
 											<!-- dilihat tampilan blognya sebelum diposting -->
-											<a class="text-secondary" href="<?= base_url('admin/blog/detail_blog/'.$blg->ID_POST);?>">Pratinjau</a>
+											<a class="btn btn-secondary btn-sm btn-round" href="<?= base_url('admin/blog/detail_blog/'.$blg->ID_POST);?>"><i class="fas fa-eye"></i> Pratinjau</a>
 											<!-- Nyari status post trus mau diposting apa nggak -->
 											<?php 
 											if ($blg->ST_POST == 0) {

@@ -59,7 +59,7 @@
 								<input type="text" class="form-control" name="FOTO_POST" value="<?php echo $blg->FOTO_POST ?>">
 								<br>
 								<label for="KONTEN_POST">Konten</label>
-								<input type="text" class="form-control" name="KONTEN_POST" value="<?php echo $blg->KONTEN_POST ?>">
+								<textarea class="textarea" class="form-control" name="KONTEN_POST"><?php echo $blg->KONTEN_POST  ?></textarea>
 								<br>
 								<button class="btn btn-primary btn-round">Batal</button>
 								<button type="submit" class="btn btn-success btn-round">Simpan</button>

@@ -35,8 +35,8 @@
                     <div class="card-header bg-dark">
                     <h3 class="card-title pt-2"><?= $row['NM_NV'];?></h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalSubMenu<?= $id;?>">
-                        <i class="fas fa-plus"></i> Sub Menu</button>
+                        <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalSubMenu<?= $id;?>">
+                        <i class="fas fa-plus"></i> Sub Menu</button> -->
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?= $id;?>">
                         <i class="fas fa-edit"></i> Edit</button>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete<?= $id;?>">

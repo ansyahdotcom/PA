@@ -109,17 +109,17 @@ $(function() {
         });
     }else if(flashData == 'navDelete'){
         Toast.fire({
-            icon: 'danger',
+            icon: 'warning',
             title:'Menu berhasil di Hapus!',
         });
     }else if(flashData == 'keyDelete'){
         Toast.fire({
-            icon: 'danger',
+            icon: 'warning',
             title:'API berhasil di Hapus!',
         });
     }else if(flashData == 'keyUpdate'){
         Toast.fire({
-            icon: 'warning',
+            icon: 'info',
             title:'API berhasil di Ubah!',
         });
     }else if(flashData == 'keySuccess'){
@@ -134,13 +134,28 @@ $(function() {
         });
     }else if(flashData == 'socialUpdate'){
         Toast.fire({
-            icon: 'warning',
+            icon: 'info',
             title:'Pintasan berhasil di Ubah!',
         });
     }else if(flashData == 'socialDelete'){
         Toast.fire({
-            icon: 'success',
+            icon: 'warning',
             title:'Pintasan berhasil di Hapus!',
+        });
+    }else if(flashData == 'kbSuccess'){
+        Toast.fire({
+            icon: 'success',
+            title:'Data berhasil di Tambahkan!',
+        });
+    }else if(flashData == 'kbUpdate'){
+        Toast.fire({
+            icon: 'info',
+            title:'Data berhasil di Ubah!',
+        });
+    }else if(flashData == 'kbDelete'){
+        Toast.fire({
+            icon: 'warning',
+            title:'Data berhasil di Hapus!',
         });
     }
 });
