@@ -99,11 +99,11 @@ class Kelas extends CI_Controller
                     'GBR_KLS' => $img,
                     'DESKRIPSI' => $_POST['deskripsi'][$key],
                     'PRICE' => $_POST['hrg'][$key],
-                    'DISC' => $_POST['disc'][$key],
+                    'ID_DISKON' => $_POST['disc'][$key],
                     'STAT' => 0,
                     'ID_KTGKLS' => $_POST['ktg'][$key],
                     'DATE_CREATE' => time(),
-                    'LAST_UPDATE' => 0
+                    'LAST_UPDATE' => 0,
                 );
             }
 
@@ -180,7 +180,7 @@ class Kelas extends CI_Controller
                 'PERMALINK' => $link,
                 'DESKRIPSI' => $deskripsi,
                 'PRICE' => $harga,
-                'DISC' => $diskon,
+                'ID_DISKON' => $diskon,
                 'ID_KTGKLS' => $kategori,
                 'LAST_UPDATE' => time(),
             ];

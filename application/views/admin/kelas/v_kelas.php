@@ -37,7 +37,7 @@
                     <!-- <th>Id</th> -->
                     <th>Nama Kelas</th>
                     <th>Link Kelas</th>
-                    <th>Harga</th>
+                    <th>Harga Asli / (<b class="text-success">Harga Diskon</b>)</th>
                     <!-- <th>Kategori</th> -->
                     <th>Status</th>
                     <th>Aksi</th>
@@ -52,6 +52,7 @@
                     $harga = $k['PRICE'];
                     $kategori = $k['KTGKLS'];
                     $status = $k['STAT'];
+                    $jmldis = $k['DISKON'];
                   ?>
                     <tr>
                       <td class="text-center"><?= $no; ?></td>
@@ -60,7 +61,7 @@
                       <td class="text-center">
                         <a href="<?= $link; ?>" class="btn btn-primary btn-sm text-bold">Akses Kelas</a>
                       </td>
-                      <td>Rp. <?= $harga; ?></td>
+                      <td>Rp. <?= $harga; ?> / (Rp. <b class="text-success"><?= $harga-($harga * $jmldis); ?></b>)</td>
                       <!-- <td><span class="badge-pill bg-warning text-bold"><?= $kategori; ?></span></td> -->
                       <td class="text-center">
                         <?php if ($status == 0) { ?>
@@ -88,7 +89,7 @@
                     <!-- <th>Id</th> -->
                     <th>Nama Kelas</th>
                     <th>Link Kelas</th>
-                    <th>Harga</th>
+                    <th>Harga Asli / (<b class="text-success">Harga Diskon</b>)</th>
                     <!-- <th>Kategori</th> -->
                     <th>Status</th>
                     <th>Aksi</th>
@@ -120,6 +121,7 @@
     $date = $k['DATE_CREATE'];
     $last = $k['LAST_UPDATE'];
     $gambar = $k['GBR_KLS'];
+    $jmldis = $k['DISKON'];
   ?>
 
     <!-- Modal tambah Data -->
@@ -230,12 +232,20 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="form-group">
+                    <label for="harga">Status Kelas: </label>
                     <?php if ($status == 0) : ?>
                       <span class="badge-pill bg-dark text-bold btn-block text-center"> Drafted</span>
                     <?php else : ?>
                       <span class="badge-pill bg-success text-bold btn-block text-center"> Published</span>
                     <?php endif; ?>
+                    
+                    <label for="harga">Diskon Kelas: </label>
+                    <span class="badge-pill bg-info text-bold btn-block text-center"><?= $diskon; ?> (<?= $jmldis * 100; ?>%)</span>
+
+                    <label for="harga">Kategori Kelas: </label>
                     <span class="badge-pill bg-warning text-bold btn-block text-center"><?= $kategori; ?></span>
+                    
+                    <label for="harga">Link Kelas: </label>
                     <a href="<?= $link; ?>" class="btn btn-primary btn-block text-bold">Akses Kelas</a>
                   </div>
                 </div>
@@ -326,7 +336,6 @@
                     <b>Terakhir diupdate tanggal:</b> <span class="badge-pill bg-warning text-bold"><?= date('d F Y', $last); ?></span>
                   <?php endif; ?>
                 </div>
-
               </div>
             </div>
             <div class="modal-footer justify-content-right">

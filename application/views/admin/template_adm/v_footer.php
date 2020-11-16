@@ -102,6 +102,16 @@
                 icon: 'success',
                 title: 'Data berhasil dihapus!',
             });
+        } else if (flashData == 'aktif') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Data berhasil diaktifkan!',
+            });
+        } else if (flashData == 'nonaktif') {
+            Toast.fire({
+                icon: 'info',
+                title: 'Data dinonaktifkan!',
+            });
         }
     });
 </script>
@@ -148,7 +158,7 @@
     }
 </script>
 
-<!-- Add Multiple Form -->
+<!-- Add Multiple Form Kelas-->
 <script>
     $(document).ready(function() {
         $(".btn-plusfrm").click(function(e) {
@@ -189,6 +199,37 @@
 
     /** to delete form */
     $(document).on('click', '.btn-dellfrm', function(e) {
+        e.preventDefault();
+
+        $(this).parents('tr').remove();
+    });
+</script>
+
+<!-- Add Multiple Form Diskon-->
+<script>
+    $(document).ready(function() {
+        $(".plus-diskon").click(function(e) {
+            e.preventDefault();
+            ambilData();
+            ambilDiskon();
+            $(".form-diskon").append(`
+            <tr class="text-center">
+            <td>
+                <input type="number" class="form-control" name="diskon[]" required>
+            </td>
+            <td>
+                <input type="text" class="form-control" name="nama[]" required>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger btn-sm dell-diskon text-bold"><i class="fas fa-trash"></i> Form</button>
+            </td>
+            </tr>
+            `);
+        });
+    });
+
+    /** to delete form */
+    $(document).on('click', '.dell-diskon', function(e) {
         e.preventDefault();
 
         $(this).parents('tr').remove();
@@ -265,6 +306,33 @@
     });
 </script>
 
+<!-- Enable/disable form edit diskon -->
+<script>
+    $(document).ready(function() {
+        $("button#edit-dis").click(function() {
+            $("h4.tittledis").html("Edit Data Diskon");
+            $("button#save-dis").prop('hidden', false);
+            $("button#edit-dis").prop('hidden', true);
+            $("input#indis").prop('disabled', false);
+        });
+
+        $("button#cancel-dis").click(function() {
+            $("h4.tittledis").html("Detail Data Diskon");
+            $("button#save-dis").prop('hidden', true);
+            $("button#edit-dis").prop('hidden', false);
+            $("input#indis").prop('disabled', true);
+        });
+
+        $("button.close").click(function() {
+            $("h4.tittledis").html("Detail Data Diskon");
+            $("button#save-dis").prop('hidden', true);
+            $("button#edit-dis").prop('hidden', false);
+            $("input#indis").prop('disabled', true);
+        });
+    });
+</script>
+
+<!-- UNknown -->
 <script>
     $(document).ready(function() {
         $("#btn-edit").click(function() {

@@ -19,7 +19,9 @@
 
         public function getdiskon()
         {
-            $diskon = $this->db->get('diskon')->result_array();
+            $diskon = $this->db->get_where('diskon', [
+                'STATUS' => 1
+            ])->result_array();
             return $diskon;
         }
 

@@ -27,6 +27,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Tabel <?= $tittle; ?></h3>
+                        <button class="btn btn-primary text-bold float-right" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus-circle"></i> <?= $tittle; ?></button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -47,8 +48,8 @@
                                     $diskon = $d['DISKON'];
                                     $nama = $d['NM_DISKON'];
                                     $status = $d['STATUS'];
-                                    $date = $d['DATE_CREATE'];
-                                    $last = $d['LAST_UPDATE'];
+                                    $date = $d['DATE_DIS'];
+                                    $last = $d['UPDATE_DIS'];
                                 ?>
                                     <tr>
                                         <td class="text-center"><?= $no; ?></td>
@@ -103,33 +104,94 @@
     $diskon = $d['DISKON'];
     $nama = $d['NM_DISKON'];
     $status = $d['STATUS'];
-    $date = $d['DATE_CREATE'];
-    $last = $d['LAST_UPDATE'];
+    $date = $d['DATE_DIS'];
+    $last = $d['UPDATE_DIS'];
 ?>
+
+    <!-- Modal tambah Data -->
+    <div class="modal fade" id="modal-tambah">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah <?= $tittle; ?></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="<?= base_url('admin/diskon/saveall'); ?>" class="form-saveall" enctype="multipart/form-data">
+                    <!-- <?= form_open_multipart('admin/kelas/saveall', ['class' => 'form-saveall valid']); ?> -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-sm table-bordered table-striped">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Besar Diskon</th>
+                                    <th>Nama Diskon</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="form-diskon">
+                                <tr class="text-center">
+                                    <td>
+                                        <input type="number" class="form-control" name="diskon[]" required>
+                                        <?= form_error('diskon[]', '<small class="text-danger">', '</small>'); ?>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="nama[]" required>
+                                        <?= form_error('nama[]', '<small class="text-danger">', '</small>'); ?>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-sm plus-diskon text-bold"><i class="fas fa-plus"></i> Form</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="text-center">
+                                    <th>Besar Diskon</th>
+                                    <th>Nama Diskon</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="modal-footer justify-content-right">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
+                        <button type="submit" class="btn btn-primary btn-saveall"><i class="fas fa-save"></i> Simpan</button>
+                    </div>
+                </form>
+                <!-- <?= form_close(); ?> -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <!-- Modal Detail Data -->
     <div class="modal fade" id="modal-detail<?= $id; ?>">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Detail Data</h4>
+                    <h4 class="modal-title tittledis">Detail <?= $tittle; ?></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form role="form">
+                <form method="POST" action="<?= base_url('admin/diskon/editdis'); ?>">
                     <div class="card-body">
+                        <input type="text" name="id" value="<?= $id; ?>" hidden>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="diskon">Besar Diskon</label>
-                                    <input type="number" class="form-control text-bold" id="diskon" name="diskon" placeholder="Diskon" value="<?= $diskon * 100; ?>" disabled>
+                                    <input type="number" class="form-control text-bold" id="indis" name="diskon" placeholder="Diskon" value="<?= $diskon * 100; ?>" disabled required>
+                                    <?= form_error('diskon', '<small class="text-danger">', '</small>'); ?>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="id">Nama Diskon</label>
-                                    <input type="text" class="form-control text-bold" id="nama" name="nama" plasceholder="Nama diskon" value="<?= $nama; ?>" disabled>
+                                    <input type="text" class="form-control text-bold" id="indis" name="nama" plasceholder="Nama diskon" value="<?= $nama; ?>" disabled required>
+                                    <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +222,9 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-right">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-danger" id="cancel-dis" data-dismiss="modal"><i class="fas fa-circle-arrow-left"></i> Tutup</button>
+                        <button type="button" class="btn btn-primary" id="edit-dis"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="submit" class="btn btn-primary" id="save-dis" hidden><i class="fas fa-save"></i> Simpan</button>
                     </div>
                 </form>
             </div>
@@ -180,9 +244,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('admin/peserta/hapus'); ?>" method="POST">
+                <form action="<?= base_url('admin/diskon/hapusdis'); ?>" method="POST">
                     <div class="modal-body">
-                        <p>Apakah anda yakin ingin menghapus data dari <b><?= $nama; ?></b>?</p>
+                        <p>Apakah anda yakin ingin menghapus data <b><?= $nama; ?></b>?</p>
                         <input type="hidden" name="id" value="<?= $id; ?>">
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -202,14 +266,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Blokir</h4>
+                    <h4 class="modal-title">Nonaktifkan</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('admin/peserta/blok'); ?>" method="POST">
+                <form action="<?= base_url('admin/diskon/nonaktif'); ?>" method="POST">
                     <div class="modal-body">
-                        <p>Apakah anda yakin ingin memblokir akun <b><?= $nama; ?></b>?</p>
+                        <p>Apakah anda yakin ingin menonaktifkan diskon <b><?= $nama; ?></b>?</p>
                         <input type="hidden" name="id" value="<?= $id; ?>">
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -229,14 +293,14 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Buka Blokir</h4>
+                    <h4 class="modal-title">Aktifkan</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('admin/peserta/unblok'); ?>" method="POST">
+                <form action="<?= base_url('admin/diskon/aktif'); ?>" method="POST">
                     <div class="modal-body">
-                        <p>Apakah anda yakin ingin membuka blokir akun <b><?= $nama; ?></b>?</p>
+                        <p>Apakah anda yakin ingin mengaktifkan diskon <b><?= $nama; ?></b>?</p>
                         <input type="hidden" name="id" value="<?= $id; ?>">
                     </div>
                     <div class="modal-footer justify-content-between">
