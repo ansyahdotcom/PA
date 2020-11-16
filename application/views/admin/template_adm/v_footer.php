@@ -59,6 +59,8 @@
 <script src="<?= base_url(); ?>assets/dist/js/myscript.js"></script>
 <!-- Drop Image -->
 <script src="<?= base_url(); ?>assets/dist/js/app.js"></script>
+<!-- Select2 -->
+<script src="<?= base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 
 
 <!-- Sweet Alert Hapus data Master-->
