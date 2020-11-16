@@ -108,15 +108,11 @@ foreach ($kategori as $ktg) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="<?= base_url('admin/kategori/edit_kategori'); ?>">
+                <form method="post" action="<?= base_url('admin/kategori/update_kategori'); ?>">
                     <div class="modal-body">
+                        <input type="hidden" readonly name="ID_CT" value="<?php echo $ktg->ID_CT ?>" class="form-control">
                         <div class="form-group">
-                            <select name="ID_CT" id="ID_CT" class="form-control">
-                                <option disabled>Pilih Kategori</option>
-                                <?php foreach ($kategori as $ktg) { ?>
-                                    <option value="<?= $ktg->ID_CT; ?>" <?= $ktg->ID_CT ? "selected" : null ?>><?= $ktg->NM_CT; ?></option>
-                                <?php } ?>
-                            </select>
+                            <input type="text" name="ID_CT" id="ID_CT" class="form-control" autocomplete="off" value="<?= $ktg->NM_CT; ?>" <?= $ktg->ID_CT ? "selected" : null ?>>
                         </div>
                     </div>
                     <div class="modal-footer">
