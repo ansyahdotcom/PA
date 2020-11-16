@@ -6,15 +6,8 @@
             $this->db->select('*');
             $this->db->from('kelas');
             $this->db->join('ktg_kelas', 'ktg_kelas.ID_KTGKLS = kelas.ID_KTGKLS', 'left');
+            $this->db->join('diskon', 'diskon.ID_DISKON = kelas.ID_DISKON', 'left');
             $query = $this->db->get()->result_array();
-            return $query;
-        }
-
-        public function getgambar()
-        {
-            $this->db->select('GBR_KLS');
-            $this->db->from('kelas');
-            $query = $this->db->get()->result();
             return $query;
         }
 
@@ -22,6 +15,12 @@
         {
             $ktg = $this->db->get('ktg_kelas')->result_array();
             return $ktg;
+        }
+
+        public function getdiskon()
+        {
+            $diskon = $this->db->get('diskon')->result_array();
+            return $diskon;
         }
 
         public function savekls($data)

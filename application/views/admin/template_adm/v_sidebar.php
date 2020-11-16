@@ -194,9 +194,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/#'); ?>" class="nav-link">
+                                <a href="<?= base_url('admin/diskon'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Kupon</p>
+                                    <p>Data Diskon</p>
                                 </a>
                             </li>
                             <li class="nav-item">

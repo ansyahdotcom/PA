@@ -61,7 +61,7 @@
 <script src="<?= base_url(); ?>assets/dist/js/app.js"></script>
 
 
-<!-- Sweet Alert -->
+<!-- Sweet Alert Hapus data Master-->
 <script>
     $(function() {
         const Toast = Swal.mixin({
@@ -92,10 +92,15 @@
                 icon: 'error',
                 title: 'Kesalahan saat menyimpan data, mohon inputkan data yang sesuai!',
             });
-        } else if (flashData == 'editkls') {
+        } else if (flashData == 'edit') {
             Toast.fire({
                 icon: 'success',
                 title: 'Data berhasil diubah!',
+            });
+        } else if (flashData == 'hapus') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Data berhasil dihapus!',
             });
         }
     });
@@ -112,10 +117,32 @@
             dataType: 'json',
             success: function(data) {
                 var ktgklss = '';
+                ktgklss += '<option value="" selected>--Kategori kelas--</option>'
                 for (var i = 0; i < data.length; i++) {
                     ktgklss += '<option value=' + data[i].ID_KTGKLS + '>' + data[i].KTGKLS + '</option>'
                 }
                 $(".slct-ktg").html(ktgklss);
+            }
+        });
+    }
+</script>
+
+<!-- Get Data Diskon -->
+<script>
+    ambilDiskon();
+
+    function ambilDiskon() {
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url('admin/kelas/get_diskon'); ?>',
+            dataType: 'json',
+            success: function(data) {
+                var diskon = '';
+                diskon += '<option value="0" selected>--Pilih diskon--</option>'
+                for (var i = 0; i < data.length; i++) {
+                    diskon += '<option value=' + data[i].ID_DISKON + '>' + data[i].NM_DISKON + ' (' + data[i].DISKON * 100 + '%)</option>'
+                }
+                $(".slct-diskon").html(diskon);
             }
         });
     }
@@ -127,13 +154,11 @@
         $(".btn-plusfrm").click(function(e) {
             e.preventDefault();
             ambilData();
+            ambilDiskon();
             $(".add-form").append(`
             <tr class="text-center">
                 <td>
                 <input type="text" class="form-control" name="nama[]" required>
-                </td>
-                <td>
-                <input type="file" class="form-control" name="gbr[]" value="default.jpg">
                 </td>
                 <td>
                 <input type="text" class="form-control" name="link[]" required>
@@ -147,7 +172,9 @@
                 <input type="text" class="form-control" name="hrg[]" required>
                 </td>
                 <td>
-                <input type="text" class="form-control" name="disc[]">
+                    <select name="disc[]" id="disc" class="custom-select slct-diskon">
+
+                    </select>
                 </td>
                 <td>
                 <textarea class="form-control" name="deskripsi[]" required></textarea>
@@ -208,6 +235,7 @@
             $("button#edit-kls").prop('hidden', true);
             $("input#inkls").prop('disabled', false);
             $("textarea#inkls").prop('disabled', false);
+            $("select#inkls").prop('disabled', false);
             $("div.edit-gbrkls").prop('hidden', false);
         });
 
@@ -219,6 +247,7 @@
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
             $("textarea#inkls").prop('disabled', true);
+            $("select#inkls").prop('disabled', true);
             $("div.edit-gbrkls").prop('hidden', true);
         });
 
@@ -230,6 +259,7 @@
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
             $("textarea#inkls").prop('disabled', true);
+            $("select#inkls").prop('disabled', true);
             $("div.edit-gbrkls").prop('hidden', true);
         });
     });

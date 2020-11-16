@@ -26,7 +26,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title float-left">Tabel <?= $tittle; ?></h3>
-              <button class="btn btn-primary text-bold float-right" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus-circle"></i> Data Kelas</button>
+              <button class="btn btn-primary text-bold float-right" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus-circle"></i> <?= $tittle; ?></button>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -116,7 +116,7 @@
     $kategori = $k['KTGKLS'];
     $status = $k['STAT'];
     $deskripsi = $k['DESKRIPSI'];
-    $diskon = $k['DISC'];
+    $diskon = $k['NM_DISKON'];
     $date = $k['DATE_CREATE'];
     $last = $k['LAST_UPDATE'];
     $gambar = $k['GBR_KLS'];
@@ -132,14 +132,14 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form method="POST" action="<?= base_url('admin/kelas/saveall'); ?>" class="form-saveall valid" enctype="multipart/form-data">
+          <form method="POST" action="<?= base_url('admin/kelas/saveall'); ?>" class="form-saveall" enctype="multipart/form-data">
             <!-- <?= form_open_multipart('admin/kelas/saveall', ['class' => 'form-saveall valid']); ?> -->
             <div class="card-body">
               <table id="example1" class="table table-sm table-bordered table-striped">
                 <thead>
                   <tr class="text-center">
                     <th>Nama Kelas</th>
-                    <th>Gambar</th>
+                    <!-- <th>Gambar</th> -->
                     <th>Link Kelas</th>
                     <th>Kategori Kelas</th>
                     <th>Harga</th>
@@ -154,9 +154,9 @@
                       <input type="text" class="form-control" name="nama[]" required>
                       <?= form_error('nama[]', '<small class="text-danger">', '</small>'); ?>
                     </td>
-                    <td>
+                    <!-- <td>
                       <input type="file" class="form-control" name="gbr[]">
-                    </td>
+                    </td> -->
                     <td>
                       <input type="text" class="form-control" name="link[]" required>
                       <?= form_error('link[]', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -171,8 +171,9 @@
                       <?= form_error('hrg[]', '<small class="text-danger pl-3">', '</small>'); ?>
                     </td>
                     <td>
-                      <input type="text" class="form-control" name="disc[]">
-                      <?= form_error('disc[]', '<small class="text-danger pl-3">', '</small>'); ?>
+                      <select name="disc[]" id="disc" class="custom-select slct-diskon">
+
+                      </select>
                     </td>
                     <td>
                       <textarea class="form-control" name="deskripsi[]" required></textarea>
@@ -185,7 +186,7 @@
                 <tfoot>
                   <tr class="text-center">
                     <th>Nama Kelas</th>
-                    <th>Gambar</th>
+                    <!-- <th>Gambar</th> -->
                     <th>Link Kelas</th>
                     <th>Kategori Kelas</th>
                     <th>Harga</th>
@@ -251,7 +252,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="namakls">Nama Kelas</label>
-                    <input type="text" class="form-control text-bold" id="inkls" name="namakls" placeholder="Nama Kelas" value="<?= $namakls; ?>" disabled required>                      
+                    <input type="text" class="form-control text-bold" id="inkls" name="namakls" placeholder="Nama Kelas" value="<?= $namakls; ?>" disabled required>
                     <?= form_error('namakls', '<small class="text-danger">', '</small>'); ?>
                   </div>
                 </div>
@@ -274,12 +275,14 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="hp">Diskon</label>
-                    <input type="text" class="form-control text-bold" id="inkls" name="diskon" placeholder="Diskon" value="<?= $diskon; ?>" disabled>
+                    <label for="diskon">Diskon</label>
+                    <select name="diskon" id="inkls" class="custom-select slct-diskon text-bold" disabled>
+
+                    </select>
                   </div>
                 </div>
               </div>
-              <div class="row edit-gbrkls" hidden> 
+              <div class="row edit-gbrkls" hidden>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="hp">Link Kelas</label>
@@ -292,7 +295,7 @@
                     <label for="email">Edit Gambar</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="gbrkls" name="gbrkls" value="<?= $gambar;?>" aria-describedby="inputGroupFileAddon01">
+                        <input type="file" class="custom-file-input" id="gbrkls" name="gbrkls" value="<?= $gambar; ?>" aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="gbrkls">Pilih file...</label>
                       </div>
                     </div>

@@ -35,6 +35,13 @@ class Kelas extends CI_Controller
         echo json_encode($ktgkls);
     }
 
+    /** Mengambil data kategori kelas */
+    public function get_diskon()
+    {
+        $diskon = $this->m_kelas->getdiskon();
+        echo json_encode($diskon);
+    }
+
     /** Simpan Semua Data Kelas */
     public function saveall()
     {
@@ -60,29 +67,30 @@ class Kelas extends CI_Controller
             redirect('admin/kelas');
         } else {
             /** upload gambar */
-            $upload_image = $_FILES['gbr']['name'];
-            if ($upload_image) {
-                $config['upload_path']  = './assets/dist/img/kelas/';
-                $config['allowed_type'] = 'jpg|jpeg|png|gif';
-                $config['max_size'] = '2048';
+            // $upload_image = $_FILES['gbr']['name'];
+            // if ($upload_image) {
+            //     $config['upload_path']  = './assets/dist/img/kelas/';
+            //     $config['allowed_type'] = 'jpg|jpeg|png|gif';
+            //     $config['max_size'] = '2048';
 
-                // $this->load->library('upload', $config);
-                $this->upload->initialize($config);
-                $is_upload = $this->upload->do_upload('gbr[]');
+            //     // $this->load->library('upload', $config);
+            //     $this->upload->initialize($config);
+            //     $is_upload = $this->upload->do_upload('gbr[]');
 
-                if (($is_upload)) {
-                    $image = $this->upload->data('file_name');
-                    $img = $image;
-                } else {
-                    echo $this->upload->display_errors();
-                    $img = 'default.jpg';
-                }
-            } else {
-                $img = 'default.jpg';
-            }
+            //     if (($is_upload)) {
+            //         $image = $this->upload->data('file_name');
+            //         $img = $image;
+            //     } else {
+            //         echo $this->upload->display_errors();
+            //         $img = 'default.jpg';
+            //     }
+            // } else {
+            //     $img = 'default.jpg';
+            // }
 
             /** Proses insert ke database */
             $nama = $this->input->post('nama');
+            $img = 'default.jpg';
             $result = array();
             foreach ($nama as $key => $val) {
                 $result[] = array(
@@ -180,7 +188,7 @@ class Kelas extends CI_Controller
             $this->db->set($edit);
             $this->db->where('ID_KLS', $id);
             $this->db->update('kelas');
-            $this->session->set_flashdata('message', 'editkls');
+            $this->session->set_flashdata('message', 'edit');
             redirect('admin/kelas');
         }
     }
@@ -189,7 +197,7 @@ class Kelas extends CI_Controller
     {
         $id = $this->input->post('id');
         $this->m_kelas->delkls($id);
-        $this->session->set_flashdata('message', 'hapusps');
+        $this->session->set_flashdata('message', 'hapus');
         redirect('admin/kelas');
     }
 
