@@ -194,6 +194,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a href="<?= base_url('admin/ktgkelas'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kategori Kelas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="<?= base_url('admin/diskon'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Diskon</p>

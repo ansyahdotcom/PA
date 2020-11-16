@@ -210,8 +210,6 @@
     $(document).ready(function() {
         $(".plus-diskon").click(function(e) {
             e.preventDefault();
-            ambilData();
-            ambilDiskon();
             $(".form-diskon").append(`
             <tr class="text-center">
             <td>
@@ -230,6 +228,32 @@
 
     /** to delete form */
     $(document).on('click', '.dell-diskon', function(e) {
+        e.preventDefault();
+
+        $(this).parents('tr').remove();
+    });
+</script>
+
+<!-- Add multiple form kategori kelas -->
+<script>
+    $(document).ready(function() {
+        $(".plus-ktgkelas").click(function(e) {
+            e.preventDefault();
+            $(".form-ktgkelas").append(`
+            <tr class="text-center">
+            <td>
+                <input type="text" class="form-control" name="nama[]" required>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger btn-sm dell-ktgkelas text-bold"><i class="fas fa-trash"></i> Form</button>
+            </td>
+            </tr>
+            `);
+        });
+    });
+
+    /** to delete form */
+    $(document).on('click', '.dell-ktgkelas', function(e) {
         e.preventDefault();
 
         $(this).parents('tr').remove();
@@ -308,6 +332,32 @@
             $("div.edit-gbrkls").prop('hidden', true);
             $("div.row-diskon").prop('hidden', true);
             $("div.row-hrgdiskon").prop('hidden', false);
+        });
+    });
+</script>
+
+<!-- Enable disable edit kategori kelas -->
+<script>
+    $(document).ready(function() {
+        $("button#edit-ktg").click(function() {
+            $("h4.tittlektg").html("Edit Kategori Kelas");
+            $("button#save-ktg").prop('hidden', false);
+            $("button#edit-ktg").prop('hidden', true);
+            $("input#inktg").prop('disabled', false);
+        });
+
+        $("button#cancel-ktg").click(function() {
+            $("h4.tittlektg").html("Detail Kategori Kelas");
+            $("button#save-ktg").prop('hidden', true);
+            $("button#edit-ktg").prop('hidden', false);
+            $("input#inktg").prop('disabled', true);
+        });
+
+        $("button.close").click(function() {
+            $("h4.tittlektg").html("Detail Kategori Kelas");
+            $("button#save-ktg").prop('hidden', true);
+            $("button#edit-ktg").prop('hidden', false);
+            $("input#inktg").prop('disabled', true);
         });
     });
 </script>
