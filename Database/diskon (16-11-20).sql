@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Nov 2020 pada 15.04
+-- Waktu pembuatan: 16 Nov 2020 pada 12.56
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.3
 
@@ -25,32 +25,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ktg_kelas`
+-- Struktur dari tabel `diskon`
 --
 
-CREATE TABLE `ktg_kelas` (
-  `ID_KTGKLS` varchar(10) NOT NULL,
-  `KTGKLS` varchar(50) NOT NULL
+CREATE TABLE `diskon` (
+  `ID_DISKON` int(11) NOT NULL,
+  `DISKON` double NOT NULL,
+  `NM_DISKON` varchar(30) NOT NULL,
+  `STATUS` char(1) NOT NULL,
+  `DATE_DIS` int(11) NOT NULL,
+  `UPDATE_DIS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `ktg_kelas`
+-- Dumping data untuk tabel `diskon`
 --
 
-INSERT INTO `ktg_kelas` (`ID_KTGKLS`, `KTGKLS`) VALUES
-('KKL00001', 'Wirausaha Dasar'),
-('KKL00002', 'Wirausaha Lanjutan'),
-('KKL00003', 'SEO');
+INSERT INTO `diskon` (`ID_DISKON`, `DISKON`, `NM_DISKON`, `STATUS`, `DATE_DIS`, `UPDATE_DIS`) VALUES
+(1, 0.76, 'Kemerdekaan Indonesia', '1', 0, 1605524714),
+(4, 0.35, 'Beasiswa Wirausaha Muda', '1', 1605518268, 1605524739),
+(6, 0.5, 'Diskon Hari Sumpah Pemuda', '1', 1605518782, 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `ktg_kelas`
+-- Indeks untuk tabel `diskon`
 --
-ALTER TABLE `ktg_kelas`
-  ADD PRIMARY KEY (`ID_KTGKLS`);
+ALTER TABLE `diskon`
+  ADD PRIMARY KEY (`ID_DISKON`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `diskon`
+--
+ALTER TABLE `diskon`
+  MODIFY `ID_DISKON` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

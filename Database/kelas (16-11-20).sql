@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Nov 2020 pada 15.03
+-- Waktu pembuatan: 16 Nov 2020 pada 13.06
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.3
 
@@ -35,9 +35,9 @@ CREATE TABLE `kelas` (
   `GBR_KLS` varchar(100) NOT NULL,
   `DESKRIPSI` text NOT NULL,
   `PRICE` double NOT NULL,
-  `DISC` double NOT NULL,
   `STAT` char(2) NOT NULL,
-  `ID_KTGKLS` varchar(10) NOT NULL,
+  `ID_DISKON` int(11) NOT NULL,
+  `ID_KTGKLS` int(11) NOT NULL,
   `DATE_CREATE` int(11) NOT NULL,
   `LAST_UPDATE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -46,11 +46,9 @@ CREATE TABLE `kelas` (
 -- Dumping data untuk tabel `kelas`
 --
 
-INSERT INTO `kelas` (`ID_KLS`, `TITTLE`, `PERMALINK`, `GBR_KLS`, `DESKRIPSI`, `PRICE`, `DISC`, `STAT`, `ID_KTGKLS`, `DATE_CREATE`, `LAST_UPDATE`) VALUES
-(2, 'Kelas Baru', 'baruuuuu', 'Penguins2.jpg', 'halloo teman', 150000, 0, '1', 'KKL00001', 1605356875, 1605448858),
-(35, 'Strategi Bisnis Lewat Sosmed', 'sosmed', 'Lighthouse1.jpg', 'Kelas paling laris looo', 500000, 0, '1', 'KKL00001', 1605433187, 1605448879),
-(36, 'Cara Mewujudkan Ide Bisnis', 'ide', 'default.jpg', 'Bla bla bla bla......', 150000, 0, '1', 'KKL00001', 1605433187, 0),
-(37, 'Bisnis Digital', 'digital', 'default.jpg', 'hehhehehe', 500000, 0, '1', 'KKL00002', 1605440879, 0);
+INSERT INTO `kelas` (`ID_KLS`, `TITTLE`, `PERMALINK`, `GBR_KLS`, `DESKRIPSI`, `PRICE`, `STAT`, `ID_DISKON`, `ID_KTGKLS`, `DATE_CREATE`, `LAST_UPDATE`) VALUES
+(2, 'Kelas Baru', 'baru', 'Chrysanthemum.jpg', 'halloo teman', 170000, '1', 6, 3, 1605356875, 0),
+(42, 'Strategi Bisnis Lewat Sosmed', 'sosmed', 'default.jpg', 'Halloooo', 200000, '1', 4, 1, 1605526657, 0);
 
 --
 -- Indexes for dumped tables
@@ -70,7 +68,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `ID_KLS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ID_KLS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
