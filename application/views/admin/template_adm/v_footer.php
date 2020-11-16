@@ -280,6 +280,8 @@
             $("textarea#inkls").prop('disabled', false);
             $("select#inkls").prop('disabled', false);
             $("div.edit-gbrkls").prop('hidden', false);
+            $("div.row-diskon").prop('hidden', false);
+            $("div.row-hrgdiskon").prop('hidden', true);
         });
 
         $("button#cancel-kls").click(function() {
@@ -292,6 +294,8 @@
             $("textarea#inkls").prop('disabled', true);
             $("select#inkls").prop('disabled', true);
             $("div.edit-gbrkls").prop('hidden', true);
+            $("div.row-diskon").prop('hidden', true);
+            $("div.row-hrgdiskon").prop('hidden', false);
         });
 
         $("button.close").click(function() {
@@ -304,6 +308,8 @@
             $("textarea#inkls").prop('disabled', true);
             $("select#inkls").prop('disabled', true);
             $("div.edit-gbrkls").prop('hidden', true);
+            $("div.row-diskon").prop('hidden', true);
+            $("div.row-hrgdiskon").prop('hidden', false);
         });
     });
 </script>

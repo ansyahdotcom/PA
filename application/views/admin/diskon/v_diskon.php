@@ -222,7 +222,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-right">
-                        <button type="button" class="btn btn-danger" id="cancel-dis" data-dismiss="modal"><i class="fas fa-circle-arrow-left"></i> Tutup</button>
+                        <button type="button" class="btn btn-danger" id="cancel-dis" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
                         <button type="button" class="btn btn-primary" id="edit-dis"><i class="fas fa-edit"></i> Edit</button>
                         <button type="submit" class="btn btn-primary" id="save-dis" hidden><i class="fas fa-save"></i> Simpan</button>
                     </div>
