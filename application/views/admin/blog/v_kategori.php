@@ -38,7 +38,6 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>No</th>
-                                    <th>ID Kategori</th>
                                     <th>Nama Kategori</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -49,7 +48,6 @@
                                 ?>
                                     <tr>
                                         <td class="text-center"><?= $no++ ?></td>
-                                        <td><?= $ktg->ID_CT; ?></td>
                                         <td><?= $ktg->NM_CT; ?></td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit<?= $ktg->ID_CT; ?>"><b><i class="fas fa-edit"></i> Edit</b></button>
