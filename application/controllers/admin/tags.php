@@ -1,11 +1,11 @@
 <?php
 
-class Kategori extends CI_Controller
+class Tags extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('admin/m_kategori');
+        $this->load->model('admin/m_tags');
         $this->load->library('upload');
         adm_logged_in();
         cekadm();
@@ -17,77 +17,77 @@ class Kategori extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-        $data['tittle'] = "Data Kategori";
+        $data['tittle'] = "Data Tags";
 
-        // buat id kategori
-        $ID_K = $this->m_kategori->selectMaxID_CT();
-        if ($ID_K == NULL) {
-            $data['ID_CTT'] = 'CT0001';
+        // buat id tags
+        $ID_T = $this->m_tags->selectMaxID_TAGS();
+        if ($ID_T == NULL) {
+            $data['ID_TAGSS'] = 'TG0001';
         } else {
-            $noK = substr($ID_K, 2, 4);
-            $IDK = $noK + 1;
-            $data['ID_CTT'] = 'CT' . sprintf("%04s", $IDK);
+            $noT = substr($ID_T, 2, 4);
+            $IDT = $noT + 1;
+            $data['ID_TAGSS'] = 'TG' . sprintf("%04s", $IDT);
         }
 
-        /** Ambil data kategori */
-        $data['kategori'] = $this->m_kategori->tampil_kategori()->result();
+        /** Ambil data tags */
+        $data['tags'] = $this->m_tags->tampil_tags()->result();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
-        $this->load->view("admin/blog/v_kategori", $data);
+        $this->load->view("admin/blog/v_tags", $data);
         $this->load->view("admin/template_adm/v_footer");
     }
 
-    //hapus kategori
+    //hapus tags
     public function hapus()
     {
-        $ID_CT = $this->input->post('ID_CT');
-        $this->m_kategori->hapus_kategori($ID_CT);
+        $ID_TAGS = $this->input->post('ID_TAGS');
+        $this->m_tags->hapus_tags($ID_TAGS);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Kategori berhasil dihapus!
+															tags berhasil dihapus!
 															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>');
-        redirect('admin/kategori');
+        redirect('admin/tags');
     }
 
-    //tambah kategori di kategori
-    public function tambah_kategori()
+    //tambah tags di tags
+    public function tambah_tags()
     {
 
 
-        $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
-        $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
-        $this->m_kategori->tmbh_kategori($ID_CT, $NM_CT);
+        $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
+        $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
+        $this->m_tags->tmbh_tags($ID_TAGS, $NM_TAGS);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-        Kategori berhasil dibuat!
+        tags berhasil dibuat!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>');
-        redirect('admin/kategori');
+        redirect('admin/tags');
     }
 
-    //update kategori
-    public function update_kategori()
+    //update tags
+    public function update_tags()
     {
-        $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
-        $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
+        $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
+        $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
 
         $data = array(
-            'NM_CT' => $NM_CT
+            'NM_TAGS' => $NM_TAGS
         );
 
-        $where = array('ID_CT' => $ID_CT);
+        $where = array('ID_TAGS' => $ID_TAGS);
 
-        $this->m_kategori->update_kategori($where, $data, 'category');
+        $this->m_tags->update_tags($where, $data, 'tags');
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Kategori berhasil diedit!
+															tags berhasil diedit!
 															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>');
-        redirect('admin/kategori');
+        redirect('admin/tags');
     }
 }

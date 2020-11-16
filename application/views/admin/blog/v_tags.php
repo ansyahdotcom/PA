@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Kategori</h1>
+                    <h1 class="m-0 text-dark">Tags</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
-                        <li class="breadcrumb-item active">Kategori</li>
+                        <li class="breadcrumb-item active">Tags</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -23,7 +23,7 @@
     <section class="content">
         <div class="card-header">
             <div class="text-right">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus"></i> Tambah Kategori</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus"></i> Tambah Tags</button>
             </div>
         </div>
         <div class="row">
@@ -38,20 +38,20 @@
                             <thead>
                                 <tr class="text-center">
                                     <th>No</th>
-                                    <th>Nama Kategori</th>
+                                    <th>Nama Tags</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $no = 1; ?>
-                                <?php foreach ($kategori as $ktg) {
+                                <?php foreach ($tags as $tg) {
                                 ?>
                                     <tr>
                                         <td class="text-center"><?= $no++ ?></td>
-                                        <td><?= $ktg->NM_CT; ?></td>
+                                        <td><?= $tg->NM_TAGS; ?></td>
                                         <td class="text-center">
-                                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit<?= $ktg->ID_CT; ?>"><b><i class="fas fa-edit"></i> Edit</b></button>
-                                            <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?= $ktg->ID_CT; ?>"><i class="fas fa-trash"></i> <b>Hapus</b></button>
+                                            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit<?= $tg->ID_TAGS; ?>"><b><i class="fas fa-edit"></i> Edit</b></button>
+                                            <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?= $tg->ID_TAGS; ?>"><i class="fas fa-trash"></i> <b>Hapus</b></button>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -71,23 +71,23 @@
 <!-- /.content-wrapper -->
 
 <?php
-foreach ($kategori as $ktg) {
-    $ID_CT = $ktg->ID_CT;
-    $NM_CT = $ktg->NM_CT;
+foreach ($tags as $tg) {
+    $ID_TAGS = $tg->ID_TAGS;
+    $NM_TAGS = $tg->NM_TAGS;
 ?>
     <!-- modal hapus data pendaftaran -->
-    <div class="modal fade" id="modal_hapus<?= $ktg->ID_CT; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modal_hapus<?= $tg->ID_TAGS; ?>" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
                 </div>
-                <form action="<?= base_url('admin/kategori/hapus'); ?>" method="post" class="form-horizontal">
+                <form action="<?= base_url('admin/Tags/hapus'); ?>" method="post" class="form-horizontal">
                     <div class="modal-body">
                         <p>Apakah Anda yakin ingin menghapus data ini?</p>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="ID_CT" value="<?= $ktg->ID_CT; ?>">
+                        <input type="hidden" name="ID_TAGS" value="<?= $tg->ID_TAGS; ?>">
                         <button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
                         <button class="btn btn-danger">Hapus</button>
                     </div>
@@ -96,21 +96,21 @@ foreach ($kategori as $ktg) {
         </div>
     </div>
 
-    <!-- Modal edit kategori -->
-    <div class="modal fade" id="modal-edit<?= $ktg->ID_CT; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Modal edit Tags -->
+    <div class="modal fade" id="modal-edit<?= $tg->ID_TAGS; ?>" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title title-1" id="myModalLabel">Edit Kategori</h4>
+                    <h4 class="modal-title title-1" id="myModalLabel">Edit Tags</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="<?= base_url('admin/kategori/update_kategori'); ?>">
+                <form method="post" action="<?= base_url('admin/Tags/update_Tags'); ?>">
                     <div class="modal-body">
-                        <input type="hidden" readonly name="ID_CT" value="<?php echo $ktg->ID_CT ?>" class="form-control">
+                        <input type="hidden" readonly name="ID_TAGS" value="<?php echo $tg->ID_TAGS ?>" class="form-control">
                         <div class="form-group">
-                            <input type="text" name="ID_CT" id="ID_CT" class="form-control" autocomplete="off" value="<?= $ktg->NM_CT; ?>" <?= $ktg->ID_CT ? "selected" : null ?>>
+                            <input type="text" name="ID_TAGS" id="ID_TAGS" class="form-control" autocomplete="off" value="<?= $tg->NM_TAGS; ?>" <?= $tg->ID_TAGS ? "selected" : null ?>>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -123,21 +123,21 @@ foreach ($kategori as $ktg) {
 
 <?php } ?>
 
-<!-- Modal tambah kategori -->
+<!-- Modal tambah Tags -->
 <div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title title-1" id="myModalLabel">Tambah Kategori</h4>
+                <h4 class="modal-title title-1" id="myModalLabel">Tambah Tags</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="<?= base_url('admin/kategori/tambah_kategori'); ?>">
+            <form method="post" action="<?= base_url('admin/Tags/tambah_Tags'); ?>">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="hidden" class="form-control" id="ID_CT" name="ID_CT" value="<?= $ID_CTT; ?>">
-                        <input type="text" class="form-control" name="NM_CT" autocomplete="off" autofocus>
+                        <input type="hidden" class="form-control" id="ID_TAGS" name="ID_TAGS" value="<?= $ID_TAGSS; ?>">
+                        <input type="text" class="form-control" name="NM_TAGS" autocomplete="off" autofocus>
                     </div>
                 </div>
                 <div class="modal-footer">

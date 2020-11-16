@@ -29,11 +29,7 @@ class M_kategori extends CI_Model
         $this->db->query("INSERT INTO category ( ID_CT, NM_CT ) VALUES('$ID_CT', '$NM_CT')");
     }
 
-    function edit_kategori($where, $table)
-    {
-        return $this->db->get_where($table, $where);
-    }
-
+    //update kategori
     function update_kategori($where, $data, $table)
     {
         $this->db->where($where);
