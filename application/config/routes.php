@@ -54,3 +54,8 @@ $route['default_controller'] = 'index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 //$route['admin'] = 'admin/overview';
+
+$route['home'] = 'index';
+$route['auth'] = 'peserta/auth/login';
+$route['register'] = 'peserta/auth/register';
+$route['forgot'] = 'peserta/auth/lupapsw';
