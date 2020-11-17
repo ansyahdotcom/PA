@@ -29,11 +29,32 @@ class Blog extends CI_Controller
         $this->load->view("admin/template_adm/v_footer");
     }
 
-    // buat id blog
-    // public function buat_id_blog()
-    // {
-
-    // }
+    // buat id kategori
+    public function buat_id_ct()
+    {
+        $ID_K = $this->m_blog->selectMaxID_CT();
+        if ($ID_K == NULL) {
+            $kode = 'CT0001';
+        } else {
+            $noK = substr($ID_K, 2, 4);
+            $IDK = $noK + 1;
+            $kode = 'CT' . sprintf("%04s", $IDK);
+        }
+        return $kode;
+    }
+    // buat id tags
+    public function buat_id_tags()
+    {
+        $ID_T = $this->m_blog->selectMaxID_TAGS();
+        if ($ID_T == NULL) {
+            $kode = 'TG0001';
+        } else {
+            $noT = substr($ID_T, 2, 4);
+            $IDT = $noT + 1;
+            $kode = 'TG' . sprintf("%04s", $IDT);
+        }
+        return $kode;
+    }
 
     public function tulis_blog()
     {
@@ -42,6 +63,11 @@ class Blog extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
         $data['tittle'] = "Tulis Artikel";
+
+        $ID_CT = $this->buat_id_ct();
+        $data['ID_CT'] = $ID_CT;
+        $ID_TAGS = $this->buat_id_tags();
+        $data['ID_TAGS'] = $ID_TAGS;
 
         // nyari id_adm yg login
         $email = $this->session->userdata('email');
@@ -59,26 +85,6 @@ class Blog extends CI_Controller
             $noP = substr($ID_P, 2, 5);
             $IDP = $noP + 1;
             $data['ID_POST'] = 'PS' . sprintf("%05s", $IDP);
-        }
-
-        // buat id kategori
-        $ID_K = $this->m_blog->selectMaxID_CT();
-        if ($ID_K == NULL) {
-            $data['ID_CT'] = 'CT0001';
-        } else {
-            $noK = substr($ID_K, 2, 4);
-            $IDK = $noK + 1;
-            $data['ID_CT'] = 'CT' . sprintf("%04s", $IDK);
-        }
-
-        // buat id tags
-        $ID_T = $this->m_blog->selectMaxID_TAGS();
-        if ($ID_T == NULL) {
-            $data['ID_TAGS'] = 'TG0001';
-        } else {
-            $noT = substr($ID_T, 2, 4);
-            $IDT = $noT + 1;
-            $data['ID_TAGS'] = 'TG' . sprintf("%04s", $IDT);
         }
 
         $data['category'] = $this->m_blog->tampil_kategori()->result();
@@ -227,25 +233,10 @@ class Blog extends CI_Controller
         $data['tittle'] = "Edit Artikel";
         $where = array('ID_POST' => $ID_POST);
 
-        // buat id kategori
-        $ID_K = $this->m_blog->selectMaxID_CT();
-        if ($ID_K == NULL) {
-            $data['ID_CT'] = 'CT0001';
-        } else {
-            $noK = substr($ID_K, 2, 4);
-            $IDK = $noK + 1;
-            $data['ID_CT'] = 'CT' . sprintf("%04s", $IDK);
-        }
-
-        // buat id tags
-        $ID_T = $this->m_blog->selectMaxID_TAGS();
-        if ($ID_T == NULL) {
-            $data['ID_TAGS'] = 'TG0001';
-        } else {
-            $noT = substr($ID_T, 2, 4);
-            $IDT = $noT + 1;
-            $data['ID_TAGS'] = 'TG' . sprintf("%04s", $IDT);
-        }
+        $ID_CT = $this->buat_id_ct();
+        $data['ID_CT'] = $ID_CT;
+        $ID_TAGS = $this->buat_id_tags();
+        $data['ID_TAGS'] = $ID_TAGS;
 
         $data['post'] = $this->m_blog->edit_artikel($where, 'post')->result();
         $data['category'] = $this->m_blog->tampil_kategori()->result();

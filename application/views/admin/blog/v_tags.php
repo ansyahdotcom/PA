@@ -110,7 +110,8 @@ foreach ($tags as $tg) {
                     <div class="modal-body">
                         <input type="hidden" readonly name="ID_TAGS" value="<?php echo $tg->ID_TAGS ?>" class="form-control">
                         <div class="form-group">
-                            <input type="text" name="ID_TAGS" id="ID_TAGS" class="form-control" autocomplete="off" value="<?= $tg->NM_TAGS; ?>" <?= $tg->ID_TAGS ? "selected" : null ?>>
+                        <input type="text" name="NM_TAGS" id="NM_TAGS" class="form-control"
+							autocomplete="off" value="<?= $tg->NM_TAGS; ?>">
                         </div>
                     </div>
                     <div class="modal-footer">

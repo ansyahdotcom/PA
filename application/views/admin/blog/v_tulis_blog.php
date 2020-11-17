@@ -100,7 +100,7 @@
 			<form method="post" action="<?= base_url('admin/blog/pr_tmbh_kategori'); ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="hidden" class="form-control" name="ID_CT" value="<?= $ID_CT; ?>">
+						<input type="text" class="form-control" name="ID_CT" value="<?= $ID_CT; ?>">
 						<input type="text" class="form-control" name="NM_CT" autocomplete="off" autofocus required>
 					</div>
 				</div>
