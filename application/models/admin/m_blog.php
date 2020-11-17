@@ -11,7 +11,7 @@ class M_blog extends CI_Model
                                 WHERE post.ID_CT = category.ID_CT AND post.ID_POST = detail_tags.ID_POST 
                                 AND detail_tags.ID_TAGS = tags.ID_TAGS
                                 GROUP BY post.ID_POST
-                                ORDER BY post.ID_POST ASC");
+                                ORDER BY post.ID_POST DESC");
         return $data;
     }
 
@@ -124,16 +124,14 @@ class M_blog extends CI_Model
         $this->db->insert($table, $dt_tags);
     }
 
-    function hapus_artikel_dttags($where, $table)
+    function hapus_artikel_dttags($ID_POST)
     {
-        $this->db->where($where);
-        $this->db->delete($table);
+        $this->db->query("DELETE FROM detail_tags WHERE ID_POST = '$ID_POST'");
     }
 
-    function hapus_artikel_post($where, $table)
+    function hapus_artikel_post($ID_POST)
     {
-        $this->db->where($where);
-        $this->db->delete($table);
+        $this->db->query("DELETE FROM post WHERE ID_POST = '$ID_POST'");
     }
 
     function edit_artikel($where, $table)

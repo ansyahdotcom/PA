@@ -54,15 +54,11 @@ class Blog extends CI_Controller
         // buat id blog
         $ID_P = $this->m_blog->selectMaxID_POST();
         if ($ID_P == NULL) {
-            $data1['ID_POST'] = 'PS00001';
-            $data = $data1;
-            return $data;
+            $data['ID_POST'] = 'PS00001';
         } else {
             $noP = substr($ID_P, 2, 5);
             $IDP = $noP + 1;
-            $data1['ID_POST'] = 'PS' . sprintf("%05s", $IDP);
-            $data = $data1;
-            return $data;
+            $data['ID_POST'] = 'PS' . sprintf("%05s", $IDP);
         }
 
         // buat id kategori
@@ -208,17 +204,17 @@ class Blog extends CI_Controller
         }
     }
 
-    public function hapus_artikel($ID_POST)
+    public function hapus_artikel()
     {
-        $where = array('ID_POST' => $ID_POST);
-        $this->m_blog->hapus_artikel_dttags($where, 'detail_tags');
-        $this->m_blog->hapus_artikel_post($where, 'post');
+        $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
+        $this->m_blog->hapus_artikel_dttags($ID_POST);
+        $this->m_blog->hapus_artikel_post($ID_POST);
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show">
-															Data telah dihapus!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+                                                    Data telah dihapus!
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>');
         redirect('admin/blog');
     }
 
@@ -325,7 +321,7 @@ class Blog extends CI_Controller
     }
 
     // pratinjau / lihat post / lihat artikel
-    public function detail_blog($ID_POST)
+    public function pratinjau($ID_POST)
     {
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>

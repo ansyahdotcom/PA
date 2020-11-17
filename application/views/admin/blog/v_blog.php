@@ -23,7 +23,8 @@
 	<section class="content">
 		<div class="card-header">
 			<div class="text-right">
-				<a class="btn btn-primary" href="<?= base_url('admin/blog/tulis_blog'); ?>"><i class="fas fa-plus"></i> Tulis
+				<a class="btn btn-primary" href="<?= base_url('admin/blog/tulis_blog'); ?>"><i class="fas fa-plus"></i>
+					Tulis
 					artikel</a>
 			</div>
 		</div>
@@ -40,7 +41,8 @@
 										<!-- <img class="img-circle img-bordered-sm"
 											src="<?= base_url('assets/fotoicon/'. $blg->FOTO_POST); ?>"> -->
 										<span class="username m-0 text-lg">
-											<a class="text-dark" href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
+											<a class="text-dark"
+												href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
 
 										</span>
 										<hr>
@@ -56,9 +58,9 @@
 									<!-- <p>
 											<?= $blg->KONTEN_POST ?>
 										</p> -->
-										
+
 									<p>
-									<!-- Nyari status post trus ditampilkan sesuai status post -->
+										<!-- Nyari status post trus ditampilkan sesuai status post -->
 										<?php 
 										if ($blg->ST_POST == 0) {
 											echo '<label for="">Draf</label>';
@@ -70,8 +72,6 @@
 										<label for="TGL_POST"
 											class="text-sm mr-2"><?= ' | '. date('d F Y', strtotime($blg->TGL_POST)); ?></label>
 										<span class="float-right">
-											<!-- dilihat tampilan blognya sebelum diposting -->
-											<a class="btn btn-secondary btn-sm btn-round" href="<?= base_url('admin/blog/detail_blog/'.$blg->ID_POST);?>"><i class="fas fa-eye"></i> Pratinjau</a>
 											<!-- Nyari status post trus mau diposting apa nggak -->
 											<?php 
 											if ($blg->ST_POST == 0) {
@@ -83,7 +83,12 @@
 												data-toggle="modal" data-target="#modal_posting'. $blg->ID_POST.'">
 												<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';	
 											}
-											 ?>
+											?>
+											<!-- dilihat tampilan blognya sebelum diposting -->
+											<a class="btn btn-secondary btn-sm btn-round"
+												href="<?= base_url('admin/blog/pratinjau/'.$blg->ID_POST);?>"><i
+													class="fas fa-eye"></i> Pratinjau</a>
+
 											<!-- edit artikel -->
 											<a href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>">
 												<button type="button" class="btn btn-primary btn-circle btn-sm">
@@ -91,13 +96,9 @@
 												</button>
 											</a>
 											<!-- hapus artikel -->
-											<a href="<?= base_url('admin/blog/hapus_artikel/' .  $blg->ID_POST); ?>"
-												onclick="return confirm('Anda yakin mau menghapus data ini ?')">
-												<button type="button" class="btn btn-danger btn-circle btn-sm"
-													style="color: white">
-													<i class="fas fa-trash"></i> Hapus
-												</button>
-											</a>
+											<button type="button" id="detail" class="btn btn-danger btn-circle btn-sm"
+												data-toggle="modal" data-target="#modal_hapus<?= $blg->ID_POST; ?>"
+												style="color : white"><i class="fas fa-trash"></i> Hapus</button>
 										</span>
 									</p>
 								</div>
@@ -162,4 +163,25 @@ foreach ($blog as $blg) {
 		</div>
 	</div>
 </div>
-<?php } ?>
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="modal_hapus<?= $ID_POST; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
+			</div>
+			<form action="<?= base_url('admin/blog/hapus_artikel'); ?>" method="post" class="form-horizontal">
+				<div class="modal-body">
+					<p>Apakah Anda yakin ingin menghapus data ini?</p>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="ID_POST" value="<?= $ID_POST; ?>">
+					<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+					<button class="btn btn-danger">Hapus</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+			<?php } ?>
