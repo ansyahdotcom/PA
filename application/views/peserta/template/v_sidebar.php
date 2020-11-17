@@ -32,13 +32,34 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link active">
+                            <a href="<?= base_url('peserta/dashboard'); ?>" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dashboard</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Profil
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <!-- ini submenunya -->
+                        <ul class="nav nav-treeview">
+                            <!-- kalo ngopy sub menu dari sini -->
+                            <li class="nav-item">
+                                <a href="<?= base_url('peserta/profil'); ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Konfigurasi Profil</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
