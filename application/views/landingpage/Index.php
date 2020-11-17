@@ -17,8 +17,8 @@
     					<h4 class="title-text text-uppercase">Anjayani</h4>
     					<div class="site-buttons">
     						<div class="d-flex flex-row flex-wrap">
-    							<button type="button" class="btn button primary-button mr-4 text-uppercase">Daftar
-    								Sekarang</button>
+    							<a href="<?=base_url('register');?>" class="btn button primary-button mr-4 text-uppercase">Daftar
+    								Sekarang</a>
     							<button type="button" class="btn button secondary-button text-uppercase">Pelajari Lebih
     								Lanjut</button>
     						</div>
@@ -241,63 +241,60 @@
     					</div>
     				</div>
     			</div>
-    		</div>
-
-    		<div class="container carousel py-lg-5">
-    			<div class="owl-carousel owl-theme">
-    				<?php foreach ($blog as $blg) { ?>
-    				<div class="client row">
-    					<div class="mb-3" style="max-width: 540px;">
-    						<div class="row card no-gutters">
-    							<div class="col-md-5">
-    								<img src="<?= base_url('assets/fotoblog/'.$blg->FOTO_POST); ?>" class="card-img" alt="...">
-    							</div>
-    							<div class="col-md-7">
-    								<div class="card-body">
-    									<h6 class="card-title"><?= $blg->JUDUL_POST; ?></h6>
-    									<p class="card-text"><small class="text-muted"><?= date('d F Y', strtotime($blg->TGL_POST)); ?></small></p>
-    									<!-- <p class="card-text"><?= $blg->KONTEN_POST; ?></p> -->
-    									<a class="btn btn-primary" href="<?= base_url('index/detail_blog');?>">Lihat Post</a>
-    								</div>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-    				<?php } ?>
-    			</div>
-    		</div>
+			</div>
+			
+			<div class="container carousel py-lg-5">
+                <div class="owl-carousel owl-theme">
+				<?php foreach ($blog as $blg) { ?>
+                    <div class="client row">
+                        <div class="mb-3" style="max-width: 540px;">
+                            <div class="row no-gutters">
+                                <div class="col-md-12">
+                                    <img src="<?= base_url('assets/fotoblog/'.$blg->FOTO_POST); ?>" class="card-img" alt="foto-post">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card-body">
+                                        <h6 class="card-title"><?= $blg->JUDUL_POST; ?></h6>
+                                        <p class="card-text"><small class="text-muted"><?= date('d F Y', strtotime($blg->TGL_POST)); ?></small></p>
+                                        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                                        <a class="btn btn-primary" href="<?= base_url('index/detail_blog');?>">Lihat Post</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				<?php }?>
+				</div>
+			</div>
     	</section>
 
     	<!--  ======================== Batas Blog ==============================  -->
 
     	<!--  ========================== Subscribe me Area ============================  -->
-    	<section class="subscribe-us-area">
-    		<div class="container subscribe bg-warning justify-content-center">
-    			<div class="row">
-    				<div class="col-lg-12 text-center subscribe-title">
-    					<h4 class="text-uppercase">Dapatkan update dari mana saja</h4>
-    					<p class="para">Dengan mengklik subscribe, anda akan mendapatkan update artikel terbaru.</p>
-    				</div>
-    			</div>
-    			<div class="d-sm-flex  form justify-content-center">
-    				<form class="ml-10">
-    					<div class="row">
-    						<div class="col-md-8 pl-4 pr-4 mt-2">
-    							<input type="email" class="form-control" placeholder="Email">
-    						</div>
-    						<div class="col-md-4 pl-4 pr-4 mt-2">
-    							<button type="submit" class="btn btn-success form-control">Subscribe</button>
-    						</div>
-    					</div>
-    				</form>
-    			</div>
-    		</div>
+    	<section class="subscribe-us-area newsletter">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-10 text-center jumbotron bg-primary p-12 shadow">
+						<img src="<?=base_url();?>assets/dist/img/subscribe.svg" width="200" alt="gambar-envelope">
+						<div class="content text-center mt-5 mb-2">
+							<h2 class="text-white">SUBSCRIBE</h2>
+							<p class="text-white">Dengan meng-klik subscribe artinya anda menyetujui layanan langganan ke website ini.</p>
+							<div class="input-group p-5 mt-5 mb-5">
+								<input type="email" class="form-control mr-2 mb-2" placeholder="Enter your email">
+								<span class="input-group-btn">
+								<button class="btn btn-warning ml-2 mb-2" type="submit">Subscribe Now</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
     		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
     			<path fill="#FFC107" fill-opacity="1"
     				d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
     			</path>
     		</svg>
-    	</section>
+		</section>
     	<!--  ========================== Batas Subscribe Area ============================  -->
 
 

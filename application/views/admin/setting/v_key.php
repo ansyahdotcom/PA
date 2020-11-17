@@ -117,7 +117,7 @@
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status">
                             <option value="Aktif">Aktif</option>
-                            <option value="Tidak Aktif">Non-Aktif</option>
+                            <option value="Tidak Aktif">Tidak Aktif</option>
                         </select>
                         <?= form_error('status', '<small class="text-danger col-md">', '</small>'); ?>
                     </div>
@@ -167,12 +167,8 @@
                         <div class="form-group">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">
-                                <?php foreach ($data as $i) :
-                                $id_i  = $i['ID_KEY'];
-                                $status = $i['STATUS'];
-                                ?>
-                                    <option value="<?= $id_i;?>"><?= $status;?></option>
-                                <?php endforeach;?>
+                                <option value="Aktif" <?=$row['STATUS'] == "Aktif" ? "selected" : ""?>>Aktif</option>
+                                <option value="Tidak Aktif" <?=$row['STATUS'] == "Tidak Aktif" ? "selected" : ""?>>Tidak Aktif</option>
                             </select>
                             <?= form_error('status', '<small class="text-danger col-md">', '</small>'); ?>
                         </div>

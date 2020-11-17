@@ -18,8 +18,8 @@
                                 <?= form_error('email', '<small class="text-danger p-3">', '</small>'); ?>
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Kirim</button>
-                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/login'); ?>">Sudah punya akun?</a>
-                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/register'); ?>">Belum punya akun?</a>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('auth'); ?>">Sudah punya akun?</a>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('register'); ?>">Belum punya akun?</a>
                         </form>
                         </div>
                     </div>

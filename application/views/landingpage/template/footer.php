@@ -66,6 +66,12 @@
     <!--  isotope js library  -->
     <script src="<?= base_url(); ?>assets/dist/js/plugin/isotope/isotope.min.js"></script>
 
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url(); ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <!-- Showing Sweet Alert -->
+    <script src="<?= base_url(); ?>assets/dist/js/myscript.js"></script>
+
     <!--  Magnific popup script file  -->
     <script src="<?= base_url(); ?>assets/dist/js/plugin/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script>
 
@@ -75,10 +81,51 @@
     <!--  custom js file  -->
     <script src="<?= base_url(); ?>assets/dist/js/main.js"></script>
 
+    <script>
+        jQuery('.owl-carousel').owlCarousel({
+
+            loop:true,
+
+            margin:10,
+
+            dots: true,
+
+            autoplay: 3000, // time for slides changes
+
+            smartSpeed: 1000, // duration of change of 1 slide
+
+            responsiveClass:true,
+
+            responsive:{
+
+                0:{
+
+                    items:1
+
+                },
+
+                600:{
+
+                    items:2
+
+                },
+
+                1000:{
+
+                    items:3,
+
+                    loop:true
+
+                }
+
+            }
+
+            });
+    </script>
+
     <!--===============================================================================================-->
 
-
-
+    </div>
 </body>
 
 </html>

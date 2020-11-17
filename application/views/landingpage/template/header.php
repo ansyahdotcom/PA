@@ -11,6 +11,10 @@
         <!--  Bootstrap css file  -->
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/bootstrap.min.css">
 
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/dist/img/favicon/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/dist/img/favicon/favicon-16x16.png" sizes="16x16" />
+
         <!--  font awesome icons  -->
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/all.min.css">
 
@@ -33,6 +37,7 @@
     
 <body>
 
+    <div class="container-all">
     <header class="header_area">
         <div class="main-menu">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -54,12 +59,13 @@
                     </ul>
                     <div class="mr-auto"></div>
                     <ul class="navbar-nav">
-                    <?php if ($this->session->userdata('email') == "") { ?>
+                    <?php 
+                    if ($this->session->userdata('email') == "") { ?>
                         <li class="nav-item mr-2 ml-2 mb-2">
-                            <a href="<?= base_url('peserta/auth/login'); ?>" class="nav-link btn btn-primary">Masuk</a>
+                            <a href="<?= base_url('auth'); ?>" class="nav-link btn btn-primary">Masuk</a>
                         </li>
                         <li class="nav-item ml-2 mr-2 mb-2">
-                            <a href="<?= base_url('peserta/auth/register'); ?>" class="nav-link btn btn-warning">Daftar</a>
+                            <a href="<?= base_url('register'); ?>" class="nav-link btn btn-warning">Daftar</a>
                         </li>
                     <?php } else { ?>
                         <li class="nav-item ml-2 mr-2 mb-2">

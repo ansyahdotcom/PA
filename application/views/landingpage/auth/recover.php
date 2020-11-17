@@ -24,7 +24,7 @@
                             <div class="mt-3">
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Ubah Password</button>
                             </div>
-                            <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/login'); ?>">Batal ubah password?</a>
+                            <a class="d-block text-center mt-2 small" href="<?= base_url('auth'); ?>">Batal ubah password?</a>
                         </form>
                     </div>
                 </div>

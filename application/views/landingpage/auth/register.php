@@ -34,8 +34,8 @@
                             <?= form_error('password1', '<small class="text-danger p-3">', '</small>'); ?>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Daftar</button>
-                        <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/login'); ?>">Sudah punya akun?</a>
-                        <a class="d-block text-center mt-2 small" href="<?= base_url('peserta/auth/lupapsw'); ?>">Lupa kata sandi?</a>
+                        <a class="d-block text-center mt-2 small" href="<?= base_url('auth'); ?>">Sudah punya akun?</a>
+                        <a class="d-block text-center mt-2 small" href="<?= base_url('forgot'); ?>">Lupa kata sandi?</a>
                         <hr class="my-4">
                         <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Daftar dengan Google</button>
                         <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Daftar dengan Facebook</button>
