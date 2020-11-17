@@ -55,7 +55,26 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 //$route['admin'] = 'admin/overview';
 
+/**
+ * ==================================================================
+ *  Routes Peserta
+ * ==================================================================
+ */
 $route['home'] = 'index';
 $route['auth'] = 'peserta/auth/login';
 $route['register'] = 'peserta/auth/register';
 $route['forgot'] = 'peserta/auth/lupapsw';
+
+/**
+ * ==================================================================
+ *  Routes admin
+ * ==================================================================
+ */
+$route['dashboardadm'] = 'admin/dashboard';
+$route['profileadm'] = 'admin/profile';
+$route['authadm'] = 'admin/auth';
+$route['forgotadm'] = 'admin/auth/forgotpsw';
+$route['peserta'] = 'admin/peserta';
+$route['kelas'] = 'admin/kelas';
+$route['ktgkelas'] = 'admin/ktgkelas';
+$route['diskon'] = 'admin/diskon';
