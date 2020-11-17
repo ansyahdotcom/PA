@@ -5,16 +5,16 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1></h1>
+          <h1><?= $tittle; ?></h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active"></li>
+            <li class="breadcrumb-item active"><?= $tittle; ?></li>
           </ol>
         </div>
       </div>
-      <div class="flash-data" data-flashdata=""</div>
+      <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
     </div><!-- /.container-fluid -->
   </section>
 
@@ -28,26 +28,24 @@
           <div class="card card-primary card-outline">
             <div class="card-body box-profile" id="img">
               <div class="text-center">
-                <!-- <img class="profile-user-img img-circle" src="<?= base_url(); ?>assets//dist/img/admin/<?= $peserta['FTO_PS']; ?>" alt="User profile picture"> -->
-                <img class="img-fluid img-thumbnail" src="" alt="User profile picture">
+                <img class="img-fluid img-thumbnail" src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" alt="User profile picture">
               </div>
 
-              <h3 class="profile-username text-center text-bold"></h3>
+              <h3 class="profile-username text-center text-bold"><?= $peserta['NM_PS']; ?></h3>
               
-
               <ul class="list-group mb-3">
                 <li class="list-group-item">
-                  <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"></span>
+                  <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $peserta['ROLE'] ;?></span>
                 </li>
                 <li class="list-group-item">
-                  <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"></span>
+                  <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= date('d F Y', $peserta['DATE_CREATE']); ?></span>
                 </li>
               </ul>
               <!-- <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button> -->
             </div>
 
             <div class="card-body box-profil" id="imgedit" hidden>
-              
+              <?= form_open_multipart('peserta/profil'); ?>
                 <div class="form-group">
                   <div class="form-group text-center" style="position: relative;">
                     <span class="img-div">
@@ -56,10 +54,10 @@
                         <label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
                       </div>
                       <div>
-                        <img src="" onClick="triggerClick()" id="profileDisplay" width="200px">
+                        <img src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
                       </div>
                     </span>
-                    <input type="file" name="image" value="" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
+                    <input type="file" name="image" value="<?= $peserta['FTO_PS']; ?>" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
                     <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
                     <label class="text-bold text-gray">Foto Profil</label>
                     <div>
@@ -90,17 +88,17 @@
               <div class="tab-content" id="custom-tabs-four-tabContent">
                 <!-- Profil -->
                 <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                  <!-- <form class="form-horizontal" action="<?= base_url('admin/profile'); ?>" method="POST"> -->
+                  <!-- <form class="form-horizontal" action="<?= base_url('peserta/profil'); ?>" method="POST"> -->
                     <div class="form-group row">
                       <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                       <div class="input-group mb-1 col-sm-10">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="nm" name="nama" placeholder="Nama Lengkap" value="" disabled>
+                        <input type="text" class="form-control" id="nm" name="nama" placeholder="Nama Lengkap" value="<?= $peserta['NM_PS']; ?>" disabled>
                       </div>
                       <div class="offset-sm-2">
-                        
+                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -109,10 +107,10 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <input type="email" class="form-control" id="em" name="email" placeholder="Email" value="" disabled>
+                        <input type="email" class="form-control" id="em" name="email" placeholder="Email" value="<?= $peserta['EMAIL_PS']; ?>" disabled>
                       </div>
                       <div class="offset-sm-2">
-                        
+                        <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -121,56 +119,83 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-phone"></i></span>
                         </div>
-                        <input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="" disabled>
+                        <input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="<?= $peserta['HP_PS']; ?>" disabled>
                       </div>
                       <div class="offset-sm-2">
-                        
+                        <?= form_error('hp', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="alamat" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                      <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                       <div class="input-group mb-1 col-sm-10">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                          <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="jk" name="jeniskelamin" value="" disabled>
+                        <input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat" value="<?= $peserta['ALMT_PS']; ?>" disabled>
+                      </div>
+                      <div class="offset-sm-2">
+                        <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="jk" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                      <div class="input-group mb-1 col-sm-10">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" for="jk"><i class="fas fa-venus-mars"></i></span>
+                        </div>
+                        <select class="custom-select form-control" name="jk" id="jk" disabled>
+                          <option selected>--Pilih--</option>
+                          <option value="Laki-laki"<?= $peserta['JK_PS']=="Laki-laki"? "selected" : ""?>>Laki-laki</option>
+                          <option value="Perempuan"<?= $peserta['JK_PS']=="Perempuan"? "selected" : ""?>>Perempuan</option>
+                        </select>
                       </div>
                       <div class="offset-sm-2">
                         
-                      </div>
+                    </div>
+                    </div>
                     <div class="form-group row">
-                      <label for="alamat" class="col-sm-2 col-form-label">Pekerjaan</label>
+                      <label for="pekerjaan" class="col-sm-2 col-form-label">Pekerjaan</label>
                       <div class="input-group mb-1 col-sm-10">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="pekerjaan" name="perkerjaan" value="" disabled>
+                        <input type="text" class="form-control" id="pekerjaan" name="perkerjaan" placeholder="Pekerjaan" value="<?= $peserta['PEKERJAAN']; ?>" disabled>
                       </div>
                       <div class="offset-sm-2">
                         
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="alamat" class="col-sm-2 col-form-label">Agama</label>
+                      <label for="agama" class="col-sm-2 col-form-label">Agama</label>
                       <div class="input-group mb-1 col-sm-10">
                         <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-praying-hands"></i></span>
+                          <span class="input-group-text" for="agama"><i class="fas fa-praying-hands"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="agama" name="agama" value=">" disabled>
+                        <select class="custom-select form-control" name="agama" id="agama" disabled>
+                          <option selected>--Pilih Agama--</option>
+                          <option value="Islam"<?= $peserta['AGAMA_PS']=="Islam"? "selected" : ""?>>Islam</option>
+                          <option value="Hindu"<?= $peserta['AGAMA_PS']=="Hindu"? "selected" : ""?>>Hindu</option>
+                          <option value="Buddha"<?= $peserta['AGAMA_PS']=="Buddha"? "selected" : ""?>>Buddha</option>
+                          <option value="Kristen"<?= $peserta['AGAMA_PS']=="Kristen"? "selected" : ""?>>Kristen</option>
+                          <option value="Katolik"<?= $peserta['AGAMA_PS']=="Katolik"? "selected" : ""?>>Katolik</option>
+                          <option value="Konghucu"<?= $peserta['AGAMA_PS']=="Konghucu"? "selected" : ""?>>Konghucu</option>
+                        </select>
                       </div>
                       <div class="offset-sm-2">
                         
                     </div>
+                    </div>
                     <div class="form-group row">
-                      <label for="alamat" class="col-sm-2 col-form-label">Kota Asal</label>
+                      <label for="kotaasal" class="col-sm-2 col-form-label">Kota Asal</label>
                       <div class="input-group mb-1 col-sm-10">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-city"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="kota" name="kotaasal" value="" disabled>
+                        <input type="text" class="form-control" id="kota" name="kotaasal" placeholder="Kota Asal" value="<?= $peserta['KOTA']; ?>" disabled>
                       </div>
                       <div class="offset-sm-2">
                         
+                    </div>
                     </div>
                     <div class="form-group row">
                       <div class="offset-sm-2 col-sm-10">
@@ -184,7 +209,7 @@
 
                 <!-- Ubah Password -->
                 <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
-                  <form class="form-horizontal" action="<?= base_url('admin/profile/editpsw'); ?>" method="POST">
+                  <form class="form-horizontal" action="<?= base_url('peserta/profil/editpsw'); ?>" method="POST">
                     <div class="form-group row">
                       <label for="pswlma" class="col-sm-3 col-form-label">Password Sekarang</label>
                       <div class="input-group mb-1 col-sm-9">
