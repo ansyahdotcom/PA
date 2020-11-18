@@ -23,8 +23,7 @@
 	<section class="content">
 		<div class="card-header">
 			<div class="text-right">
-				<button class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah"><i
-						class="fas fa-plus"></i> Tambah Kategori</button>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus"></i> Tambah Kategori</button>
 			</div>
 		</div>
 		<div class="row">
@@ -46,19 +45,17 @@
 							<tbody>
 								<?php $no = 1; ?>
 								<?php foreach ($kategori as $ktg) {
-                                ?>
-								<tr>
-									<td class="text-center"><?= $no++ ?></td>
-									<td><?= $ktg->NM_CT; ?></td>
-									<td class="text-center">
-										<button class="btn btn-sm btn-primary" data-toggle="modal"
-											data-target="#modal-edit<?= $ktg->ID_CT; ?>"><b><i class="fas fa-edit"></i>
-												Edit</b></button>
-										<button class="btn btn-sm btn-danger" data-toggle="modal"
-											data-target="#modal_hapus<?= $ktg->ID_CT; ?>"><i class="fas fa-trash"></i>
-											<b>Hapus</b></button>
-									</td>
-								</tr>
+								?>
+									<tr>
+										<td class="text-center"><?= $no++ ?></td>
+										<td><?= $ktg->NM_CT; ?></td>
+										<td class="text-center">
+											<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit<?= $ktg->ID_CT; ?>"><b><i class="fas fa-edit"></i>
+													Edit</b></button>
+											<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?= $ktg->ID_CT; ?>"><i class="fas fa-trash"></i>
+												<b>Hapus</b></button>
+										</td>
+									</tr>
 								<?php } ?>
 							</tbody>
 						</table>
@@ -77,55 +74,54 @@
 
 <?php
 foreach ($kategori as $ktg) {
-    $ID_CT = $ktg->ID_CT;
-    $NM_CT = $ktg->NM_CT;
+	$ID_CT = $ktg->ID_CT;
+	$NM_CT = $ktg->NM_CT;
 ?>
-<!-- modal hapus data pendaftaran -->
-<div class="modal fade" id="modal_hapus<?= $ktg->ID_CT; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
-			</div>
-			<form action="<?= base_url('admin/kategori/hapus'); ?>" method="post" class="form-horizontal">
-				<div class="modal-body">
-					<p>Apakah Anda yakin ingin menghapus data ini?</p>
+	<!-- modal hapus data pendaftaran -->
+	<div class="modal fade" id="modal_hapus<?= $ktg->ID_CT; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
 				</div>
-				<div class="modal-footer">
-					<input type="hidden" name="ID_CT" value="<?= $ktg->ID_CT; ?>">
-					<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
-					<button class="btn btn-danger">Hapus</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<!-- Modal edit kategori -->
-<div class="modal fade" id="modal-edit<?= $ktg->ID_CT; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title title-1" id="myModalLabel">Edit Kategori</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<form method="post" action="<?= base_url('admin/kategori/update_kategori'); ?>">
-				<div class="modal-body">
-					<input type="hidden" name="ID_CT" value="<?php echo $ktg->ID_CT ?>" class="form-control">
-					<div class="form-group">
-						<input type="text" name="NM_CT" id="NM_CT" class="form-control"
-							autocomplete="off" value="<?= $ktg->NM_CT; ?>">
+				<form action="<?= base_url('admin/kategori/hapus'); ?>" method="post" class="form-horizontal">
+					<div class="modal-body">
+						<p>Apakah Anda yakin ingin menghapus data ini?</p>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" id="save-btn" class="btn btn-success">Simpan</button>
-				</div>
-			</form>
+					<div class="modal-footer">
+						<input type="hidden" name="ID_CT" value="<?= $ktg->ID_CT; ?>">
+						<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+						<button class="btn btn-danger">Hapus</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
+
+	<!-- Modal edit kategori -->
+	<div class="modal fade" id="modal-edit<?= $ktg->ID_CT; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title title-1" id="myModalLabel">Edit Kategori</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form method="post" action="<?= base_url('admin/kategori/update_kategori'); ?>">
+					<div class="modal-body">
+						<input type="hidden" name="ID_CT" value="<?php echo $ktg->ID_CT ?>" class="form-control">
+						<div class="form-group">
+							<input type="text" name="NM_CT" id="NM_CT" class="form-control" autocomplete="off" value="<?= $ktg->NM_CT; ?>">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" id="save-btn" class="btn btn-success">Simpan</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 <?php } ?>
 
