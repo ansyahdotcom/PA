@@ -42,7 +42,7 @@
 											src="<?= base_url('assets/fotoicon/'. $blg->FOTO_POST); ?>"> -->
 										<span class="username m-0 text-lg">
 											<a class="text-dark"
-												href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>"><?= $blg->JUDUL_POST; ?></a>
+												href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST.'/'); ?>"><?= $blg->JUDUL_POST; ?></a>
 
 										</span>
 										<hr>
@@ -55,9 +55,25 @@
 									</div>
 									<!-- /.user-block -->
 									<!-- Karepnya nampilin sebagian kalimat di artikel -->
-									<!-- <p>
-											<?= $blg->KONTEN_POST ?>
-										</p> -->
+									<p>
+										<?php 
+										$i = 100;
+										$KONTEN_POST = htmlspecialchars_decode($blg->KONTEN_POST);
+										$konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
+										// echo $konten;
+										// if ($KONTEN_POST[$i - 1] != ' ') { // jika huruf ke 50 (50 - 1 karena index dimulai dari 0) buka  spasi
+										// 	$new_pos = strrpos($konten, ' '); // cari posisi spasi, pencarian dari huruf terakhir
+										// 	$konten = substr($KONTEN_POST, 0, $new_pos);
+										// }
+										// echo $konten . ' ...';
+
+										$char = $KONTEN_POST[$i - 1];
+										while($char != ' ') {
+											$char = $KONTEN_POST[--$i]; // Cari spasi pada posisi 49, 48, 47, dst...
+										}
+										echo substr($KONTEN_POST, 0, $i) . ' ...';
+										?>
+									</p>
 
 									<p>
 										<!-- Nyari status post trus ditampilkan sesuai status post -->
@@ -90,7 +106,7 @@
 													class="fas fa-eye"></i> Pratinjau</a>
 
 											<!-- edit artikel -->
-											<a href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST); ?>">
+											<a href="<?= base_url('admin/blog/edit_artikel/' .$blg->ID_POST); ?>">
 												<button type="button" class="btn btn-primary btn-circle btn-sm">
 													<i class="fas fa-edit" style="color: white"></i> Edit
 												</button>
@@ -184,4 +200,4 @@ foreach ($blog as $blg) {
 		</div>
 	</div>
 </div>
-			<?php } ?>
+<?php } ?>

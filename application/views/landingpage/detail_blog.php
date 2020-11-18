@@ -33,9 +33,8 @@
 				<img class="img-fluid rounded" src="<?= base_url('assets/fotoblog/'.$blg->FOTO_POST);?>" alt="foto-post">
 
 				<hr>
-
 				<!-- Awalan Konten -->
-				<p><?= $blg->KONTEN_POST;  ?></p>
+				<p><?= htmlspecialchars_decode($blg->KONTEN_POST); ?></p>
 				<!-- Akhiran Konten -->
 
 				<hr>
