@@ -42,7 +42,7 @@
                         <ul class="nav nav-treeview">
                             <!-- kalo ngopy sub menu dari sini -->
                             <li class="nav-item">
-                                <a href="<?= base_url('peserta/profile'); ?>" class="nav-link">
+                                <a href="<?= base_url('peserta/profil'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Konfigurasi Profil</p>
                                 </a>

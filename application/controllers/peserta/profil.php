@@ -7,8 +7,8 @@
             $this->load->model('peserta/m_peserta');
             $this->load->library('form_validation');
             $this->load->library('upload');
-            adm_logged_in();
-            cekadm();
+            psrt_logged_in();
+            cekpsrt();
         }
 
         public function index()
@@ -38,10 +38,11 @@
             } else {
                 $nama = htmlspecialchars($this->input->post('nama'));
                 $hp = htmlspecialchars($this->input->post('hp'));
+                $alamat = htmlspecialchars($this->input->post('alamat'));
                 $jeniskelamin = htmlspecialchars($this->input->post('jk'));
                 $pekerjaan = htmlspecialchars($this->input->post('pekerjaan'));
                 $agama = htmlspecialchars($this->input->post('agama'));
-                $kotsal = htmlspecialchars($this->input->post('kotsal'));
+                $kota = htmlspecialchars($this->input->post('kotaasal'));
 
                 /** Proses Edit Gambar */
                 $upload_image = $_FILES['image']['name'];
@@ -68,10 +69,11 @@
                 $edit = [
                     'NM_PS' => $nama,
                     'HP_PS' => $hp,
-                    'JK' => $jeniskelamin,
+                    'ALMT_PS' => $alamat,
+                    'JK_PS' => $jeniskelamin,
                     'PEKERJAAN' => $pekerjaan,
-                    'AGAMA' => $agama,
-                    'KOTSAL' => $kotsal,
+                    'AGAMA_PS' => $agama,
+                    'KOTA' => $kota,
                 ];
 
                 $this->db->set($edit);
@@ -79,6 +81,57 @@
                 $this->db->update('peserta');
                 $this->session->set_flashdata('message', 'Ubah Profil');
                 redirect('peserta/profil');
+            }
+        }
+
+        public function editpsw()
+        {
+            $email = $this->session->userdata('email');
+            $data['tittle'] = "Profil Saya";
+            /** Ambil data admin */
+            $data['peserta'] = $this->m_peserta->peserta($email);
+            
+            $this->form_validation->set_rules('pswlma', 'Lma', 'trim|required|min_length[8]', [
+                'required' => 'kolom ini harus diisi',
+                'min_length' => 'password terlalu pendek'
+            ]);
+
+            $this->form_validation->set_rules('pswbru', 'bru', 'trim|required|matches[pswbru1]|min_length[8]', [
+                'required' => 'kolom ini harus diisi',
+                'min_length' => 'password terlalu pendek',
+                'matches' => ''
+            ]);
+
+            $this->form_validation->set_rules('pswbru1', 'bru1', 'trim|required|matches[pswbru]|min_length[8]', [
+                'required' => 'kolom ini harus diisi',
+                'min_length' => 'password terlalu pendek',
+                'matches' => 'konfirmasi password tidak sesuai'
+            ]);
+
+            if ($this->form_validation->run() == false) {
+                $this->load->view("peserta/template/v_header", $data);
+                $this->load->view("peserta/template/v_navbar", $data);
+                $this->load->view("peserta/template/v_sidebar", $data);
+                $this->load->view("peserta/profil/v_profil", $data);
+                $this->load->view("peserta/template/v_footer");
+            } else {
+                $pswlma = $this->input->post(htmlspecialchars('pswlma'));
+                $pswbru1 = $this->input->post(htmlspecialchars('pswbru1'));
+
+                if (!password_verify($pswlma, $data['peserta']['PSW_PS'])) { 
+                    $this->session->set_flashdata('message', 'Pswslh');
+                    redirect('peserta/profil');
+                } else {
+                    if ($pswlma == $pswbru1){
+                        $this->session->set_flashdata('message', 'Pswbaru=Pswlama');
+                        redirect('peserta/profil');
+                    } else {
+                        $pswhash = password_hash($pswbru1, PASSWORD_DEFAULT);
+                        $this->m_peserta->ubhpsw($pswhash, $email);
+                        $this->session->set_flashdata('message', 'Password');
+                        redirect('peserta/profil');
+                    }
+                }
             }
         }
     }

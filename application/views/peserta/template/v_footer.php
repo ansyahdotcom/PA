@@ -249,6 +249,10 @@
             $("#almt").prop('disabled', false);
             $("#imgedit").prop('hidden', false);
             $("#img").prop('hidden', true);
+            $("#jk").prop('disabled', false);
+            $("#pekerjaan").prop('disabled', false);
+            $("#agama").prop('disabled', false);
+            $("#kota").prop('disabled', false);
         });
 
         $("#btn-cancel").click(function() {
@@ -261,6 +265,10 @@
             $("#almt").prop('disabled', true);
             $("#imgedit").prop('hidden', true);
             $("#img").prop('hidden', false);
+            $("#jk").prop('disabled', true);
+            $("#pekerjaan").prop('disabled', true);
+            $("#agama").prop('disabled', true);
+            $("#kota").prop('disabled', true);
         });
     });
 </script>
@@ -334,35 +342,6 @@
             $("button#save-dis").prop('hidden', true);
             $("button#edit-dis").prop('hidden', false);
             $("input#indis").prop('disabled', true);
-        });
-    });
-</script>
-
-<!-- UNknown -->
-<script>
-    $(document).ready(function() {
-        $("#btn-edit").click(function() {
-            $(".tittle").html("Edit Profil");
-            $("#btn-edit").prop('hidden', true);
-            $("#btn-save").prop('hidden', false);
-            $("#btn-cancel").prop('hidden', false);
-            $("#nm").prop('disabled', false);
-            $("#hp").prop('disabled', false);
-            $("#almt").prop('disabled', false);
-            $("#imgedit").prop('hidden', false);
-            $("#img").prop('hidden', true);
-        });
-
-        $("#btn-cancel").click(function() {
-            $(".tittle").html("Profil");
-            $("#btn-edit").prop('hidden', false);
-            $("#btn-save").prop('hidden', true);
-            $("#btn-cancel").prop('hidden', true);
-            $("#nm").prop('disabled', true);
-            $("#hp").prop('disabled', true);
-            $("#almt").prop('disabled', true);
-            $("#imgedit").prop('hidden', true);
-            $("#img").prop('hidden', false);
         });
     });
 </script>
