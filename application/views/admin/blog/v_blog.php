@@ -56,7 +56,7 @@
 									<!-- /.user-block -->
 									<!-- Karepnya nampilin sebagian kalimat di artikel -->
 									<p>
-										<!-- <?php 
+										<?php 
 										$i = 100;
 										$KONTEN_POST = htmlspecialchars_decode($blg->KONTEN_POST);
 										$konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
@@ -66,7 +66,7 @@
 											$char = $KONTEN_POST[--$i]; // Cari spasi pada posisi 49, 48, 47, dst...
 										}
 										echo substr($KONTEN_POST, 0, $i) . ' ...';
-										?> -->
+										?>
 									</p>
 
 									<p>
