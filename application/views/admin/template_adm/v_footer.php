@@ -61,6 +61,8 @@
 <script src="<?= base_url(); ?>assets/dist/js/app.js"></script>
 <!-- Select2 -->
 <script src="<?= base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
+<script src="<?= base_url(); ?>assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<!-- <script src="<?= base_url(); ?>assets/dist/js/jquery-3.4.1.min.js"></script> -->
 
 
 <!-- Sweet Alert Hapus data Master-->
@@ -489,6 +491,12 @@
             "autoWidth": false,
             "responsive": true,
         });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('.bootstrap-select').selectpicker();
     });
 </script>
 
