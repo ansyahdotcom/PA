@@ -34,7 +34,7 @@
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
-						<table id="example1" class="table table-bordered table-striped">
+						<table id="dataTable" class="table table-bordered table-striped" width="100%" cellspacing="0">
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
@@ -47,7 +47,7 @@
 								<?php foreach ($kategori as $ktg) {
 								?>
 									<tr>
-										<td class="text-center"><?= $no++ ?></td>
+										<td><?= $no++ ?></td>
 										<td><?= $ktg->NM_CT; ?></td>
 										<td class="text-center">
 											<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit<?= $ktg->ID_CT; ?>"><b><i class="fas fa-edit"></i>
@@ -139,7 +139,7 @@ foreach ($kategori as $ktg) {
 				<div class="modal-body">
 					<div class="form-group">
 						<input type="hidden" class="form-control" id="ID_CT" name="ID_CT" value="<?= $ID_CTT; ?>">
-						<input type="text" class="form-control" name="NM_CT" autocomplete="off" autofocus>
+						<input required type="text" name="NM_CT" id="NM_CT" class="form-control" placeholder="Masukkan Nama Kategori . ." aria-describedby="namakategori" maxlength="100">
 					</div>
 				</div>
 				<div class="modal-footer">
