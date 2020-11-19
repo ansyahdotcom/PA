@@ -47,9 +47,9 @@
                                 <?php foreach ($tags as $tg) {
                                 ?>
                                     <tr>
-                                        <td class="text-center"><?= $no++ ?></td>
+                                        <td class="text-center" width="100px"><?= $no++ ?></td>
                                         <td><?= $tg->NM_TAGS; ?></td>
-                                        <td class="text-center">
+                                        <td class="text-center" width="150px">
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit<?= $tg->ID_TAGS; ?>"><b><i class="fas fa-edit"></i> Edit</b></button>
                                             <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?= $tg->ID_TAGS; ?>"><i class="fas fa-trash"></i> <b>Hapus</b></button>
                                         </td>
