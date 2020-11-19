@@ -249,22 +249,22 @@ class Blog extends CI_Controller
     }
 
     //tambah kategori di edit artikel
-    public function pr_tmbh_kategori2()
-    {
-        $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
-        $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
-        $this->m_blog->tmbh_kategori($ID_CT, $NM_CT);
-        redirect('admin/blog/edit_artikel');
-    }
+    // public function pr_tmbh_kategori2()
+    // {
+    //     $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
+    //     $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
+    //     $this->m_blog->tmbh_kategori($ID_CT, $NM_CT);
+    //     redirect('admin/blog/edit_artikel');
+    // }
 
     //tambah tags di edit artikel
-    public function pr_buat_tags2()
-    {
-        $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
-        $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
-        $this->m_blog->buat_tags($ID_TAGS, $NM_TAGS);
-        redirect('admin/blog/edit_artikel');
-    }
+    // public function pr_buat_tags2()
+    // {
+    //     $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
+    //     $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
+    //     $this->m_blog->buat_tags($ID_TAGS, $NM_TAGS);
+    //     redirect('admin/blog/edit_artikel');
+    // }
 
     public function update_artikel()
     {

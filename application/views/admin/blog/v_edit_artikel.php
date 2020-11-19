@@ -25,9 +25,6 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-					<div class="card-header">
-
-					</div>
 					<!-- /.card-header -->
 					<?php foreach ($post as $blg) { ?>
 						<form action="<?php echo base_url() . 'admin/blog/update_artikel'; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -44,8 +41,8 @@
 										<option value="<?= $ct->ID_CT; ?>" <?= $ct->ID_CT == $blg->ID_CT ? "selected" : null ?>><?= $ct->NM_CT; ?></option>
 									<?php } ?>
 								</select>
-								<button type="button" id="tambah_kategori" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_kategori">Tambah kategori baru</button>
-								<br> <br>
+								<!-- <button type="button" id="tambah_kategori" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_kategori">Tambah kategori baru</button> -->
+								<br>
 								<label for="ID_TAGS">Tags</label>
 								<select name="ID_TAGS" id="ID_TAGS" class="form-control">
 									<option disabled>Pilih Tags</option>
@@ -53,10 +50,10 @@
 										<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
 									<?php } ?>
 								</select>
-								<button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button>
-								<br> <br>
+								<!-- <button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button> -->
+								<br>
 								<label for="FOTO_POST">Foto</label>
-								<input type="text" class="form-control" name="FOTO_POST" value="<?php echo $blg->FOTO_POST ?>">
+								<input type="file" class="form-control" name="FOTO_POST" value="<?php echo $blg->FOTO_POST ?>">
 								<br>
 								<label for="KONTEN_POST">Konten</label>
 								<textarea class="textarea" class="form-control" name="KONTEN_POST"><?php echo $blg->KONTEN_POST  ?></textarea>

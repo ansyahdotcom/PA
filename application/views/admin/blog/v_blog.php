@@ -60,12 +60,6 @@
 										$i = 100;
 										$KONTEN_POST = htmlspecialchars_decode($blg->KONTEN_POST);
 										$konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
-										// echo $konten;
-										// if ($KONTEN_POST[$i - 1] != ' ') { // jika huruf ke 50 (50 - 1 karena index dimulai dari 0) buka  spasi
-										// 	$new_pos = strrpos($konten, ' '); // cari posisi spasi, pencarian dari huruf terakhir
-										// 	$konten = substr($KONTEN_POST, 0, $new_pos);
-										// }
-										// echo $konten . ' ...';
 
 										$char = $KONTEN_POST[$i - 1];
 										while($char != ' ') {
