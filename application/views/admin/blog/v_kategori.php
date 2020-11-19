@@ -34,7 +34,7 @@
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
-						<table id="dataTable" class="table table-bordered table-striped" width="100%" cellspacing="0">
+					<table id="example1" class="table table-bordered table-striped">
 							<thead>
 								<tr class="text-center">
 									<th>No</th>
