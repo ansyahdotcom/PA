@@ -35,7 +35,7 @@
               
               <ul class="list-group mb-3">
                 <li class="list-group-item">
-                  <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $peserta['ROLE'] ;?></span>
+                  <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $peserta['ROLE']; ?></span>
                 </li>
                 <li class="list-group-item">
                   <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= date('d F Y', $peserta['DATE_CREATE']); ?></span>
@@ -95,10 +95,10 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="nm" name="nama" placeholder="Nama Lengkap" value="<?= $peserta['NM_PS']; ?>" disabled>
+                        <input type="text" class="form-control" id="nm" name="nmps" placeholder="Nama Lengkap" value="<?= $peserta['NM_PS']; ?>" disabled>
                       </div>
                       <div class="offset-sm-2">
-                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+                        <?= form_error('nmps', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -159,7 +159,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="pekerjaan" name="perkerjaan" placeholder="Pekerjaan" value="<?= $peserta['PEKERJAAN']; ?>" disabled>
+                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan" value="<?= $peserta['PEKERJAAN']; ?>" disabled>
                       </div>
                       <div class="offset-sm-2">
                         

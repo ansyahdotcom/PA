@@ -79,7 +79,7 @@ class Auth extends CI_Controller
 		$data['footer'] = $this->m_medsos->get_data(); 
         $data['header'] = $this->m_navbar->get_navbar(); 
         $data['kebijakan'] = $this->m_kebijakan->get_data(); 
-		if ($this->session->userdata('email' && 'role' == 2)) {
+		if ($this->session->userdata('email')) {
 			redirect('peserta/dashboard');
 		}
 
@@ -152,6 +152,7 @@ class Auth extends CI_Controller
 				'HP_PS' => $nohp,
 				'EMAIL_PS' => $email,
 				'PSW_PS' => $password,
+				'FTO_PS' => 'default.jpg',
 				'ID_ROLE' => 2,
 				'ACTIVE' => 0,
 				'DATE_CREATE' => time()
@@ -207,7 +208,7 @@ class Auth extends CI_Controller
 				<p>Email : " . $email . "</p>
 				<p>Tolong Klik Link Dibawah ini untuk mengaktivasi akun anda !,</p>
 				<p>link otomatis akan kadaluarsa dalam waktu 2 X 24 jam.</p>
-				<h4><a href='" . base_url() . "peserta/auth/verify?email=" . $email . "&token=" . urlencode($token) . "'>Aktivasi!</a></h4>
+				<h4><a href='" . base_url() . "verify?email=" . $email . "&token=" . urlencode($token) . "'>Aktivasi!</a></h4>
 			</body>
 			</html>
 		";
@@ -224,7 +225,7 @@ class Auth extends CI_Controller
 				<p>Email anda : " . $email . "</p>
 				<p>Klik link di bawah ini untuk mengubah password anda !,</p> 
 				<p>link otomatis akan kadaluarsa dalam waktu 2 jam. </p>
-				<h4><a href='" . base_url() . "peserta/auth/ubahpassword?email=" . $email . "&token=" . urlencode($token) . "'>Ubah Password!!</a></h4>
+				<h4><a href='" . base_url() . "repass?email=" . $email . "&token=" . urlencode($token) . "'>Ubah Password!!</a></h4>
 			</body>
 			</html>
 		";
@@ -341,13 +342,13 @@ class Auth extends CI_Controller
 				$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-center">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<p class="text-center"><i class="icon fas fa-check"></i><b> Silahkan cek email anda untuk ubah password!</b></p></div>');
-				redirect('peserta/auth/lupapsw');
+				redirect('forgot');
 			} else {
 
 				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<p class="text-center"><i class="icon fas fa-ban"></i><b> Email belum terdaftar/aktif!</b></p></div>');
-				redirect('peserta/auth/lupapsw');
+				redirect('forgot');
 			}
 		}
 	}

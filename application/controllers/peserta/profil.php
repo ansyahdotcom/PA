@@ -18,10 +18,6 @@
             /** Ambil data admin */
             $data['peserta'] = $this->m_peserta->peserta($email);
 
-            $this->form_validation->set_rules('nama', 'Nama', 'trim|required ', [
-                'required' => 'kolom ini harus diisi',
-            ]);
-
             $this->form_validation->set_rules('hp', 'Hp', 'trim|numeric|min_length[11]|max_length[13]', [
                 'numeric' => 'kolom ini harus berisi angka',
                 'min_length' => 'format yang di masukkan salah',
@@ -36,7 +32,7 @@
                 $this->load->view("peserta/profil/v_profil", $data);
                 $this->load->view("peserta/template/v_footer");
             } else {
-                $nama = htmlspecialchars($this->input->post('nama'));
+                $nama = htmlspecialchars($this->input->post('nmps'));
                 $hp = htmlspecialchars($this->input->post('hp'));
                 $alamat = htmlspecialchars($this->input->post('alamat'));
                 $jeniskelamin = htmlspecialchars($this->input->post('jk'));
