@@ -61,17 +61,6 @@
 								<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
 								<?php } ?>
 							</select>
-							<div class="form-group row">
-								<label class="col-sm-2 col-form-label">Product</label>
-								<div class="col-sm-10">
-									<select class="bootstrap-select" name="ID_TAGS[]" data-width="100%"
-										data-live-search="true" multiple required>
-										<?php foreach ($tags as $tg) { ?>
-										<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							</div>
 							<button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round"
 								data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button>
 							<br> <br>
