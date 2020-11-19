@@ -138,7 +138,8 @@ foreach ($tags as $tg) {
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="ID_TAGS" name="ID_TAGS" value="<?= $ID_TAGSS; ?>">
-                        <input type="text" class="form-control" name="NM_TAGS" autocomplete="off" autofocus>
+                        
+						<input required type="text" name="NM_TAGS" id="NM_TAGS" class="form-control" placeholder="Masukkan Nama Tags . ." aria-describedby="namakatags" maxlength="100">
                     </div>
                 </div>
                 <div class="modal-footer">
