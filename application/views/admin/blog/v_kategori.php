@@ -47,9 +47,9 @@
 								<?php foreach ($kategori as $ktg) {
 								?>
 									<tr>
-										<td><?= $no++ ?></td>
+										<td class="text-center" width="100px"><?= $no++ ?></td>
 										<td><?= $ktg->NM_CT; ?></td>
-										<td class="text-center">
+										<td class="text-center" width="150px">
 											<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit<?= $ktg->ID_CT; ?>"><b><i class="fas fa-edit"></i>
 													Edit</b></button>
 											<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal_hapus<?= $ktg->ID_CT; ?>"><i class="fas fa-trash"></i>
