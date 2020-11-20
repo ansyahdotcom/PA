@@ -260,7 +260,7 @@
         </div>
       </div>
       <!-- /.row -->
-      </><!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 </div>
