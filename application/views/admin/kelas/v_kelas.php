@@ -26,7 +26,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title float-left">Tabel <?= $tittle; ?></h3>
-              <button class="btn btn-primary text-bold float-right" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus-circle"></i> <?= $tittle; ?></button>
+              <button type="button" class="btn btn-primary text-bold float-right" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus-circle"></i> <?= $tittle; ?></button>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -107,6 +107,95 @@
   </div>
   <!-- /.content-wrapper -->
 
+  <!-- Modal tambah Data -->
+  <div class="modal fade" id="modal-tambah">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tambah <?= $tittle; ?></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form method="POST" action="<?= base_url('admin/kelas/saveall'); ?>" class="form-saveall" enctype="multipart/form-data">
+          <!-- <?= form_open_multipart('admin/kelas/saveall', ['class' => 'form-saveall valid']); ?> -->
+          <div class="card-body">
+            <table id="example1" class="table table-sm table-bordered table-striped">
+              <thead>
+                <tr class="text-center">
+                  <th>Nama Kelas</th>
+                  <!-- <th>Gambar</th> -->
+                  <th>Link Kelas</th>
+                  <th>Kategori Kelas</th>
+                  <th>Harga</th>
+                  <th>Diskon</th>
+                  <th>Deskripsi</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody class="add-form">
+                <tr class="text-center">
+                  <td>
+                    <input type="text" class="form-control" name="nama[]" required>
+                    <?= form_error('nama[]', '<small class="text-danger">', '</small>'); ?>
+                  </td>
+                  <!-- <td>
+                      <input type="file" class="form-control" name="gbr[]">
+                    </td> -->
+                  <td>
+                    <input type="text" class="form-control" name="link[]" required>
+                    <?= form_error('link[]', '<small class="text-danger pl-3">', '</small>'); ?>
+                  </td>
+                  <td>
+                    <select name="ktg[]" id="ktg" class="custom-select slct-ktg">
+
+                    </select>
+                  </td>
+                  <td>
+                    <input type="number" class="form-control" name="hrg[]" required>
+                    <?= form_error('hrg[]', '<small class="text-danger pl-3">', '</small>'); ?>
+                  </td>
+                  <td>
+                    <select name="disc[]" id="disc" class="custom-select slct-diskon">
+
+                    </select>
+                  </td>
+                  <td>
+                    <textarea class="form-control" name="deskripsi[]" required></textarea>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-sm btn-plusfrm text-bold"><i class="fas fa-plus"></i> Form</button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="text-center">
+                  <th>Nama Kelas</th>
+                  <!-- <th>Gambar</th> -->
+                  <th>Link Kelas</th>
+                  <th>Kategori Kelas</th>
+                  <th>Harga</th>
+                  <th>Diskon</th>
+                  <th>Deskripsi</th>
+                  <th>Aksi</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="modal-footer justify-content-right">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
+            <button type="submit" class="btn btn-primary btn-saveall"><i class="fas fa-save"></i> Simpan</button>
+          </div>
+        </form>
+        <!-- <?= form_close(); ?> -->
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+
   <?php foreach ($kelas as $k) :
     $id = $k['ID_KLS'];
     $namakls = $k['TITTLE'];
@@ -116,100 +205,13 @@
     $status = $k['STAT'];
     $deskripsi = $k['DESKRIPSI'];
     $diskon = $k['NM_DISKON'];
-    $date = $k['DATE_CREATE'];
-    $last = $k['LAST_UPDATE'];
+    $date = $k['DATE_KLS'];
+    $last = $k['UPDATE_KLS'];
     $gambar = $k['GBR_KLS'];
     $jmldis = $k['DISKON'];
     $iddis = $k['ID_DISKON'];
+    $id_adm = $k['NM_ADM'];
   ?>
-
-    <!-- Modal tambah Data -->
-    <div class="modal fade" id="modal-tambah">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Tambah <?= $tittle; ?></h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form method="POST" action="<?= base_url('admin/kelas/saveall'); ?>" class="form-saveall" enctype="multipart/form-data">
-            <!-- <?= form_open_multipart('admin/kelas/saveall', ['class' => 'form-saveall valid']); ?> -->
-            <div class="card-body">
-              <table id="example1" class="table table-sm table-bordered table-striped">
-                <thead>
-                  <tr class="text-center">
-                    <th>Nama Kelas</th>
-                    <!-- <th>Gambar</th> -->
-                    <th>Link Kelas</th>
-                    <th>Kategori Kelas</th>
-                    <th>Harga</th>
-                    <th>Diskon</th>
-                    <th>Deskripsi</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody class="add-form">
-                  <tr class="text-center">
-                    <td>
-                      <input type="text" class="form-control" name="nama[]" required>
-                      <?= form_error('nama[]', '<small class="text-danger">', '</small>'); ?>
-                    </td>
-                    <!-- <td>
-                      <input type="file" class="form-control" name="gbr[]">
-                    </td> -->
-                    <td>
-                      <input type="text" class="form-control" name="link[]" required>
-                      <?= form_error('link[]', '<small class="text-danger pl-3">', '</small>'); ?>
-                    </td>
-                    <td>
-                      <select name="ktg[]" id="ktg" class="custom-select slct-ktg">
-
-                      </select>
-                    </td>
-                    <td>
-                      <input type="number" class="form-control" name="hrg[]" required>
-                      <?= form_error('hrg[]', '<small class="text-danger pl-3">', '</small>'); ?>
-                    </td>
-                    <td>
-                      <select name="disc[]" id="disc" class="custom-select slct-diskon">
-
-                      </select>
-                    </td>
-                    <td>
-                      <textarea class="form-control" name="deskripsi[]" required></textarea>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-primary btn-sm btn-plusfrm text-bold"><i class="fas fa-plus"></i> Form</button>
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr class="text-center">
-                    <th>Nama Kelas</th>
-                    <!-- <th>Gambar</th> -->
-                    <th>Link Kelas</th>
-                    <th>Kategori Kelas</th>
-                    <th>Harga</th>
-                    <th>Diskon</th>
-                    <th>Deskripsi</th>
-                    <th>Aksi</th>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-            <div class="modal-footer justify-content-right">
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
-              <button type="submit" class="btn btn-primary btn-saveall"><i class="fas fa-save"></i> Simpan</button>
-            </div>
-          </form>
-          <!-- <?= form_close(); ?> -->
-        </div>
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
 
     <!-- Modal Detail Data -->
     <div class="modal fade" id="modal-detail<?= $id; ?>">
@@ -247,6 +249,9 @@
 
                     <label for="harga">Kategori Kelas: </label>
                     <span class="badge-pill bg-warning text-bold btn-block text-center"><?= $kategori; ?></span>
+
+                    <label for="harga">Disusun oleh: </label>
+                    <span class="badge-pill bg-gray text-bold btn-block text-center"><?= $id_adm; ?></span>
 
                     <label for="harga">Link Kelas: </label>
                     <a href="<?= $link; ?>" class="btn btn-primary btn-block text-bold">Akses Kelas</a>

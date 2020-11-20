@@ -99,6 +99,64 @@
 </div>
 <!-- /.content-wrapper -->
 
+<!-- Modal tambah Data -->
+<div class="modal fade" id="modal-tambah">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah <?= $tittle; ?></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="<?= base_url('admin/diskon/saveall'); ?>" class="form-saveall" enctype="multipart/form-data">
+                <!-- <?= form_open_multipart('admin/kelas/saveall', ['class' => 'form-saveall valid']); ?> -->
+                <div class="card-body">
+                    <table id="example1" class="table table-sm table-bordered table-striped">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Besar Diskon</th>
+                                <th>Nama Diskon</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="form-diskon">
+                            <tr class="text-center">
+                                <td>
+                                    <input type="number" class="form-control" name="diskon[]" required>
+                                    <?= form_error('diskon[]', '<small class="text-danger">', '</small>'); ?>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="nama[]" required>
+                                    <?= form_error('nama[]', '<small class="text-danger">', '</small>'); ?>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm plus-diskon text-bold"><i class="fas fa-plus"></i> Form</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="text-center">
+                                <th>Besar Diskon</th>
+                                <th>Nama Diskon</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer justify-content-right">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-saveall"><i class="fas fa-save"></i> Simpan</button>
+                </div>
+            </form>
+            <!-- <?= form_close(); ?> -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <?php foreach ($dis as $d) :
     $id = $d['ID_DISKON'];
     $diskon = $d['DISKON'];
@@ -107,64 +165,6 @@
     $date = $d['DATE_DIS'];
     $last = $d['UPDATE_DIS'];
 ?>
-
-    <!-- Modal tambah Data -->
-    <div class="modal fade" id="modal-tambah">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Tambah <?= $tittle; ?></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="POST" action="<?= base_url('admin/diskon/saveall'); ?>" class="form-saveall" enctype="multipart/form-data">
-                    <!-- <?= form_open_multipart('admin/kelas/saveall', ['class' => 'form-saveall valid']); ?> -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-sm table-bordered table-striped">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>Besar Diskon</th>
-                                    <th>Nama Diskon</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody class="form-diskon">
-                                <tr class="text-center">
-                                    <td>
-                                        <input type="number" class="form-control" name="diskon[]" required>
-                                        <?= form_error('diskon[]', '<small class="text-danger">', '</small>'); ?>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control" name="nama[]" required>
-                                        <?= form_error('nama[]', '<small class="text-danger">', '</small>'); ?>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm plus-diskon text-bold"><i class="fas fa-plus"></i> Form</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr class="text-center">
-                                    <th>Besar Diskon</th>
-                                    <th>Nama Diskon</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="modal-footer justify-content-right">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
-                        <button type="submit" class="btn btn-primary btn-saveall"><i class="fas fa-save"></i> Simpan</button>
-                    </div>
-                </form>
-                <!-- <?= form_close(); ?> -->
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
 
     <!-- Modal Detail Data -->
     <div class="modal fade" id="modal-detail<?= $id; ?>">

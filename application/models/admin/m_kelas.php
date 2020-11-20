@@ -7,6 +7,7 @@
             $this->db->from('kelas');
             $this->db->join('ktg_kelas', 'ktg_kelas.ID_KTGKLS = kelas.ID_KTGKLS', 'left');
             $this->db->join('diskon', 'diskon.ID_DISKON = kelas.ID_DISKON', 'left');
+            $this->db->join('admin', 'admin.ID_ADM = kelas.ID_ADM', 'left');
             $query = $this->db->get()->result_array();
             return $query;
         }

@@ -45,6 +45,11 @@ class Kelas extends CI_Controller
     /** Simpan Semua Data Kelas */
     public function saveall()
     {
+        $email = $this->session->userdata('email');
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' => $email
+        ])->row_array();
+        
         $this->form_validation->set_rules('nama[]', 'Nama', 'required|trim', [
             'required' => 'Kolom ini harus diisi'
         ]);
@@ -91,9 +96,11 @@ class Kelas extends CI_Controller
             /** Proses insert ke database */
             $nama = $this->input->post('nama');
             $img = 'default.jpg';
+            $id_adm = $data['admin']['ID_ADM'];
             $result = array();
             foreach ($nama as $key => $val) {
                 $result[] = array(
+                    'ID_ADM' => $id_adm,
                     'TITTLE' => $_POST['nama'][$key],
                     'PERMALINK' => $_POST['link'][$key],
                     'GBR_KLS' => $img,
@@ -102,8 +109,8 @@ class Kelas extends CI_Controller
                     'ID_DISKON' => $_POST['disc'][$key],
                     'STAT' => 0,
                     'ID_KTGKLS' => $_POST['ktg'][$key],
-                    'DATE_CREATE' => time(),
-                    'LAST_UPDATE' => 0,
+                    'DATE_KLS' => time(),
+                    'UPDATE_KLS' => 0,
                 );
             }
 
@@ -185,7 +192,7 @@ class Kelas extends CI_Controller
                 'PRICE' => $harga,
                 'ID_DISKON' => $diskon,
                 'ID_KTGKLS' => $kategori,
-                'LAST_UPDATE' => time(),
+                'UPDATE_KLS' => time(),
             ];
 
             $this->db->set($edit);
