@@ -3,7 +3,7 @@
 class M_navbar extends CI_Model{
 	
 	function get_navbar(){
-		$query = $this->db->get_where('navbar', array('PR_ID' => '0'));
+		$query = $this->db->get('navbar');
 		return $query->result_array();
 	}
 

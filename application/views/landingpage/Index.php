@@ -101,7 +101,7 @@
     										class="card-img p-3" alt="gambar kelas">
     								</div>
     								<div class="col-md-8">
-    									<div class="card-body">
+    									<div class="card-body text-center">
     										<h5 class="card-title">Kelas Enterpreneur</h5>
     										<p class="card-text">Kelas belajar untuk berwirausaha.</p>
     										<a class="btn button primary-button" href="#">Lihat Kelas</a>
@@ -116,7 +116,7 @@
     										class="card-img p-3" alt="gambar komunitas">
     								</div>
     								<div class="col-md-8">
-    									<div class="card-body">
+    									<div class="card-body text-center">
     										<h5 class="card-title">Join Komunitas</h5>
     										<p class="card-text">Ikut berperan dalam perubahan.</p>
     										<a class="btn button primary-button" href="#">Bergabung Sekarang</a>
@@ -271,12 +271,12 @@
     	<!--  ======================== Batas Blog ==============================  -->
 
     	<!--  ========================== Subscribe me Area ============================  -->
-    	<section class="subscribe-us-area newsletter">
+    	<section class="newsletter">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-10 text-center jumbotron bg-primary p-12 shadow">
 						<img src="<?=base_url();?>assets/dist/img/subscribe.svg" width="200" alt="gambar-envelope">
-						<div class="content text-center mt-5 mb-2">
+						<div class="content text-center mt-5">
 							<h2 class="text-white">SUBSCRIBE</h2>
 							<p class="text-white">Dengan meng-klik subscribe artinya anda menyetujui layanan langganan ke website ini.</p>
 							<div class="input-group p-5 mt-5 mb-5">
@@ -290,10 +290,10 @@
 				</div>
 			</div>
     		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    			<path fill="#FFC107" fill-opacity="1"
-    				d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-    			</path>
-    		</svg>
+				<path fill="#FFC107" fill-opacity="1"
+					d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+				</path>
+			</svg>
 		</section>
     	<!--  ========================== Batas Subscribe Area ============================  -->
 
