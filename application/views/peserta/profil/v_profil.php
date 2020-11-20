@@ -32,7 +32,7 @@
               </div>
 
               <h3 class="profile-username text-center text-bold"><?= $peserta['NM_PS']; ?></h3>
-              
+
               <ul class="list-group mb-3">
                 <li class="list-group-item">
                   <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $peserta['ROLE']; ?></span>
@@ -46,25 +46,25 @@
 
             <div class="card-body box-profil" id="imgedit" hidden>
               <?= form_open_multipart('peserta/profil'); ?>
-                <div class="form-group">
-                  <div class="form-group text-center" style="position: relative;">
-                    <span class="img-div">
-                      <div class="text-center img-placeholder" onClick="triggerClick()">
-                        <h3 class="profile-username text-center text-bold">Edit Foto Profil</h3>
-                        <label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
-                      </div>
-                      <div>
-                        <img src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
-                      </div>
-                    </span>
-                    <input type="file" name="image" value="<?= $peserta['FTO_PS']; ?>" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
-                    <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
-                    <label class="text-bold text-gray">Foto Profil</label>
-                    <div>
-                      <small class="text-danger text-bold">(Ukuran file gambar max 2 mb.)</small>
+              <div class="form-group">
+                <div class="form-group text-center" style="position: relative;">
+                  <span class="img-div">
+                    <div class="text-center img-placeholder" onClick="triggerClick()">
+                      <h3 class="profile-username text-center text-bold">Edit Foto Profil</h3>
+                      <label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
                     </div>
+                    <div>
+                      <img src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
+                    </div>
+                  </span>
+                  <input type="file" name="image" value="<?= $peserta['FTO_PS']; ?>" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
+                  <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
+                  <label class="text-bold text-gray">Foto Profil</label>
+                  <div>
+                    <small class="text-danger text-bold">(Ukuran file gambar max 2 mb.)</small>
                   </div>
                 </div>
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
@@ -89,121 +89,121 @@
                 <!-- Profil -->
                 <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                   <!-- <form class="form-horizontal" action="<?= base_url('peserta/profil'); ?>" method="POST"> -->
-                    <div class="form-group row">
-                      <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="nm" name="nmps" placeholder="Nama Lengkap" value="<?= $peserta['NM_PS']; ?>" disabled>
+                  <div class="form-group row">
+                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
-                      <div class="offset-sm-2">
-                        <?= form_error('nmps', '<small class="text-danger">', '</small>'); ?>
-                      </div>
+                      <input type="text" class="form-control" id="nm" name="nmps" placeholder="Nama Lengkap" value="<?= $peserta['NM_PS']; ?>" disabled>
                     </div>
-                    <div class="form-group row">
-                      <label for="email" class="col-sm-2 col-form-label">Email</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        </div>
-                        <input type="email" class="form-control" id="em" name="email" placeholder="Email" value="<?= $peserta['EMAIL_PS']; ?>" disabled>
-                      </div>
-                      <div class="offset-sm-2">
-                        <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-                      </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('nmps', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group row">
-                      <label for="hp" class="col-sm-2 col-form-label">No Handphone</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        </div>
-                        <input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="<?= $peserta['HP_PS']; ?>" disabled>
+                  </div>
+                  <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                       </div>
-                      <div class="offset-sm-2">
-                        <?= form_error('hp', '<small class="text-danger">', '</small>'); ?>
+                      <input type="email" class="form-control" id="em" name="email" placeholder="Email" value="<?= $peserta['EMAIL_PS']; ?>" disabled>
+                    </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="hp" class="col-sm-2 col-form-label">No Handphone</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
                       </div>
+                      <input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="<?= $peserta['HP_PS']; ?>" disabled>
                     </div>
-                    <div class="form-group row">
-                      <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat" value="<?= $peserta['ALMT_PS']; ?>" disabled>
+                    <div class="offset-sm-2">
+                      <?= form_error('hp', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="alamat" class="col-sm-2 col-form-label">Alamat Domisili</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                       </div>
-                      <div class="offset-sm-2">
-                        <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
+                      <input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat" value="<?= $peserta['ALMT_PS']; ?>" disabled>
+                    </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="jk" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" for="jk"><i class="fas fa-venus-mars"></i></span>
                       </div>
+                      <select class="custom-select form-control" name="jk" id="jk" disabled>
+                        <option selected>--Pilih--</option>
+                        <option value="Laki-laki" <?= $peserta['JK_PS'] == "Laki-laki" ? "selected" : "" ?>>Laki-laki</option>
+                        <option value="Perempuan" <?= $peserta['JK_PS'] == "Perempuan" ? "selected" : "" ?>>Perempuan</option>
+                      </select>
                     </div>
-                    <div class="form-group row">
-                      <label for="jk" class="col-sm-2 col-form-label">Jenis Kelamin</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" for="jk"><i class="fas fa-venus-mars"></i></span>
-                        </div>
-                        <select class="custom-select form-control" name="jk" id="jk" disabled>
-                          <option selected>--Pilih--</option>
-                          <option value="Laki-laki"<?= $peserta['JK_PS']=="Laki-laki"? "selected" : ""?>>Laki-laki</option>
-                          <option value="Perempuan"<?= $peserta['JK_PS']=="Perempuan"? "selected" : ""?>>Perempuan</option>
-                        </select>
+                    <div class="offset-sm-2">
+                      <?= form_error('jk', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="pekerjaan" class="col-sm-2 col-form-label">Pekerjaan</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                       </div>
-                      <div class="offset-sm-2">
-                        
+                      <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan" value="<?= $peserta['PEKERJAAN']; ?>" disabled>
                     </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('pekerjaan', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group row">
-                      <label for="pekerjaan" class="col-sm-2 col-form-label">Pekerjaan</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan" value="<?= $peserta['PEKERJAAN']; ?>" disabled>
+                  </div>
+                  <div class="form-group row">
+                    <label for="agama" class="col-sm-2 col-form-label">Agama</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" for="agama"><i class="fas fa-praying-hands"></i></span>
                       </div>
-                      <div class="offset-sm-2">
-                        
+                      <select class="custom-select form-control" name="agama" id="agama" disabled>
+                        <option selected>--Pilih Agama--</option>
+                        <option value="Islam" <?= $peserta['AGAMA_PS'] == "Islam" ? "selected" : "" ?>>Islam</option>
+                        <option value="Hindu" <?= $peserta['AGAMA_PS'] == "Hindu" ? "selected" : "" ?>>Hindu</option>
+                        <option value="Buddha" <?= $peserta['AGAMA_PS'] == "Buddha" ? "selected" : "" ?>>Buddha</option>
+                        <option value="Kristen" <?= $peserta['AGAMA_PS'] == "Kristen" ? "selected" : "" ?>>Kristen</option>
+                        <option value="Katolik" <?= $peserta['AGAMA_PS'] == "Katolik" ? "selected" : "" ?>>Katolik</option>
+                        <option value="Konghucu" <?= $peserta['AGAMA_PS'] == "Konghucu" ? "selected" : "" ?>>Konghucu</option>
+                      </select>
+                    </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('agama', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="kotaasal" class="col-sm-2 col-form-label">Kota Asal</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-city"></i></span>
                       </div>
+                      <input type="text" class="form-control" id="kota" name="kotaasal" placeholder="Kota Asal" value="<?= $peserta['KOTA']; ?>" disabled>
                     </div>
-                    <div class="form-group row">
-                      <label for="agama" class="col-sm-2 col-form-label">Agama</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" for="agama"><i class="fas fa-praying-hands"></i></span>
-                        </div>
-                        <select class="custom-select form-control" name="agama" id="agama" disabled>
-                          <option selected>--Pilih Agama--</option>
-                          <option value="Islam"<?= $peserta['AGAMA_PS']=="Islam"? "selected" : ""?>>Islam</option>
-                          <option value="Hindu"<?= $peserta['AGAMA_PS']=="Hindu"? "selected" : ""?>>Hindu</option>
-                          <option value="Buddha"<?= $peserta['AGAMA_PS']=="Buddha"? "selected" : ""?>>Buddha</option>
-                          <option value="Kristen"<?= $peserta['AGAMA_PS']=="Kristen"? "selected" : ""?>>Kristen</option>
-                          <option value="Katolik"<?= $peserta['AGAMA_PS']=="Katolik"? "selected" : ""?>>Katolik</option>
-                          <option value="Konghucu"<?= $peserta['AGAMA_PS']=="Konghucu"? "selected" : ""?>>Konghucu</option>
-                        </select>
-                      </div>
-                      <div class="offset-sm-2">
-                        
+                    <div class="offset-sm-2">
+                      <?= form_error('kotaasal', '<small class="text-danger">', '</small>'); ?>
                     </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                      <button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
+                      <button type="submit" class="btn btn-primary" id="btn-save" hidden><i class="fas fa-save"></i> Simpan</button>
+                      <button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i> Edit</button>
                     </div>
-                    <div class="form-group row">
-                      <label for="kotaasal" class="col-sm-2 col-form-label">Kota Asal</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-city"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="kota" name="kotaasal" placeholder="Kota Asal" value="<?= $peserta['KOTA']; ?>" disabled>
-                      </div>
-                      <div class="offset-sm-2">
-                        
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
-                        <button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
-                        <button type="submit" class="btn btn-primary" id="btn-save" hidden><i class="fas fa-save"></i> Simpan</button>
-                        <button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i> Edit</button>
-                      </div>
-                    </div>
+                  </div>
                   <?= form_close() ?>
                 </div>
 

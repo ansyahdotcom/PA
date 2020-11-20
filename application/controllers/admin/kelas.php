@@ -49,13 +49,13 @@ class Kelas extends CI_Controller
             'required' => 'Kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('link[]', 'Link', 'required|trim|is_unique[kelas.PERMALINK]', [
-            'required' => 'Kolom ini harus diisi',
-            'is_unique' => 'Link ini sudah dipakai'
+        $this->form_validation->set_rules('link[]', 'Link', 'required|trim', [
+            'required' => 'Kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('hrg[]', 'Hrg', 'required|trim|numeric', [
-            'required' => 'Kolom ini harus diisi'
+        $this->form_validation->set_rules('hrg[]', 'Hrg', 'required|trim|numeric|is_natural', [
+            'required' => 'Kolom ini harus diisi',
+            'is_natural' => 'data yang diinputkan salah'
         ]);
 
         $this->form_validation->set_rules('disc[]', 'Disc', 'trim|numeric', [
@@ -132,7 +132,10 @@ class Kelas extends CI_Controller
             'required' => 'Kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('harga', 'Harga', 'trim');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric', [
+            'required' => 'Kolom ini harus diisi',
+            'numeric' => 'Data harus berisi angka'
+        ]);
 
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim', [
             'required' => 'Kolom ini harus diisi'

@@ -11,6 +11,14 @@
             return $query;
         }
 
+        public function link()
+        {
+            $this->db->select('PERMALINK');
+            $this->db->from('kelas');
+            $query = $this->db->get()->row_array();
+            return $query;
+        }
+
         public function getktg()
         {
             $ktg = $this->db->get('ktg_kelas')->result_array();
