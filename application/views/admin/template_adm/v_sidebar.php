@@ -82,7 +82,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/#'); ?>" class="nav-link">
+                                <a href="<?= base_url('admin/coba'); ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Buat Materi Kelas</p>
                                 </a>

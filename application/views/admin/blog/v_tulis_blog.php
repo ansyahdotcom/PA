@@ -64,8 +64,40 @@
 							<button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round"
 								data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button>
 							<br> <br>
-							<label for="FOTO_POST">Foto</label>
-							<input type="file" class="form-control" name="FOTO_POST" id="FOTO_POST" required>
+							<div class="form-group">
+								<label for="icon">Foto</label>
+								<div class="container">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="preview-zone hidden">
+													<div class="box box-solid">
+														<div class="box-header with-border">
+															<div><b>Preview</b></div>
+															<div class="box-tools pull-right">
+																<button type="button"
+																	class="btn btn-danger btn-xs remove-preview">
+																	<i class="fa fa-times"></i> Reset
+																</button>
+															</div>
+														</div>
+														<div class="box-body"></div>
+													</div>
+												</div>
+												<div class="dropzone-wrapper">
+													<div class="dropzone-desc">
+														<i class="glyphicon glyphicon-download-alt"></i>
+														<div>Pilih file gambar atau seret gambar kesini .</div>
+													</div>
+													<input type="file" name="FOTO_POST" class="dropzone" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <label for="FOTO_POST">Foto</label>
+							<input type="file" class="form-control" name="FOTO_POST" id="FOTO_POST" required> -->
 							<br>
 							<hr>
 							<textarea class="textarea" class="form-control" name="KONTEN_POST" id="KONTEN_POST"
