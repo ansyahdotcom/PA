@@ -25,7 +25,7 @@ class M_blog extends CI_Model
     // tampil tags di select
     function tampil_tags()
     {
-        $data = $this->db->query("SELECT ID_TAGS, NM_TAGS FROM tags ORDER BY NM_TAGS ASC");
+        $data = $this->db->query("SELECT ID_TAGS, NM_TAGS FROM tags ORDER BY ID_TAGS ASC");
         return $data;
     }
 

@@ -55,8 +55,8 @@
 							<!-- Tags -->
 							<i class="fa fa-tag"></i>
 							<label for="ID_TAGS">Tags</label><br>
-							<select name="ID_TAGS" id="ID_TAGS" class="form-control" required>
-								<option selected disabled>Pilih Tags </option>
+							<select name="ID_TAGS[]" id="ID_TAGS[]" class="select2bs4" multiple="multiple" data-placeholder="Select a State"
+								style="width: 100%;">
 								<?php foreach ($tags as $tg) { ?>
 								<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
 								<?php } ?>
@@ -96,8 +96,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- <label for="FOTO_POST">Foto</label>
-							<input type="file" class="form-control" name="FOTO_POST" id="FOTO_POST" required> -->
 							<br>
 							<hr>
 							<textarea class="textarea" class="form-control" name="KONTEN_POST" id="KONTEN_POST"
@@ -167,11 +165,3 @@
 		</div>
 	</div>
 </div>
-
-
-<script>
-	$(document).ready(function () {
-		$('.js-example-basic-multiple').select2();
-	});
-
-</script>

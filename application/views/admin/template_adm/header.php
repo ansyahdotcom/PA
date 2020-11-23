@@ -26,13 +26,8 @@
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- bootstrap select -->
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/bootstrap-select/css/bootstrap-select.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/bootstrap-select/css/bootstrap-select.css"> 
     
-    
-
 </head>
 
 <body class="hold-transition login-page">

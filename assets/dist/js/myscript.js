@@ -157,5 +157,10 @@ $(function() {
             icon: 'warning',
             title:'Data berhasil di Hapus!',
         });
+    }else if(flashData == 'blSuccess'){
+        Toast.fire({
+            icon: 'success',
+            title:'Artikel berhasil dibuat!',
+        });
     }
 });

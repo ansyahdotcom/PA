@@ -121,7 +121,7 @@ class Blog extends CI_Controller
         $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
         $JUDUL_POST = htmlspecialchars($this->input->post('JUDUL_POST'));
         $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
-        $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
+        $ID_TAGS = $this->input->post('ID_TAGS');
         $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
         $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
         $TGL_POST = date('Y-m-d');
@@ -160,20 +160,18 @@ class Blog extends CI_Controller
                 'TGL_POST' => $TGL_POST,
                 'UPDT_TRAKHIR' => $UPDT_TRAKHIR
             );
-
-            $dt_tags = array(
-                'ID_POST' => $ID_POST,
-                'ID_TAGS' => $ID_TAGS
-            );
-
+            
             $this->m_blog->tmbh_blog($data, 'post');
+            for ($i=0; $i < count($ID_TAGS); $i++){
+                $dt_tags = array(
+                'ID_POST' => $ID_POST,
+                'ID_TAGS' => $ID_TAGS[$i]
+            );
             $this->m_blog->tmbh_dt_tags($dt_tags, 'detail_tags');
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Artikel berhasil dibuat!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+            }
+            
+
+            $this->session->set_flashdata('message', 'blSuccess');
             redirect('admin/blog');
         } else {
             $error = array('error' => $this->upload->display_errors());

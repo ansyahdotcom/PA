@@ -15,7 +15,7 @@
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container-fluid -->
-		<?= $this->session->flashdata('message'); ?>
+		<!-- <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div> -->
 	</div>
 	<!-- /.content-header -->
 
@@ -24,8 +24,7 @@
 		<div class="card-header">
 			<div class="text-right">
 				<a class="btn btn-primary" href="<?= base_url('admin/blog/tulis_blog'); ?>"><i class="fas fa-plus"></i>
-					Tulis
-					artikel</a>
+					Tulis artikel</a>
 			</div>
 		</div>
 		<?php foreach ($blog as $blg) { 
