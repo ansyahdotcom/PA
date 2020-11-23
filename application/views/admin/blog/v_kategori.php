@@ -138,7 +138,7 @@ foreach ($kategori as $ktg) {
 			<form method="post" action="<?= base_url('admin/kategori/tambah_kategori'); ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="hidden" class="form-control" id="ID_CT" name="ID_CT" value="<?= $ID_CTT; ?>">
+						<input type="hidden" class="form-control" id="ID_CT" name="ID_CT" value="<?= $ID_CT; ?>">
 						<input required type="text" name="NM_CT" id="NM_CT" class="form-control" placeholder="Masukkan Nama Kategori . ." aria-describedby="namakategori" maxlength="100">
 					</div>
 				</div>

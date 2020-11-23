@@ -8,6 +8,11 @@ class M_listkelas extends CI_Model
                             AND detail_materi.ID_MT = materi.ID_MT
                             AND tugas.ID_TG = detil_tugas.ID_TG
                             AND materi.ID_MT = detil_tugas.ID_MT");
-    return $query;
+    return $query->result_array();
+    }
+
+    function tmbh_materi($NM_MT)
+    {
+        $this->db->query("INSERT INTO materi (NM_MT ) VALUES ( '$NM_MT')");
     }
 }
