@@ -29,16 +29,7 @@ class M_blog extends CI_Model
         return $data;
     }
 
-    // tampil tags yg bawahnya judul
-    function tampil_dt_tags($ID_POST)
-    {
-        $data = $this->db->query("SELECT detail_tags.ID_POST, detail_tags.ID_TAGS, tags.NM_TAGS 
-                                FROM detail_tags, tags 
-                                WHERE detail_tags.ID_TAGS = tags.ID_TAGS
-                                AND detail_tags.ID_POST = '$ID_POST'");
-        return $data;
-    }
-
+    
     // nyari data id post terakhir
     function selectMaxID_POST()
     {
@@ -46,7 +37,7 @@ class M_blog extends CI_Model
         $hasil = $query->row();
         return $hasil->ID_POST;
     }
-
+    
     // nyari data id kategori terakhir
     function selectMaxID_CT()
     {
@@ -54,7 +45,7 @@ class M_blog extends CI_Model
         $hasil = $query->row();
         return $hasil->ID_CT;
     }
-
+    
     // nyari data id tag terakhir
     function selectMaxID_TAGS()
     {
@@ -67,65 +58,52 @@ class M_blog extends CI_Model
     {
         $this->db->insert($table, $data);
     }
-
+    
     function update($where, $data, $table)
     {
         $this->db->where($where);
         $this->db->update($table, $data);
     }
-
+    
     function delete($where, $table)
     {
         $this->db->delete($table, $where);
     }
-
+    
+    function tampil_edit($where, $table)
+    {
+        return $this->db->get_where($table, $where);
+    }
+    
+    // nampilin tag yg mau diedit
+    function tampil_edit_tag($JUDUL)
+    {
+        $query = $this->db->query("SELECT detail_tags.ID_POST, detail_tags.ID_TAGS FROM detail_tags, post 
+                                    WHERE post.JUDUL_POST = '$JUDUL' AND detail_tags.ID_POST = post.ID_POST");
+        return $query;
+    }
+    
     // pratinjau
-    function tampil_dt_blog($ID_POST)
+    function tampil_dt_blog($JUDUL_POST)
     {
         $data=$this->db->query("SELECT post.ID_POST, post.ID_CT, post.JUDUL_POST, post.KONTEN_POST, 
                                 post.TGL_POST, post.FOTO_POST, post.UPDT_TRAKHIR, post.ST_POST, category.NM_CT 
                                 FROM post, category
                                 WHERE post.ID_CT = category.ID_CT
-                                AND post.ID_POST =  '$ID_POST'");
+                                AND post.JUDUL_POST =  '$JUDUL_POST'");
         return $data;
     }
-
-    // tampil artikel yg kategori sama
-    function post_ktg($NM_CT)
+    
+    // tampil tags yg bawahnya judul
+    function tampil_dt_tags($JUDUL_POST)
     {
-        $data = $this->db->query("SELECT post.ID_POST, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST, 
-                                    post.FOTO_POST, post.ST_POST, post.ID_CT, category.NM_CT
-                                    FROM post, category
-                                    WHERE post.ID_CT = category.ID_CT
-                                    AND category.NM_CT = '$NM_CT'");
+        $data = $this->db->query("SELECT detail_tags.ID_POST, detail_tags.ID_TAGS, tags.NM_TAGS 
+                                FROM detail_tags, tags, post 
+                                WHERE detail_tags.ID_TAGS = tags.ID_TAGS
+                                AND detail_tags.ID_POST = post.ID_POST
+                                AND post.JUDUL_POST = '$JUDUL_POST'");
         return $data;
     }
-
-    // tampil artikel yg tag sama
-    function post_tag($NM_TAGS)
-    {
-        $data = $this->db->query("SELECT post.ID_POST, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST, 
-                                    post.FOTO_POST, post.ST_POST
-                                    FROM post, detail_tags, tags
-                                    WHERE post.ID_POST = detail_tags.ID_POST AND detail_tags.ID_TAGS = tags.ID_TAGS
-                                    AND tags.NM_TAGS = '$NM_TAGS'");
-        return $data;
-    }
-
-    function hapus_artikel_dttags($ID_POST)
-    {
-        $this->db->query("DELETE FROM detail_tags WHERE ID_POST = '$ID_POST'");
-    }
-
-    function hapus_artikel_post($ID_POST)
-    {
-        $this->db->query("DELETE FROM post WHERE ID_POST = '$ID_POST'");
-    }
-
-    function edit_artikel($where, $table)
-    {
-        return $this->db->get_where($table, $where);
-    }
-
+    
 
 }

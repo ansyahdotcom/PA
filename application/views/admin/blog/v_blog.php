@@ -45,7 +45,7 @@
 											src="<?= base_url('assets/fotoicon/'. $blg->FOTO_POST); ?>"> -->
 										<span class="username m-0 text-lg">
 											<a class="text-dark"
-												href="<?= base_url('admin/blog/edit_artikel/' . $blg->ID_POST.'/'); ?>"><?= $blg->JUDUL_POST; ?></a>
+												href="<?= base_url('admin/blog/edit_artikel/' . $blg->JUDUL_POST.'/'); ?>"><?= str_replace('-', ' ', $blg->JUDUL_POST); ?></a>
 
 										</span>
 										<hr>
@@ -88,11 +88,11 @@
 											?>
 											<!-- dilihat tampilan blognya sebelum diposting -->
 											<a class="btn btn-secondary btn-sm btn-round"
-												href="<?= base_url('admin/blog/pratinjau/'.$blg->ID_POST);?>"><i
+												href="<?= base_url('admin/blog/pratinjau/'.$blg->JUDUL_POST);?>"><i
 													class="fas fa-eye"></i> Pratinjau</a>
 
 											<!-- edit artikel -->
-											<a href="<?= base_url('admin/blog/edit_artikel/' .$blg->ID_POST); ?>">
+											<a href="<?= base_url('admin/blog/edit_artikel/' .$blg->JUDUL_POST); ?>">
 												<button type="button" class="btn btn-primary btn-circle btn-sm">
 													<i class="fas fa-edit" style="color: white"></i> Edit
 												</button>

@@ -37,4 +37,29 @@ class index extends CI_Controller
         $this->load->view("landingpage/lihat_post");
         $this->load->view("landingpage/template/footer" , $data);
     }
+
+    
+    // lihat artikel yg kategori sama
+    public function lihat_post_ktg($NM_CT)
+    {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+
+        $data['blog'] = $this->m_blog->post_ktg($NM_CT, 'post')->result();
+        $this->load->view('landingpage/v_post_ktg', $data);
+    }
+
+    // lihat artikel yg tag sama
+    public function lihat_post_tag($NM_TAGS)
+    {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+
+        $data['dt_tags'] = $this->m_blog->post_tag($NM_TAGS, 'detail_tags')->result();
+        $this->load->view('landingpage/v_post_tag', $data);
+    }
 }

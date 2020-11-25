@@ -37,6 +37,7 @@
 							<label for="JUDUL_POST">Judul</label>
 							<input class="form-control" type="text" autocomplete="off" name="JUDUL_POST"
 								placeholder="Tambahkan Judul" autofocus required>
+							<!-- <?= form_error('JUDUL_POST'); ?> -->
 							<br>
 							<!-- Kategori -->
 							<i class="fa fa-folder"></i>
@@ -54,7 +55,7 @@
 							<!-- Tags -->
 							<i class="fa fa-tag"></i>
 							<label for="ID_TAGS">Tags</label><br>
-							<select name="ID_TAGS[]" id="ID_TAGS[]" class="select2bs4" multiple="multiple" data-placeholder="Pilih tag"
+							<select name="ID_TAGS[]" id="ID_TAGS[]" class="select2bs4" required multiple="multiple" data-placeholder="Pilih tag"
 								style="width: 100%;">
 								<?php foreach ($tags as $tg) { ?>
 								<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>

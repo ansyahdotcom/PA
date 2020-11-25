@@ -11,7 +11,7 @@
 
 				<!-- Title -->
 				<h1 class="mt-4">
-					<?= $blg->JUDUL_POST; ?>
+					<?= str_replace('-', ' ', $blg->JUDUL_POST); ?>
 				</h1>
 
 				<hr>

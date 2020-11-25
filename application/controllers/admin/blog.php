@@ -19,6 +19,7 @@ class Blog extends CI_Controller
         $this->load->model('admin/m_blog');
         $this->load->model('admin/m_medsos');
         $this->load->library('upload');
+        $this->load->library('form_validation');
         adm_logged_in();
         cekadm();
     }
@@ -98,6 +99,8 @@ class Blog extends CI_Controller
             $data['ID_POST'] = 'PS' . sprintf("%05s", $IDP);
         }
 
+        
+
         $data['tags'] = $this->m_blog->tampil_tags()->result();
         $data['category'] = $this->m_blog->tampil_kategori()->result();
         $this->load->view("admin/template_adm/v_header", $data);
@@ -146,6 +149,10 @@ class Blog extends CI_Controller
         $TGL_POST = date('Y-m-d');
         $UPDT_TRAKHIR = date('Y-m-d');
 
+        // $this->form_validation->set_rules('JUDUL_POST', 'Judul', 'required|trim', [
+        //     'required' => 'harus diisi'
+        //     ]);
+
         // untuk upload proposal
         $config['upload_path']          = './assets/fotoblog/';
         $config['allowed_types']        = 'jpg|jpeg|JPG';
@@ -172,7 +179,7 @@ class Blog extends CI_Controller
             $data = array(
                 'ID_POST' => $ID_POST,
                 'ID_ADM' => $ID_ADM,
-                'JUDUL_POST' => $JUDUL_POST,
+                'JUDUL_POST' => str_replace(' ', '-', $JUDUL_POST),
                 'ID_CT' => $ID_CT,
                 'FOTO_POST' => $upload_data['file_name'],
                 'KONTEN_POST' => $KONTEN_POST,
@@ -260,22 +267,22 @@ class Blog extends CI_Controller
         redirect('admin/blog');
     }
 
-    public function edit_artikel($ID_POST)
+    public function edit_artikel($JUDUL_POST)
     {
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
         $data['tittle'] = "Edit Artikel";
-        $where = array('ID_POST' => $ID_POST);
+        $where = array('JUDUL_POST' => $JUDUL_POST);
 
         $ID_CT = $this->buat_id_ct();
         $data['ID_CT'] = $ID_CT;
         $ID_TAGS = $this->buat_id_tags();
         $data['ID_TAGS'] = $ID_TAGS;
 
-        $data['post'] = $this->m_blog->edit_artikel($where, 'post')->result();
-        $data['dttags'] = $this->m_blog->edit_artikel($where, 'detail_tags')->result();
+        $data['post'] = $this->m_blog->tampil_edit($where, 'post')->result();
+        $data['dttags'] = $this->m_blog->tampil_edit_tag($JUDUL_POST, 'detail_tags')->result();
         $data['category'] = $this->m_blog->tampil_kategori()->result();
         $data['tags'] = $this->m_blog->tampil_tags()->result();
         $this->load->view("admin/template_adm/v_header", $data);
@@ -305,7 +312,7 @@ class Blog extends CI_Controller
         $where = array('ID_POST' => $ID_POST);
 
         $data = array(
-            'JUDUL_POST' => $JUDUL_POST,
+            'JUDUL_POST' => str_replace(' ', '-', $JUDUL_POST),
             'ID_ADM' => $ID_ADM,
             'ID_CT' => $ID_CT,
             // 'FOTO_POST' => $FOTO_POST,
@@ -335,7 +342,7 @@ class Blog extends CI_Controller
     }
 
     // pratinjau / lihat post / lihat artikel
-    public function pratinjau($ID_POST)
+    public function pratinjau($JUDUL_POST)
     {
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>
@@ -344,35 +351,12 @@ class Blog extends CI_Controller
 
         $data['judul'] = "Detail Blog";
         $data['data'] = $this->m_medsos->get_data();
-        $data['blog'] = $this->m_blog->tampil_dt_blog($ID_POST, 'post')->result();
-        $data['detail_tags'] = $this->m_blog->tampil_dt_tags($ID_POST, 'detail_tags')->result();
+        $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
+        $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
         $this->load->view("admin/blog/pratinjau/headerblog", $data);
         $this->load->view('admin/blog/detail_blog', $data);
         $this->load->view("admin/blog/pratinjau/footer", $data);
     }
 
-    // // lihat artikel yg kategori sama
-    // public function lihat_post_ktg($NM_CT)
-    // {
-    //     $data['admin'] = $this->db->get_where('admin', [
-    //         'EMAIL_ADM' =>
-    //         $this->session->userdata('email')
-    //     ])->row_array();
-
-    //     $data['blog'] = $this->m_blog->post_ktg($NM_CT, 'post')->result();
-    //     $this->load->view('landingpage/v_post_ktg', $data);
-    // }
-
-    // // lihat artikel yg tag sama
-    // public function lihat_post_tag($NM_TAGS)
-    // {
-    //     $data['admin'] = $this->db->get_where('admin', [
-    //         'EMAIL_ADM' =>
-    //         $this->session->userdata('email')
-    //     ])->row_array();
-
-    //     $data['dt_tags'] = $this->m_blog->post_tag($NM_TAGS, 'detail_tags')->result();
-    //     $this->load->view('landingpage/v_post_tag', $data);
-    // }
 }

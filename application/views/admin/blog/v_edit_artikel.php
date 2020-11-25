@@ -27,13 +27,13 @@
 				<div class="card">
 					<!-- /.card-header -->
 					<?php foreach ($post as $blg) { ?>
-					<form action="<?php echo base_url() . 'admin/blog/update_artikel'; ?>" method="post"
+					<form action="<?= base_url() . 'admin/blog/update_artikel'; ?>" method="post"
 						enctype="multipart/form-data" class="form-horizontal">
 						<div class="card-body">
-							<input type="hidden" name="ID_POST" value="<?php echo $blg->ID_POST ?>">
-							<input type="hidden" name="ID_ADM" value="<?php echo $blg->ID_ADM ?>">
+							<input type="hidden" name="ID_POST" value="<?= $blg->ID_POST ?>">
+							<input type="hidden" name="ID_ADM" value="<?= $blg->ID_ADM ?>">
 							<label for="JUDUL_POST">Judul</label>
-							<input type="text" class="form-control" name="JUDUL_POST" value="<?php echo $blg->JUDUL_POST ?>"
+							<input type="text" class="form-control" name="JUDUL_POST" value="<?= str_replace('-', ' ', $blg->JUDUL_POST); ?>"
 							autocomplete="off" autofocus required>
 							<br>
 							<label for="ID_CT">Kategori</label>
@@ -58,7 +58,7 @@
 							<br>
 							<!-- <label for="FOTO_POST">Foto</label>
 							<input type="file" class="form-control" name="FOTO_POST"
-								value="<?php echo $blg->FOTO_POST ?>">
+								value="<?= $blg->FOTO_POST ?>">
 							<br>
 							<div class="form-group">
 								<label for="icon">Foto</label>
@@ -96,7 +96,7 @@
 
 							<label for="KONTEN_POST">Konten</label>
 							<textarea class="textarea" class="form-control"
-								name="KONTEN_POST"><?php echo $blg->KONTEN_POST  ?></textarea>
+								name="KONTEN_POST"><?= $blg->KONTEN_POST  ?></textarea>
 							<br>
 							<button class="btn btn-primary btn-round">Batal</button>
 							<button type="submit" class="btn btn-success btn-round">Simpan</button>
