@@ -67,6 +67,7 @@
                     'NM_ADM' => $nama,
                     'HP_ADM' => $hp,
                     'ALMT_ADM' => $alamat,
+                    'UPDATE_ADM' => time(),
                 ];
 
                 $this->db->set($edit);

@@ -34,9 +34,9 @@
 
               <h3 class="profile-username text-center text-bold"><?= $admin['NM_ADM']; ?></h3>
               <?php
-                if ($admin['DATE_CREATE'] == 0) {
-                  $tgl = "--";
-                }
+              if ($admin['DATE_ADM'] == 0) {
+                $tgl = "--";
+              }
               ?>
 
               <ul class="list-group mb-3">
@@ -44,7 +44,7 @@
                   <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $admin['ROLE'] ?></span>
                 </li>
                 <li class="list-group-item">
-                  <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl ?></span>
+                  <b>Terdaftar Sejak</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl ?></span>
                 </li>
               </ul>
               <!-- <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button> -->
@@ -52,25 +52,25 @@
 
             <div class="card-body box-profil" id="imgedit" hidden>
               <?= form_open_multipart('admin/profile'); ?>
-                <div class="form-group">
-                  <div class="form-group text-center" style="position: relative;">
-                    <span class="img-div">
-                      <div class="text-center img-placeholder" onClick="triggerClick()">
-                        <h3 class="profile-username text-center text-bold">Edit Foto Profil</h3>
-                        <label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
-                      </div>
-                      <div>
-                        <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
-                      </div>
-                    </span>
-                    <input type="file" name="image" value="<?= $admin['FTO_ADM']; ?>" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
-                    <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
-                    <label class="text-bold text-gray">Foto Profil</label>
-                    <div>
-                      <small class="text-danger text-bold">(Ukuran file gambar max 2 mb.)</small>
+              <div class="form-group">
+                <div class="form-group text-center" style="position: relative;">
+                  <span class="img-div">
+                    <div class="text-center img-placeholder" onClick="triggerClick()">
+                      <h3 class="profile-username text-center text-bold">Edit Foto Profil</h3>
+                      <label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
                     </div>
+                    <div>
+                      <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
+                    </div>
+                  </span>
+                  <input type="file" name="image" value="<?= $admin['FTO_ADM']; ?>" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
+                  <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
+                  <label class="text-bold text-gray">Foto Profil</label>
+                  <div>
+                    <small class="text-danger text-bold">(Ukuran file gambar max 2 mb.)</small>
                   </div>
                 </div>
+              </div>
             </div>
             <!-- /.card-body -->
           </div>
@@ -95,61 +95,74 @@
                 <!-- Profil -->
                 <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                   <!-- <form class="form-horizontal" action="<?= base_url('admin/profile'); ?>" method="POST"> -->
-                    <div class="form-group row">
-                      <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="nm" name="nama" placeholder="Nama Lengkap" value="<?= $admin['NM_ADM']; ?>" disabled>
+                  <div class="form-group row">
+                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
-                      <div class="offset-sm-2">
-                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
-                      </div>
+                      <input type="text" class="form-control" id="nm" name="nama" placeholder="Nama Lengkap" value="<?= $admin['NM_ADM']; ?>" disabled>
                     </div>
-                    <div class="form-group row">
-                      <label for="email" class="col-sm-2 col-form-label">Email</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        </div>
-                        <input type="email" class="form-control" id="em" name="email" placeholder="Email" value="<?= $admin['EMAIL_ADM']; ?>" disabled>
-                      </div>
-                      <div class="offset-sm-2">
-                        <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
-                      </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group row">
-                      <label for="hp" class="col-sm-2 col-form-label">No Handphone</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        </div>
-                        <input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="<?= $admin['HP_ADM']; ?>" disabled>
+                  </div>
+                  <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                       </div>
-                      <div class="offset-sm-2">
-                        <?= form_error('hp', '<small class="text-danger">', '</small>'); ?>
-                      </div>
+                      <input type="email" class="form-control" id="em" name="email" placeholder="Email" value="<?= $admin['EMAIL_ADM']; ?>" disabled>
                     </div>
-                    <div class="form-group row">
-                      <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                      <div class="input-group mb-1 col-sm-10">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat" value="<?= $admin['ALMT_ADM']; ?>" disabled>
-                      </div>
-                      <div class="offset-sm-2">
-                        <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
-                      </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
-                        <button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
-                        <button type="submit" class="btn btn-primary" id="btn-save" hidden><i class="fas fa-save"></i> Simpan</button>
-                        <button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i> Edit</button>
+                  </div>
+                  <div class="form-group row">
+                    <label for="hp" class="col-sm-2 col-form-label">No Handphone</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
                       </div>
+                      <input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="<?= $admin['HP_ADM']; ?>" disabled>
                     </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('hp', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                      </div>
+                      <input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat" value="<?= $admin['ALMT_ADM']; ?>" disabled>
+                    </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="alamat" class="col-sm-2 col-form-label">Terakhir update</label>
+                    <div class="input-group mb-1 col-sm-10">
+                      <?php if ($admin['UPDATE_ADM'] == 0) : ?>
+                        <span class="badge-pill bg-secondary text-bold">--</span>
+                      <?php else : ?>
+                        <span class="badge-pill bg-warning text-bold"><?= date('d F Y', $admin['UPDATE_ADM']); ?></span>
+                      <?php endif; ?>
+                    </div>
+                    <div class="offset-sm-2">
+                      <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                      <button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
+                      <button type="submit" class="btn btn-primary" id="btn-save" hidden><i class="fas fa-save"></i> Simpan</button>
+                      <button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i> Edit</button>
+                    </div>
+                  </div>
                   <?= form_close() ?>
                 </div>
 
@@ -190,6 +203,19 @@
                       </div>
                       <div class="offset-sm-3">
                         <?= form_error('pswbru1', '<small class="text-danger">', '</small>'); ?>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="alamat" class="col-sm-3 col-form-label">Terakhir update</label>
+                      <div class="input-group mb-1 col-sm-9">
+                        <?php if ($admin['UPDATE_PSWADM'] == 0) : ?>
+                          <span class="badge-pill bg-secondary text-bold">--</span>
+                        <?php else : ?>
+                          <span class="badge-pill bg-warning text-bold"><?= date('d F Y', $admin['UPDATE_PSWADM']); ?></span>
+                        <?php endif; ?>
+                      </div>
+                      <div class="offset-sm-2">
+                        <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="form-group row">

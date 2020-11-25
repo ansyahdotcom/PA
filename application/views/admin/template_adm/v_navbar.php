@@ -117,10 +117,10 @@
 
                     </p>
                     <small>
-                        <?php if ($admin['DATE_CREATE'] != 0) { ?>
-                            Terdaftar <?= date('d F Y', $admin['DATE_CREATE']); ?>
+                        <?php if ($admin['DATE_ADM'] != 0) { ?>
+                            Terdaftar Sejak <?= date('d F Y', $admin['DATE_ADM']); ?>
                         <?php } else {?>
-                            Terdaftar <span title='caption' class='badge badge-secondary'></span>
+                            Terdaftar Sejak <span title='caption' class='badge badge-secondary'></span>
                         <?php } ?>
                     </small>
                 </li>

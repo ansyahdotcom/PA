@@ -9,7 +9,7 @@
                     <h5 class="card-title text-center">Masuk Akun</h5>
                     <form class="form-signin" method="POST" action="<?= base_url('peserta/auth/login'); ?>">
                         <div class="form-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Masukkan Email" required>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Masukkan Email" autofocus required>
                             <label for="email">Email</label>
                             <?= form_error('email', '<small class="text-danger p-3">', '</small>'); ?>
                         </div>
