@@ -38,6 +38,13 @@
                         </form>
                     </div>
                 </div>
+                <div class="row justify-content-center">
+                    <?php if($this->session->userdata('keyword') == null) : ?>
+                    
+                    <?php else : ?>
+                    <h5 class="text-bold">Hasil Pencarian: <?= $rows; ?></h5>
+                    <?php endif; ?>
+                </div>
 
                 <div class="row d-flex align-items-stretch">
                     <?php foreach ($kls as $k) :
