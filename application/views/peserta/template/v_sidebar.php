@@ -53,11 +53,10 @@
                     <li class="nav-header">Transaksi</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/#'); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-receipt"></i>
+                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Transaksi
-                                <span class="badge badge-info right">2</span>
+                                Register Kelas Baru
                             </p>
                         </a>
                     </li>
