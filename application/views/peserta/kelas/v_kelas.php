@@ -42,7 +42,11 @@
                     <?php if($this->session->userdata('keyword') == null) : ?>
                     
                     <?php else : ?>
-                    <h5 class="text-bold">Hasil Pencarian: <?= $rows; ?></h5>
+                        <?php if($rows == 0) : ?>
+                            <h5 class="text-bold text-secondary">Hasil pencarian tidak ditemukan</h5>
+                        <?php else : ?>
+                            <h5 class="text-bold text-secondary">Ditemukan Hasil Pencarian: <?= $rows; ?></h5>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
 
