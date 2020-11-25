@@ -16,7 +16,6 @@
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container-fluid -->
-		<?= $this->session->flashdata('message'); ?>
 	</div>
 	<!-- /.content-header -->
 
@@ -42,7 +41,7 @@
 							<!-- Kategori -->
 							<i class="fa fa-folder"></i>
 							<label for="ID_CT">Kategori</label>
-							<select name="ID_CT" id="ID_CT" class="form-control" required>
+							<select name="ID_CT" id="ID_CT" class="form-control" required data-placeholder="Pilih kategori">
 								<option selected disabled>Pilih Kategori</option>
 								<?php foreach ($category as $ct) { ?>
 								<option value="<?= $ct->ID_CT; ?>"><?= $ct->NM_CT; ?></option>
@@ -55,7 +54,7 @@
 							<!-- Tags -->
 							<i class="fa fa-tag"></i>
 							<label for="ID_TAGS">Tags</label><br>
-							<select name="ID_TAGS[]" id="ID_TAGS[]" class="select2bs4" multiple="multiple" data-placeholder="Select a State"
+							<select name="ID_TAGS[]" id="ID_TAGS[]" class="select2bs4" multiple="multiple" data-placeholder="Pilih tag"
 								style="width: 100%;">
 								<?php foreach ($tags as $tg) { ?>
 								<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
@@ -129,7 +128,7 @@
 			<form method="post" action="<?= base_url('admin/blog/pr_tmbh_kategori'); ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="text" class="form-control" name="ID_CT" value="<?= $ID_CT; ?>">
+						<input type="hidden" class="form-control" name="ID_CT" value="<?= $ID_CT; ?>">
 						<input type="text" class="form-control" name="NM_CT" autocomplete="off" autofocus required>
 					</div>
 				</div>
@@ -159,7 +158,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" id="save-btn" class="btn btn-success">Buat</button>
+					<button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
 				</div>
 			</form>
 		</div>

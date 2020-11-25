@@ -1,5 +1,16 @@
 <?php
 
+// <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); "></div>
+// $i = 100;
+// 										$KONTEN_POST = htmlspecialchars_decode($blg->KONTEN_POST);
+// 										$konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
+
+// 										$char = $KONTEN_POST[$i - 1];
+// 										while($char != ' ') {
+// 											$char = $KONTEN_POST[--$i]; // Cari spasi pada posisi 49, 48, 47, dst...
+// 										}
+// 										echo substr($KONTEN_POST, 0, $i) . ' ...';
+
 class Blog extends CI_Controller
 {
     function __construct()
@@ -87,8 +98,8 @@ class Blog extends CI_Controller
             $data['ID_POST'] = 'PS' . sprintf("%05s", $IDP);
         }
 
-        $data['category'] = $this->m_blog->tampil_kategori()->result();
         $data['tags'] = $this->m_blog->tampil_tags()->result();
+        $data['category'] = $this->m_blog->tampil_kategori()->result();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
@@ -101,16 +112,24 @@ class Blog extends CI_Controller
     {
         $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
         $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
-        $this->m_blog->tmbh_kategori($ID_CT, $NM_CT);
+        $data = array(
+            'ID_CT' => $ID_CT,
+            'NM_CT' => $NM_CT
+        );
+        $this->m_blog->insert($data, 'category');
         redirect('admin/blog/tulis_blog');
     }
-
+    
     //tambah tags di tulis blog
     public function pr_tmbh_tags()
     {
         $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
         $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
-        $this->m_blog->tmbh_tags($ID_TAGS, $NM_TAGS);
+        $data = array(
+            'ID_TAGS' => $ID_TAGS,
+            'NM_TAGS' => $NM_TAGS
+        );
+        $this->m_blog->insert($data, 'tags');
         redirect('admin/blog/tulis_blog');
     }
 
@@ -161,17 +180,24 @@ class Blog extends CI_Controller
                 'UPDT_TRAKHIR' => $UPDT_TRAKHIR
             );
             
-            $this->m_blog->tmbh_blog($data, 'post');
+            $this->m_blog->insert($data, 'post');
+
             for ($i=0; $i < count($ID_TAGS); $i++){
                 $dt_tags = array(
                 'ID_POST' => $ID_POST,
                 'ID_TAGS' => $ID_TAGS[$i]
             );
-            $this->m_blog->tmbh_dt_tags($dt_tags, 'detail_tags');
+            $this->m_blog->insert($dt_tags, 'detail_tags');
             }
             
 
-            $this->session->set_flashdata('message', 'blSuccess');
+            // $this->session->set_flashdata('message', 'blSuccess');
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
+															Artikel berhasil dibuat!
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>');
             redirect('admin/blog');
         } else {
             $error = array('error' => $this->upload->display_errors());
@@ -184,20 +210,29 @@ class Blog extends CI_Controller
     {
         $ST_POST = htmlspecialchars($this->input->post('ST_POST'));
         $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
-
+        $where = array(
+            'ID_POST' => $ID_POST
+        );
+        
         if ($ST_POST == 0) {
             $ST_POST++;
-            $this->m_blog->posting($ST_POST, $ID_POST);
+            $data = array(
+                'ST_POST' => $ST_POST
+            );
+            $this->m_blog->update($where, $data, 'post');
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Artikel berhasil dipublikasikan!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+                                                Artikel berhasil dipublikasikan!
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>');
             redirect('admin/blog');
         } else {
             $ST_POST--;
-            $this->m_blog->posting($ST_POST, $ID_POST);
+            $data = array(
+                'ST_POST' => $ST_POST
+            );
+            $this->m_blog->update($where, $data, 'post');
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
 															Artikel dikembalikan ke draf!
 															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -211,10 +246,13 @@ class Blog extends CI_Controller
     public function hapus_artikel()
     {
         $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
-        $this->m_blog->hapus_artikel_dttags($ID_POST);
-        $this->m_blog->hapus_artikel_post($ID_POST);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show">
-                                                    Data telah dihapus!
+        $where = array(
+            'ID_POST' => $ID_POST
+        );
+        $this->m_blog->delete($where, 'detail_tags');
+        $this->m_blog->delete($where, 'post');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
+                                                    Artikel berhasil dihapus!
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -237,6 +275,7 @@ class Blog extends CI_Controller
         $data['ID_TAGS'] = $ID_TAGS;
 
         $data['post'] = $this->m_blog->edit_artikel($where, 'post')->result();
+        $data['dttags'] = $this->m_blog->edit_artikel($where, 'detail_tags')->result();
         $data['category'] = $this->m_blog->tampil_kategori()->result();
         $data['tags'] = $this->m_blog->tampil_tags()->result();
         $this->load->view("admin/template_adm/v_header", $data);
@@ -245,24 +284,6 @@ class Blog extends CI_Controller
         $this->load->view("admin/blog/v_edit_artikel", $data);
         $this->load->view("admin/template_adm/v_footer");
     }
-
-    //tambah kategori di edit artikel
-    // public function pr_tmbh_kategori2()
-    // {
-    //     $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
-    //     $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
-    //     $this->m_blog->tmbh_kategori($ID_CT, $NM_CT);
-    //     redirect('admin/blog/edit_artikel');
-    // }
-
-    //tambah tags di edit artikel
-    // public function pr_buat_tags2()
-    // {
-    //     $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
-    //     $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
-    //     $this->m_blog->buat_tags($ID_TAGS, $NM_TAGS);
-    //     redirect('admin/blog/edit_artikel');
-    // }
 
     public function update_artikel()
     {
@@ -275,31 +296,35 @@ class Blog extends CI_Controller
         $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
         $JUDUL_POST = htmlspecialchars($this->input->post('JUDUL_POST'));
         $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
-        $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
-        $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
+        $ID_TAGS = $this->input->post('ID_TAGS');
+        // $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
         $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
         $TGL_POST = date('Y-m-d');
         $UPDT_TRAKHIR = date('Y-m-d');
+
+        $where = array('ID_POST' => $ID_POST);
 
         $data = array(
             'JUDUL_POST' => $JUDUL_POST,
             'ID_ADM' => $ID_ADM,
             'ID_CT' => $ID_CT,
-            'FOTO_POST' => $FOTO_POST,
+            // 'FOTO_POST' => $FOTO_POST,
             'KONTEN_POST' => $KONTEN_POST,
             'TGL_POST' => $TGL_POST,
             'UPDT_TRAKHIR' => $UPDT_TRAKHIR
         );
+        
+        $this->m_blog->update($where, $data, 'post');
+        $this->m_blog->delete($where, 'detail_tags');
 
-        $dt_tags = array(
+        for ($i=0; $i < count($ID_TAGS); $i++){
+            $dt_tags = array(
             'ID_POST' => $ID_POST,
-            'ID_TAGS' => $ID_TAGS
+            'ID_TAGS' => $ID_TAGS[$i]
         );
-
-        $where = array('ID_POST' => $ID_POST);
-
-        $this->m_blog->update_artikel($where, $data, 'post');
-        $this->m_blog->update_dt_tags($where, $dt_tags, 'detail_tags');
+        $this->m_blog->insert($dt_tags, 'detail_tags');
+        }
+        
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
 															Artikel berhasil diedit!
 															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -322,32 +347,32 @@ class Blog extends CI_Controller
         $data['blog'] = $this->m_blog->tampil_dt_blog($ID_POST, 'post')->result();
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($ID_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
-        $this->load->view("landingpage/template/headerblog", $data);
-        $this->load->view('landingpage/detail_blog', $data);
-        $this->load->view("landingpage/template/footer", $data);
+        $this->load->view("admin/blog/pratinjau/headerblog", $data);
+        $this->load->view('admin/blog/detail_blog', $data);
+        $this->load->view("admin/blog/pratinjau/footer", $data);
     }
 
-    // lihat artikel yg kategori sama
-    public function lihat_post_ktg($NM_CT)
-    {
-        $data['admin'] = $this->db->get_where('admin', [
-            'EMAIL_ADM' =>
-            $this->session->userdata('email')
-        ])->row_array();
+    // // lihat artikel yg kategori sama
+    // public function lihat_post_ktg($NM_CT)
+    // {
+    //     $data['admin'] = $this->db->get_where('admin', [
+    //         'EMAIL_ADM' =>
+    //         $this->session->userdata('email')
+    //     ])->row_array();
 
-        $data['blog'] = $this->m_blog->post_ktg($NM_CT, 'post')->result();
-        $this->load->view('landingpage/v_post_ktg', $data);
-    }
+    //     $data['blog'] = $this->m_blog->post_ktg($NM_CT, 'post')->result();
+    //     $this->load->view('landingpage/v_post_ktg', $data);
+    // }
 
-    // lihat artikel yg tag sama
-    public function lihat_post_tag($NM_TAGS)
-    {
-        $data['admin'] = $this->db->get_where('admin', [
-            'EMAIL_ADM' =>
-            $this->session->userdata('email')
-        ])->row_array();
+    // // lihat artikel yg tag sama
+    // public function lihat_post_tag($NM_TAGS)
+    // {
+    //     $data['admin'] = $this->db->get_where('admin', [
+    //         'EMAIL_ADM' =>
+    //         $this->session->userdata('email')
+    //     ])->row_array();
 
-        $data['dt_tags'] = $this->m_blog->post_tag($NM_TAGS, 'detail_tags')->result();
-        $this->load->view('landingpage/v_post_tag', $data);
-    }
+    //     $data['dt_tags'] = $this->m_blog->post_tag($NM_TAGS, 'detail_tags')->result();
+    //     $this->load->view('landingpage/v_post_tag', $data);
+    // }
 }

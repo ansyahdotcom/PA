@@ -48,12 +48,11 @@
 
 				<!--  ======================= Awalan Kategori ============================== -->
 				<div class="card my-4">
-				<h5 class="card-header">Kategori</h5>
+				<h5 class="card-header"><i class="fas fa-folder"></i>  Kategori</h5>
 				<div class="card-body">
 					<div class="row">
 					<div class="col-lg-6">
 						<ul class="list-unstyled mb-0">
-						<i class="fas fa-folder"></i>
 						<?php foreach ($kategori as $ktg) { ?>
 							<li>
 								<a class="text-dark" href="<?= base_url('admin/blog/lihat_post_ktg/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>

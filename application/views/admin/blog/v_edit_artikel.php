@@ -27,41 +27,81 @@
 				<div class="card">
 					<!-- /.card-header -->
 					<?php foreach ($post as $blg) { ?>
-						<form action="<?php echo base_url() . 'admin/blog/update_artikel'; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-							<div class="card-body">
-								<input type="hidden" name="ID_POST" value="<?php echo $blg->ID_POST ?>">
-								<input type="hidden" name="ID_ADM" value="<?php echo $blg->ID_ADM ?>">
-								<label for="JUDUL_POST">Judul</label>
-								<input type="text" class="form-control" name="JUDUL_POST" value="<?php echo $blg->JUDUL_POST ?>">
-								<br>
-								<label for="ID_CT">Kategori</label>
-								<select name="ID_CT" id="ID_CT" class="form-control">
-									<option disabled>Pilih Kategori</option>
-									<?php foreach ($category as $ct) { ?>
-										<option value="<?= $ct->ID_CT; ?>" <?= $ct->ID_CT == $blg->ID_CT ? "selected" : null ?>><?= $ct->NM_CT; ?></option>
-									<?php } ?>
-								</select>
-								<!-- <button type="button" id="tambah_kategori" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_kategori">Tambah kategori baru</button> -->
-								<br>
-								<label for="ID_TAGS">Tags</label>
-								<select name="ID_TAGS" id="ID_TAGS" class="form-control">
-									<option disabled>Pilih Tags</option>
-									<?php foreach ($tags as $tg) { ?>
-										<option value="<?= $tg->ID_TAGS; ?>"><?= $tg->NM_TAGS; ?></option>
-									<?php } ?>
-								</select>
-								<!-- <button type="button" id="buat_tags" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_buat_tags">Buat tags baru</button> -->
-								<br>
-								<label for="FOTO_POST">Foto</label>
-								<input type="file" class="form-control" name="FOTO_POST" value="<?php echo $blg->FOTO_POST ?>">
-								<br>
-								<label for="KONTEN_POST">Konten</label>
-								<textarea class="textarea" class="form-control" name="KONTEN_POST"><?php echo $blg->KONTEN_POST  ?></textarea>
-								<br>
-								<button class="btn btn-primary btn-round">Batal</button>
-								<button type="submit" class="btn btn-success btn-round">Simpan</button>
+					<form action="<?php echo base_url() . 'admin/blog/update_artikel'; ?>" method="post"
+						enctype="multipart/form-data" class="form-horizontal">
+						<div class="card-body">
+							<input type="hidden" name="ID_POST" value="<?php echo $blg->ID_POST ?>">
+							<input type="hidden" name="ID_ADM" value="<?php echo $blg->ID_ADM ?>">
+							<label for="JUDUL_POST">Judul</label>
+							<input type="text" class="form-control" name="JUDUL_POST" value="<?php echo $blg->JUDUL_POST ?>"
+							autocomplete="off" autofocus required>
+							<br>
+							<label for="ID_CT">Kategori</label>
+							<select name="ID_CT" id="ID_CT" class="form-control">
+								<option disabled>Pilih Kategori</option>
+								<?php foreach ($category as $ct) { ?>
+								<option value="<?= $ct->ID_CT; ?>" <?= $ct->ID_CT == $blg->ID_CT ? "selected" : null ?>>
+									<?= $ct->NM_CT; ?></option>
+								<?php } ?>
+							</select>
+							<br>
+							<label for="ID_TAGS">Tags</label>
+							<select name="ID_TAGS[]" id="ID_TAGS[]" class="select2bs4" multiple="multiple" data-placeholder="Pilih tag"
+								style="width: 100%;">
+								<?php 
+								foreach ($dttags as $dt) {
+								foreach ($tags as $tg) { ?>
+								<option value="<?= $tg->ID_TAGS; ?>" <?= $tg->ID_TAGS == $dt->ID_TAGS ? "selected" : null ?>>
+								<?= $tg->NM_TAGS; ?></option>
+								<?php } } ?>
+							</select>
+							<br>
+							<!-- <label for="FOTO_POST">Foto</label>
+							<input type="file" class="form-control" name="FOTO_POST"
+								value="<?php echo $blg->FOTO_POST ?>">
+							<br>
+							<div class="form-group">
+								<label for="icon">Foto</label>
+								<div class="container">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="preview-zone hidden">
+													<div class="box box-solid">
+														<div class="box-header with-border">
+															<div><b>Preview</b></div>
+															<div class="box-tools pull-right">
+																<button type="button"
+																	class="btn btn-danger btn-xs remove-preview">
+																	<i class="fa fa-times"></i> Reset
+																</button>
+															</div>
+														</div>
+														<div class="box-body"></div>
+													</div>
+												</div>
+												<div class="dropzone-wrapper">
+													<div class="dropzone-desc">
+														<i class="glyphicon glyphicon-download-alt"></i>
+														<div>Pilih file gambar atau seret gambar kesini .</div>
+													</div>
+													<input type="file" name="FOTO_POST" class="dropzone" value="<?= $blg->FOTO_POST?>">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-						</form>
+							<br> -->
+
+							<label for="KONTEN_POST">Konten</label>
+							<textarea class="textarea" class="form-control"
+								name="KONTEN_POST"><?php echo $blg->KONTEN_POST  ?></textarea>
+							<br>
+							<button class="btn btn-primary btn-round">Batal</button>
+							<button type="submit" class="btn btn-success btn-round">Simpan</button>
+						</div>
+					</form>
 					<?php } ?>
 					<!-- /.card-body -->
 				</div>

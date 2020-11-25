@@ -15,8 +15,9 @@
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container-fluid -->
-		<!-- <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div> -->
+		<?= $this->session->flashdata('message'); ?>
 	</div>
+	<!-- <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div> -->
 	<!-- /.content-header -->
 
 	<!-- Main content -->
@@ -30,7 +31,7 @@
 		<?php foreach ($blog as $blg) { 
 			$ID_POST = $blg->ID_POST;
 			$ID_CT = $blg->ID_CT;
-			?> 
+			?>
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
@@ -58,17 +59,6 @@
 									<!-- /.user-block -->
 									<!-- Karepnya nampilin sebagian kalimat di artikel -->
 									<p>
-										<!-- <?php 
-										$i = 100;
-										$KONTEN_POST = htmlspecialchars_decode($blg->KONTEN_POST);
-										$konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
-
-										$char = $KONTEN_POST[$i - 1];
-										while($char != ' ') {
-											$char = $KONTEN_POST[--$i]; // Cari spasi pada posisi 49, 48, 47, dst...
-										}
-										echo substr($KONTEN_POST, 0, $i) . ' ...';
-										?> -->
 									</p>
 
 									<p>
