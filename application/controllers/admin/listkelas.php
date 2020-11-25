@@ -26,19 +26,4 @@ class Listkelas extends CI_Controller
         $this->load->view("admin/template_adm/v_footer");
     }
 
-    public function tambah_materi()
-    {
-
-
-        $ID_MT = htmlspecialchars($this->input->post('ID_MT'));
-        $NM_MT = htmlspecialchars($this->input->post('NM_MT'));
-        $this->m_listkelas->tmbh_materi($ID_MT, $NM_MT);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-        Kategori berhasil dibuat!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>');
-        redirect('admin/listkelas');
-    }
 }

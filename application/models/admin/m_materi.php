@@ -13,6 +13,23 @@ class M_materi extends CI_Model{
 			'FILE_MT' => $file 
 		);
 		$this->db->insert('materi',$data);
+	}
+
+	public function hapus_materi($ID_MT)
+    {
+        $hasil = $this->db->query("DELETE FROM materi WHERE ID_MT='$ID_MT'");
+        return $hasil;
+    }
+	
+	function tmbh_materi($ID_TAGS, $NM_MT)
+    {
+        $this->db->query("INSERT INTO materi ( ID_MT, NM_MT ) VALUES ( '$ID_MT', '$NM_MT')");
+	}
+	
+	function update_materi($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
     }
 
     
