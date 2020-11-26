@@ -7,26 +7,31 @@
         <title><?=$judul?></title>
 
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/blog.css">
-
         <!--  Bootstrap css file  -->
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/bootstrap.min.css">
-
-        <!--  font awesome icons  -->
-        <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/all.min.css">
-
-        <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/login.css">
-
         <!--  Magnific Popup css file  -->
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/js/plugin/Magnific-Popup/dist/magnific-popup.css">
-
         <!--  Owl-carousel css file  -->
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/js/plugin/owl-carousel/css/owl.carousel.min.css">
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/js/plugin/owl-carousel/css/owl.theme.default.min.css">
-
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/dist/img/favicon/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/dist/img/favicon/favicon-16x16.png" sizes="16x16" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="<?= base_url(); ?>https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- icheck bootstrap -->
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/css/adminlte.min.css">
+        <!-- Google Font: Source Sans Pro -->
+        <link href="<?= base_url(); ?>https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <!-- Mycss -->
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/css/mycss/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
         <!--  custom css file  -->
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/style.css">
-
         <!--  Responsive css file  -->
         <link rel="stylesheet" href="<?= base_url();?>assets/dist/css/responsive.css">
     </head>

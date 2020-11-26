@@ -23,32 +23,30 @@ class index extends CI_Controller
         $data['judul'] = 'Preneur Academy';
         $this->load->view("landingpage/template/header", $data);
         $this->load->view("landingpage/index");
-        $this->load->view("landingpage/template/footer" , $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
     
-    public function lihat_post($ID_POST)
+    public function lihat_post($JUDUL_POST)
     {
-        $data['blog'] = $this->m_blog->tampil_dt_blog($ID_POST, 'post')->result();
-        $data['detail_tags'] = $this->m_blog->tampil_dt_tags($ID_POST, 'detail_tags')->result();
+        $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
+        $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
         $data['data'] = $this->m_medsos->get_data();
         $data['judul'] = 'Post Blog';
         $this->load->view("landingpage/template/headerblog" , $data);
-        $this->load->view("landingpage/lihat_post");
-        $this->load->view("landingpage/template/footer" , $data);
+        $this->load->view("landingpage/lihat_post", $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
-
+    
     
     // lihat artikel yg kategori sama
-    public function lihat_post_ktg($NM_CT)
+    public function kategori($NM_CT)
     {
-        $data['admin'] = $this->db->get_where('admin', [
-            'EMAIL_ADM' =>
-            $this->session->userdata('email')
-        ])->row_array();
-
-        $data['blog'] = $this->m_blog->post_ktg($NM_CT, 'post')->result();
+        
+        $data['kategori'] = $this->m_landingpage->category($NM_CT, 'post')->result();
+        $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view('landingpage/v_post_ktg', $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
 
     // lihat artikel yg tag sama

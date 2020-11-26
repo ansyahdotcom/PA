@@ -11,16 +11,17 @@
 
 				<!-- Title -->
 				<h1 class="mt-4">
-					<?= $blg->JUDUL_POST; ?>
+					<?= str_replace('-', ' ', $blg->JUDUL_POST); ?>
 				</h1>
 
 				<hr>
 
 				<!-- Date/Time -->
-				<span>
+				<span class="">
 					<p><i class="fas fa-calendar"></i><?= date(' d F Y', strtotime($blg->TGL_POST)); ?>
+					<br>
 					<i class="fa fa-folder"></i>
-					<a class="link-black text-sm" href="<?= base_url('admin/blog/lihat_post_ktg/'. $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
+					<a class="" href="<?= base_url('index/kategori/'. $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
 					
 				</span>
 
@@ -37,7 +38,7 @@
 				<p>
 					<i class="fas fa-tag"></i>
 					<?php foreach($detail_tags as $dt){ ?>
-					<a class="btn btn-sm-primary" href="<?= base_url('admin/blog/lihat_post_tag/'. $dt->NM_TAGS); ?>"><?= $dt->NM_TAGS; ?></a>
+					<a class="btn btn-sm-primary" href="<?= base_url('index/tag/'. $dt->NM_TAGS); ?>"><?= $dt->NM_TAGS; ?></a>
 					<?php } ?>
 				</p>
 
@@ -48,14 +49,14 @@
 
 				<!--  ======================= Awalan Kategori ============================== -->
 				<div class="card my-4">
-				<h5 class="card-header"><i class="fas fa-folder"></i>  Kategori</h5>
+				<h5 class="card-header">  Kategori</h5>
 				<div class="card-body">
 					<div class="row">
 					<div class="col-lg-6">
 						<ul class="list-unstyled mb-0">
 						<?php foreach ($kategori as $ktg) { ?>
 							<li>
-								<a class="text-dark" href="<?= base_url('admin/blog/lihat_post_ktg/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
+								<a class="text-dark" href="<?= base_url('index/kategori/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
 							</li>
 						<?php } ?>
 						</ul>

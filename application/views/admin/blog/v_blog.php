@@ -44,14 +44,14 @@
 										<!-- <img class="img-circle img-bordered-sm"
 											src="<?= base_url('assets/fotoicon/'. $blg->FOTO_POST); ?>"> -->
 										<span class="username m-0 text-lg">
-											<a class="text-dark"
+											<a class=""
 												href="<?= base_url('admin/blog/edit_artikel/' . $blg->JUDUL_POST.'/'); ?>"><?= str_replace('-', ' ', $blg->JUDUL_POST); ?></a>
 
 										</span>
 										<hr>
 										<span>
 											<i class="fa fa-folder"></i>
-											<a class="link-black text-lg"
+											<a class="text-dark text-lg"
 												href="<?= base_url('admin/blog/lihat_post_ktg/'. $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
 
 										</span>
