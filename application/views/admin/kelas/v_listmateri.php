@@ -36,7 +36,7 @@
                     <div class="card-header bg-dark">
                     <h3 class="card-title pt-2"><?= $nama;?></h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalSubMenu<?= $id;?>">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_tambah">
                         <i class="fas fa-plus"></i> Sub Menu</button>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit<?= $id;?>">
                         <i class="fas fa-edit"></i> Edit</button>
@@ -49,7 +49,8 @@
                     <div class="card-body">
                         <div class="card">
                             <div class="card-header">
-                            <h3 class="card-title pt-2">Sub Menu</h3>
+                            <h1 class="card-title pt-2"><?= $mtr['FILE_MT'];?></h1>
+                            <p class="card-text"><?= $mtr['DETAIL_MT'];?></p>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEditSub">
                                 <i class="fas fa-edit"></i> Edit</button>
@@ -69,6 +70,7 @@
 <?php foreach($materi as $mtr) {
   $id = $mtr['ID_MT'];
   $nama = $mtr['NM_MT'];
+  $detail_mt = $mtr['DETAIL_MT'];
 ?>
 <div class="modal fade" id="modal_hapus<?= $id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -130,7 +132,7 @@
 			<form method="post" action="<?= base_url('admin/materi/tambah_materi'); ?>">
 				<div class="modal-body">
 					<div class="form-group">
-          <input type="hidden" class="form-control" id="ID_MT" name="ID_MT" value="<?= $id; ?>">
+                        <input type="hidden" class="form-control" id="ID_MT" name="ID_MT" value="<?= $id; ?>">
 						<input required type="text" name="NM_MT" id="NM_MT" class="form-control" placeholder="Masukkan Nama Materi . ." aria-describedby="namamateri" maxlength="100">
 					</div>
 				</div>
@@ -141,3 +143,42 @@
 		</div>
 	</div>
 </div>
+
+<?php foreach($materi as $row) {
+  $id = $row['ID_MT'];
+  $nama = $row['NM_MT'];
+  $detail_mt = $row['DETAIL_MT'];
+?>
+<div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title title-1" id="myModalLabel">Tambah Materi</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+            <?php echo form_open_multipart('admin/materi/upload_file'); ?>
+            <input type="hidden" name="ID_MT" value="<?= $id?>">
+            
+            <div class="modal-body">
+            <label for="DETAIL_MT">Deskripsi Materi</label>
+					<div class="form-group">
+                    <textarea class="textarea" class="form-control" name="DETAIL_MT"></textarea>
+					</div>
+			</div>
+            <div class="modal-body">
+                <label for="FILE_MT">File Materi</label>
+                <div class="custom-file mb-2">
+                    <input type="file" class="custom-file-input" name="FILE_MT" id="FILE_MT">
+                    <label class="custom-file-label" for="FILE_MT">Masukkan File Materi</label>
+                </div> 
+            </div>
+			<div class="modal-footer">
+					<button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
+				</div>
+			<?php echo form_close(); ?>
+		</div>
+	</div>
+</div>
+<?php } ?>
