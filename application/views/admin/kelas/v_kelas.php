@@ -108,7 +108,7 @@
   <!-- /.content-wrapper -->
 
   <!-- Modal tambah Data -->
-  <div class="modal fade" id="modal-tambah">
+  <div class="modal fade" id="modal-tambah1">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -128,7 +128,7 @@
                   <th>Link Kelas</th>
                   <th>Kategori Kelas</th>
                   <th>Harga</th>
-                  <th>Diskon</th>
+                  <!-- <th>Diskon</th> -->
                   <th>Deskripsi</th>
                   <th>Aksi</th>
                 </tr>
@@ -155,13 +155,16 @@
                     <input type="number" class="form-control" name="hrg[]" required>
                     <?= form_error('hrg[]', '<small class="text-danger pl-3">', '</small>'); ?>
                   </td>
-                  <td>
+                  <!-- <td>
                     <select name="disc[]" id="disc" class="custom-select slct-diskon">
 
                     </select>
-                  </td>
+                  </td> -->
                   <td>
-                    <textarea class="form-control" name="deskripsi[]" required></textarea>
+                    <!-- <textarea class="form-control" name="deskripsi[]" required></textarea> -->
+                    <textarea id="compose-textarea" name="deskripsi[]" class="form-control" style="height: 300px">
+                      
+                    </textarea>
                   </td>
                   <td>
                     <button type="button" class="btn btn-primary btn-sm btn-plusfrm text-bold"><i class="fas fa-plus"></i> Form</button>
@@ -175,7 +178,7 @@
                   <th>Link Kelas</th>
                   <th>Kategori Kelas</th>
                   <th>Harga</th>
-                  <th>Diskon</th>
+                  <!-- <th>Diskon</th> -->
                   <th>Deskripsi</th>
                   <th>Aksi</th>
                 </tr>
@@ -194,6 +197,94 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
+  
+  <!-- Modal tambah data -->
+  <div class="modal fade" id="modal-tambah">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Tambah <?= $tittle; ?></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="POST" action="<?= base_url('admin/kelas/saveall'); ?>" enctype="multipart/form-data">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="namakls">Nama Kelas</label>
+                    <input type="text" class="form-control text-bold" name="namakls" placeholder="Nama Kelas" required>
+                    <?= form_error('namakls', '<small class="text-danger">', '</small>'); ?>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="namakls">Kategori Kelas</label>
+                    <select name="ktg" class="custom-select slct-ktg text-bold" required>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="harga">Harga</label>
+                    <input type="number" class="form-control text-bold" name="harga" placeholder="harga" required>
+                    <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email">Gambar Kelas</label>
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input"  name="gbrkls" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="gbrkls">Pilih file...</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="col-md-6 row-diskon" hidden>
+                  <div class="form-group">
+                    <label for="diskon">Diskon</label>
+                    <select name="diskon" id="inkls" class="custom-select slct-diskon text-bold" disabled>
+
+                    </select>
+                  </div>
+                </div> -->
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="hp">Link Kelas</label>
+                    <input type="text" class="form-control text-bold" name="link" placeholder="link" required>
+                    <?= form_error('link', '<small class="text-danger">', '</small>'); ?>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="email">Deskripsi</label>
+                    <textarea class="form-control text-bold" id="compose-textarea" name="deskripsi" style="weight: 300px" required></textarea>
+                    <?= form_error('deskripsi', '<small class="text-danger">', '</small>'); ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-right">
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+            </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
 
   <?php foreach ($kelas as $k) :
@@ -240,12 +331,12 @@
                       <span class="badge-pill bg-success text-bold btn-block text-center"> Published</span>
                     <?php endif; ?>
 
-                    <label for="harga">Diskon Kelas: </label>
+                    <!-- <label for="harga">Diskon Kelas: </label>
                     <?php if ($iddis == 0) : ?>
                       <span class="badge-pill bg-secondary text-bold btn-block text-center">Tidak Ada Diskon</span>
                     <?php else : ?>
                       <span class="badge-pill bg-info text-bold btn-block text-center"><?= $diskon; ?> (<?= $jmldis * 100; ?>%)</span>
-                    <?php endif; ?>
+                    <?php endif; ?> -->
 
                     <label for="harga">Kategori Kelas: </label>
                     <span class="badge-pill bg-warning text-bold btn-block text-center"><?= $kategori; ?></span>
@@ -284,38 +375,21 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12 edit1">
                   <div class="form-group">
                     <label for="harga">Harga</label>
                     <input type="number" class="form-control text-bold" id="inkls" name="harga" placeholder="harga" value="<?= $harga; ?>" disabled required>
                     <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
                   </div>
                 </div>
-                <div class="col-md-6 row-hrgdiskon">
+                <div class="col-md-6 edit" hidden>
                   <div class="form-group">
-                    <label for="harga">Harga Diskon</label>
-                    <input type="number" class="form-control text-bold text-success" id="inkls" name="harga" placeholder="harga" value="<?= $harga - ($harga * $jmldis); ?>" disabled required>
+                    <label for="harga">Harga</label>
+                    <input type="number" class="form-control text-bold" id="inkls" name="harga" placeholder="harga" value="<?= $harga; ?>" disabled required>
                     <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
                   </div>
                 </div>
-                <div class="col-md-6 row-diskon" hidden>
-                  <div class="form-group">
-                    <label for="diskon">Diskon</label>
-                    <select name="diskon" id="inkls" class="custom-select slct-diskon text-bold" disabled>
-
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row edit-gbrkls" hidden>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="hp">Link Kelas</label>
-                    <input type="text" class="form-control text-bold" id="inkls" name="link" placeholder="link" value="<?= $link; ?>" required>
-                    <?= form_error('link', '<small class="text-danger">', '</small>'); ?>
-                  </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-6 edit" hidden>
                   <div class="form-group">
                     <label for="email">Edit Gambar</label>
                     <div class="input-group mb-3">
@@ -326,12 +400,36 @@
                     </div>
                   </div>
                 </div>
+                <!-- <div class="col-md-6 row-hrgdiskon">
+                  <div class="form-group">
+                    <label for="harga">Harga Diskon</label>
+                    <input type="number" class="form-control text-bold text-success" id="inkls" name="harga" placeholder="harga" value="<?= $harga - ($harga * $jmldis); ?>" disabled required>
+                    <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
+                  </div>
+                </div> -->
+                <!-- <div class="col-md-6 row-diskon" hidden>
+                  <div class="form-group">
+                    <label for="diskon">Diskon</label>
+                    <select name="diskon" id="inkls" class="custom-select slct-diskon text-bold" disabled>
+
+                    </select>
+                  </div>
+                </div> -->
+              </div>
+              <div class="row edit-link">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="hp">Edit Link Kelas</label>
+                    <input type="text" class="form-control text-bold" id="inkls" name="link" placeholder="link" value="<?= $link; ?>" required disabled>
+                    <?= form_error('link', '<small class="text-danger">', '</small>'); ?>
+                  </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="email">Deskripsi</label>
-                    <textarea type="text" class="form-control text-bold" id="inkls" name="deskripsi" disabled required><?= $deskripsi; ?></textarea>
+                    <textarea class="form-control text-bold inkls" id="compose-textarea" name="deskripsi" style="weight: 300px" required><?= $deskripsi; ?></textarea>
                     <?= form_error('deskripsi', '<small class="text-danger">', '</small>'); ?>
                   </div>
                 </div>

@@ -49,28 +49,40 @@ class Kelas extends CI_Controller
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' => $email
         ])->row_array();
+        $data['tittle'] = 'Data Kelas';
         
-        $this->form_validation->set_rules('nama[]', 'Nama', 'required|trim', [
+        $this->form_validation->set_rules('namakls', 'Namakls', 'required|trim', [
             'required' => 'Kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('link[]', 'Link', 'required|trim', [
+        $this->form_validation->set_rules('link', 'Link', 'required|trim', [
             'required' => 'Kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('hrg[]', 'Hrg', 'required|trim|numeric|is_natural', [
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric|is_natural', [
             'required' => 'Kolom ini harus diisi',
             'is_natural' => 'data yang diinputkan salah'
         ]);
 
-        $this->form_validation->set_rules('disc[]', 'Disc', 'trim|numeric', [
-            // 'required' => 'Kolom ini harus diisi'
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim', [
+            'required' => 'Kolom ini harus diisi',
         ]);
 
         if ($this->form_validation->run() == false) {
+            /** Mengambil data kelas */
+            $data['kelas'] = $this->m_kelas->getkelas();
+            $this->load->view('admin/template_adm/v_header', $data);
+            $this->load->view('admin/template_adm/v_navbar', $data);
+            $this->load->view('admin/template_adm/v_sidebar', $data);
+            $this->load->view('admin/kelas/v_kelas', $data);
+            $this->load->view('admin/template_adm/v_footer');
             $this->session->set_flashdata('message', 'formempty');
-            redirect('admin/kelas');
         } else {
+            $namakls = htmlspecialchars($this->input->post('namakls'));
+            $kategori = htmlspecialchars($this->input->post('ktg'));
+            $harga = htmlspecialchars($this->input->post('harga'));
+            $link = htmlspecialchars($this->input->post('link'));
+            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
             /** upload gambar */
             // $upload_image = $_FILES['gbr']['name'];
             // if ($upload_image) {
@@ -94,27 +106,21 @@ class Kelas extends CI_Controller
             // }
 
             /** Proses insert ke database */
-            $nama = $this->input->post('nama');
-            $img = 'default.jpg';
-            $id_adm = $data['admin']['ID_ADM'];
-            $result = array();
-            foreach ($nama as $key => $val) {
-                $result[] = array(
-                    'ID_ADM' => $id_adm,
-                    'TITTLE' => $_POST['nama'][$key],
-                    'PERMALINK' => $_POST['link'][$key],
-                    'GBR_KLS' => $img,
-                    'DESKRIPSI' => $_POST['deskripsi'][$key],
-                    'PRICE' => $_POST['hrg'][$key],
-                    'ID_DISKON' => $_POST['disc'][$key],
-                    'STAT' => 0,
-                    'ID_KTGKLS' => $_POST['ktg'][$key],
-                    'DATE_KLS' => time(),
-                    'UPDATE_KLS' => 0,
-                );
-            }
+            $kelas = [
+                'ID_ADM' => $data['admin']['ID_ADM'],
+                'ID_KTGKLS' => $kategori,
+                'ID_DISKON' => 0,
+                'TITTLE' => $namakls,
+                'PERMALINK' => $link,
+                'GBR_KLS' => 'default.jpg',
+                'DESKRIPSI' => $deskripsi,
+                'PRICE' => $harga,
+                'STAT' => 0,
+                'DATE_KLS' => time(),
+                'UPDATE_KLS' => 0
+            ];
 
-            $this->db->insert_batch('kelas', $result);
+            $this->m_kelas->saveall($kelas);
             $this->session->set_flashdata('message', 'save');
             redirect('admin/kelas');
         }
@@ -158,7 +164,7 @@ class Kelas extends CI_Controller
             $id = htmlspecialchars($this->input->post('id'));
             $nama = htmlspecialchars($this->input->post('namakls'));
             $harga = htmlspecialchars($this->input->post('harga'));
-            $diskon = htmlspecialchars($this->input->post('diskon'));
+            // $diskon = htmlspecialchars($this->input->post('diskon'));
             $link = htmlspecialchars($this->input->post('link'));
             $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
             $kategori = htmlspecialchars($this->input->post('ktg'));
@@ -190,7 +196,7 @@ class Kelas extends CI_Controller
                 'PERMALINK' => $link,
                 'DESKRIPSI' => $deskripsi,
                 'PRICE' => $harga,
-                'ID_DISKON' => $diskon,
+                'ID_DISKON' => 0,
                 'ID_KTGKLS' => $kategori,
                 'UPDATE_KLS' => time(),
             ];

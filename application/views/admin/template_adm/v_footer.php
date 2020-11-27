@@ -64,6 +64,14 @@
 <!-- <script src="<?= base_url(); ?>assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script> -->
 <!-- <script src="<?= base_url(); ?>assets/dist/js/jquery-3.4.1.min.js"></script> -->
 
+<!-- Page Script -->
+<script>
+    $(function() {
+        //Add text editor
+        $('textarea#compose-textarea').summernote()
+    })
+</script>
+
 
 <!-- Sweet Alert Hapus data Master-->
 <script>
@@ -163,7 +171,7 @@
 </script>
 
 <!-- Add Multiple Form Kelas-->
-<script>
+<!-- <script>
     $(document).ready(function() {
         $(".btn-plusfrm").click(function(e) {
             e.preventDefault();
@@ -186,12 +194,9 @@
                 <input type="text" class="form-control" name="hrg[]" required>
                 </td>
                 <td>
-                    <select name="disc[]" id="disc" class="custom-select slct-diskon">
-
-                    </select>
-                </td>
-                <td>
-                <textarea class="form-control" name="deskripsi[]" required></textarea>
+                <textarea id="compose-textarea" name="deskripsi[]" class="form-control" style="height: 300px">
+            
+                </textarea>
                 </td>
                 <td>
                 <button type="button" class="btn btn-danger btn-sm btn-dellfrm text-bold"><i class="fas fa-trash"></i> Form</button>
@@ -207,7 +212,7 @@
 
         $(this).parents('tr').remove();
     });
-</script>
+</script> -->
 
 <!-- Add Multiple Form Diskon-->
 <script>
@@ -303,9 +308,10 @@
             $("button#save-kls").prop('hidden', false);
             $("button#edit-kls").prop('hidden', true);
             $("input#inkls").prop('disabled', false);
-            $("textarea#inkls").prop('disabled', false);
+            $("textarea.inkls").prop('disabled', false);
             $("select#inkls").prop('disabled', false);
-            $("div.edit-gbrkls").prop('hidden', false);
+            $("div.edit").prop('hidden', false);
+            $("div.edit1").prop('hidden', true);
             $("div.row-diskon").prop('hidden', false);
             $("div.row-hrgdiskon").prop('hidden', true);
         });
@@ -317,9 +323,10 @@
             $("button#save-kls").prop('hidden', true);
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
-            $("textarea#inkls").prop('disabled', true);
+            $("textarea.inkls").prop('disabled', true);
             $("select#inkls").prop('disabled', true);
-            $("div.edit-gbrkls").prop('hidden', true);
+            $("div.edit").prop('hidden', true);
+            $("div.edit1").prop('hidden', false);
             $("div.row-diskon").prop('hidden', true);
             $("div.row-hrgdiskon").prop('hidden', false);
         });
@@ -331,9 +338,10 @@
             $("button#save-kls").prop('hidden', true);
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
-            $("textarea#inkls").prop('disabled', true);
+            $("textarea.inkls").prop('disabled', true);
             $("select#inkls").prop('disabled', true);
-            $("div.edit-gbrkls").prop('hidden', true);
+            $("div.edit").prop('hidden', true);
+            $("div.edit1").prop('hidden', false);
             $("div.row-diskon").prop('hidden', true);
             $("div.row-hrgdiskon").prop('hidden', false);
         });
@@ -496,16 +504,15 @@
 
 
 <script>
-	$(function () {
-		//Initialize Select2 Elements
-		$('.select2').select2()
+    $(function() {
+        //Initialize Select2 Elements
+        $('.select2').select2()
 
-		//Initialize Select2 Elements
-		$('.select2bs4').select2({
-			theme: 'bootstrap4'
-		})
-	})
-
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+    })
 </script>
 
 

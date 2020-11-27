@@ -12,6 +12,11 @@
             return $query;
         }
 
+        public function saveall($kelas)
+        {   
+            return $this->db->insert('kelas', $kelas);
+        }
+
         public function link()
         {
             $this->db->select('PERMALINK');
