@@ -6,6 +6,7 @@ class Materi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('admin/m_materi');
+        $this->load->library('PrimsLib');
         adm_logged_in();
         cekadm();
     }
@@ -32,13 +33,13 @@ class Materi extends CI_Controller
 
         $ID_MT = htmlspecialchars($this->input->post('ID_MT'));
         $NM_MT = htmlspecialchars($this->input->post('NM_MT'));
-        $this->m_materi->tmbh_materi($ID_MT, $NM_MT);
+        $this->m_materi->tmbh_materi($NM_MT);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
         Materi berhasil dibuat!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-    </div>');
+        </div>');
         redirect("admin/materi/materikelas/$ID_MT");
     }
 
@@ -73,6 +74,43 @@ class Materi extends CI_Controller
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>');
+        redirect("admin/materi/materikelas/$ID_MT");
+    }
+
+    public function upload_file() 
+    {
+        // print_r($_FILES); die;
+        $ID_MT = htmlspecialchars($this->input->post('ID_MT'));
+        $DETAIL_MT = htmlspecialchars($this->input->post('DETAIL_MT'));
+        $FILE_MT = null;
+    // menjalankan perintah untuk mengupload gambar
+        if ($_FILES['FILE_MT']['name'] != null) {
+        $FILE_MT = $_FILES['FILE_MT']['name'];
+        $FILE_MT = $this->primslib->upload_file('FILE_MT', $FILE_MT, 'pdf|doc', '3024');
+        }
+
+        $data = array(
+            'DETAIL_MT' => $DETAIL_MT,
+            'FILE_MT' => $FILE_MT
+            
+
+
+        );
+        $where = array(
+            'ID_MT' => $ID_MT,
+            
+        );
+
+        
+        $this->m_materi->update_materi($where, $data, 'materi');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
+        Materi berhasil dibuat!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>');
+
+
         redirect("admin/materi/materikelas/$ID_MT");
     }
 }

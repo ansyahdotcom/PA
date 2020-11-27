@@ -11,8 +11,8 @@ class M_listkelas extends CI_Model
     return $query->result_array();
     }
 
-    function tmbh_materi($NM_MT)
-    {
-        $this->db->query("INSERT INTO materi (NM_MT ) VALUES ( '$NM_MT')");
-    }
+    // function tmbh_materi($NM_MT)
+    // {
+    //     $this->db->query("INSERT INTO materi ( NM_MT ) VALUES ( '$NM_MT')");
+    // }
 }

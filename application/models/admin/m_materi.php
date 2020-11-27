@@ -9,8 +9,7 @@ class M_materi extends CI_Model{
 
 	function insert_materi($name){
 		$data = array(
-			'NM_MT' => $name,
-			'FILE_MT' => $file 
+			'NM_MT' => $name
 		);
 		$this->db->insert('materi',$data);
 	}
@@ -21,10 +20,12 @@ class M_materi extends CI_Model{
         return $hasil;
     }
 	
-	function tmbh_materi($ID_TAGS, $NM_MT)
+	function tmbh_materi($NM_MT)
     {
-        $this->db->query("INSERT INTO materi ( ID_MT, NM_MT ) VALUES ( '$ID_MT', '$NM_MT')");
+        $this->db->query("INSERT INTO materi ( NM_MT ) VALUES ('$NM_MT')");
 	}
+
+	
 	
 	function update_materi($where, $data, $table)
     {
