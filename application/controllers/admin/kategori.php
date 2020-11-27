@@ -43,12 +43,7 @@ class Kategori extends CI_Controller
     {
         $ID_CT = $this->input->post('ID_CT');
         $this->m_kategori->hapus_kategori($ID_CT);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Kategori berhasil dihapus!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+        $this->session->set_flashdata('message', 'hapus');
         redirect('admin/kategori');
     }
 
@@ -60,12 +55,7 @@ class Kategori extends CI_Controller
         $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
         $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
         $this->m_kategori->tmbh_kategori($ID_CT, $NM_CT);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-        Kategori berhasil dibuat!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>');
+        $this->session->set_flashdata('message', 'save');
         redirect('admin/kategori');
     }
 
@@ -82,12 +72,7 @@ class Kategori extends CI_Controller
         $where = array('ID_CT' => $ID_CT);
 
         $this->m_kategori->update_kategori($where, $data, 'category');
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Kategori berhasil diedit!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+        $this->session->set_flashdata('message', 'edit');
         redirect('admin/kategori');
     }
 }

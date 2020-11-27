@@ -28,7 +28,7 @@
 
 					</div> -->
 					<!-- /.card-header -->
-					<form action="<?= base_url('admin/blog/pr_tmbh_blog'); ?>" method="post"
+					<form action="<?= base_url('admin/blog/tulis_artikel'); ?>" method="post"
 						enctype="multipart/form-data" class="form-horizontal">
 						<div class="card-body">
 							<input type="hidden" name="ID_POST" value="<?= $ID_POST; ?>">
@@ -37,12 +37,12 @@
 							<label for="JUDUL_POST">Judul</label>
 							<input class="form-control" type="text" autocomplete="off" name="JUDUL_POST"
 								placeholder="Tambahkan Judul" autofocus required>
-							<!-- <?= form_error('JUDUL_POST'); ?> -->
+								<?= form_error('JUDUL_POST', '<small class="text-danger">', '</small>'); ?>
 							<br>
 							<!-- Kategori -->
 							<i class="fa fa-folder"></i>
 							<label for="ID_CT">Kategori</label>
-							<select name="ID_CT" id="ID_CT" class="form-control" required data-placeholder="Pilih kategori">
+							<select name="ID_CT" id="ID_CT" class="form-control" data-placeholder="Pilih kategori" required>
 								<option selected disabled>Pilih Kategori</option>
 								<?php foreach ($category as $ct) { ?>
 								<option value="<?= $ct->ID_CT; ?>"><?= $ct->NM_CT; ?></option>
@@ -89,7 +89,7 @@
 														<i class="glyphicon glyphicon-download-alt"></i>
 														<div>Pilih file gambar atau seret gambar kesini .</div>
 													</div>
-													<input type="file" name="FOTO_POST" class="dropzone" />
+													<input type="file" name="FOTO_POST" class="dropzone" required>
 												</div>
 											</div>
 										</div>

@@ -97,7 +97,7 @@
         } else if (flashData == 'save') {
             Toast.fire({
                 icon: 'success',
-                title: 'Data berhasil disimpan',
+                title: 'Data berhasil disimpan!',
             });
         } else if (flashData == 'formempty') {
             Toast.fire({

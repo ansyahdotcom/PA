@@ -43,12 +43,7 @@ class Tags extends CI_Controller
     {
         $ID_TAGS = $this->input->post('ID_TAGS');
         $this->m_tags->hapus_tags($ID_TAGS);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															tags berhasil dihapus!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+        $this->session->set_flashdata('message', 'hapus');
         redirect('admin/tags');
     }
 
@@ -60,12 +55,7 @@ class Tags extends CI_Controller
         $ID_TAGS = htmlspecialchars($this->input->post('ID_TAGS'));
         $NM_TAGS = htmlspecialchars($this->input->post('NM_TAGS'));
         $this->m_tags->tmbh_tags($ID_TAGS, $NM_TAGS);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-        tags berhasil dibuat!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>');
+        $this->session->set_flashdata('message', 'save');
         redirect('admin/tags');
     }
 
@@ -82,12 +72,7 @@ class Tags extends CI_Controller
         $where = array('ID_TAGS' => $ID_TAGS);
 
         $this->m_tags->update_tags($where, $data, 'tags');
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															tags berhasil diedit!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+        $this->session->set_flashdata('message', 'edit');
         redirect('admin/tags');
     }
 }
