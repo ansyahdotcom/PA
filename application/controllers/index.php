@@ -32,7 +32,7 @@ class index extends CI_Controller
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
         $data['data'] = $this->m_medsos->get_data();
-        $data['judul'] = 'Post Blog';
+        $data['judul'] = 'Preneur Academy';
         $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view("landingpage/lihat_post", $data);
         $this->load->view("landingpage/template/footer", $data);
@@ -42,22 +42,22 @@ class index extends CI_Controller
     // lihat artikel yg kategori sama
     public function kategori($NM_CT)
     {
-        
-        $data['kategori'] = $this->m_landingpage->category($NM_CT, 'post')->result();
+        $data['judul'] = $NM_CT;
+        $data['nm_ct'] = $NM_CT;
+        $data['kategori'] = $this->m_landingpage->category($NM_CT)->result();
         $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view('landingpage/v_post_ktg', $data);
         $this->load->view("landingpage/template/footer", $data);
     }
-
+    
     // lihat artikel yg tag sama
-    public function lihat_post_tag($NM_TAGS)
+    public function tag($NM_TAGS)
     {
-        $data['admin'] = $this->db->get_where('admin', [
-            'EMAIL_ADM' =>
-            $this->session->userdata('email')
-        ])->row_array();
-
-        $data['dt_tags'] = $this->m_blog->post_tag($NM_TAGS, 'detail_tags')->result();
+        $data['judul'] = $NM_TAGS;
+        $data['nm_tags'] = $NM_TAGS;
+        $data['tag'] = $this->m_landingpage->tag($NM_TAGS)->result();
+        $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view('landingpage/v_post_tag', $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
 }

@@ -1,9 +1,6 @@
+<h1><?= $nm_ct; ?></h1>
 <?php foreach ($kategori as $ktg){
-    // echo $ktg->ID_POST;
-    // echo $ktg->KONTEN_POST;
-    // echo $ktg->TGL_POST;
-    // echo $ktg->FOTO_POST; 
-    ?>
+	?>
 <!-- Main content -->
 <section class="content">
 	<div class="container-fluid">
@@ -19,7 +16,7 @@
 					<div class="">
 						<p><i class="fas fa-calendar"></i> <?= $ktg->TGL_POST; ?></p>
 						<i class="fas fa-folder"></i>
-						<a class="" href=""><?= $ktg->NM_CT; ?></a>
+						<a class="text-sm" href=""><?= $ktg->NM_CT; ?></a>
 						<hr>
 						<img style="width: 600px; height: 400px;" class="img-fluid rounded"
 							src="<?= base_url('assets/fotoblog/'. $ktg->FOTO_POST);?>" alt="foto-post">
