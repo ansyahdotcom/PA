@@ -54,11 +54,11 @@
                     $isi = $p['ISI_KB'];
                   ?>
                     <tr>
-                      <td class="text-center"><?= $no; ?></td>
+                      <td class="text-center" width="100px"><?= $no; ?></td>
                       <td><?= $nama; ?></td>
                       <td><img src="<?= base_url(); ?>assets/dist/img/kebijakan/<?= $img; ?>" width="50"></td>
                       <td><?= $link; ?></td>
-                      <td class="text-center">
+                      <td class="text-center" width="270px">
                         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalDetail<?= $id; ?>"><i class="fas fa-eye"></i> <b>Detail</b></button>
                         <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEdit<?= $id; ?>"><i class="fas fa-edit"></i> <b>Edit</b></button>
                         <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalDelete<?= $id; ?>"><i class="fas fa-trash"></i> <b>Hapus</b></button>

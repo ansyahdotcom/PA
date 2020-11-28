@@ -48,9 +48,9 @@
                                     $last = $kk['UPDATE_KTGKLS'];
                                 ?>
                                     <tr>
-                                        <td class="text-center"><?= $no; ?></td>
+                                        <td class="text-center" width="100px"><?= $no; ?></td>
                                         <td><?= $kategori; ?></td>
-                                        <td class="text-center">
+                                        <td class="text-center" width="150px">
                                             <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-detail<?= $id; ?>"><i class="fas fa-edit"></i> <b>Detail</b></button>
                                             <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><i class="fas fa-trash"></i> <b>Hapus</b></button>
                                         </td>
