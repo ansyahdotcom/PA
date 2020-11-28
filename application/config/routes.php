@@ -64,6 +64,8 @@ $route['home'] = 'index';
 $route['auth'] = 'peserta/auth/login';
 $route['register'] = 'peserta/auth/register';
 $route['forgot'] = 'peserta/auth/lupapsw';
+$route['repass'] = 'peserta/auth/ubahpassword';
+$route['verify'] = 'peserta/auth/verify';
 
 /**
  * ==================================================================

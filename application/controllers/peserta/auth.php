@@ -404,6 +404,9 @@ class Auth extends CI_Controller
 	/**Fungsi untuk mengubah password */
 	public function recoverpsw()
 	{
+		$data['footer'] = $this->m_medsos->get_data(); 
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
 		if (!$this->session->userdata('reset_email')) {
 			redirect('auth');
 		}
