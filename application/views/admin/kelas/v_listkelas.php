@@ -24,36 +24,37 @@
       <div class="row">
         <div class="col-md-12">
 
-         <div class="col-md-12">
+          <div class="col-md-12">
             <div class="card card-default">
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-bullhorn"></i>
                   List Kelas
                 </h3>
-                
+
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <?php foreach($kyui as $ky):
+                <?php foreach ($kyui as $ky) :
                   $id = $ky['ID_MT'];
                 ?>
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-8">
-                      <h1 class="card-title"><?= $ky['TITTLE'];?></h1>
-                      <p class="card-text"><?= $ky['DESKRIPSI'];?></p>
-                      </div>
-                      <div class="col-md-4 text-right">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Detail</a>
-                        <a href="<?= base_url("admin/materi/materikelas/$id")?>" class="btn btn-info"><i class="fas fa-book"></i> Materi</a>
-                        <!-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a> -->
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <h1 class="card-title"><?= $ky['TITTLE']; ?></h1>
+                          <p class="card-text"><?= $ky['DESKRIPSI']; ?></p>
+                        </div>
+                        <div class="col-md-4 text-right">
+                          <a href="<?= base_url("admin/listpeserta/ . $ID_KLS") ?>" class="btn btn-dark"> <i class="nav-icon fas fa-user"></i> List Peserta</a>
+                          <a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Detail</a>
+                          <a href="<?= base_url("admin/materi/materikelas/$id") ?>" class="btn btn-info"><i class="fas fa-book"></i> Materi</a>
+                          <!-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a> -->
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <?php endforeach;?>
+                <?php endforeach; ?>
               </div>
               <!-- /.card-body -->
             </div>
@@ -61,9 +62,9 @@
           </div>
           <!-- /.col -->
         </div>
-        </div>
+      </div>
       <!-- /.row -->
-      </div><!-- /.container-fluid -->
+    </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 </div>
