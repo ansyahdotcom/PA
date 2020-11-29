@@ -83,27 +83,28 @@ class Kelas extends CI_Controller
             $harga = htmlspecialchars($this->input->post('harga'));
             $link = htmlspecialchars($this->input->post('link'));
             $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+            
             /** upload gambar */
-            // $upload_image = $_FILES['gbr']['name'];
-            // if ($upload_image) {
-            //     $config['upload_path']  = './assets/dist/img/kelas/';
-            //     $config['allowed_type'] = 'jpg|jpeg|png|gif';
-            //     $config['max_size'] = '2048';
+            $upload_image = $_FILES['gbrkls']['name'];
+            if ($upload_image) {
+                $config['upload_path']  = './assets/dist/img/kelas/';
+                $config['allowed_type'] = 'jpg|jpeg|png|gif';
+                $config['max_size'] = '2048';
 
-            //     // $this->load->library('upload', $config);
-            //     $this->upload->initialize($config);
-            //     $is_upload = $this->upload->do_upload('gbr[]');
+                // $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                $is_upload = $this->upload->do_upload('gbr[]');
 
-            //     if (($is_upload)) {
-            //         $image = $this->upload->data('file_name');
-            //         $img = $image;
-            //     } else {
-            //         echo $this->upload->display_errors();
-            //         $img = 'default.jpg';
-            //     }
-            // } else {
-            //     $img = 'default.jpg';
-            // }
+                if (($is_upload)) {
+                    $image = $this->upload->data('file_name');
+                    $img = $image;
+                } else {
+                    echo $this->upload->display_errors();
+                    $img = 'default.jpg';
+                }
+            } else {
+                $img = 'default.jpg';
+            }
 
             /** Proses insert ke database */
             $kelas = [
@@ -112,7 +113,7 @@ class Kelas extends CI_Controller
                 'ID_DISKON' => 0,
                 'TITTLE' => $namakls,
                 'PERMALINK' => $link,
-                'GBR_KLS' => 'default.jpg',
+                'GBR_KLS' => $img,
                 'DESKRIPSI' => $deskripsi,
                 'PRICE' => $harga,
                 'STAT' => 0,

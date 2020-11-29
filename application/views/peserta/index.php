@@ -99,12 +99,24 @@
           <!-- Custom tabs (Charts with tabs)-->
           <div class="card">
             <div class="card-header text-center">
-              <a href="<?= base_url() ?>peserta/dashboard">
-                <div class="kelas">
-                  <img src="<?= base_url() ?>assets/icon/noClass.svg" width="350" alt="kelas">
-                </div>
-                <h5 class="mt-3 mb-3">Belum ada kelas</h5>
-              </a>
+              <?php if ($cekmyclass == null) : ?>
+                <a href="<?= base_url('peserta/dashboard'); ?>">
+              <?php else : ?>
+                <a href="<?= $myclass['PERMALINK']; ?>">
+              <?php endif; ?>
+                  <div class="kelas">
+                    <?php if ($cekmyclass == null) : ?>
+                      <img src="<?= base_url() ?>assets/icon/noClass.svg" width="350" alt="kelas">
+                    <?php else : ?>
+                      <img src="<?= base_url('assets/dist/img/kelas/') . $myclass['GBR_KLS']; ?>" class="img-fluid img-responsive img-rounded shadow-lg" width="340" alt="kelas">
+                    <?php endif; ?>
+                  </div>
+                  <?php if ($cekmyclass == null) : ?>
+                    <h5 class="mt-3 mb-3">Belum ada kelas </h5>
+                  <?php else : ?>
+                    <h5 class="mt-3 mb-3">Kelas Anda: <?= $myclass['TITTLE']; ?> </h5>
+                  <?php endif; ?>
+                  </a>
             </div>
           </div>
           <!-- /.card -->

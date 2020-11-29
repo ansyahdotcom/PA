@@ -72,11 +72,11 @@
                     <li class="nav-header">Kelas</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/#'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/myclass'); ?>" class="nav-link">
                             <i class="nav-icon fab fa-leanpub"></i>
                             <p>
                                 Kelas Saya
-                                <span class="badge badge-info right">2</span>
+                                <!-- <span class="badge badge-info right">2</span> -->
                             </p>
                         </a>
                     </li>

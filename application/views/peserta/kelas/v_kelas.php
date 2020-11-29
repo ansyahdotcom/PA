@@ -68,7 +68,7 @@
                                     <div class="row">
                                         <div class="col-7">
                                             <h2 class="lead text-bold"><b><?= $kelas; ?></b></h2>
-                                            <p class="text-muted text-sm"><b>Deskripsi: </b> <?= $deskripsi; ?> </p>
+                                            <p class="text-muted text-sm"><b>Deskripsi: </b> <?= htmlspecialchars_decode($deskripsi); ?> </p>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <?php
                                                 if ($ktg === "Dasar") {
