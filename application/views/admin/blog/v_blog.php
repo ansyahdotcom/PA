@@ -59,6 +59,19 @@
 									<!-- /.user-block -->
 									<!-- Karepnya nampilin sebagian kalimat di artikel -->
 									<p>
+										<?php 
+										$i = 100;
+										$konten = htmlspecialchars_decode($blg->KONTEN_POST);
+										$kont = str_replace('<p>', '', $konten);
+										$KONTEN_POST = str_replace('</p>', '. ', $kont);
+										// $konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
+
+										$char = $KONTEN_POST[$i - 1];
+										while($char != ' ') {
+											$char = $KONTEN_POST[--$i]; // Cari spasi pada posisi 49, 48, 47, dst...
+										}
+										echo substr($KONTEN_POST, 0, $i) . ' ...';
+										?>
 									</p>
 
 									<p>

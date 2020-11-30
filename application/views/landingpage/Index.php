@@ -7,7 +7,7 @@
     		<div class="container">
     			<div class="row">
     				<div class="col-lg-12 text-center">
-    					<?= $this->session->flashdata('message'); ?>
+    					<!-- <?= $this->session->flashdata('message'); ?> -->
     				</div>
     			</div>
     			<div class="row">
@@ -256,7 +256,21 @@
                                     <div class="card-body">
                                         <h6 class="card-title"><?= str_replace('-', ' ', $blg->JUDUL_POST); ?></h6>
                                         <p class="card-text"><small class="text-muted"><?= date('d F Y', strtotime($blg->TGL_POST)); ?></small></p>
-                                        <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+										<p>
+										<?php 
+										$i = 100;
+										$konten = htmlspecialchars_decode($blg->KONTEN_POST);
+										$kont = str_replace('<p>', '', $konten);
+										$KONTEN_POST = str_replace('</p>', '. ', $kont);
+										// $konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
+
+										$char = $KONTEN_POST[$i - 1];
+										while($char != ' ') {
+											$char = $KONTEN_POST[--$i]; // Cari spasi pada posisi 49, 48, 47, dst...
+										}
+										echo substr($KONTEN_POST, 0, $i) . ' ...';
+										?>
+										</p>
                                         <a class="btn btn-primary" href="<?= base_url('index/lihat_post/'. $blg->JUDUL_POST);?>">Lihat Post</a>
                                     </div>
                                 </div>

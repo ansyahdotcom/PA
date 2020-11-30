@@ -2,18 +2,37 @@
 
 class M_listpeserta extends CI_Model
 {
-    function tampil()
+    function tampil($ID_KLS)
     {
-        $data = $this->db->query("SELECT detail_kelas.ID_PS, detail_kelas.ID_KLS, kelas.TITTLE, peserta.NM_PS, peserta.HP_PS
+        $data = $this->db->query("SELECT detail_kelas.ID_PS, detail_kelas.ID_KLS, peserta.NM_PS, peserta.KOTA,
+                                    peserta.PEKERJAAN, peserta.UNIVERSITAS, peserta.HP_PS, peserta.ALMT_PS
                                     FROM kelas, detail_kelas, peserta
-                                    WHERE detail_kelas.ID_KLS = kelas.ID_KLS AND detail_kelas.ID_PS = peserta.ID_PS");
+                                    WHERE detail_kelas.ID_KLS = kelas.ID_KLS 
+                                    AND detail_kelas.ID_PS = peserta.ID_PS
+                                    AND kelas.ID_KLS = $ID_KLS");
         return $data;
     }
 
-    //hapus peserta dari list
-    public function hapus_listpeserta($ID_KLS)
+    function tampil_ps()
     {
-        $hasil = $this->db->query("DELETE FROM detail_kelas WHERE ID_KLS='$ID_KLS'");
-        return $hasil;
+        $data = $this->db->query("SELECT * FROM peserta");
+        return $data;
     }
+
+    function insert($data, $table)
+    {
+        $this->db->insert($table, $data);
+    }
+
+    function update($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+    
+    function delete($where, $table)
+    {
+        $this->db->delete($table, $where);
+    }
+
 }
