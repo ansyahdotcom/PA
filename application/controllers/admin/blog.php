@@ -171,12 +171,7 @@ class Blog extends CI_Controller
                 
 
                 // $this->session->set_flashdata('message', 'blSuccess');
-                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-                                                                Artikel berhasil dibuat!
-                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>');
+                $this->session->set_flashdata('message', 'save');
                 redirect('admin/blog');
             } else {
                 $error = array('error' => $this->upload->display_errors());
@@ -297,12 +292,7 @@ class Blog extends CI_Controller
                 'ST_POST' => $ST_POST
             );
             $this->m_blog->update($where, $data, 'post');
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-                                                Artikel berhasil dipublikasikan!
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>');
+            $this->session->set_flashdata('message', 'posting');
             redirect('admin/blog');
         } else {
             $ST_POST--;
@@ -310,12 +300,7 @@ class Blog extends CI_Controller
                 'ST_POST' => $ST_POST
             );
             $this->m_blog->update($where, $data, 'post');
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Artikel dikembalikan ke draf!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+            $this->session->set_flashdata('message', 'draf');
             redirect('admin/blog');
         }
     }
@@ -328,12 +313,7 @@ class Blog extends CI_Controller
         );
         $this->m_blog->delete($where, 'detail_tags');
         $this->m_blog->delete($where, 'post');
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-                                                    Artikel berhasil dihapus!
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>');
+        $this->session->set_flashdata('message', 'hapus');
         redirect('admin/blog');
     }
 
@@ -402,12 +382,7 @@ class Blog extends CI_Controller
         $this->m_blog->insert($dt_tags, 'detail_tags');
         }
         
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Artikel berhasil diedit!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
+        $this->session->set_flashdata('message', 'edit');
         redirect('admin/blog');
     }
 

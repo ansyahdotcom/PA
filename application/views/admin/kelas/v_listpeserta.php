@@ -57,10 +57,7 @@
 									<td><?= $lps->UNIVERSITAS; ?></td>
 									<td><?= $lps->HP_PS; ?></td>
 									<td><?= $lps->ALMT_PS; ?></td>
-									<td class="text-center" width="150px">
-										<button class="btn btn-sm btn-primary" data-toggle="modal"
-											data-target="#modal-edit<?= $lps->ID_KLS; ?>"><b><i class="fas fa-edit"></i>
-												Edit</b></button>
+									<td class="text-right" width="150px">
 										<button class="btn btn-sm btn-danger" data-toggle="modal"
 											data-target="#modal_hapus<?= $lps->ID_PS; ?>"><i class="fas fa-trash"></i>
 											<b>Hapus</b></button>

@@ -15,16 +15,16 @@
 				</div><!-- /.col -->
 			</div><!-- /.row -->
 		</div><!-- /.container-fluid -->
-		<?= $this->session->flashdata('message'); ?>
+		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 	</div>
-	<!-- <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div> -->
 	<!-- /.content-header -->
 
 	<!-- Main content -->
 	<section class="content">
 		<div class="card-header">
 			<div class="text-right">
-				<a class="btn btn-primary" href="<?= base_url('admin/blog/tulis_artikel'); ?>"><i class="fas fa-plus"></i>
+				<a class="btn btn-primary" href="<?= base_url('admin/blog/tulis_artikel'); ?>"><i
+						class="fas fa-plus"></i>
 					Tulis artikel</a>
 			</div>
 		</div>

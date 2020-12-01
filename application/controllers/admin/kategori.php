@@ -38,15 +38,6 @@ class Kategori extends CI_Controller
         $this->load->view("admin/template_adm/v_footer");
     }
 
-    //hapus kategori
-    public function hapus()
-    {
-        $ID_CT = $this->input->post('ID_CT');
-        $this->m_kategori->hapus_kategori($ID_CT);
-        $this->session->set_flashdata('message', 'hapus');
-        redirect('admin/kategori');
-    }
-
     //tambah kategori di kategori
     public function tambah_kategori()
     {
@@ -56,6 +47,15 @@ class Kategori extends CI_Controller
         $NM_CT = htmlspecialchars($this->input->post('NM_CT'));
         $this->m_kategori->tmbh_kategori($ID_CT, $NM_CT);
         $this->session->set_flashdata('message', 'save');
+        redirect('admin/kategori');
+    }
+
+    //hapus kategori
+    public function hapus()
+    {
+        $ID_CT = $this->input->post('ID_CT');
+        $this->m_kategori->hapus_kategori($ID_CT);
+        $this->session->set_flashdata('message', 'hapus');
         redirect('admin/kategori');
     }
 

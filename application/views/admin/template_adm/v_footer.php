@@ -124,6 +124,16 @@
                 icon: 'info',
                 title: 'Data dinonaktifkan!',
             });
+        } else if (flashData == 'posting') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Artikel berhasil dipublikasikan!',
+            });
+        } else if (flashData == 'draf') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Artikel dikembalikan ke draf!',
+            });
         }
     });
 </script>

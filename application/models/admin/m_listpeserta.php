@@ -9,13 +9,15 @@ class M_listpeserta extends CI_Model
                                     FROM kelas, detail_kelas, peserta
                                     WHERE detail_kelas.ID_KLS = kelas.ID_KLS 
                                     AND detail_kelas.ID_PS = peserta.ID_PS
-                                    AND kelas.ID_KLS = $ID_KLS");
+                                    AND kelas.ID_KLS = $ID_KLS
+                                    ORDER BY detail_kelas.ID_PS ASC");
+                                    
         return $data;
     }
 
     function tampil_ps()
     {
-        $data = $this->db->query("SELECT * FROM peserta");
+        $data = $this->db->query("SELECT * FROM peserta ORDER BY ID_PS DESC");
         return $data;
     }
 

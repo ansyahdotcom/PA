@@ -37,6 +37,7 @@ class Listpeserta extends CI_Controller
         );
 
         $this->m_listpeserta->insert($data, 'detail_kelas');
+        $this->session->set_flashdata('message', 'save');
         redirect('admin/listpeserta/index/'. $ID_KLS);
     }
     
@@ -49,7 +50,7 @@ class Listpeserta extends CI_Controller
             'ID_PS' => $ID_PS
         );
         $this->m_listpeserta->delete($where, 'detail_kelas');
-        // $this->session->set_flashdata('message', 'hapus');
+        $this->session->set_flashdata('message', 'hapus');
         redirect('admin/listpeserta/index/'. $ID_KLS);
     }
 }

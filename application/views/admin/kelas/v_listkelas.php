@@ -14,8 +14,8 @@
 					</ol>
 				</div>
 			</div>
-			<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 		</div><!-- /.container-fluid -->
+		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 	</section>
 
 	<!-- Main content -->
