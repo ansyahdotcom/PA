@@ -44,7 +44,13 @@ class index extends CI_Controller
     {
         $data['judul'] = $NM_CT;
         $data['nm_ct'] = $NM_CT;
-        $data['kategori'] = $this->m_landingpage->category($NM_CT)->result();
+        // $data['kategori'] = $this->m_landingpage->category($NM_CT)->result();
+        $query = $this->db->query("SELECT post.ID_POST, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST, 
+                                    post.FOTO_POST, post.ST_POST, post.ID_CT, category.NM_CT
+                                    FROM post, category
+                                    WHERE post.ID_CT = category.ID_CT
+                                    AND category.NM_CT = '$NM_CT'");
+        $data['POST'] = $query->result();
         $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view('landingpage/v_post_ktg', $data);
         $this->load->view("landingpage/template/footer", $data);

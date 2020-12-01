@@ -6,84 +6,89 @@
 
 			<div class="row">
 
-			<!-- Post Content Column -->
-			<div class="col-lg-8">
+				<!-- Post Content Column -->
+				<div class="col-lg-8">
 
-				<!-- Title -->
-				<h1 class="mt-4">
-					<?= str_replace('-', ' ', $blg->JUDUL_POST); ?>
-				</h1>
+					<!-- Title -->
+					<h1 class="mt-4">
+						<?= str_replace('-', ' ', $blg->JUDUL_POST); ?>
+					</h1>
 
-				<hr>
+					<hr>
 
-				<!-- Date/Time -->
-				<span class="">
-					<p><i class="fas fa-calendar"></i><?= date(' d F Y', strtotime($blg->TGL_POST)); ?>
+					<!-- Date/Time -->
+					<span class="">
+							<i class="fas fa-calendar"></i><?= date(' d F Y', strtotime($blg->TGL_POST)); ?>
+							<br>
+							<i class="fa fa-folder"></i>
+							<a class="" href="<?= base_url('index/kategori/'. $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
+							<i class="fas fa-tag ml-2"></i>
+							<?php 
+							$i = 1;
+							foreach($detail_tags as $dt){ ?>
+							<a class=""
+								href="<?= base_url('index/tag/'. $dt->NM_TAGS); ?>"><?= $dt->NM_TAGS; ?><?= $i == count((array) $detail_tags) ? '' : ', ' ?></a>
+							<?php $i++; } ?>
+
+					</span>
+					<hr>
+
+					<!-- Preview Image -->
+					<img class="img-fluid rounded" src="<?= base_url('assets/fotoblog/'.$blg->FOTO_POST);?>"
+						alt="foto-post">
+
+					<hr>
+					<!-- Awalan Konten -->
+					<p><?= htmlspecialchars_decode($blg->KONTEN_POST); ?></p>
+					<!-- Akhiran Konten -->
 					<br>
-					<i class="fa fa-folder"></i>
-					<a class="" href="<?= base_url('index/kategori/'. $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
-					
-				</span>
+					<p>
+					</p>
 
-				<hr>
+					<hr>
+				</div>
+				<!--  ======================= Awalan Sidebar ============================== -->
+				<aside class="col-md-4 blog-sidebar">
 
-				<!-- Preview Image -->
-				<img class="img-fluid rounded" src="<?= base_url('assets/fotoblog/'.$blg->FOTO_POST);?>" alt="foto-post">
+					<!--  ======================= Awalan Kategori ============================== -->
+					<div class="card my-4">
+						<h5 class="card-header"> Kategori</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled mb-0">
+										<?php foreach ($kategori as $ktg) { ?>
+										<li>
+											<a class="text-dark"
+												href="<?= base_url('index/kategori/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
+										</li>
+										<?php } ?>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  ======================= Batas Artikel populer ============================== -->
 
-				<hr>
-				<!-- Awalan Konten -->
-				<p><?= htmlspecialchars_decode($blg->KONTEN_POST); ?></p>
-				<!-- Akhiran Konten -->
-				<br>
-				<p>
-					<i class="fas fa-tag"></i>
-					<?php foreach($detail_tags as $dt){ ?>
-					<a class="btn btn-sm-primary" href="<?= base_url('index/tag/'. $dt->NM_TAGS); ?>"><?= $dt->NM_TAGS; ?></a>
-					<?php } ?>
-				</p>
-
-				<hr>
+					<!--  ======================= Awalan Media sosial ============================== -->
+					<div class="card my-4">
+						<h5 class="card-header">Ikuti akun sosial media kami</h5>
+						<div class="card-body">
+							<div class="social">
+								<a href="https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
+								<a href="https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
+								<a href="https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i
+										class="fab fa-youtube"></i></a>
+								<a href="https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>
+							</div>
+						</div>
+					</div>
+					<!--  ======================= Batas Media sosial ============================== -->
+				</aside>
+				<!--  ======================= Batas Sidebar ============================== -->
 			</div>
-			<!--  ======================= Awalan Sidebar ============================== -->
-			<aside class="col-md-4 blog-sidebar">
-
-				<!--  ======================= Awalan Kategori ============================== -->
-				<div class="card my-4">
-				<h5 class="card-header">  Kategori</h5>
-				<div class="card-body">
-					<div class="row">
-					<div class="col-lg-6">
-						<ul class="list-unstyled mb-0">
-						<?php foreach ($kategori as $ktg) { ?>
-							<li>
-								<a class="text-dark" href="<?= base_url('index/kategori/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
-							</li>
-						<?php } ?>
-						</ul>
-					</div>
-					</div>
-				</div>
-				</div>
-				<!--  ======================= Batas Artikel populer ============================== -->
-
-				<!--  ======================= Awalan Media sosial ============================== -->
-				<div class="card my-4">
-				<h5 class="card-header">Ikuti akun sosial media kami</h5>
-				<div class="card-body">
-					<div class="social">
-					<a href="https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
-					<a href="https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
-					<a href="https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i class="fab fa-youtube"></i></a>
-					<a href="https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>  
-					</div>
-				</div>
-				</div>
-				<!--  ======================= Batas Media sosial ============================== -->
-			</aside>
-			<!--  ======================= Batas Sidebar ============================== -->
-			</div>
-		</main>
-		<!--  ======================= Batas Main class ============================== -->
+	</main>
+	<!--  ======================= Batas Main class ============================== -->
 	</div>
 	<?php } ?>
 
