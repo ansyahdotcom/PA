@@ -87,23 +87,19 @@ class Kelas extends CI_Controller
             /** upload gambar */
             $upload_image = $_FILES['gbrkls']['name'];
             if ($upload_image) {
-                $config['upload_path']  = './assets/dist/img/kelas/';
-                $config['allowed_type'] = 'jpg|jpeg|png|gif';
+                $config['allowed_types'] = 'gif|jpg|jpeg|png';
                 $config['max_size'] = '2048';
+                $config['upload_path']  = './assets/dist/img/kelas/';
 
-                // $this->load->library('upload', $config);
                 $this->upload->initialize($config);
-                $is_upload = $this->upload->do_upload('gbr[]');
 
-                if (($is_upload)) {
-                    $image = $this->upload->data('file_name');
-                    $img = $image;
-                } else {
+                if (!$this->upload->do_upload('gbrkls')) {
                     echo $this->upload->display_errors();
-                    $img = 'default.jpg';
+                } else {
+                    $image = $this->upload->data('file_name');
                 }
             } else {
-                $img = 'default.jpg';
+                $image = 'default.jpg';
             }
 
             /** Proses insert ke database */
@@ -113,7 +109,7 @@ class Kelas extends CI_Controller
                 'ID_DISKON' => 0,
                 'TITTLE' => $namakls,
                 'PERMALINK' => $link,
-                'GBR_KLS' => $img,
+                'GBR_KLS' => $image,
                 'DESKRIPSI' => $deskripsi,
                 'PRICE' => $harga,
                 'STAT' => 0,
@@ -135,6 +131,7 @@ class Kelas extends CI_Controller
             'EMAIL_ADM' => $email
         ])->row_array();
         $data['tittle'] = 'Data Kelas';
+
         /** Mengambil data kelas */
         $data['kelas'] = $this->m_kelas->getkelas();
 
@@ -162,39 +159,40 @@ class Kelas extends CI_Controller
             $this->load->view('admin/kelas/v_kelas', $data);
             $this->load->view('admin/template_adm/v_footer');
         } else {
-            $id = htmlspecialchars($this->input->post('id'));
+            $id = $this->input->post('id');
             $nama = htmlspecialchars($this->input->post('namakls'));
             $harga = htmlspecialchars($this->input->post('harga'));
-            // $diskon = htmlspecialchars($this->input->post('diskon'));
             $link = htmlspecialchars($this->input->post('link'));
             $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
             $kategori = htmlspecialchars($this->input->post('ktg'));
+            $oldimg = $this->input->post('old');
 
             /** Proses edit gambar */
             $upload_image = $_FILES['gbrkls']['name'];
 
             if ($upload_image) {
-                    $config['allowed_types'] = 'gif|jpg|jpeg|png';
-                    $config['max_size'] = '2048';
-                    $config['upload_path'] = './assets/dist/img/kelas/';
+                $config['allowed_types'] = 'gif|jpg|jpeg|png';
+                $config['max_size'] = '2048';
+                $config['upload_path'] = './assets/dist/img/kelas/';
 
-                    $this->upload->initialize($config);
+                $this->upload->initialize($config);
 
-                    if ($this->upload->do_upload('gbrkls')) {
-                        $old_image = $data['kelas']['GBR_KLS'];
-                        if ($old_image != 'default.jpg') {
-                            unlink(FCPATH . 'assets/dist/img/kelas/' . $old_image);
-                        }
-                        $new_image = $this->upload->data('file_name');
-                        $this->db->set('GBR_KLS', $new_image);
-                    } else {
-                        echo $this->upload->display_errors();
+                if ($this->upload->do_upload('gbrkls')) {
+                    if ($oldimg != 'default.jpg') {
+                        unlink(FCPATH . 'assets/dist/img/kelas/' . $oldimg);
                     }
+                    $new_image = $this->upload->data('file_name');
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            } else {
+                $new_image = $oldimg;
             }
 
             $edit = [
                 'TITTLE' => $nama,
                 'PERMALINK' => $link,
+                'GBR_KLS' => $new_image,
                 'DESKRIPSI' => $deskripsi,
                 'PRICE' => $harga,
                 'ID_DISKON' => 0,
@@ -202,9 +200,7 @@ class Kelas extends CI_Controller
                 'UPDATE_KLS' => time(),
             ];
 
-            $this->db->set($edit);
-            $this->db->where('ID_KLS', $id);
-            $this->db->update('kelas');
+            $this->m_kelas->editkls($edit, $id);
             $this->session->set_flashdata('message', 'edit');
             redirect('admin/kelas');
         }

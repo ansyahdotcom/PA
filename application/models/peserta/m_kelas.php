@@ -44,5 +44,15 @@
             $query = $this->db->get()->row_array();
             return $query;
         }
+
+        public function countmyclass($email)
+        {
+            $this->db->select('detail_kelas.ID_PS');
+            $this->db->from('detail_kelas');
+            $this->db->join('peserta', 'peserta.ID_PS = detail_kelas.ID_PS', 'left');
+            $this->db->where('EMAIL_PS', $email);
+            $query = $this->db->get()->num_rows();
+            return $query;
+        }
     }
 ?>

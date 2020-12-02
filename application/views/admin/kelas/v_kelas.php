@@ -149,7 +149,7 @@
                     <label for="email">Gambar Kelas</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input"  name="gbrkls" aria-describedby="inputGroupFileAddon01">
+                        <input type="file" class="custom-file-input"  name="gbrkls">
                         <label class="custom-file-label" for="gbrkls">Pilih file...</label>
                       </div>
                     </div>
@@ -223,12 +223,12 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form method="POST" action="<?= base_url('admin/kelas/editkls'); ?>" class="form-editkls valid" enctype="multipart/form-data">
+          <form method="POST" action="<?= base_url('admin/kelas/editkls'); ?>" class="form-editkls" enctype="multipart/form-data">
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-6">
                   <div class="float-left">
-                    <img class="img-fluid img-thumbnail" src="<?= base_url(); ?>assets/dist/img/kelas/<?= $k['GBR_KLS']; ?>" alt="User profile picture" width="300px">
+                    <img class="img-fluid img-responsive img-rounded shadow" src="<?= base_url(); ?>assets/dist/img/kelas/<?= $k['GBR_KLS']; ?>" alt="User profile picture" width="300px">
                   </div>
                 </div>
                 <div class="col-sm-6">
@@ -277,7 +277,7 @@
                 <div class="col-md-6 row-ktgkls" hidden>
                   <div class="form-group">
                     <label for="namakls">Kategori Kelas</label>
-                    <select name="ktg" id="inkls" class="custom-select slct-ktg text-bold">
+                    <select name="ktg" id="inkls" class="custom-select slct-ktg text-bold" required>
 
                     </select>
                   </div>
@@ -298,12 +298,13 @@
                     <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
                   </div>
                 </div>
+                <input type="text" value="<?= $gambar; ?>" name="old" hidden>
                 <div class="col-md-6 edit" hidden>
                   <div class="form-group">
                     <label for="email">Edit Gambar</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="gbrkls" name="gbrkls" value="<?= $gambar; ?>" aria-describedby="inputGroupFileAddon01">
+                        <input type="file" class="custom-file-input" id="gbrkls" name="gbrkls" aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="gbrkls">Pilih file...</label>
                       </div>
                     </div>

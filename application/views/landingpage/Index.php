@@ -7,7 +7,6 @@
     		<div class="container">
     			<div class="row">
     				<div class="col-lg-12 text-center">
-    					<!-- <?= $this->session->flashdata('message'); ?> -->
     				</div>
     			</div>
     			<div class="row">

@@ -17,6 +17,23 @@
             return $this->db->insert('kelas', $kelas);
         }
 
+        public function cek_oldimg($id)
+        {
+            $this->db->select('GBR_KLS');
+            $this->db->from('kelas');
+            $this->db->where('ID_KLS', $id);
+            $query = $this->db->get()->row_array();
+            return $query;
+        }
+
+        public function editkls($edit, $id)
+        {
+            $this->db->set($edit);
+            $this->db->where('ID_KLS', $id);
+            $this->db->update('kelas');
+            return $this->db;
+        }
+
         public function link()
         {
             $this->db->select('PERMALINK');

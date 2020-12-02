@@ -64,6 +64,14 @@
 <!-- <script src="<?= base_url(); ?>assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script> -->
 <!-- <script src="<?= base_url(); ?>assets/dist/js/jquery-3.4.1.min.js"></script> -->
 
+<!-- Script input file -->
+<script>
+    $('input.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('label.custom-file-label').addClass("selected").html(fileName);
+    });
+</script>
+
 <!-- Page Script -->
 <script>
     $(function() {

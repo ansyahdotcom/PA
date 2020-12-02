@@ -21,6 +21,9 @@ class Dashboard extends CI_Controller{
         /** cek sudah punya kelas atau belum */
         $data['cekmyclass'] = $this->m_kelas->cekmyclass($email);
 
+        /** Jumlah kelas */
+        $data['countmyclass'] = $this->m_kelas->countmyclass($email);
+
         $data['tittle'] = "Beranda";
         $this->load->view("peserta/template/v_header", $data);
         $this->load->view("peserta/template/v_navbar", $data);
