@@ -23,7 +23,7 @@
         <!-- Default box -->
         <div class="card card-solid">
             <div class="card-body pb-0">
-    
+
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <form method="POST" action="<?= base_url('peserta/kelas'); ?>">
@@ -39,10 +39,10 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <?php if($this->session->userdata('keyword') == null) : ?>
-                    
+                    <?php if ($this->session->userdata('keyword') == null) : ?>
+
                     <?php else : ?>
-                        <?php if($rows == 0) : ?>
+                        <?php if ($rows == 0) : ?>
                             <h5 class="text-bold text-secondary">Hasil pencarian tidak ditemukan</h5>
                         <?php else : ?>
                             <h5 class="text-bold text-secondary">Ditemukan Hasil Pencarian: <?= $rows; ?></h5>
@@ -64,7 +64,7 @@
                                 <div class="card-header text-muted border-bottom-0">
                                     Kelas
                                 </div>
-                                <div class="card-body pt-0">
+                                <div class="position-relative card-body pt-0">
                                     <div class="row">
                                         <div class="col-7">
                                             <h2 class="lead text-bold"><b><?= $kelas; ?></b></h2>
