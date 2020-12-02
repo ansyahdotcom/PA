@@ -29,8 +29,8 @@
               <div class="col-sm-10">
                 <h5 class="alert-heading">Selamat Datang!</h5>
                 <p>Halo, <?= $peserta['NM_PS']; ?> anda login sebagai <?php if ($this->session->userdata('role') == 2) {
-                                                                        echo "Peserta";
-                                                                      } ?>. Jika kamu telah membayar dan belum diproses oleh admin, bisa hubungi CS.</p>
+                  echo "Peserta";
+                } ?>. Jika kamu telah membayar dan belum diproses oleh admin, bisa hubungi CS.</p>
               </div>
               <div class="col-sm-2">
                 <img" src="<?= base_url(); ?>assets/dist/img/program/study.svg" width="100" alt="halo">
@@ -114,7 +114,7 @@
                   <?php if ($cekmyclass == null) : ?>
                     <h5 class="mt-3 mb-3">Belum ada kelas </h5>
                   <?php else : ?>
-                    <h5 class="mt-3 mb-3">Kelas Anda: <?= $myclass['TITTLE']; ?> </h5>
+                    <h5 class="mt-3 mb-3">Kelas saya: <?= $myclass['TITTLE']; ?> </h5>
                   <?php endif; ?>
                   </a>
             </div>

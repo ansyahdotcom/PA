@@ -18,6 +18,9 @@ class Myclass extends CI_Controller
 
         /** Kelas yang dipilih peserta */
         $data['myclass'] = $this->m_kelas->myclass($email);
+        
+        /** cek sudah punya kelas atau belum */
+        $data['cekmyclass'] = $this->m_kelas->cekmyclass($email);
 
         $data['tittle'] = "Kelas Saya";
         $this->load->view("peserta/template/v_header", $data);
