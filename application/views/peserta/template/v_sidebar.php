@@ -18,7 +18,7 @@
                     <!-- ini menu yang ga ada sub menunya -->
                     <!-- kalo ngopy codingan menunya dari sini -->
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/dashboard'); ?>" class="nav-link active">
+                        <a href="<?= base_url('peserta/dashboard'); ?>" class="nav-link <?php if($this->uri->segment(2)=="dashboard"){echo "active";}?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -31,7 +31,7 @@
                     <!-- Ini menu yang ada submenunya -->
                     <!-- kalo ngopy codingan menunya dari sini -->
                     <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                        <a href="#" class="nav-link <?php if($this->uri->segment(2)=="profil"){echo "active";}?>">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Profil
@@ -53,7 +53,7 @@
                     <li class="nav-header">Transaksi</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Register Kelas Baru
@@ -72,7 +72,7 @@
                     <li class="nav-header">Kelas</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/myclass'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/myclass'); ?>" class="nav-link <?php if($this->uri->segment(2)=="myclass" || "mymateri"){echo "active";}?>">
                             <i class="nav-icon fab fa-leanpub"></i>
                             <p>
                                 Kelas Saya

@@ -44,5 +44,24 @@
             $query = $this->db->get()->row_array();
             return $query;
         }
+
+        // public function getidkelas($id)
+        // {
+        //     $hasil = $this->db->query('SELECT * FROM kelas 
+        //     WHERE kelas.ID_KLS = $id');
+
+        //     return $hasil->row();
+        // }
+
+        public function getmateri($id){
+            $result = $this->db->query("SELECT * FROM detail_materi, kelas, materi
+            WHERE detail_materi.ID_MT = materi.ID_MT AND kelas.ID_KLS AND kelas.ID_KLS = $id");
+            return $result;
+        }
+        public function getsub(){
+            $result = $this->db->query("SELECT * FROM materi, materi_sub WHERE materi.ID_MT = materi_sub.ID_MT");
+            return $result;
+        }
     }
+
 ?>

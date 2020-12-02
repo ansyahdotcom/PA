@@ -70,7 +70,9 @@
                                                     Level:
                                                 </span> <?= $myclass['KTGKLS']; ?>
                                             </span>
-                                            <a href="<?= $myclass['PERMALINK']; ?>" type="submit" class="btn btn-primary btn-block text-bold">Akses Kelas</a>
+                                            <?php $link = $myclass['PERMALINK'];?>
+                                        <?php $id = $myclass['ID_KLS'];?>
+                                        <a href="<?= base_url("peserta/mymateri/materi/".$link."/$id") ?>" class="btn btn-primary btn-block text-bold">Akses Kelas</a>
                                         </div>
                                     </div>
                                 </div>
