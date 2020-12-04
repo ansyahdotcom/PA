@@ -14,14 +14,14 @@
     					<h3 class="title-text">Social Entrepreneurship</h3>
     					<h1 class="title-text text-uppercase">Awokwowow</h1>
     					<h4 class="title-text text-uppercase">Anjayani</h4>
-    					<!-- <div class="site-buttons">
+    					<div class="site-buttons">
     						<div class="d-flex flex-row flex-wrap">
     							<a href="<?=base_url('register');?>" class="btn button primary-button mr-4 text-uppercase">Daftar
     								Sekarang</a>
-    							<button type="button" class="btn button secondary-button text-uppercase">Pelajari Lebih
-    								Lanjut</button>
+    							<a href="#about-area" class="btn button secondary-button text-uppercase">Pelajari Lebih
+    								Lanjut</a>
     						</div>
-    					</div> -->
+    					</div>
     				</div>
     				<div class="col-lg-6 col-md-12 banner-image">
     					<img src="<?= base_url(); ?>assets/dist/img/banner/instruktur.svg" alt="banner-img"
@@ -44,7 +44,7 @@
 
     	<!--  ========================= Awalan About ==========================  -->
 
-    	<section class="about-area">
+    	<section class="about-area mt-5" id="about-area">
     		<div class="container-fluid">
     			<div class="row">
     				<div class="col-lg-6 col-md-12">

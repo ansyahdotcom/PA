@@ -157,6 +157,11 @@ $(function() {
             icon: 'warning',
             title:'Data berhasil di Hapus!',
         });
+    }else if(flashData == 'restore'){
+        Toast.fire({
+            icon: 'success',
+            title:'Data berhasil di Restore!',
+        });
     }
             // else if(flashData == 'blSuccess'){
             //     Toast.fire({

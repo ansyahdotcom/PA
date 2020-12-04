@@ -29,7 +29,7 @@
               <h3 class="card-title">Tabel <?= $tittle; ?></h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
-                <i class="fas fa-plus"></i> Pintasan</button>
+                <i class="fas fa-plus-circle"></i> Pintasan</button>
               </div>
             </div>
             <!-- /.card-header -->

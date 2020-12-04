@@ -42,7 +42,7 @@
                         <ul class="nav nav-treeview">
                             <!-- kalo ngopy sub menu dari sini -->
                             <li class="nav-item">
-                                <a href="<?= base_url('peserta/profil'); ?>" class="nav-link">
+                                <a href="<?= base_url('peserta/profil'); ?>" class="nav-link <?php if($this->uri->segment(2)=="profil"){echo "active";}?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Konfigurasi Profil</p>
                                 </a>
@@ -72,7 +72,7 @@
                     <li class="nav-header">Kelas</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/myclass'); ?>" class="nav-link <?php if($this->uri->segment(2)=="myclass" || "mymateri"){echo "active";}?>">
+                        <a href="<?= base_url('peserta/myclass'); ?>" class="nav-link <?php if($this->uri->segment(2)=="myclass" || $this->uri->segment(2)=="mymateri"){echo "active";}?>">
                             <i class="nav-icon fab fa-leanpub"></i>
                             <p>
                                 Kelas Saya

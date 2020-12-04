@@ -43,8 +43,8 @@
 	<div class="container-all">
 		<header class="header_area">
 			<div class="main-menu">
-				<nav class="navbar navbar-expand-lg navbar-light">
-					<a class="navbar-brand" href="<?=base_url();?>"><img
+				<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+					<a class="navbar-brand" href="<?=base_url('home');?>"><img
 							src="<?= base_url(); ?>assets/dist/img/logo.png" width="130" alt="logo"></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,10 +64,10 @@
 						<div class="mr-auto"></div>
 						<ul class="navbar-nav">
 							<li class="nav-item mr-2 ml-2 mb-2">
-								<a href="<?= base_url('auth'); ?>" class="nav-link btn btn-primary">Masuk</a>
+								<a href="<?= base_url('auth'); ?>" class="nav-link btn button primary-button">Masuk</a>
 							</li>
 							<li class="nav-item ml-2 mr-2 mb-2">
-								<a href="<?= base_url('register'); ?>" class="nav-link btn btn-warning">Daftar</a>
+								<a href="<?= base_url('register'); ?>" class="nav-link btn button secondary-button">Daftar</a>
 							</li>
 						</ul>
 					</div>

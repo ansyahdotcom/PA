@@ -31,7 +31,9 @@ class index extends CI_Controller
         $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
-        $data['data'] = $this->m_medsos->get_data();
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+        $data['footer'] = $this->m_medsos->get_data();
         $data['judul'] = 'Preneur Academy';
         $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view("landingpage/lihat_post", $data);

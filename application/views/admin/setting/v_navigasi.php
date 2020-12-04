@@ -22,7 +22,7 @@
             <h3 class="card-title pt-2">Navigasi Halaman</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
-                <i class="fas fa-plus"></i> Menu</button>
+                <i class="fas fa-plus-circle"></i> Menu</button>
             </div>
             </div>
             <div class="card-body">
@@ -38,7 +38,7 @@
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?= $id;?>">
                         <i class="fas fa-edit"></i> Edit</button>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete<?= $id;?>">
-                        <i class="fas fa-trash-alt"></i> Hapus</button>
+                        <i class="fas fa-trash"></i> Hapus</button>
                     </div>
                     </div>
                 </div>

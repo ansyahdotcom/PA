@@ -87,37 +87,34 @@
 				</aside>
 				<!--  ======================= Batas Sidebar ============================== -->
 			</div>
-	</main>
 	<!--  ======================= Batas Main class ============================== -->
-	</div>
 	<?php } ?>
 
 	<!--  ========================== Subscribe me Area ============================  -->
-	<section class="subscribe-us-area">
-		<div class="container subscribe bg-warning justify-content-center">
-			<div class="row">
-				<div class="col-lg-12 text-center subscribe-title">
-					<h4 class="text-uppercase">Dapatkan update dari mana saja</h4>
-					<p class="para">Dengan mengklik subscribe, anda akan mendapatkan update artikel terbaru.</p>
-				</div>
-			</div>
-			<div class="d-sm-flex  form justify-content-center">
-				<form class="ml-10">
-					<div class="row">
-						<div class="col-md-8 pl-4 pr-4 mt-2">
-							<input type="email" class="form-control" placeholder="Email">
-						</div>
-						<div class="col-md-4 pl-4 pr-4 mt-2">
-							<button type="submit" class="btn btn-success form-control">Subscribe</button>
+	</div>
+	<section class="newsletter">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-10 text-center jumbotron bg-primary p-12 shadow">
+						<img src="<?=base_url();?>assets/dist/img/subscribe.svg" width="200" alt="gambar-envelope">
+						<div class="content text-center mt-5">
+							<h2 class="text-white">SUBSCRIBE</h2>
+							<p class="text-white">Dengan meng-klik subscribe artinya anda menyetujui layanan langganan ke website ini.</p>
+							<div class="input-group p-5 mt-5 mb-5">
+								<input type="email" class="form-control mr-2 mb-2" placeholder="Enter your email">
+								<span class="input-group-btn">
+								<button class="btn btn-warning ml-2 mb-2" type="submit">Subscribe Now</button>
+								</span>
+							</div>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
-		</div>
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-			<path fill="#FFC107" fill-opacity="1"
-				d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-			</path>
-		</svg>
-	</section>
-	<!--  ========================== Batas Subscribe Area ============================  -->
+    		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+				<path fill="#FFC107" fill-opacity="1"
+					d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+				</path>
+			</svg>
+		</section>
+    	<!--  ========================== Batas Subscribe Area ============================  -->
+	</main>
