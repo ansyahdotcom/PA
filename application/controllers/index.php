@@ -78,5 +78,6 @@ class index extends CI_Controller
         $data['kelas'] = $this->m_landingpage->kelas()->result();
         $this->load->view("landingpage/template/header" , $data);
         $this->load->view("landingpage/kls", $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
 }
