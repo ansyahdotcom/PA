@@ -75,6 +75,8 @@ class index extends CI_Controller
         $data['header'] = $this->m_navbar->get_navbar(); 
         $data['kebijakan'] = $this->m_kebijakan->get_data(); 
         $data['judul'] = 'Preneur Academy | Kelas';
+        $data['kelas'] = $this->m_landingpage->kelas()->result();
         $this->load->view("landingpage/template/header" , $data);
+        $this->load->view("landingpage/kls", $data);
     }
 }
