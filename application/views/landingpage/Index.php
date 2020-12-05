@@ -232,7 +232,7 @@
     		<div class="container">
     			<div class="row text-center">
     				<div class="col-12">
-    					<div class="about-title">
+    					<div class="about-title" id="Blog">
     						<h1 class="text-uppercase title-h1">Blog</h1>
     						<p class="para">
     							Berikut beberapa artikel terpopuler.

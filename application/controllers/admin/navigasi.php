@@ -17,7 +17,7 @@ class Navigasi extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-        $data['tittle'] = "Data Navigasi Menu";
+        $data['tittle'] = "Navigasi Menu Web Profile";
 		$data['data'] = $this->navbar_model->get_navbar();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);

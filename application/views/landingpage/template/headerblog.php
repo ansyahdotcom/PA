@@ -45,7 +45,7 @@
                 <a href="<?=base_url('home')?>"><img src="<?= base_url();?>assets/dist/img/logo.png" width="130" alt="logo"></a>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="<?= base_url('blog')?>">Preneur Blog</a>
+                <a class="blog-header-logo text-dark" href="">Preneur Blog</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="text-muted" href="#" aria-label="Search">
@@ -57,7 +57,7 @@
         </header>
 
         <!--  ======================= Awalan Navbar ============================== -->
-      <div class="nav-scroller py-1 mb-2">
+      <!-- <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex">
           <a class="p-2 text-muted" href="index.html">Beranda</a>
           <a class="p-2 text-muted" href="#">Kelas</a>
@@ -65,5 +65,5 @@
           <a class="p-2 text-muted" href="#">Inspirasi</a>
           <a class="p-2 text-muted" href="#">Komunitas</a>
         </nav>
-      </div>
+      </div> -->
       <!--  ======================= Batas Navbar ============================== -->

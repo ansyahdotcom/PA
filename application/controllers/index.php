@@ -68,4 +68,13 @@ class index extends CI_Controller
         $this->load->view('landingpage/v_post_tag', $data);
         $this->load->view("landingpage/template/footer", $data);
     }
+
+    public function kelas()
+    {
+        $data['footer'] = $this->m_medsos->get_data(); 
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+        $data['judul'] = 'Preneur Academy | Kelas';
+        $this->load->view("landingpage/template/header" , $data);
+    }
 }
