@@ -19,7 +19,7 @@
     <section class="content">
         <div class="card">
             <div class="card-header">
-            <!-- <h3 class="card-title pt-2">Navigasi Halaman</h3> -->
+            <h3 class="card-title pt-2"><?=$tittle?></h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
                 <i class="fas fa-plus-circle"></i> Menu</button>

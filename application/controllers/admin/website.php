@@ -29,7 +29,7 @@ class Website extends CI_Controller
     
             $prefs = array(     
                 'format'      => 'sql',             
-                'filename'    => "nananina_".date("Ymd-His").'.sql',
+                'filename'    => "preneueracademy_".date("Ymd-His").'.sql',
                 'add_drop'    => TRUE,
                 'add_insert'  => TRUE,
                 'newline'     => "\n",

@@ -28,20 +28,31 @@
 						<div class="card card-default">
 							<div class="card-header">
 								<h3 class="card-title">
-									<i class="fas fa-bullhorn"></i>
+									<i class="fas fa-"></i>
 									List Kelas
 								</h3>
 
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body">
+              <?php if ($kyui == null) : ?>
+                <!-- Jika Belum Terdapat data -->
+                    <div class="col-md">
+                        <div class="card-body text-center mt-4">
+                            <img src="<?= base_url('assets/icon/noList.svg'); ?>" alt="noData" class="img-rounded img-responsive img-fluid" width="100">
+                        </div>
+                        <div class="card-body pt-0 mt-4">
+                            <h3 class="text-center text-bold text-muted">Belum terdapat data</h3>
+                        </div>
+              </div>
+              <?php else : ?>
                 <?php foreach ($kyui as $ky) : ?>
-                  <div class="card">
+                  <div class="card bg-purple">
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-8">
-                          <h1 class="card-title"><?= $ky->TITTLE; ?></h1>
-                          <p class="card-text"><?= $ky->DESKRIPSI; ?></p>
+                          <h1 class="card-title mb-2"><?= $ky->TITTLE; ?></h1>
+                          <h4 class="card-text mt-2"><span class="badge badge-warning"><?= $ky->KTGKLS; ?></span></h4>
                         </div>
                         <div class="col-md-4 text-right">
                         <?php 
@@ -54,6 +65,7 @@
                     </div>
                   </div>
                 <?php endforeach; ?>
+              <?php endif;?>
 							</div>
 							<!-- /.card-body -->
 						</div>

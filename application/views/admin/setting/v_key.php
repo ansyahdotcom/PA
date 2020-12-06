@@ -36,7 +36,7 @@
                             ?>
                             <div class="col-md-6">
                                 <div class="card">
-                                <div class="card-header bg-dark">
+                                <div class="card-header bg-indigo">
                                     <h3 class="card-title pt-2"><?= $nama;?></h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?=$id;?>">

@@ -50,13 +50,11 @@
                             <div class="gambar">
                                 <img src="<?= base_url(); ?>assets/dist/img/restore.svg" width="200" alt="halo">
                                 <p class="card-text text-sucess mt-3 mb-4">Restore DB dapat digunakan meng-upload atau mengganti database.</p>
-                                <form action="<?php echo base_url().'admin/website/restore_db'?>" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="file">Upload database (.sql)</label>
                                         <input type="file" name="file" class="form-control-file" id="file">
                                     </div>
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Restore DB</button>
-                                </form>
+                                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-file-upload"></i> Restore DB</a>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -69,3 +67,28 @@
         </div>
     </section>
 </div>
+
+<div class="modal fade" id="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary">
+            <h4 class="modal-title">Restore Data</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="<?php echo base_url().'admin/website/restore_db'?>" method="post" enctype="multipart/form-data">
+            <div class="modal-body">
+              <div class="text-center">
+              <img src="<?= base_url(); ?>assets/dist/img/restore.svg" width="200" alt="halo">
+                <h4 class="mb-4">Apakah anda yakin untuk merubah database?</h4>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+              <button type="submit" class="btn btn-danger"><i class="fas fa-file-upload"></i> Iya</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>

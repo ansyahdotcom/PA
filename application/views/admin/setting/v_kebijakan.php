@@ -169,7 +169,6 @@
     $isi = $p['ISI_KB'];
   ?>
 
-  <!-- Modal Tambah -->
   <div class="modal fade" id="modalEdit<?=$id;?>" tabindex="-1">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -254,50 +253,55 @@
     </div>
   </div>
 
-    <!-- Modal Detail Data -->
-    <div class="modal fade" id="modalDetail<?= $id; ?>">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header bg-primary">
-            <h4 class="modal-title">Detail Data</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+  <div class="modal fade" id="modalDetail<?=$id;?>" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <h5 class="modal-title">Ubah Kebijakan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="<?php echo base_url().'admin/kebijakan/update'?>" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nama">Judul</label>
+            <input type="text" name="nama" value="<?=$nama;?>" class="form-control" placeholder="Nama Menu" readonly>
+            <small class="form-text text-success">Contoh: Kebijakan Pribadi(Privacy Policy)</small>
           </div>
-          <form role="form">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" class="form-control text-bold" id="nama" placeholder="Nama" value="<?= $nama; ?>" disabled>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="icon">IMG</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class=""></i></span>
-                    </div>
-                    <input type="text" class="form-control text-bold" id="icon" value="<?= $icon; ?>" disabled>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="hp">Link Pintasan</label>
-                    <input type="text" class="form-control text-bold" id="hp" placeholder="No hp" value="<?= $link; ?>" disabled>
-                    <a class="btn btn-primary mt-2" target="_blank" href="<?= $link;?>">Cek link</a>
+          <div class="form-group">
+            <label for="icon">Gambar</label>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-4">
+                  <div class="card">
+                      <img src="<?= base_url(); ?>assets/dist/img/kebijakan/<?= $img; ?>" class="card-img-top" alt="gambar-foto">
+                      <div class="card-body">
+                        <h6 class="card-title"><?=$img;?></h6>
+                      </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="modal-footer justify-content-right">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-            </div>
-          </form>
+          </div>
+          <div class="form-group">
+            <label for="link">Link</label>
+            <input type="text" name="link" value="<?=$link;?>" class="form-control" placeholder="Link Pintasan" readonly>
+            <small class="form-text text-success">Contoh: <?= base_url();?><b>terms-and-conditions</b></small>
+          </div>
+          <div class="form-group">
+            <label for="isi">Isi Konten</label>
+            <input type="text" name="isi" value="<?=$isi;?>" class="form-control" placeholder="Link Pintasan" readonly>
+            <small class="form-text text-success">Berisi keterangan kebijakan</small>
+          </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        </form>
       </div>
     </div>
+  </div>
 
     <!-- Modal Hapus Data -->
     <div class="modal fade" id="modalDelete<?= $id; ?>">
@@ -325,4 +329,4 @@
         </div>
       </div>
     </div>
-  <?php endforeach; ?>s
+  <?php endforeach; ?>

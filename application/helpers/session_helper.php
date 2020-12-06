@@ -3,7 +3,7 @@
     {
         $var_ci = get_instance();
         if (!$var_ci->session->userdata('email')) {
-            redirect('admin/auth');
+            redirect('authadm');
         } else {
             // redirect('admin/dashboard');
         }
@@ -13,7 +13,7 @@
     {
         $var_ci = get_instance();
         if (!$var_ci->session->userdata('email')) {
-            redirect('peserta/auth/login');
+            redirect('auth');
         } else {
             // redirect('admin/dashboard');
         }
