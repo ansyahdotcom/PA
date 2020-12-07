@@ -18,15 +18,25 @@
 
 						<!-- Date/Time -->
 						<span>
-							<p><i class="fas fa-calendar"></i><?= date(' d F Y', strtotime($wbnr->TGL_POSTWEB)); ?>
-								<i class="fa fa-folder"></i> </p>
+
+							<table>
+								<tr>
+									<td for="TGL_WEB"><i class="fas fa-calendar"></i> <?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_WEB))); ?> &nbsp;</td>
+									<td><i class="fa fa-clock"></i></td>
+								</tr>
+								<tr>
+									<td for="PLATFORM"><i class="fa fa-map-marker-alt"></i> <?= $wbnr->PLATFORM; ?> &nbsp;</td>
+									<td for="HARGA"><i class="fa fa-coins"></i> <?= $wbnr->HARGA; ?></td>
+								</tr>
+							</table>
 
 						</span>
 
 						<hr>
 
 						<!-- Preview Image -->
-						<img class="img-fluid rounded" src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_PEMATERI); ?>" alt="foto-pemateri">
+						<p><i class="fa fa-user-tie"></i> <?= $wbnr->PEMBICARA ?></p>
+						<img class="img-fluid rounded" src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_PEMBICARA); ?>" alt="foto-pembicara">
 						<br>
 
 						<hr>

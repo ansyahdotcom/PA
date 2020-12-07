@@ -151,6 +151,36 @@
                     </li>
 
                     <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link <?php if ($this->uri->segment(2) == "webinar" || $this->uri->segment(2) == "fasilitas_webinar") {
+                                                        echo "active";
+                                                    } ?>">
+                            <i class="nav-icon fas fa-globe"></i>
+                            <p>
+                                Manajemen Webinar
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/webinar'); ?>" class="nav-link <?php if ($this->uri->segment(2) == "webinar") {
+                                                                                                echo "active";
+                                                                                            } ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Webinar</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('admin/fasilitas_webinar'); ?>" class="nav-link <?php if ($this->uri->segment(2) == "fasilitas_webinar") {
+                                                                                                            echo "active";
+                                                                                                        } ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Fasilitas Webinar</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
                         <a href="#" class="nav-link <?php if (
                                                         $this->uri->segment(2) == "navigasi" || $this->uri->segment(2) == "website" || $this->uri->segment(2) == "medsos"
                                                         || $this->uri->segment(2) == "kebijakan" || $this->uri->segment(2) == "key"
@@ -242,14 +272,6 @@
                                                                                                 } ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Kategori Kelas</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url('admin/webinar'); ?>" class="nav-link <?php if ($this->uri->segment(2) == "webinar") {
-                                                                                                echo "active";
-                                                                                            } ?>">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Webinar</p>
                                 </a>
                             </li>
                             <!-- <li class="nav-item">

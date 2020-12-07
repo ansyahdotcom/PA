@@ -40,7 +40,7 @@
                                     <div class="post">
                                         <div class="user-block">
                                             <!-- <img class="img-circle img-bordered-sm"
-											src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_PEMATERI); ?>"> -->
+											src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_PEMBICARA); ?>"> -->
                                             <span class="username m-0 text-lg">
                                                 <a class="" href="<?= base_url('admin/webinar/edit_webinar/' . $wbnr->TEMA . '/'); ?>"><?= str_replace('-', ' ', $wbnr->TEMA); ?></a>
                                             </span>
@@ -50,8 +50,8 @@
                                         <p>
                                             <table>
                                                 <tr>
-                                                    <td><b>Pemateri</b> &nbsp;</td>
-                                                    <td for="PEMATERI">:&nbsp; <?= $wbnr->PEMATERI; ?></td>
+                                                    <td><b>Pembicara</b> &nbsp;</td>
+                                                    <td for="PEMBICARA">:&nbsp; <?= $wbnr->PEMBICARA; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Platform</b> &nbsp;</td>
@@ -63,45 +63,51 @@
                                                 </tr>
                                                 <tr>
                                                     <td><b>Tanggal Webinar</b> &nbsp;</td>
-                                                    <td for="TGL_WEB">:&nbsp; <?= date('d F Y', strtotime($wbnr->TGL_WEB)); ?></td>
+                                                    <td for="TGL_WEB">:&nbsp; <?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_WEB))); ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Fasilitas Webinar</b> &nbsp;</td>
+                                                    <td for="NM_FA">:&nbsp; <?= $wbnr->NM_FA; ?></td>
                                                 </tr>
                                             </table>
                                             <br> <br>
-                                            <!-- Nyari status web trus ditampilkan sesuai status web -->
+                                        </p>
+
+                                        <!-- Nyari status web trus ditampilkan sesuai status web -->
+                                        <?php
+                                        if ($wbnr->ST_POSTWEB == 0) {
+                                            echo '<label for="">Draf</label>';
+                                        } else {
+                                            echo '<label for="">Dipublikasikan</label>';
+                                        }
+                                        ?>
+
+                                        <label for="TGL_POSTWEB" class="text-sm mr-2"><?= ' | ' . date('d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_POSTWEB))); ?></label>
+                                        <span class="float-right">
+                                            <!-- Nyari status web trus mau diposting apa nggak -->
                                             <?php
                                             if ($wbnr->ST_POSTWEB == 0) {
-                                                echo '<label for="">Draf</label>';
-                                            } else {
-                                                echo '<label for="">Dipublikasikan</label>';
-                                            }
-                                            ?>
-
-                                            <label for="TGL_POSTWEB" class="text-sm mr-2"><?= ' | ' . date('d F Y', strtotime($wbnr->TGL_POSTWEB)); ?></label>
-                                            <span class="float-right">
-                                                <!-- Nyari status web trus mau diposting apa nggak -->
-                                                <?php
-                                                if ($wbnr->ST_POSTWEB == 0) {
-                                                    echo '<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
+                                                echo '<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
 												data-toggle="modal" data-target="#modal_posting' . $wbnr->ID_WEBINAR . '">
 												<i class="fas fa-arrow-circle-right"></i> Publikasikan</button>';
-                                                } else {
-                                                    echo '<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
+                                            } else {
+                                                echo '<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
 												data-toggle="modal" data-target="#modal_posting' . $wbnr->ID_WEBINAR . '">
 												<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';
-                                                }
-                                                ?>
-                                                <!-- dilihat tampilan webinarnya sebelum diposting -->
-                                                <a class="btn btn-secondary btn-sm btn-round" href="<?= base_url('admin/webinar/pratinjau/' . $wbnr->ID_WEBINAR); ?>"><i class="fas fa-eye"></i> Pratinjau</a>
+                                            }
+                                            ?>
+                                            <!-- dilihat tampilan webinarnya sebelum diposting -->
+                                            <a class="btn btn-secondary btn-sm btn-round" href="<?= base_url('admin/webinar/pratinjau/' . $wbnr->ID_WEBINAR); ?>"><i class="fas fa-eye"></i> Pratinjau</a>
 
-                                                <!-- edit artikel -->
-                                                <a href="<?= base_url('admin/webinar/edit/' . $wbnr->ID_WEBINAR); ?>">
-                                                    <button type="button" class="btn btn-primary btn-circle btn-sm">
-                                                        <i class="fas fa-edit" style="color: white"></i> Edit
-                                                    </button>
-                                                </a>
-                                                <!-- hapus artikel -->
-                                                <button type="button" id="detail" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#modal_hapus<?= $wbnr->ID_WEBINAR; ?>" style="color : white"><i class="fas fa-trash"></i> Hapus</button>
-                                            </span>
+                                            <!-- edit artikel -->
+                                            <a href="<?= base_url('admin/webinar/edit/' . $wbnr->ID_WEBINAR); ?>">
+                                                <button type="button" class="btn btn-primary btn-circle btn-sm">
+                                                    <i class="fas fa-edit" style="color: white"></i> Edit
+                                                </button>
+                                            </a>
+                                            <!-- hapus artikel -->
+                                            <button type="button" id="detail" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#modal_hapus<?= $wbnr->ID_WEBINAR; ?>" style="color : white"><i class="fas fa-trash"></i> Hapus</button>
+                                        </span>
                                         </p>
                                     </div>
                                     <!-- /.post -->

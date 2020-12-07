@@ -33,12 +33,12 @@
                                 <label for="TEMA">Tema</label>
                                 <input type="text" class="form-control" name="TEMA" value="<?= str_replace('-', ' ', $wbnr->TEMA); ?>" autocomplete="off" autofocus required>
                                 <br>
-                                <label for="PEMATERI">Pemateri</label>
-                                <input type="text" class="form-control" name="PEMATERI" value="<?= $wbnr->PEMATERI; ?>" autocomplete="off" autofocus required>
+                                <label for="PEMBICARA">Pembicara</label>
+                                <input type="text" class="form-control" name="PEMBICARA" value="<?= $wbnr->PEMBICARA; ?>" autocomplete="off" autofocus required>
                                 <br>
-                                <!-- <label for="FOTO_PEMATERI">Foto</label>
-							<input type="file" class="form-control" name="FOTO_PEMATERI"
-								value="<?= $wbnr->FOTO_PEMATERI ?>">
+                                <!-- <label for="FOTO_PEMBICARA">Foto</label>
+							<input type="file" class="form-control" name="FOTO_PEMBICARA"
+								value="<?= $wbnr->FOTO_PEMBICARA ?>">
 							<br>
 							<div class="form-group">
 								<label for="icon">Foto</label>
@@ -65,7 +65,7 @@
 														<i class="glyphicon glyphicon-download-alt"></i>
 														<div>Pilih file gambar atau seret gambar kesini .</div>
 													</div>
-													<input type="file" name="FOTO_PEMATERI" class="dropzone" value="<?= $wbnr->FOTO_PEMATERI ?>">
+													<input type="file" name="FOTO_PEMBICARA" class="dropzone" value="<?= $wbnr->FOTO_PEMBICARA ?>">
 												</div>
 											</div>
 										</div>
@@ -81,7 +81,7 @@
                                 <input type="text" class="form-control" name="PLATFORM" value="<?= $wbnr->PLATFORM; ?>" autocomplete="off" autofocus required>
                                 <br>
                                 <label for="TGL_WEB">Tanggal Webinar</label> <br>
-                                <input type="date" name="TGL_WEB" id="TGL_WEB" value="<?php echo date('d F Y', strtotime($wbnr->TGL_WEB)); ?>">
+                                <input type="date" name="TGL_WEB" id="TGL_WEB" value="<?php echo date('Y-m-d', strtotime($wbnr->TGL_WEB)); ?>">
                                 <br> <br>
                                 <button class="btn btn-primary btn-round">Batal</button>
                                 <button type="submit" class="btn btn-success btn-round">Simpan</button>
