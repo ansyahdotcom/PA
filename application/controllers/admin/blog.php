@@ -158,17 +158,17 @@ class Blog extends CI_Controller
                     'TGL_POST' => $TGL_POST,
                     'UPDT_TRAKHIR' => $UPDT_TRAKHIR
                 );
-                
+
                 $this->m_blog->insert($data, 'post');
 
-                for ($i=0; $i < count($ID_TAGS); $i++){
+                for ($i = 0; $i < count($ID_TAGS); $i++) {
                     $dt_tags = array(
-                    'ID_POST' => $ID_POST,
-                    'ID_TAGS' => $ID_TAGS[$i]
-                );
-                $this->m_blog->insert($dt_tags, 'detail_tags');
+                        'ID_POST' => $ID_POST,
+                        'ID_TAGS' => $ID_TAGS[$i]
+                    );
+                    $this->m_blog->insert($dt_tags, 'detail_tags');
                 }
-                
+
 
                 // $this->session->set_flashdata('message', 'blSuccess');
                 $this->session->set_flashdata('message', 'save');
@@ -192,7 +192,7 @@ class Blog extends CI_Controller
         $this->m_blog->insert($data, 'category');
         redirect('admin/blog/tulis_blog');
     }
-    
+
     //tambah tags di tulis blog
     public function pr_tmbh_tags()
     {
@@ -251,7 +251,7 @@ class Blog extends CI_Controller
     //             'TGL_POST' => $TGL_POST,
     //             'UPDT_TRAKHIR' => $UPDT_TRAKHIR
     //         );
-            
+
     //         $this->m_blog->insert($data, 'post');
 
     //         for ($i=0; $i < count($ID_TAGS); $i++){
@@ -261,15 +261,15 @@ class Blog extends CI_Controller
     //         );
     //         $this->m_blog->insert($dt_tags, 'detail_tags');
     //         }
-            
+
 
     //         // $this->session->set_flashdata('message', 'blSuccess');
     //         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-	// 														Artikel berhasil dibuat!
-	// 														<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	// 															<span aria-hidden="true">&times;</span>
-	// 														</button>
-	// 													</div>');
+    // 														Artikel berhasil dibuat!
+    // 														<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    // 															<span aria-hidden="true">&times;</span>
+    // 														</button>
+    // 													</div>');
     //         redirect('admin/blog');
     //     } else {
     //         $error = array('error' => $this->upload->display_errors());
@@ -285,7 +285,7 @@ class Blog extends CI_Controller
         $where = array(
             'ID_POST' => $ID_POST
         );
-        
+
         if ($ST_POST == 0) {
             $ST_POST++;
             $data = array(
@@ -370,18 +370,18 @@ class Blog extends CI_Controller
             'TGL_POST' => $TGL_POST,
             'UPDT_TRAKHIR' => $UPDT_TRAKHIR
         );
-        
+
         $this->m_blog->update($where, $data, 'post');
         $this->m_blog->delete($where, 'detail_tags');
 
-        for ($i=0; $i < count($ID_TAGS); $i++){
+        for ($i = 0; $i < count($ID_TAGS); $i++) {
             $dt_tags = array(
-            'ID_POST' => $ID_POST,
-            'ID_TAGS' => $ID_TAGS[$i]
-        );
-        $this->m_blog->insert($dt_tags, 'detail_tags');
+                'ID_POST' => $ID_POST,
+                'ID_TAGS' => $ID_TAGS[$i]
+            );
+            $this->m_blog->insert($dt_tags, 'detail_tags');
         }
-        
+
         $this->session->set_flashdata('message', 'edit');
         redirect('admin/blog');
     }
@@ -403,5 +403,4 @@ class Blog extends CI_Controller
         $this->load->view('admin/blog/detail_blog', $data);
         $this->load->view("admin/blog/pratinjau/footer", $data);
     }
-
 }
