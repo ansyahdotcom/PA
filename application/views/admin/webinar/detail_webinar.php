@@ -35,10 +35,15 @@
 						<hr>
 
 						<!-- Preview Image -->
-						<p><i class="fa fa-user-tie"></i> <?= $wbnr->PEMBICARA ?></p>
-						<img class="img-fluid rounded" src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_PEMBICARA); ?>" alt="foto-pembicara">
+						<p><i class="fa fa-user-tie"></i> <?= $wbnr->ID_ADM ?></p>
+						<img class="img-fluid rounded" src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_WEBINAR); ?>" alt="foto-webinar">
 						<br>
-
+						<p>
+							<i class="fas fa-tag"></i>
+							<?php foreach ($detail_fasilitas as $dtf) { ?>
+								<a class="btn btn-sm-primary" href="#"><?= $dtf->NM_FA; ?></a>
+							<?php } ?>
+						</p>
 						<hr>
 					</div>
 					<!--  ======================= Awalan Sidebar ============================== -->

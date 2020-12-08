@@ -151,7 +151,7 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link <?php if ($this->uri->segment(2) == "webinar" || $this->uri->segment(2) == "fasilitas_webinar") {
+                        <a href="#" class="nav-link <?php if ($this->uri->segment(2) == "webinar" || $this->uri->segment(2) == "fasilitas") {
                                                         echo "active";
                                                     } ?>">
                             <i class="nav-icon fas fa-globe"></i>
@@ -170,11 +170,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/fasilitas_webinar'); ?>" class="nav-link <?php if ($this->uri->segment(2) == "fasilitas_webinar") {
-                                                                                                            echo "active";
-                                                                                                        } ?>">
+                                <a href="<?= base_url('admin/fasilitas'); ?>" class="nav-link <?php if ($this->uri->segment(2) == "fasilitas") {
+                                                                                                    echo "active";
+                                                                                                } ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Fasilitas Webinar</p>
+                                    <p>Fasilitas</p>
                                 </a>
                             </li>
                         </ul>

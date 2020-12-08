@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2020 at 07:37 PM
+-- Generation Time: Dec 08, 2020 at 07:57 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -74,20 +74,21 @@ INSERT INTO `category` (`ID_CT`, `NM_CT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_fasilitas_webinar`
+-- Table structure for table `detail_fasilitas`
 --
 
-CREATE TABLE `detail_fasilitas_webinar` (
-  `ID_WEBINAR` int(11) NOT NULL,
+CREATE TABLE `detail_fasilitas` (
+  `ID_WEBINAR` char(10) NOT NULL,
   `ID_FA` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_fasilitas_webinar`
+-- Dumping data for table `detail_fasilitas`
 --
 
-INSERT INTO `detail_fasilitas_webinar` (`ID_WEBINAR`, `ID_FA`) VALUES
-(1, 'FA0001');
+INSERT INTO `detail_fasilitas` (`ID_WEBINAR`, `ID_FA`) VALUES
+('WB00001', 'FA0001'),
+('WB00001', 'FA0002');
 
 -- --------------------------------------------------------
 
@@ -188,21 +189,21 @@ INSERT INTO `diskon` (`ID_DISKON`, `DISKON`, `NM_DISKON`, `STATUS`, `DATE_DIS`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fasilitas_webinar`
+-- Table structure for table `fasilitas`
 --
 
-CREATE TABLE `fasilitas_webinar` (
+CREATE TABLE `fasilitas` (
   `ID_FA` varchar(10) NOT NULL,
   `NM_FA` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `fasilitas_webinar`
+-- Dumping data for table `fasilitas`
 --
 
-INSERT INTO `fasilitas_webinar` (`ID_FA`, `NM_FA`) VALUES
+INSERT INTO `fasilitas` (`ID_FA`, `NM_FA`) VALUES
 ('FA0001', 'E-Sertifikat'),
-('FA0002', 'Materi Webinar'),
+('FA0002', 'Materi'),
 ('FA0003', 'Seminar Kit');
 
 -- --------------------------------------------------------
@@ -566,10 +567,10 @@ CREATE TABLE `tugas` (
 --
 
 CREATE TABLE `webinar` (
-  `ID_WEBINAR` int(11) NOT NULL,
+  `ID_WEBINAR` char(10) NOT NULL,
   `TEMA` varchar(50) NOT NULL,
-  `PEMBICARA` varchar(50) NOT NULL,
-  `FOTO_PEMBICARA` varchar(100) NOT NULL,
+  `ID_ADM` char(10) NOT NULL,
+  `FOTO_WEBINAR` varchar(100) NOT NULL,
   `HARGA` varchar(20) NOT NULL,
   `PLATFORM` varchar(20) NOT NULL,
   `TGL_WEB` date NOT NULL,
@@ -581,8 +582,8 @@ CREATE TABLE `webinar` (
 -- Dumping data for table `webinar`
 --
 
-INSERT INTO `webinar` (`ID_WEBINAR`, `TEMA`, `PEMBICARA`, `FOTO_PEMBICARA`, `HARGA`, `PLATFORM`, `TGL_WEB`, `TGL_POSTWEB`, `ST_POSTWEB`) VALUES
-(1, 'Coba', 'Mustika Khoiri', 'aku.jpg', 'GRATIS', 'ZOOM', '2020-12-21', NULL, NULL);
+INSERT INTO `webinar` (`ID_WEBINAR`, `TEMA`, `ID_ADM`, `FOTO_WEBINAR`, `HARGA`, `PLATFORM`, `TGL_WEB`, `TGL_POSTWEB`, `ST_POSTWEB`) VALUES
+('WB00001', 'Coba', 'ADM0000', 'Koala1.jpg', 'GRATIS', 'ZOOM', '2020-12-16', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -602,9 +603,9 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`ID_CT`);
 
 --
--- Indexes for table `detail_fasilitas_webinar`
+-- Indexes for table `detail_fasilitas`
 --
-ALTER TABLE `detail_fasilitas_webinar`
+ALTER TABLE `detail_fasilitas`
   ADD KEY `ID_FA` (`ID_FA`),
   ADD KEY `ID_WEBINAR` (`ID_WEBINAR`);
 
@@ -643,9 +644,9 @@ ALTER TABLE `diskon`
   ADD PRIMARY KEY (`ID_DISKON`);
 
 --
--- Indexes for table `fasilitas_webinar`
+-- Indexes for table `fasilitas`
 --
-ALTER TABLE `fasilitas_webinar`
+ALTER TABLE `fasilitas`
   ADD PRIMARY KEY (`ID_FA`);
 
 --
@@ -751,7 +752,8 @@ ALTER TABLE `tugas`
 -- Indexes for table `webinar`
 --
 ALTER TABLE `webinar`
-  ADD PRIMARY KEY (`ID_WEBINAR`);
+  ADD PRIMARY KEY (`ID_WEBINAR`),
+  ADD KEY `ID_ADM` (`ID_ADM`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -822,12 +824,6 @@ ALTER TABLE `role`
 --
 ALTER TABLE `token`
   MODIFY `ID_TOKEN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `webinar`
---
-ALTER TABLE `webinar`
-  MODIFY `ID_WEBINAR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

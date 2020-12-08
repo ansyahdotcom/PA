@@ -40,7 +40,7 @@
                                     <div class="post">
                                         <div class="user-block">
                                             <!-- <img class="img-circle img-bordered-sm"
-											src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_PEMBICARA); ?>"> -->
+											src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_WEBINAR); ?>"> -->
                                             <span class="username m-0 text-lg">
                                                 <a class="" href="<?= base_url('admin/webinar/edit_webinar/' . $wbnr->TEMA . '/'); ?>"><?= str_replace('-', ' ', $wbnr->TEMA); ?></a>
                                             </span>
@@ -51,7 +51,7 @@
                                             <table>
                                                 <tr>
                                                     <td><b>Pembicara</b> &nbsp;</td>
-                                                    <td for="PEMBICARA">:&nbsp; <?= $wbnr->PEMBICARA; ?></td>
+                                                    <td for="ID_ADM">:&nbsp; <?= $wbnr->ID_ADM; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Platform</b> &nbsp;</td>
@@ -66,7 +66,7 @@
                                                     <td for="TGL_WEB">:&nbsp; <?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_WEB))); ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>Fasilitas Webinar</b> &nbsp;</td>
+                                                    <td><b>Fasilitas</b> &nbsp;</td>
                                                     <td for="NM_FA">:&nbsp; <?= $wbnr->NM_FA; ?></td>
                                                 </tr>
                                             </table>
@@ -100,7 +100,7 @@
                                             <a class="btn btn-secondary btn-sm btn-round" href="<?= base_url('admin/webinar/pratinjau/' . $wbnr->ID_WEBINAR); ?>"><i class="fas fa-eye"></i> Pratinjau</a>
 
                                             <!-- edit artikel -->
-                                            <a href="<?= base_url('admin/webinar/edit/' . $wbnr->ID_WEBINAR); ?>">
+                                            <a href="<?= base_url('admin/webinar/edit/' . $wbnr->TEMA); ?>">
                                                 <button type="button" class="btn btn-primary btn-circle btn-sm">
                                                     <i class="fas fa-edit" style="color: white"></i> Edit
                                                 </button>

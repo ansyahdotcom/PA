@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Fasilitas Webinar</h1>
+                    <h1 class="m-0 text-dark">Fasilitas</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
-                        <li class="breadcrumb-item active">Fasilitas Webinar</li>
+                        <li class="breadcrumb-item active">Fasilitas</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -41,7 +41,7 @@
                             </thead>
                             <tbody>
                                 <?php $no = 1; ?>
-                                <?php foreach ($fasilitas_webinar as $fas) {
+                                <?php foreach ($fasilitas as $fas) {
                                 ?>
                                     <tr>
                                         <td class="text-center" width="100px"><?= $no++ ?></td>
@@ -70,7 +70,7 @@
 <!-- /.content-wrapper -->
 
 <?php
-foreach ($fasilitas_webinar as $fas) {
+foreach ($fasilitas as $fas) {
     $ID_FA = $fas->ID_FA;
     $NM_FA = $fas->NM_FA;
 ?>
@@ -81,7 +81,7 @@ foreach ($fasilitas_webinar as $fas) {
                 <div class="modal-header">
                     <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
                 </div>
-                <form action="<?= base_url('admin/fasilitas_webinar/hapus'); ?>" method="post" class="form-horizontal">
+                <form action="<?= base_url('admin/fasilitas/hapus'); ?>" method="post" class="form-horizontal">
                     <div class="modal-body">
                         <p>Apakah Anda yakin ingin menghapus data ini?</p>
                     </div>
@@ -100,12 +100,12 @@ foreach ($fasilitas_webinar as $fas) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title title-1" id="myModalLabel">Edit Fasilitas Webinar</h4>
+                    <h4 class="modal-title title-1" id="myModalLabel">Edit Fasilitas</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="<?= base_url('admin/fasilitas_webinar/update_fasilitas'); ?>">
+                <form method="post" action="<?= base_url('admin/fasilitas/update_fasilitas'); ?>">
                     <div class="modal-body">
                         <input type="hidden" readonly name="ID_FA" value="<?php echo $fas->ID_FA ?>" class="form-control">
                         <div class="form-group">
@@ -127,12 +127,12 @@ foreach ($fasilitas_webinar as $fas) {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title title-1" id="myModalLabel">Tambah Fasilitas Webinar</h4>
+                <h4 class="modal-title title-1" id="myModalLabel">Tambah Fasilitas</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="<?= base_url('admin/fasilitas_webinar/tambah_fasilitas'); ?>">
+            <form method="post" action="<?= base_url('admin/fasilitas/tambah_fasilitas'); ?>">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="ID_FA" name="ID_FA" value="<?= $ID_FAS; ?>">

@@ -1,11 +1,11 @@
 <?php
 
-class Fasilitas_webinar extends CI_Controller
+class Fasilitas extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('admin/m_fasilitas_webinar');
+        $this->load->model('admin/m_fasilitas');
         $this->load->library('upload');
         adm_logged_in();
         cekadm();
@@ -17,10 +17,10 @@ class Fasilitas_webinar extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-        $data['tittle'] = "Data Fasilitas Webinar";
+        $data['tittle'] = "Data Fasilitas";
 
         // buat id fasilitas
-        $ID_T = $this->m_fasilitas_webinar->selectMaxID_FA();
+        $ID_T = $this->m_fasilitas->selectMaxID_FA();
         if ($ID_T == NULL) {
             $data['ID_FAS'] = 'FA0001';
         } else {
@@ -30,11 +30,11 @@ class Fasilitas_webinar extends CI_Controller
         }
 
         /** Ambil data fasilitas */
-        $data['fasilitas_webinar'] = $this->m_fasilitas_webinar->tampil_fasilitas()->result();
+        $data['fasilitas'] = $this->m_fasilitas->tampil_fasilitas()->result();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
-        $this->load->view("admin/webinar/v_fasilitas_webinar", $data);
+        $this->load->view("admin/webinar/v_fasilitas", $data);
         $this->load->view("admin/template_adm/v_footer");
     }
 
@@ -42,9 +42,9 @@ class Fasilitas_webinar extends CI_Controller
     public function hapus()
     {
         $ID_FA = $this->input->post('ID_FA');
-        $this->m_fasilitas_webinar->hapus_fasilitas($ID_FA);
+        $this->m_fasilitas->hapus_fasilitas($ID_FA);
         $this->session->set_flashdata('message', 'hapus');
-        redirect('admin/fasilitas_webinar');
+        redirect('admin/fasilitas');
     }
 
     //tambah fasilitas di fasilitas webinar
@@ -52,9 +52,9 @@ class Fasilitas_webinar extends CI_Controller
     {
         $ID_FA = htmlspecialchars($this->input->post('ID_FA'));
         $NM_FA = htmlspecialchars($this->input->post('NM_FA'));
-        $this->m_fasilitas_webinar->tmbh_fasilitas($ID_FA, $NM_FA);
+        $this->m_fasilitas->tmbh_fasilitas($ID_FA, $NM_FA);
         $this->session->set_flashdata('message', 'save');
-        redirect('admin/fasilitas_webinar');
+        redirect('admin/fasilitas');
     }
 
     //update fasilitas
@@ -69,8 +69,8 @@ class Fasilitas_webinar extends CI_Controller
 
         $where = array('ID_FA' => $ID_FA);
 
-        $this->m_fasilitas_webinar->update_fasilitas($where, $data, 'fasilitas_webinar');
+        $this->m_fasilitas->update_fasilitas($where, $data, 'fasilitas');
         $this->session->set_flashdata('message', 'edit');
-        redirect('admin/fasilitas_webinar');
+        redirect('admin/fasilitas');
     }
 }
