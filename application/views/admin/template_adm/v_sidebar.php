@@ -92,6 +92,14 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+                                <a href="<?= base_url('admin/kelas'); ?>" class="nav-link <?php if ($this->uri->segment(2) == "kelas") {
+                                                                                                echo "active";
+                                                                                            } ?>">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Data Kelas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="<?= base_url('admin/listkelas'); ?>" class="nav-link <?php if ($this->uri->segment(2) == "listkelas" || $this->uri->segment(2) == "listpeserta" || $this->uri->segment(2) == "materi") {
                                                                                                     echo "active";
                                                                                                 } ?>">
@@ -256,14 +264,6 @@
                                                                                             } ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Peserta</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url('admin/kelas'); ?>" class="nav-link <?php if ($this->uri->segment(2) == "kelas") {
-                                                                                                echo "active";
-                                                                                            } ?>">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Data Kelas</p>
                                 </a>
                             </li>
                             <li class="nav-item">
