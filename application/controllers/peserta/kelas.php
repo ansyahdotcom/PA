@@ -41,7 +41,7 @@ class Kelas extends CI_Controller
 
         $config['total_rows'] = $this->db->count_all_results();
         $data['rows'] = $config['total_rows'];
-        $config['per_page'] = 1;
+        $config['per_page'] = 6;
         // $config['num_links'] = 3;
 
         /** Initialize library pagination */
