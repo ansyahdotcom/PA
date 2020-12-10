@@ -59,7 +59,96 @@
 <script src="<?= base_url(); ?>assets/dist/js/myscript.js"></script>
 <!-- Drop Image -->
 <script src="<?= base_url(); ?>assets/dist/js/app.js"></script>
+<!-- Midtrans -->
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-wB2hRL6nwYrfmF6b"></script>
 
+<!-- Mengambil data kelas -->
+<script>
+    $(document).ready(function() {
+        $('.beli').click(function() {
+            var eID = $(this).attr('id');
+            $.ajax({
+                url:'<?= site_url(); ?>/peserta/kelas/getkelas',
+                method:'POST',
+                data: {eID:eID},
+                dataType: 'json',
+                success:function(data) {
+                    var i;
+                    for(i in data) {
+                        $('#id').val(data[i].ID_KLS);
+                        $('#kelas').val(data[i].TITTLE);
+                        $('#harga').val(data[i].PRICE);
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Menampilkan Checkout -->
+<script type="text/javascript">
+    $('button#continue').click(function(event) {
+        event.preventDefault();
+        var id = $('input#id').val()
+        var kelas = $('input#kelas').val();
+        var harga = $('input#harga').val();
+        var id_ps = $('input#id_ps').val();
+        var nama = $('input#nama').val();
+        var hp = $('input#hp').val();
+        var email = $('input#email').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '<?= site_url() ?>/peserta/kelas/token',
+            data: {
+                id: id,
+                kelas: kelas,
+                harga: harga,
+                id_ps: id_ps,
+                nama: nama,
+                hp: hp,
+                email: email
+            },
+            cache: false,
+
+            success: function(data) {
+                //location = data;
+
+                console.log('token = ' + data);
+
+                var resultType = document.getElementById('result-type');
+                var resultData = document.getElementById('result-data');
+
+                function changeResult(type, data) {
+                    $("#result-type").val(type);
+                    $("#result-data").val(JSON.stringify(data));
+                    //resultType.innerHTML = type;
+                    //resultData.innerHTML = JSON.stringify(data);
+                }
+
+                snap.pay(data, {
+
+                    onSuccess: function(result) {
+                        changeResult('success', result);
+                        console.log(result.status_message);
+                        console.log(result);
+                        $("#payment-form").submit();
+                    },
+                    onPending: function(result) {
+                        changeResult('pending', result);
+                        console.log(result.status_message);
+                        $("#payment-form").submit();
+                    },
+                    onError: function(result) {
+                        changeResult('error', result);
+                        console.log(result.status_message);
+                        $("#payment-form").submit();
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 <!-- Sweet Alert Hapus data Master-->
 <script>
@@ -111,6 +200,16 @@
             Toast.fire({
                 icon: 'info',
                 title: 'Data dinonaktifkan!',
+            });
+        } else if (flashData == 'success_trn') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Transaksi berhasil, silahkan selesaikan pembayaran!',
+            });
+        } else if (flashData == 'isReg') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Akun berhasil dibuat, silahkan cek email anda untuk mengaktivasi akun!',
             });
         }
     });

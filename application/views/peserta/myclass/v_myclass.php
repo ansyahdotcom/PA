@@ -30,20 +30,32 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="row">
-                            <?php if ($cekmyclass == null) : ?>
+                            <?php if ($cekmyclass['STATUS_BELI'] == 0 || $cekmyclass['STATUS_BELI'] == 201) : ?>
                                 <!-- Kelas yang dipilih -->
                                 <div class="col-md">
                                     <div class="card-body text-center mt-4">
-                                        <img src="<?= base_url('assets/icon/noClass.svg'); ?>" alt="" class="img-rounded img-responsive img-fluid" width="400">
+                                        <?php if ($cekmyclass['STATUS_BELI'] == 201) : ?>
+                                            <img src="<?= base_url('assets/icon/payment.svg'); ?>" alt="" class="img-rounded img-responsive img-fluid" width="400">
+                                        <?php elseif ($cekmyclass['STATUS_BELI'] == 0) : ?>
+                                            <img src="<?= base_url('assets/icon/noClass.svg'); ?>" alt="" class="img-rounded img-responsive img-fluid" width="400">
+                                        <?php endif; ?>
                                     </div>
                                     <div class="card-body pt-0 mt-4">
-                                        <h3 class="text-center text-bold text-muted">Belum ada kelas yang di pilih...</h3>
+                                        <?php if ($cekmyclass['STATUS_BELI'] == 201) : ?>
+                                            <h3 class="text-center text-bold text-muted">Selesaikan transaksi pembayaran anda, </br>agar bisa mengakses kelas ini</h3>
+                                        <?php elseif ($cekmyclass['STATUS_BELI'] == 0) : ?>
+                                            <h3 class="text-center text-bold text-muted">Belum ada kelas yang di pilih...</h3>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="card-body text-center mb-4">
-                                        <a href="<?= base_url('peserta/kelas'); ?>" class="btn btn-outline-primary"><i class="fas fa-arrow-circle-left"></i> Pilih kelas anda</a>
+                                        <?php if ($cekmyclass['STATUS_BELI'] == 201) : ?>
+                                            <a href="<?= base_url('peserta/transaksi'); ?>" class="btn btn-outline-primary"><i class="fas fa-arrow-circle-left"></i> Selesaikan Pembayaran</a>
+                                        <?php elseif ($cekmyclass['STATUS_BELI'] == 0) : ?>
+                                            <a href="<?= base_url('peserta/kelas'); ?>" class="btn btn-outline-primary"><i class="fas fa-arrow-circle-left"></i> Pilih kelas anda</a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                            <?php else : ?>
+                            <?php elseif ($cekmyclass['STATUS_BELI'] == 200) : ?>
                                 <!-- Kelas yang dipilih -->
                                 <div class="col-md-6">
                                     <div class="card-body pt-0 mt-4">
@@ -52,7 +64,7 @@
                                         </div>
                                         <div class="">
                                             <h4 class="text-bold"><b><?= $myclass['TITTLE']; ?></b></h4>
-                                            <h5 class="text-muted"> <?= $myclass['DESKRIPSI']; ?></h5>
+                                            <h5 class="text-muted"> <?= htmlspecialchars_decode($myclass['DESKRIPSI']); ?></h5>
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <?php
                                                 if ($myclass['KTGKLS'] === "Dasar") {

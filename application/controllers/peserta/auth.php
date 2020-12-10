@@ -155,7 +155,8 @@ class Auth extends CI_Controller
 				'FTO_PS' => 'default.jpg',
 				'ID_ROLE' => 2,
 				'ACTIVE' => 0,
-				'DATE_CREATE' => time()
+				'DATE_CREATE' => time(),
+				'STATUS_BELI' => 0
 			];
 
 			/** Insert ke database */
@@ -164,9 +165,7 @@ class Auth extends CI_Controller
 
 			$this->_sendMail($token, 'verify');
 
-			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-center">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<p class="text-center"><i class="icon fas fa-check"></i><b> Buat akun baru berhasil </b></br></hr>silahkan cek email anda untuk mengaktivasi akun anda!</p></div>');
+			$this->session->set_flashdata('message', 'isReg');
 			redirect('auth');
 		}
 	}

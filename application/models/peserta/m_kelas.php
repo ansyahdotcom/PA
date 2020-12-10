@@ -18,6 +18,23 @@
             return $query;
         }
 
+        public function kelas($id)
+        {
+            return $this->db->get_where('kelas', [
+                'ID_KLS' => $id,
+            ])->result_array();
+        }
+
+        public function transaksi($data)
+        {
+            $this->db->insert('transaksi', $data);
+        }
+
+        public function detilkls($data1)
+        {
+            $this->db->insert('detail_kelas', $data1);
+        }
+
         public function countkls()
         {
             return $this->db->get('kelas')->num_rows();
@@ -37,12 +54,35 @@
 
         public function cekmyclass($email)
         {
-            $this->db->select('detail_kelas.ID_PS');
-            $this->db->from('detail_kelas');
-            $this->db->join('peserta', 'peserta.ID_PS = detail_kelas.ID_PS', 'left');
+            $this->db->select('*');
+            $this->db->from('peserta');
+            $this->db->where('EMAIL_PS', $email);
+            return $this->db->get()->row_array();
+            // $this->db->select('*');
+            // $this->db->from('detail_kelas');
+            // $this->db->join('peserta', 'peserta.ID_PS = detail_kelas.ID_PS', 'left');
+            // $this->db->join('transaksi', 'transaksi.ID_TRN = detail_kelas.ID_TRN', 'left');
+            // $this->db->where('STATUS', 200);
+            // $this->db->where('EMAIL_PS', $email);
+            // $query = $this->db->get()->row_array();
+            // return $query;
+        }
+
+        public function statustrn($email)
+        {
+            $this->db->select('transaksi.STATUS');
+            $this->db->from('transaksi');
+            $this->db->join('peserta', 'peserta.ID_PS = transaksi.ID_PS', 'left');
             $this->db->where('EMAIL_PS', $email);
             $query = $this->db->get()->row_array();
             return $query;
+        }
+
+        public function pending($id_ps, $data2)
+        {
+            $this->db->set($data2);
+            $this->db->where('ID_PS', $id_ps);
+            $this->db->update('peserta');
         }
 
         public function countmyclass($email)
@@ -53,13 +93,6 @@
             $this->db->where('EMAIL_PS', $email);
             $query = $this->db->get()->num_rows();
             return $query;
-        // public function getidkelas($id)
-        // {
-        //     $hasil = $this->db->query('SELECT * FROM kelas 
-        //     WHERE kelas.ID_KLS = $id');
-
-        //     return $hasil->row();
-        // }
         }
 
         public function getmateri($id){
