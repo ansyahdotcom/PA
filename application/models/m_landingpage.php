@@ -65,5 +65,11 @@ class M_landingpage extends CI_Model
         $data = $this->db->query("SELECT * FROM kelas WHERE STAT = 1");
         return $data;
     }
+
+    function dt_kls($ID_KLS)
+    {
+        $data = $this->db->query("SELECT * FROM kelas WHERE ID_KLS = '$ID_KLS'");
+        return $data;
+    }
 }
 ?>

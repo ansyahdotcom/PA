@@ -2,21 +2,20 @@
 	<!-- Page Content -->
 	<div class="container">
 		<div class="row">
-			<?php foreach ($kelas as $row) { ?>
-			<div class="col-sm-4 mt-3">
-				<div class="card">
-					<img src="<?= base_url('assets/dist/img/kelas/'). $row->GBR_KLS;?>" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title"><?= $row->TITTLE; ?></h5>
-						<!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-						<!-- <a href="#" class="btn btn-primary">Lihat</a> -->
-						<!-- <div class="row"> -->
-							<a type="button" class="btn btn-warning btn-circle font-weight-bold"
-								href="<?= base_url('index/dt_kls/'. $row->ID_KLS); ?>">Lihat</a>
-							<h3 class="float-right font-weight-bold text-warning">Rp. <?= number_format($row->PRICE, 0, ".", "."); ?></h3>
-						<!-- </div> -->
-					</div>
-				</div>
+            <?php foreach ($kelas as $row) { ?>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <img src="<?= base_url('assets/dist/img/kelas/'). $row->GBR_KLS;?>" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="card-title"><?= $row->TITTLE; ?></h3>
+                        <p class="card-text"><i class="fas fa-map-marker">&nbsp;</i>Lokasi : &nbsp;<?= $row->LOK_KLS; ?></p>
+                        <p class="card-text">Tanggal Pelaksanaan</p>
+                        <p><?= 'Mulai : '. date('d F Y', strtotime($row->TGL_MULAI)); ?></p>
+                        <p><?= 'Selesai : '. date('d F Y', strtotime($row->TGL_SELESAI)); ?></p>
+                        <a class="btn btn-warning" type="button" href="<?= base_url('register')?>">Beli Kelas</a>  
+                    </div>
+                </div>
 			</div>
 			<?php } ?>
 		</div>

@@ -142,8 +142,8 @@
   						<div class="col-md-6">
   							<div class="form-group">
   								<label for="namakls">Nama Kelas</label>
-  								<input type="text" class="form-control" name="namakls"
-  									placeholder="Nama Kelas" required autocomplete="off">
+  								<input type="text" class="form-control" name="namakls" placeholder="Nama Kelas"
+  									required autocomplete="off">
   								<?= form_error('namakls', '<small class="text-danger">', '</small>'); ?>
   							</div>
   						</div>
@@ -196,13 +196,15 @@
   						<div class="col-md-6">
   							<div class="form-group">
   								<label for="jam_mulai">Jam Mulai</label>
-  								<input class="form-control" type="text" autocomplete="off" required placeholder="Contoh 08.00">
+  								<input class="form-control" type="text" autocomplete="off" required
+  									placeholder="Contoh 08.00">
   							</div>
   						</div>
   						<div class="col-md-6">
   							<div class="form-group">
   								<label for="jam_selesai">Jam Selesai</label>
-  								<input class="form-control" type="text" autocomplete="off" required placeholder="Contoh 11.00">
+  								<input class="form-control" type="text" autocomplete="off" required
+  									placeholder="Contoh 11.00">
   							</div>
   						</div>
   					</div>
@@ -210,8 +212,7 @@
   						<div class="col-md-6">
   							<div class="form-group">
   								<label for="harga">Harga</label>
-  								<input type="number" class="form-control" name="harga" placeholder="harga"
-  									required>
+  								<input type="number" class="form-control" name="harga" placeholder="harga" required>
   								<?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
   							</div>
   						</div>
@@ -239,8 +240,7 @@
   						<div class="col-md-12">
   							<div class="form-group">
   								<label for="hp">Link Kelas</label>
-  								<input type="text" class="form-control" name="link" placeholder="link"
-  									required>
+  								<input type="text" class="form-control" name="link" placeholder="link" required>
   								<?= form_error('link', '<small class="text-danger">', '</small>'); ?>
   							</div>
   						</div>
@@ -273,7 +273,13 @@
 
   <?php foreach ($kelas as $k) :
     $id = $k['ID_KLS'];
-    $namakls = $k['TITTLE'];
+	$namakls = $k['TITTLE'];
+	$tgl_mulai = $k['TGL_MULAI'];
+	$tgl_selesai = $k['TGL_SELESAI'];
+	$lok_kls = $k['LOK_KLS'];
+	$hari = $k['HARI'];
+	$jam_mulai = $k['JAM_MULAI'];
+	$jam_selesai = $k['JAM_SELESAI'];
     $link = $k['PERMALINK'];
     $harga = $k['PRICE'];
     $kategori = $k['KTGKLS'];
@@ -340,7 +346,7 @@
   					</div>
   					<hr>
   					<div class="row">
-  						<input type="text" class="form-control text-bold" id="idkls" name="id" value="<?= $id; ?>"
+  						<!-- <input type="text" class="form-control text-bold" id="idkls" name="id" value="<?= $id; ?>"
   							hidden>
   						<div class="col-md-6 row-idkls">
   							<div class="form-group">
@@ -348,7 +354,7 @@
   								<input type="text" class="form-control text-bold" id="id" value="<?= $id; ?>"
   									disabled>
   							</div>
-  						</div>
+  						</div> -->
   						<div class="col-md-6">
   							<div class="form-group">
   								<label for="namakls">Nama Kelas</label>
@@ -362,6 +368,68 @@
   								<label for="namakls">Kategori Kelas</label>
   								<select name="ktg" id="inkls" class="custom-select slct-ktg text-bold" required>
 
+  								</select>
+  							</div>
+  						</div>
+  					</div>
+  					<div class="row">
+  						<div class="col-md-6 tgl_mulai1">
+  							<div class="form-group">
+  								<label for="tgl_mulai1">Tanggal Mulai</label>
+  								<input type="text" class="form-control" name="tgl_mulai1"
+  									value="<?= date('d F Y', strtotime($tgl_mulai)); ?>" disabled>
+  							</div>
+  						</div>
+  						<div class="col-md-6 tgl_mulai" hidden>
+  							<div class="form-group">
+  								<label for="tgl_mulai">Tanggal Mulai</label>
+  								<input type="date" class="form-control" name="tgl_mulai" required>
+  							</div>
+  						</div>
+  						<div class="col-md-6 tgl_selesai1">
+  							<div class="form-group">
+  								<label for="tgl_selesai1">Tanggal Selesai</label>
+  								<input type="text" class="form-control" name="tgl_selesai1"
+  									value="<?= date('d F Y', strtotime($tgl_selesai)); ?>" disabled>
+  							</div>
+  						</div>
+  						<div class="col-md-6 tgl_selesai" hidden>
+  							<div class="form-group">
+  								<label for="tgl_selesai">Tanggal Selesai</label>
+  								<input type="date" class="form-control" name="tgl_selesai" required>
+  							</div>
+  						</div>
+  					</div>
+  					<div class="row">
+  						<div class="col-md-6 lok_kls1">
+  							<div class="form-group">
+  								<label for="lok_kls">Lokasi</label>
+  								<input type="text" class="form-control" value="<?= $lok_kls; ?>" disabled>
+  							</div>
+  						</div>
+  						<div class="col-md-6 lok_kls" hidden>
+  							<div class="form-group">
+  								<label for="lok_kls">Lokasi</label>
+  								<select name="lok_kls" id="lok_kls" class="form-control" required>
+  									<option value="Online Class">Online Class</option>
+								</select>
+  							</div>
+  						</div>
+  						<div class="col-md-6 hari1">
+  							<div class="form-group">
+  								<label for="">Hari Pelaksanaan</label>
+  								<input type="text" class="form-control" value="<?= $hari; ?>" disabled>
+  							</div>
+  						</div>
+  						<div class="col-md-6 hari" hidden>
+  							<div class="form-group">
+  								<label for="">Hari Pelaksanaan</label>
+  								<select name="hari" id="hari" required class="form-control">
+  									<option value="3 Hari (Senin-Rabu)">3 Hari (Senin-Rabu)</option>
+  									<option value="4 Hari (Senin-Kamis)">4 Hari (Senin-Kamis)</option>
+  									<option value="5 Hari (Senin-Jumat)">5 Hari (Senin-Jumat)</option>
+  									<option value="6 Hari (Senin-Sabtu)">6 Hari (Senin-Sabtu)</option>
+  									<option value="7 Hari (Senin-Minggu)">7 Hari (Senin-Minggu)</option>
   								</select>
   							</div>
   						</div>

@@ -173,6 +173,10 @@ class Kelas extends CI_Controller
         } else {
             $id = $this->input->post('id');
             $nama = htmlspecialchars($this->input->post('namakls'));
+            $tgl_mulai = htmlspecialchars($this->input->post('tgl_mulai'));
+            $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
+            $lok_kls = htmlspecialchars($this->input->post('lok_kls'));
+            $hari = htmlspecialchars($this->input->post('hari'));
             $harga = htmlspecialchars($this->input->post('harga'));
             $link = htmlspecialchars($this->input->post('link'));
             $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
@@ -203,6 +207,10 @@ class Kelas extends CI_Controller
 
             $edit = [
                 'TITTLE' => $nama,
+                'TGL_MULAI' => $tgl_mulai,
+                'TGL_SELESAI' => $tgl_selesai,
+                'LOK_KLS' => $lok_kls,
+                'HARI' => $hari,
                 'PERMALINK' => $link,
                 'GBR_KLS' => $new_image,
                 'DESKRIPSI' => $deskripsi,
