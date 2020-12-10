@@ -18,11 +18,28 @@ class Listkelas extends CI_Controller
         ])->row_array();
         $data['tittle'] = "List Kelas";
         $data['kyui'] = $this->m_listkelas->tampil();
+        
         // $this->load->view('admin/coba/coba', $data);
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
         $this->load->view("admin/kelas/v_listkelas", $data);
+        $this->load->view("admin/template_adm/v_footer");
+    }
+
+    public function view($id)
+    {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+        $data['tittle'] = "Materi";
+        $data['materi'] = $this->m_listkelas->get_materi($id)->row();
+        // $this->load->view('admin/coba/coba', $data);
+        $this->load->view("admin/template_adm/v_header", $data);
+        $this->load->view("admin/template_adm/v_navbar", $data);
+        $this->load->view("admin/template_adm/v_sidebar", $data);
+        $this->load->view("admin/kelas/v_listmateri", $data);
         $this->load->view("admin/template_adm/v_footer");
     }
 

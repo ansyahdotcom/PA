@@ -3,12 +3,14 @@
 class M_listkelas extends CI_Model
 {
     function tampil(){
-    $query = $this->db->query("SELECT * FROM kelas, materi, tugas, detail_materi, detil_tugas 
-                            WHERE kelas.ID_KLS = detail_materi.ID_KLS 
-                            AND detail_materi.ID_MT = materi.ID_MT
-                            AND tugas.ID_TG = detil_tugas.ID_TG
-                            AND materi.ID_MT = detil_tugas.ID_MT");
-    return $query->result_array();
+        $this->db->select('*');
+            $this->db->from('kelas');
+            $this->db->join('ktg_kelas', 'ktg_kelas.ID_KTGKLS = kelas.ID_KTGKLS', 'left');
+            $this->db->join('diskon', 'diskon.ID_DISKON = kelas.ID_DISKON', 'left');
+            $this->db->join('admin', 'admin.ID_ADM = kelas.ID_ADM', 'left');
+            $this->db->where('STAT', 1);
+            $query = $this->db->get()->result();
+            return $query;
     }
 
     // function tampil()

@@ -1,4 +1,5 @@
 <h1><?= $nm_ct; ?></h1>
+<hr>
 <?php foreach ($POST as $ktg){
 	?>
 <!-- Main content -->
@@ -17,7 +18,7 @@
 					<div class="">
 						<p><i class="fas fa-calendar"></i> <?= $ktg->TGL_POST; ?></p>
 						<i class="fas fa-folder"></i>
-						<a class="" href=""><?= $ktg->NM_CT; ?></a>
+						<a class="" href="<?= base_url('index/kategori/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
 						<i class="fas fa-tag ml-2"></i>
 						<?php 
 						$queryy = $this->db->query("SELECT detail_tags.ID_TAGS, tags.NM_TAGS FROM detail_tags, tags, post

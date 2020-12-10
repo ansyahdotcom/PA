@@ -47,16 +47,6 @@ class M_landingpage extends CI_Model
         return $data;
     }
 
-    // function dt_category($NMCT)
-    // {
-    //     $data = $this->db->query("SELECT detail_tags.ID_TAGS, tags.NM_TAGS FROM detail_tags, tags, post, category
-    //     WHERE detail_tags.ID_TAGS = tags.ID_TAGS
-    //     AND detail_tags.ID_POST = post.ID_POST
-    //     AND post.ID_CT = category.ID_CT
-    //     AND category.NM_CT = 'Teknologi'
-    //     AND post.ID_POST = 'PS00001' ");
-    // }
-
     // tampil artikel yg tag sama
     function tag($NM_TAGS)
     {
@@ -67,6 +57,18 @@ class M_landingpage extends CI_Model
                                 AND detail_tags.ID_TAGS = tags.ID_TAGS
                                 AND post.ID_CT = category.ID_CT
                                 AND tags.NM_TAGS = '$NM_TAGS'");
+        return $data;
+    }
+
+    function kelas()
+    {
+        $data = $this->db->query("SELECT * FROM kelas WHERE STAT = 1");
+        return $data;
+    }
+
+    function dt_kls($ID_KLS)
+    {
+        $data = $this->db->query("SELECT * FROM kelas WHERE ID_KLS = '$ID_KLS'");
         return $data;
     }
 }

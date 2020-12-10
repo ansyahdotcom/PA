@@ -157,6 +157,26 @@ $(function() {
             icon: 'warning',
             title:'Data berhasil di Hapus!',
         });
+    }else if(flashData == 'dataSuccess'){
+        Toast.fire({
+            icon: 'success',
+            title:'Data berhasil di Tambahkan!',
+        });
+    }else if(flashData == 'dataUpdate'){
+        Toast.fire({
+            icon: 'info',
+            title:'Data berhasil di Ubah!',
+        });
+    }else if(flashData == 'dataDelete'){
+        Toast.fire({
+            icon: 'warning',
+            title:'Data berhasil di Hapus!',
+        });
+    }else if(flashData == 'restore'){
+        Toast.fire({
+            icon: 'success',
+            title:'Data berhasil di Restore!',
+        });
     }
             // else if(flashData == 'blSuccess'){
             //     Toast.fire({

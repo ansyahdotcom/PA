@@ -28,37 +28,44 @@
 						<div class="card card-default">
 							<div class="card-header">
 								<h3 class="card-title">
-									<i class="fas fa-bullhorn"></i>
+									<i class="fas fa-"></i>
 									List Kelas
 								</h3>
 
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body">
-								<?php foreach ($kyui as $ky) :
-            $id = $ky['ID_MT'];
-          ?>
-								<div class="card">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-8">
-												<h1 class="card-title"><?= $ky['TITTLE']; ?></h1>
-												<p class="card-text"><?= $ky['DESKRIPSI']; ?></p>
-											</div>
-											<div class="col-md-4 text-right">
-												<?php 
-												$ID_KLS = 5; ?>
-												<a href="<?= base_url("admin/listpeserta/index/". $ID_KLS); ?>" class="btn btn-dark"> <i
-														class="nav-icon fas fa-user"></i> List Peserta</a>
-												<a href="#" class="btn btn-primary"><i class="fas fa-eye"></i> Detail</a>
-												<a href="<?= base_url("admin/materi/materikelas/$id") ?>" class="btn btn-info"><i
-														class="fas fa-book"></i> Materi</a>
-												<!-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a> -->
-											</div>
-										</div>
-									</div>
-								</div>
-								<?php endforeach; ?>
+              <?php if ($kyui == null) : ?>
+                <!-- Jika Belum Terdapat data -->
+                    <div class="col-md">
+                        <div class="card-body text-center mt-4">
+                            <img src="<?= base_url('assets/icon/noList.svg'); ?>" alt="noData" class="img-rounded img-responsive img-fluid" width="100">
+                        </div>
+                        <div class="card-body pt-0 mt-4">
+                            <h3 class="text-center text-bold text-muted">Belum terdapat data</h3>
+                        </div>
+              </div>
+              <?php else : ?>
+                <?php foreach ($kyui as $ky) : ?>
+                  <div class="card bg-purple">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <h1 class="card-title mb-2"><?= $ky->TITTLE; ?></h1>
+                          <h4 class="card-text mt-2"><span class="badge badge-warning"><?= $ky->KTGKLS; ?></span></h4>
+                        </div>
+                        <div class="col-md-4 text-right">
+                        <?php 
+                          $ID_KLS = 5; ?>
+                          <a href="<?= base_url("admin/listpeserta/index/". $ID_KLS); ?>" class="btn btn-dark"> <i class="nav-icon fas fa-user"></i> List Peserta</a>
+                          <a href="<?= base_url("admin/materi/materikelas/".$ky->ID_KLS); ?>" class="btn btn-info"><i class="fas fa-book"></i> Materi</a>
+                          <!-- <a href="#" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              <?php endif;?>
 							</div>
 							<!-- /.card-body -->
 						</div>

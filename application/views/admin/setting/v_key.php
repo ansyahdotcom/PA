@@ -22,7 +22,7 @@
             <h3 class="card-title pt-2">Manajemen Kunci API</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
-                <i class="fas fa-plus"></i> Data</button>
+                <i class="fas fa-plus-circle"></i> Data</button>
             </div>
             </div>
             <div class="card-body">
@@ -36,7 +36,7 @@
                             ?>
                             <div class="col-md-6">
                                 <div class="card">
-                                <div class="card-header bg-dark">
+                                <div class="card-header bg-indigo">
                                     <h3 class="card-title pt-2"><?= $nama;?></h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?=$id;?>">
@@ -46,7 +46,7 @@
                                         <button type="button" class="btn btn-success" id="btn-batal" hidden>
                                         <i class="fas fa-edit"></i> Batal</button>
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete<?=$id;?>">
-                                        <i class="fas fa-trash-alt"></i> Hapus</button>
+                                        <i class="fas fa-trash"></i> Hapus</button>
                                     </div>
                                 </div>
                                     <div class="card-body">

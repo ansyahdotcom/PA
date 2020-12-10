@@ -33,7 +33,7 @@
                 } ?>. Jika kamu telah membayar dan belum diproses oleh admin, bisa hubungi CS.</p>
               </div>
               <div class="col-sm-2">
-                <img" src="<?= base_url(); ?>assets/dist/img/program/study.svg" width="100" alt="halo">
+                <img src="<?= base_url(); ?>assets/dist/img/program/study.svg" width="100" alt="halo">
               </div>
             </div>
             <hr>

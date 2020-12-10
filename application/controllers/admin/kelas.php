@@ -79,6 +79,12 @@ class Kelas extends CI_Controller
             $this->session->set_flashdata('message', 'formempty');
         } else {
             $namakls = htmlspecialchars($this->input->post('namakls'));
+            $tgl_mulai = htmlspecialchars($this->input->post('tgl_mulai'));
+            $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
+            $lok_kls = htmlspecialchars($this->input->post('lok_kls'));
+            $hari = htmlspecialchars($this->input->post('hari'));
+            $jam_mulai = htmlspecialchars($this->input->post('jam_mulai'));
+            $jam_selesai = htmlspecialchars($this->input->post('jam_selesai'));
             $kategori = htmlspecialchars($this->input->post('ktg'));
             $harga = htmlspecialchars($this->input->post('harga'));
             $link = htmlspecialchars($this->input->post('link'));
@@ -108,6 +114,12 @@ class Kelas extends CI_Controller
                 'ID_KTGKLS' => $kategori,
                 'ID_DISKON' => 0,
                 'TITTLE' => $namakls,
+                'TGL_MULAI' => $tgl_mulai,
+                'TGL_SELESAI' => $tgl_selesai,
+                'LOK_KLS' => $lok_kls,
+                'HARI' => $hari,
+                'JAM_MULAI' => $jam_mulai,
+                'JAM_SELESAI' => $jam_selesai,
                 'PERMALINK' => $link,
                 'GBR_KLS' => $image,
                 'DESKRIPSI' => $deskripsi,
@@ -161,6 +173,10 @@ class Kelas extends CI_Controller
         } else {
             $id = $this->input->post('id');
             $nama = htmlspecialchars($this->input->post('namakls'));
+            $tgl_mulai = htmlspecialchars($this->input->post('tgl_mulai'));
+            $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
+            $lok_kls = htmlspecialchars($this->input->post('lok_kls'));
+            $hari = htmlspecialchars($this->input->post('hari'));
             $harga = htmlspecialchars($this->input->post('harga'));
             $link = htmlspecialchars($this->input->post('link'));
             $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
@@ -191,6 +207,10 @@ class Kelas extends CI_Controller
 
             $edit = [
                 'TITTLE' => $nama,
+                'TGL_MULAI' => $tgl_mulai,
+                'TGL_SELESAI' => $tgl_selesai,
+                'LOK_KLS' => $lok_kls,
+                'HARI' => $hari,
                 'PERMALINK' => $link,
                 'GBR_KLS' => $new_image,
                 'DESKRIPSI' => $deskripsi,

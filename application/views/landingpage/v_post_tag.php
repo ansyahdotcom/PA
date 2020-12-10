@@ -1,4 +1,5 @@
 <h1>Tag : <?= $nm_tags; ?></h1>
+<hr>
 <?php foreach ($tag as $tg){
     ?>
 <!-- Main content -->
@@ -16,7 +17,19 @@
 					<div class="">
 						<p><i class="fas fa-calendar"></i> <?= $tg->TGL_POST; ?></p>
 						<i class="fas fa-folder"></i>
-						<a class="text-sm" href=""><?= $tg->NM_CT; ?></a>
+						<a class="" href="<?= base_url('index/kategori/'. $tg->NM_CT); ?>"><?= $tg->NM_CT; ?></a>
+						<i class="fas fa-tag ml-2"></i>
+						<?php 
+						$queryy = $this->db->query("SELECT detail_tags.ID_TAGS, tags.NM_TAGS FROM detail_tags, tags, post
+                                    WHERE post.ID_POST = detail_tags.ID_POST
+                                    AND detail_tags.ID_TAGS = tags.ID_TAGS
+									AND post.ID_POST = '$tg->ID_POST'"); 
+						$i = 1;
+						foreach ($queryy->result() as $que) {
+						?>
+						<a
+							href="<?= base_url('index/tag/'. $que->NM_TAGS); ?>"><?= $que->NM_TAGS; ?><?= $i == count((array) $queryy->result()) ? '' : ', ' ?></a>
+						<?php $i++; }?>
 						<hr>
 						<img style="width: 600px; height: 400px;" class="img-fluid rounded"
 							src="<?= base_url('assets/fotoblog/'. $tg->FOTO_POST);?>" alt="foto-post">
