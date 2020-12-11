@@ -88,7 +88,7 @@
                                 elseif ($dettrn['STATUS'] == 200) :
                                     $status = "Success";
                                     $bg = "bg-success";
-                                else :
+                                elseif ($dettrn['STATUS'] == 202) :
                                     $status = "Cancel";
                                     $bg = "bg-danger";
                                 endif;
@@ -146,8 +146,10 @@
                             <?php
                                 $time = strtotime($dettrn['TIME']);
                                 $exp = strtotime($dettrn['EXP_TIME']);
+                                $trn_t = strtotime($dettrn['TRN_TIME']);
                                 $order_time = date("d/F/Y -- H:i", $time);
                                 $exp_time = date("d/F/Y -- H:i", $exp);
+                                $trn_time = date("d/F/Y -- H:i", $trn_t);
                             ?>
                             <tr>
                                 <td class="text-bold">Waktu Order</td>
@@ -160,7 +162,7 @@
                             <?php if ($dettrn['STATUS'] == 200) : ?>
                             <tr>
                                 <td class="text-bold">Tanggal Pembayaran</td>
-                                <td></td>
+                                <td class="text-bold text-success"><?= $trn_time; ?></td>
                             </tr>
                             <?php else : ?>
                             <?php endif; ?>

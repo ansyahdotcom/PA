@@ -213,7 +213,7 @@
                                             <span class="badge-pill bg-secondary"><b>Pending...</b></span>
                                         <?php elseif ($status == 200) : ?>
                                             <span class="badge-pill bg-success"><b>Success</b></span>
-                                        <?php else : ?>
+                                        <?php elseif ($status == 202) : ?>
                                             <span class="badge-pill bg-danger"><b>Cancel</b></span>
                                         <?php endif; ?>
                                     </td>

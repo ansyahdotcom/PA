@@ -88,7 +88,7 @@
                                 elseif ($dettrn['STATUS'] == 200) :
                                     $status = "Success";
                                     $bg = "bg-success";
-                                else :
+                                elseif ($dettrn['STATUS'] == 202) :
                                     $status = "Cancel";
                                     $bg = "bg-danger";
                                 endif;

@@ -22,7 +22,7 @@ class Notification extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $params = array('server_key' => 'your_server_key', 'production' => false);
+        $params = array('server_key' => 'SB-Mid-server-tNBThkCAIbSjBODU1WuDkHfU', 'production' => false);
 		$this->load->library('veritrans');
 		$this->veritrans->config($params);
 		$this->load->helper('url');
@@ -31,15 +31,45 @@ class Notification extends CI_Controller {
 
 	public function index()
 	{
+		/** Mengambil data peserta berdasarkan session */
+		$email = $this->session->userdata('email');
+        $data['peserta'] = $this->db->get_where('peserta', [
+            'EMAIL_PS' => $email
+		])->row_array();
+		
 		echo 'test notification handler';
 		$json_result = file_get_contents('php://input');
-		$result = json_decode($json_result);
+		$result = json_decode($json_result, "true");
+		
+		$status = $result['status_code'];
+		$trn_time = $result['transaction_time'];
+		$order_id = $result['order_id'];
+		$id_ps = $data['peserta']['ID_PS'];
 
-		if($result){
-		$notif = $this->veritrans->status($result->order_id);
+		$data = [
+			'STATUS' => $status,
+			'TRN_TIME' => $trn_time
+		];
+
+		$data1 = [
+			'STATUS_BELI' => $status
+		];
+
+		if ($status == 200) {
+			$this->db->update('transaksi', $data, array('ID_TRN' => $order_id));
+			$this->db->update('peserta', $data1, array('ID_PS' => $id_ps));
+		} elseif ($status == 201) {
+			$this->db->update('transaksi', $data, array('ID_TRN' => $order_id));
+			$this->db->update('peserta', $data1, array('ID_PS' => $id_ps));
+		} elseif($status == 202) {
+			$this->db->update('transaksi', $data, array('ID_TRN' => $order_id));
+			$this->db->update('peserta', $data1, array('ID_PS' => $id_ps));
 		}
+		// if($result){
+		// $notif = $this->veritrans->status($result->order_id);
+		// }
 
-		error_log(print_r($result,TRUE));
+		// error_log(print_r($result,TRUE));
 
 		//notification handler sample
 
