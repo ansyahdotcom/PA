@@ -99,24 +99,30 @@
           <!-- Custom tabs (Charts with tabs)-->
           <div class="card">
             <div class="card-header text-center">
-              <?php if ($cekmyclass == null) : ?>
+              <?php if ($cekmyclass['STATUS_BELI'] == 0) : ?>
                 <a href="<?= base_url('peserta/dashboard'); ?>">
-              <?php else : ?>
+              <?php elseif ($cekmyclass['STATUS_BELI'] == 201) : ?>
+                <a href="<?= base_url('peserta/transaksi'); ?>">
+              <?php elseif ($cekmyclass['STATUS_BELI'] == 200) : ?>
                 <a href="<?= $myclass['PERMALINK']; ?>">
               <?php endif; ?>
                   <div class="kelas">
-                    <?php if ($cekmyclass == null) : ?>
+                    <?php if ($cekmyclass['STATUS_BELI'] == 0) : ?>
                       <img src="<?= base_url() ?>assets/icon/noClass.svg" width="350" alt="kelas">
-                    <?php else : ?>
+                    <?php elseif ($cekmyclass['STATUS_BELI'] == 201) : ?>
+                      <img class="mt-4 mb-4" src="<?= base_url() ?>assets/icon/payment.svg" width="350" alt="kelas">
+                    <?php elseif ($cekmyclass['STATUS_BELI'] == 200) : ?>
                       <img src="<?= base_url('assets/dist/img/kelas/') . $myclass['GBR_KLS']; ?>" class="img-fluid img-responsive img-rounded shadow-lg" width="340" alt="kelas">
                     <?php endif; ?>
                   </div>
-                  <?php if ($cekmyclass == null) : ?>
+                  <?php if ($cekmyclass['STATUS_BELI'] == 0) : ?>
                     <h5 class="mt-3 mb-3">Belum ada kelas </h5>
-                  <?php else : ?>
+                  <?php elseif ($cekmyclass['STATUS_BELI'] == 201) : ?>
+                    <h5 class="mt-4 mb-4">Segera selesaikan pembayaran kelas anda</h5>
+                  <?php elseif ($cekmyclass['STATUS_BELI'] == 200) : ?>
                     <h5 class="mt-3 mb-3">Kelas saya: <?= $myclass['TITTLE']; ?> </h5>
                   <?php endif; ?>
-                  </a>
+                </a>
             </div>
           </div>
           <!-- /.card -->

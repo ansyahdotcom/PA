@@ -56,15 +56,15 @@
                         <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Register Kelas Baru
+                                Daftar Kelas Baru
                             </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/#'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/transaksi'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-history"></i>
                             <p>
-                                Histori
+                                Histori Transaksi
                             </p>
                         </a>
                     </li>

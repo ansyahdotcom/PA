@@ -1,10 +1,16 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('*Access-Control-Allow-Method: GET, OPTIONS*');
+
 class Kelas extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model('peserta/m_kelas');
+		$params = array('server_key' => 'SB-Mid-server-tNBThkCAIbSjBODU1WuDkHfU', 'production' => false);
+		$this->load->library('midtrans');
+		$this->midtrans->config($params);
         psrt_logged_in();
         cekpsrt();
     }
@@ -35,7 +41,7 @@ class Kelas extends CI_Controller
 
         $config['total_rows'] = $this->db->count_all_results();
         $data['rows'] = $config['total_rows'];
-        $config['per_page'] = 9;
+        $config['per_page'] = 6;
         // $config['num_links'] = 3;
 
         /** Initialize library pagination */
@@ -50,5 +56,145 @@ class Kelas extends CI_Controller
         $this->load->view("peserta/template/v_sidebar", $data);
         $this->load->view("peserta/kelas/v_kelas", $data);
         $this->load->view("peserta/template/v_footer");
-    }
+	}
+	
+	/** Mengambil  */
+	public function getkelas()
+	{
+		$id = $this->input->post('eID');
+        $data['kelas'] = $this->m_kelas->kelas($id);
+        echo json_encode($data['kelas']);
+	}
+
+    public function token()
+	{
+        /** Menangkap data ajax */
+        $id  = $this->input->post('id');
+        $kelas = $this->input->post('kelas');
+        $harga = $this->input->post('harga');
+        $nama = $this->input->post('nama');
+        $hp  = $this->input->post('hp');
+        $email  = $this->input->post('email');
+
+		// Required
+		$transaction_details = array(
+			'order_id' => rand(),
+			'gross_amount' => $harga, // no decimal allowed for creditcard
+		);
+
+		// Optional
+		$item1_details = array(
+			'id' => $id,
+			'price' => $harga,
+			'quantity' => 1,
+			'name' => $kelas
+		);
+
+		// Optional
+		$item_details = array($item1_details);
+
+		// Optional
+		// $billing_address = array(
+		// 	'first_name'    => "Andri",
+		// 	'last_name'     => "Litani",
+		// 	'address'       => "Mangga 20",
+		// 	'city'          => "Jakarta",
+		// 	'postal_code'   => "16602",
+		// 	'phone'         => "081122334455",
+		// 	'country_code'  => 'IDN'
+		// );
+
+		// Optional
+		// $shipping_address = array(
+		// 	'first_name'    => "Obet",
+		// 	'last_name'     => "Supriadi",
+		// 	'address'       => "Manggis 90",
+		// 	'city'          => "Jakarta",
+		// 	'postal_code'   => "16601",
+		// 	'phone'         => "08113366345",
+		// 	'country_code'  => 'IDN'
+		// );
+
+		// Optional
+		$customer_details = array(
+			'first_name'    => $nama,
+			'last_name'     => "",
+			'email'         => $email,
+			'phone'         => $hp
+			// 'billing_address'  => $billing_address,
+			// 'shipping_address' => $shipping_address
+		);
+
+		// Data yang akan dikirim untuk request redirect_url.
+		$credit_card['secure'] = true;
+		//ser save_card true to enable oneclick or 2click
+		//$credit_card['save_card'] = true;
+
+		$time = time();
+		$custom_expiry = array(
+			'start_time' => date("Y-m-d H:i:s O", $time),
+			'unit' => 'day',
+			'duration'  => 1
+		);
+
+		$transaction_data = array(
+			'transaction_details' => $transaction_details,
+			'item_details'       => $item_details,
+			'customer_details'   => $customer_details,
+			'credit_card'        => $credit_card,
+			'expiry'             => $custom_expiry
+		);
+
+		error_log(json_encode($transaction_data));
+		$snapToken = $this->midtrans->getSnapToken($transaction_data);
+		error_log($snapToken);
+		echo $snapToken;
+	}
+
+	public function finish()
+	{
+		/** Menangkap data ajax */
+		$id  = $this->input->post('id');
+		$id_ps  = $this->input->post('id_ps');
+		
+		$result = json_decode($this->input->post('result_data'), true);
+		// echo 'RESULT <br><pre>';
+		// var_dump($result);
+		// echo '</pre>';
+		// die;
+
+		/** Expired time pembayaran */
+		$exp_time = date("Y-m-d H:i:s", strtotime('+1 day'));
+
+		$data = array(
+			'ID_TRN'  => $result['order_id'],
+			'eID' => $result['transaction_id'],
+			'AMOUNT' => $result['gross_amount'],
+			'PAYMENT' => $result['payment_type'],
+			'BANK' => $result['va_numbers'][0]['bank'],
+			'VA_NUMBER' => $result['va_numbers'][0]['va_number'],
+			'TIME' => $result['transaction_time'],
+			'PDF_GUIDE' => $result['pdf_url'],
+			'ID_KLS' => $id,
+			'ID_PS' => $id_ps,
+			'STATUS' => $result['status_code'],
+			'EXP_TIME' => $exp_time
+		);
+
+		$data1 = array(
+			'ID_TRN' => $result['order_id'],
+			'ID_KLS' => $id,
+			'ID_PS' => $id_ps
+		);
+
+		$data2 = array(
+			'STATUS_BELI' => $result['status_code']
+		);
+
+		$this->m_kelas->transaksi($data);
+		$this->m_kelas->detilkls($data1);
+		$this->m_kelas->pending($id_ps, $data2);
+		$this->session->set_flashdata('message', 'success_trn');
+		redirect('peserta/transaksi');
+	}
 }

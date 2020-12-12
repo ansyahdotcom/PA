@@ -21,6 +21,9 @@ class Myclass extends CI_Controller
         
         /** cek sudah punya kelas atau belum */
         $data['cekmyclass'] = $this->m_kelas->cekmyclass($email);
+        
+        /** cek sudah punya bayar transaksi kelas atau belum */
+        $data['statustrn'] = $this->m_kelas->statustrn($email);
 
         $data['tittle'] = "Kelas Saya";
         $this->load->view("peserta/template/v_header", $data);
