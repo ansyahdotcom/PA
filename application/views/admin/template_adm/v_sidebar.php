@@ -85,7 +85,7 @@
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link 
-                            <?php if ($this->uri->segment(2) == "listkelas"  || $this->uri->segment(2) == "listpeserta" || $this->uri->segment(2) == "materi") {
+                            <?php if ($this->uri->segment(2) == "kelas"  || $this->uri->segment(2) == "listpeserta" || $this->uri->segment(2) == "materi") {
                                 echo "active";
                             } ?>">
                             <i class="nav-icon fab fa-leanpub"></i>
@@ -105,19 +105,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('admin/listkelas'); ?>" class="nav-link 
-                                    <?php if ($this->uri->segment(2) == "listkelas" || $this->uri->segment(2) == "listpeserta" || $this->uri->segment(2) == "materi") {
+                                <a href="<?= base_url('admin/#'); ?>" class="nav-link 
+                                <?php if ($this->uri->segment(2) == "") {
                                         echo "active";
                                     } ?>">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Buat Materi Kelas</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url('admin/#'); ?>" class="nav-link 
-                                <?php if ($this->uri->segment(2) == "#") {
-                                    echo "active";
-                                } ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Pengumpulan Tugas</p>
                                 </a>

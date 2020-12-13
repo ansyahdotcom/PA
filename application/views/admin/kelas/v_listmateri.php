@@ -26,7 +26,7 @@
                 <i class="fas fa-plus-circle"></i> Import Excel</button> -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
                 <i class="fas fa-plus-circle"></i> Materi</button>
-                <a href="<?= base_url('admin/listkelas'); ?>" class="btn btn-outline-primary">
+                <a href="<?= base_url('admin/kelas'); ?>" class="btn btn-outline-primary">
                 <i class="fas fa-arrow-circle-left"></i> Kembali</a>
             </div>
             </div>
