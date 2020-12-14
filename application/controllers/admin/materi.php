@@ -39,6 +39,7 @@ class Materi extends CI_Controller
                 $config['upload_path'] = './assets/dist/materi/';
                 $config['allowed_types'] = 'pdf|zip|doc|docx|ppt|pptx';
                 $config['max_size'] = 5000;
+                $config['overwrite'] = TRUE;
                 // $config['max_width'] = 1500;
                 // $config['max_height'] = 1500;
 
@@ -84,6 +85,8 @@ class Materi extends CI_Controller
                 if ($this->upload->do_upload('file')) {
                     $new = $this->upload->data('file_name');
                     $this->db->set('FILE_SUB', $new);
+                    $get = $this->db->get_where('materi_sub', ['ID_SUB' => $ID_SUB])->row();
+                    unlink(FCPATH. 'assets/dist/materi/' .$get->FILE_SUB);
                 } else {
                     echo $this->upload->display_errors();
                 }
@@ -108,6 +111,8 @@ class Materi extends CI_Controller
     function delete_file(){
         $id = $this->input->post('id_kelas',TRUE);
         $id_sub = $this->input->post('delete_id',TRUE);
+        $get = $this->db->get_where('materi_sub', ['ID_SUB' => $id_sub])->row();
+        unlink(FCPATH. 'assets/dist/materi/' .$get->FILE_SUB);
         $where = array(
             'ID_SUB' => $id_sub
         );
