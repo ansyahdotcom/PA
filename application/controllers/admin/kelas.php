@@ -129,7 +129,8 @@ class Kelas extends CI_Controller
                 'UPDATE_KLS' => 0
             ];
 
-           
+            $get = $this->db->get_where('kelas', ['ID_KLS' => $id_kls])->row();
+            unlink(FCPATH. 'assets/dist/img/kelas' .$get->FILE_SUB);
             $this->m_kelas->saveall($kelas);
             $this->session->set_flashdata('message', 'save');
             redirect('admin/kelas');

@@ -99,7 +99,8 @@ class Profil extends CI_Controller
                 'AGAMA_PS' => $agama,
                 'KOTA' => $kota,
             ];
-
+            $get = $this->db->get_where('peserta', ['ID_PS' => $id_ps])->row();
+            unlink(FCPATH. 'assets/dist/img/peserta' .$get->FILE_SUB);
             $this->db->set($edit);
             $this->db->where('EMAIL_PS', $email);
             $this->db->update('peserta');
