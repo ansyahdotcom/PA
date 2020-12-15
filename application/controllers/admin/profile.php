@@ -69,7 +69,8 @@
                     'ALMT_ADM' => $alamat,
                     'UPDATE_ADM' => time(),
                 ];
-
+                $get = $this->db->get_where('admin', ['ID_ADM' => $id_adm])->row();
+                unlink(FCPATH. 'assets/dist/img/admin' .$get->FILE_SUB);
                 $this->db->set($edit);
                 $this->db->where('EMAIL_ADM', $email);
                 $this->db->update('admin');

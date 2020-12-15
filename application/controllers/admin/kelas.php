@@ -129,6 +129,8 @@ class Kelas extends CI_Controller
                 'UPDATE_KLS' => 0
             ];
 
+            $get = $this->db->get_where('kelas', ['ID_KLS' => $id_kls])->row();
+            unlink(FCPATH. 'assets/dist/img/kelas' .$get->FILE_SUB);
             $this->m_kelas->saveall($kelas);
             $this->session->set_flashdata('message', 'save');
             redirect('admin/kelas');
@@ -151,18 +153,18 @@ class Kelas extends CI_Controller
             'required' => 'Kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('link', 'Link', 'required|trim', [
-            'required' => 'Kolom ini harus diisi'
-        ]);
+        // $this->form_validation->set_rules('link', 'Link', 'required|trim', [
+        //     'required' => 'Kolom ini harus diisi'
+        // ]);
 
-        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric', [
-            'required' => 'Kolom ini harus diisi',
-            'numeric' => 'Data harus berisi angka'
-        ]);
+        // $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric', [
+        //     'required' => 'Kolom ini harus diisi',
+        //     'numeric' => 'Data harus berisi angka'
+        // ]);
 
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim', [
-            'required' => 'Kolom ini harus diisi'
-        ]);
+        // $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim', [
+        //     'required' => 'Kolom ini harus diisi'
+        // ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('admin/template_adm/v_header', $data);
@@ -219,6 +221,8 @@ class Kelas extends CI_Controller
                 'ID_KTGKLS' => $kategori,
                 'UPDATE_KLS' => time(),
             ];
+            // var_dump($edit);
+            // die;
 
             $this->m_kelas->editkls($edit, $id);
             $this->session->set_flashdata('message', 'edit');

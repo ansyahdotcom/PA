@@ -80,7 +80,7 @@
   										<button class="btn btn-sm btn-primary" data-toggle="modal"
   											data-target="#modal-detail<?= $id; ?>"><i class="fas fa-edit"></i>
   											<b>Detail</b></button>
-  										<a class="btn btn-sm" type="button" style="color: blueviolet;"
+  										<a class="btn btn-sm btn-warning" type="button"
   											href="<?= base_url('admin/materi/materikelas/'). $id; ?>"><i
   												class="fas fa-edit"></i> <b>Materi</b></a>
   										<button class="btn btn-sm btn-danger" data-toggle="modal"
@@ -346,7 +346,7 @@
   					</div>
   					<hr>
   					<div class="row">
-  						<!-- <input type="text" class="form-control text-bold" id="idkls" name="id" value="<?= $id; ?>"
+  						<input type="text" class="form-control text-bold" id="idkls" name="id" value="<?= $id; ?>"
   							hidden>
   						<div class="col-md-6 row-idkls">
   							<div class="form-group">
@@ -354,7 +354,7 @@
   								<input type="text" class="form-control text-bold" id="id" value="<?= $id; ?>"
   									disabled>
   							</div>
-  						</div> -->
+  						</div>
   						<div class="col-md-6">
   							<div class="form-group">
   								<label for="namakls">Nama Kelas</label>
@@ -365,7 +365,7 @@
   						</div>
   						<div class="col-md-6 row-ktgkls" hidden>
   							<div class="form-group">
-  								<label for="namakls">Kategori Kelas</label>
+  								<label for="ktg">Kategori Kelas</label>
   								<select name="ktg" id="inkls" class="custom-select slct-ktg text-bold" required>
 
   								</select>

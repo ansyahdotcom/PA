@@ -105,7 +105,7 @@
     									<div class="card-body text-center">
     										<h5 class="card-title">Kelas Enterpreneur</h5>
     										<p class="card-text">Kelas belajar untuk berwirausaha.</p>
-    										<a class="btn button primary-button" href="<?= base_url('index/kelas')?>">Lihat Kelas</a>
+    										<a class="btn button primary-button" href="<?= base_url('class')?>">Lihat Kelas</a>
     									</div>
     								</div>
     							</div>

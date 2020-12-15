@@ -9,20 +9,14 @@ class M_materi extends CI_Model{
 		return $result->result_array();
 	}
 
-	// READ
-	function get_data(){
-		$result = $this->db->get('materi');
-		return $result->result_array();
-	}
-
 	// GET DATA SUB
-	function get_sub(){
-		$result = $this->db->query(
-			"SELECT * FROM materi, materi_sub 
-			WHERE materi.ID_MT = materi_sub.ID_MT"
-		);
-		return $result->result_array();
-	}
+	// function get_sub($id){
+	// 	$this->db->select('*');
+	// 	$this->db->from('materi_sub');
+	// 	$this->db->join('materi', 'materi_sub.ID_MT = materi.ID_MT', 'left');
+	// 	$this->db->where('materi.ID_MT', $id);
+	// 	return $this->db->get()->result_array();
+	// }
 
 	// CREATE
 	function create_($materi,$detail,$id_kelas){
@@ -45,6 +39,12 @@ class M_materi extends CI_Model{
 		$this->db->trans_complete();
 	}
 	
+	// INSERT
+	function upload_($data, $table)
+    {
+        $this->db->where($where);
+        $this->db->insert($table, $data);
+    }
 	// UPDATE
 	function update_($where, $data, $table)
     {

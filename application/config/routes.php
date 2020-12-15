@@ -66,6 +66,8 @@ $route['register'] = 'peserta/auth/register';
 $route['forgot'] = 'peserta/auth/lupapsw';
 $route['repass'] = 'peserta/auth/ubahpassword';
 $route['verify'] = 'peserta/auth/verify';
+$route['class'] = 'index/kelas';
+$route [ 'class/detail/(:num)' ]  =  'index/dt_kls/$1' ;
 
 /**
  * ==================================================================
