@@ -32,15 +32,15 @@
                         <div class="card-body">
                             <input type="hidden" name="ID_WEBINAR" value="<?= $ID_WEBINAR; ?>">
                             <input type="hidden" name="ID_ADM" value="<?= $ID_ADM; ?>">
-                            <!-- Tema -->
-                            <label for="TEMA">Tema</label>
-                            <input class="form-control" type="text" autocomplete="off" name="TEMA" placeholder="Tambahkan Tema" autofocus required>
-                            <?= form_error('TEMA', '<small class="text-danger">', '</small>'); ?>
+                            <!-- JUDUL_WEBINAR -->
+                            <label for="JUDUL_WEBINAR">Judul</label>
+                            <input class="form-control" type="text" autocomplete="off" name="JUDUL_WEBINAR" placeholder="Tambahkan judul webinar" autofocus required>
+                            <?= form_error('JUDUL_WEBINAR', '<small class="text-danger">', '</small>'); ?>
                             <br>
                             <!-- Fasilitas -->
                             <i class="fa fa-tag"></i>
                             <label for="ID_FA">Fasilitas</label><br>
-                            <select name="ID_FA[]" id="ID_FA[]" class="select2bs4" required multiple="multiple" data-placeholder="Pilih fasilitas" style="width: 100%;">
+                            <select name="ID_FA[]" id="ID_FA[]" class="select2bs4" multiple="multiple" data-placeholder="Pilih fasilitas" style="width: 100%;">
                                 <?php foreach ($fasilitas as $fas) { ?>
                                     <option value="<?= $fas->ID_FA; ?>"><?= $fas->NM_FA; ?></option>
                                 <?php } ?>
@@ -71,7 +71,7 @@
                                                         <i class="glyphicon glyphicon-download-alt"></i>
                                                         <div>Pilih file gambar atau seret gambar kesini .</div>
                                                     </div>
-                                                    <input type="file" name="FOTO_PEMBICARA" class="dropzone" required>
+                                                    <input type="file" name="FOTO_WEBINAR" class="dropzone" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -80,18 +80,28 @@
                             </div>
                             <!-- Harga -->
                             <label for="HARGA">Harga</label>
-                            <input class="form-control" type="text" autocomplete="off" name="HARGA" placeholder="Tambahkan Harga" autofocus required>
+                            <input class="form-control" type="text" autocomplete="off" list="HARGA" name="HARGA" placeholder="Tambahkan Harga" required>
+                            <datalist id="HARGA" class="form-control" name="HARGA" hidden>
+                                <option value="GRATIS">GRATIS</option>
+                            </datalist>
                             <?= form_error('HARGA', '<small class="text-danger">', '</small>'); ?>
                             <br>
                             <!-- Platform -->
                             <label for="PLATFORM">Platform</label>
-                            <input class="form-control" type="text" autocomplete="off" name="PLATFORM" placeholder="Tambahkan Platform" autofocus required>
+                            <select name="PLATFORM" id="PLATFORM" class="form-control" required>
+                                <option value="ZOOM">ZOOM</option>
+                                <option value="GOOGLE MEET">GOOGLE MEET</option>
+                            </select>
                             <?= form_error('PLATFORM', '<small class="text-danger">', '</small>'); ?>
                             <br>
                             <!-- Tanggal Webinar -->
                             <label for="TGL_WEB">Tanggal Webinar</label>
-                            <input type="date" name="TGL_WEB" id="TGL_WEB" value="<?php echo date('d-F-Y', strtotime("TGL_WEB")); ?>">
-                            <br> <br>
+                            <input type="date" class="form-control" name="TGL_WEB" id="TGL_WEB" required>
+                            <br>
+                            <label for="KONTEN_WEB">Deskripsi Webinar</label>
+                            <textarea class="textarea" class="form-control" name="KONTEN_WEB" id="KONTEN_WEB"
+								placeholder="Isi deskripsi disini..." required></textarea>
+							<br><br>
                             <button type="submit" class="btn btn-success btn-round">Simpan</button>
                         </div>
                     </form>
@@ -121,7 +131,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="hidden" class="form-control" name="ID_FA" value="<?= $ID_FA; ?>">
-                        <input type="text" class="form-control" name="NM_FA" autocomplete="off" autofocus required>
+                        <input type="text" class="form-control" name="NM_FA" autocomplete="off" required>
                     </div>
                 </div>
                 <div class="modal-footer">

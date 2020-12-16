@@ -29,7 +29,8 @@
 						foreach ($queryy->result() as $que) {
 						?>
 						<a
-							href="<?= base_url('index/tag/'. $que->NM_TAGS); ?>"><?= $que->NM_TAGS; ?><?= $i == count((array) $queryy->result()) ? '' : ', ' ?></a>
+							href="<?= base_url('index/tag/'. $que->NM_TAGS); ?>"><?= $que->NM_TAGS; ?>
+							<?= $i == count((array) $queryy->result()) ? '' : ', ' ?></a>
 						<?php $i++; }?>
 						<hr>
 						<img style="width: 600px; height: 400px;" class="img-fluid rounded"

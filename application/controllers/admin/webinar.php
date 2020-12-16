@@ -74,20 +74,14 @@ class Webinar extends CI_Controller
         }
 
         // form validation
-        $this->form_validation->set_rules('TEMA', 'Tema', 'required|trim', [
-            'required' => 'Kolom tema harus diisi!'
-        ]);
-        $this->form_validation->set_rules('FOTO_WEBINAR', 'Foto Webinar', 'required|trim', [
-            'required' => 'Kolom foto webinar harus diisi!'
+        $this->form_validation->set_rules('JUDUL_WEBINAR', 'Judul', 'required|trim', [
+            'required' => 'Kolom judul harus diisi!'
         ]);
         $this->form_validation->set_rules('HARGA', 'Harga', 'required|trim', [
             'required' => 'Kolom harga harus diisi!'
         ]);
         $this->form_validation->set_rules('PLATFORM', 'Platform', 'required|trim', [
             'required' => 'Kolom platform harus diisi!'
-        ]);
-        $this->form_validation->set_rules('TGL_WEB', 'Tanggal Webinar', 'required|trim', [
-            'required' => 'Harap pilih tanggal webinar!'
         ]);
 
         if ($this->form_validation->run() == false) {
@@ -100,16 +94,17 @@ class Webinar extends CI_Controller
         } else {
             $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
             $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
-            $TEMA = htmlspecialchars($this->input->post('TEMA'));
+            $JUDUL_WEBINAR = htmlspecialchars($this->input->post('JUDUL_WEBINAR'));
+            $KONTEN_WEB = htmlspecialchars($this->input->post('KONTEN_WEB'));
             $ID_FA = $this->input->post('ID_FA');
             $FOTO_WEBINAR = htmlspecialchars($this->input->post('FOTO_WEBINAR'));
             $HARGA = htmlspecialchars($this->input->post('HARGA'));
             $PLATFORM = htmlspecialchars($this->input->post('PLATFORM'));
-            $TGL_WEB = date('d-F-Y', strtotime($this->input->post('TGL_WEB')));
+            $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
             $TGL_POSTWEB = date('Y-m-d');
             // untuk upload foto web
             $config['upload_path']          = './assets/fotowebinar/';
-            $config['allowed_types']        = 'jpg|jpeg|JPG|PNG';
+            $config['allowed_types']        = 'jpg|jpeg|JPG';
             $config['max_size']             = 0;
             // $config['encrypt_name']         = true;
 
@@ -124,7 +119,7 @@ class Webinar extends CI_Controller
                 $config['create_thumb'] = FALSE;
                 $config['maintain_ratio'] = FALSE;
                 $config['quality'] = '50%';
-                $config['wIDFh'] = 160;
+                $config['width'] = 160;
                 $config['height'] = 130;
                 $config['new_image'] = './assets/fotowebinar/fotoweb/' . $upload_data['file_name'];
                 $this->load->library('image_lib', $config);
@@ -133,7 +128,8 @@ class Webinar extends CI_Controller
                 $data = array(
                     'ID_WEBINAR' => $ID_WEBINAR,
                     'ID_ADM' => $ID_ADM,
-                    'TEMA' => $TEMA,
+                    'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
+                    'KONTEN_WEB' => $KONTEN_WEB,
                     'FOTO_WEBINAR' => $upload_data['file_name'],
                     'HARGA' => $HARGA,
                     'PLATFORM' => $PLATFORM,

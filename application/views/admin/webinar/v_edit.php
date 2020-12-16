@@ -30,7 +30,7 @@
                         <form action="<?= base_url() . 'admin/webinar/update'; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="card-body">
                                 <input type="hidden" name="ID_WEBINAR" value="<?= $wbnr->ID_WEBINAR ?>">
-                                <input type="hidden" name="ID_ADM" value="<?= $blg->ID_ADM ?>">
+                                <input type="hidden" name="ID_ADM" value="<?= $wbnr->ID_ADM ?>">
                                 <label for="TEMA">Tema</label>
                                 <input type="text" class="form-control" name="TEMA" value="<?= str_replace('-', ' ', $wbnr->TEMA); ?>" autocomplete="off" autofocus required>
                                 <br>
