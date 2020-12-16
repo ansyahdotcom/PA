@@ -99,8 +99,6 @@
 						}
 						?>
 
-						<label for="TGL_POSTWEB"
-							class="text-sm mr-2"><?= ' | ' . date('d F Y', strtotime($wbnr->TGL_POSTWEB)); ?></label>
 						<span class="float-right">
 							<!-- Nyari status web trus mau diposting apa nggak -->
 							<?php

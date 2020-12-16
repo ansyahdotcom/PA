@@ -7,6 +7,7 @@ class Webinar extends CI_Controller
         $this->load->model('admin/m_webinar');
         $this->load->model('admin/m_medsos');
         $this->load->library('upload');
+        $this->load->helper('file');
         // $this->load->library('form_validation');
         adm_logged_in();
         cekadm();
@@ -206,13 +207,19 @@ class Webinar extends CI_Controller
         $where = array(
             'ID_WEBINAR' => $ID_WEBINAR
         );
+        // $query = $this->db->query("SELECT FOTO_WEBINAR FROM webinar WHERE ID_WEBINAR = '$ID_WEBINAR'");
+        // foreach ($query->result() as $row){
+        //     $FOTO = $row->FOTO_WEBINAR;
+        // }
+        // $fto = $FOTO;
+        // unlink(base_url('assets/fotowebinar/'. $fto));
         $this->m_webinar->delete($where, 'detail_fasilitas');
         $this->m_webinar->delete($where, 'webinar');
         $this->session->set_flashdata('message', 'hapus');
         redirect('admin/webinar');
     }
 
-    public function edit($TEMA)
+    public function edit($JUDUL_WEBINAR)
     {
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>
@@ -220,13 +227,10 @@ class Webinar extends CI_Controller
         ])->row_array();
         $data['tittle'] = "Edit Webinar";
         date_default_timezone_set('Asia/Jakarta');
-        $where = array('TEMA' => $TEMA);
-
-        $ID_FA = $this->buat_id_fasilitas();
-        $data['ID_FA'] = $ID_FA;
+        $where = array('JUDUL_WEBINAR' => $JUDUL_WEBINAR);
 
         $data['webinar'] = $this->m_webinar->tampil_edit($where, 'webinar')->result();
-        $data['dt_fasilitas'] = $this->m_webinar->tampil_edit_fasilitas($TEMA, 'detail_fasilitas')->result();
+        $data['dt_fasilitas'] = $this->m_webinar->tampil_edit_fasilitas($JUDUL_WEBINAR, 'detail_fasilitas')->result();
         $data['fasilitas'] = $this->m_webinar->tampil_fasilitas()->result();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
@@ -245,20 +249,22 @@ class Webinar extends CI_Controller
 
         $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
         $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
-        $TEMA = htmlspecialchars($this->input->post('TEMA'));
-        // $FOTO_WEBINAR = htmlspecialchars($this->input->post('FOTO_WEBINAR'));
+        $JUDUL_WEBINAR = htmlspecialchars($this->input->post('JUDUL_WEBINAR'));
+        $KONTEN_WEB = htmlspecialchars($this->input->post('KONTEN_WEB'));
+        $FOTO_WEBINAR = htmlspecialchars($this->input->post('FOTO_WEBINAR'));
         $HARGA = htmlspecialchars($this->input->post('HARGA'));
         $PLATFORM = htmlspecialchars($this->input->post('PLATFORM'));
-        $TGL_WEB = date('Y-m-d');
+        $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
         $TGL_POSTWEB = date('Y-m-d');
         $ID_FA = $this->input->post('ID_FA');
 
         $where = array('ID_WEBINAR' => $ID_WEBINAR);
 
         $data = array(
-            'TEMA' => str_replace(' ', '-', $TEMA),
+            'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
             'ID_ADM' => $ID_ADM,
-            // 'FOTO_WEBINAR' => $FOTO_WEBINAR,
+            'KONTEN_WEB' => $KONTEN_WEB,
+            'FOTO_WEBINAR' => $FOTO_WEBINAR,
             'HARGA' => $HARGA,
             'PLATFORM' => $PLATFORM,
             'TGL_WEB' => $TGL_WEB,
