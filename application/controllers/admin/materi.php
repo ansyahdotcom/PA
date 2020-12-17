@@ -121,7 +121,7 @@ class Materi extends CI_Controller
         $ID_MT = htmlspecialchars($this->input->post('id_materi'));
         $NM_TG = htmlspecialchars($this->input->post('nama'));
         $ICON_TG = htmlspecialchars($this->input->post('jenis'));
-        $DETAIL_TG = htmlspecialchars($this->input->post('deskripsi'));
+        $DETAIL_TG = $this->input->post('deskripsi');
         $DEADLINE = htmlspecialchars($this->input->post('deadline'));
         $upload = $_FILES['file']['name'];
             if ($upload) {
@@ -163,7 +163,7 @@ class Materi extends CI_Controller
         $ID_MT = htmlspecialchars($this->input->post('id_mt'));
         $NM_TG = htmlspecialchars($this->input->post('nama'));
         $ICON_TG = htmlspecialchars($this->input->post('jenis'));
-        $DETAIL_TG = htmlspecialchars($this->input->post('deskripsi'));
+        $DETAIL_TG = $this->input->post('deskripsi');
         $DEADLINE = htmlspecialchars($this->input->post('deadline'));
         $upload = $_FILES['file']['name'];
             if ($upload) {

@@ -50,7 +50,7 @@
                     <div class="card-header bg-dark">
                     <h3 class="card-title pt-2"><?= $nama;?></h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalTug<?= $id;?>">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalTug<?= $id;?>">
                         <i class="fas fa-plus-circle"></i> File Tugas</button>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalSub<?= $id;?>">
                         <i class="fas fa-plus-circle"></i> File Materi</button>
@@ -142,7 +142,7 @@
                     <label for="isi">Isi Konten</label>
                     <textarea class="textarea" name="detail" placeholder="Isi Konten"
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                    <small class="form-text text-success">Berisi keterangan kebijakan</small>
+                    <small class="form-text text-success">Berisi keterangan materi</small>
                     <?= form_error('detail', '<small class="text-danger col-md">', '</small>'); ?>
                 </div>
                 <div class="form-group">
@@ -389,6 +389,13 @@
                             <?= form_error('jenis', '<small class="text-danger col-md">', '</small>'); ?>
                         </div>
                         <div class="form-group">
+                            <label for="isi">Isi Konten</label>
+                            <textarea class="textarea" name="deskripsi" placeholder="Isi Konten"
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            <small class="form-text text-success">Berisi keterangan tugas</small>
+                            <?= form_error('deskripsi', '<small class="text-danger col-md">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
                           <label for="deadline">Deadline Tugas</label>
                           <input type="date" class="form-control" name="deadline" id="deadline">
                         </div>
@@ -455,6 +462,13 @@
                             </select>
                             <small class="form-text text-success">Jenis tipe file yang akan di unggah</small>
                             <?= form_error('jenis', '<small class="text-danger col-md">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="isi">Isi Konten</label>
+                            <textarea class="textarea" name="deskripsi" placeholder="Isi Konten"
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?=$detail;?></textarea>
+                            <small class="form-text text-success">Berisi keterangan tugas</small>
+                            <?= form_error('deskripsi', '<small class="text-danger col-md">', '</small>'); ?>
                         </div>
                         <div class="form-group">
                           <label for="deadline">Deadline Tugas</label>
