@@ -28,7 +28,7 @@
                     <div class="col-md-6">
                         <form method="POST" action="<?= base_url('peserta/kelas'); ?>">
                             <div class="input-group mb-3">
-                                <input class="form-control" type="text" name="keyword" placeholder="Temukan kelas pilihan anda..." autocomplete="off" autofocus>
+                                <input class="form-control" type="text" name="keyword" placeholder="Temukan kelas pilihan anda..." autocomplete="off">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit" name="btn-search">
                                         <i class="fas fa-search"></i>
@@ -69,8 +69,8 @@
                                     <div class="row">
                                         <div class="col-7">
                                             <h2 class="lead text-bold"><b><?= $kelas; ?></b></h2>
-                                            <p class="text-muted text-sm"><b>Deskripsi: </b> <?= htmlspecialchars_decode($deskripsi); ?> </p>
-                                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                                            <!-- <p class="text-muted text-sm"><b>Deskripsi: </b> <?= htmlspecialchars_decode($deskripsi); ?> </p> -->
+                                            <!-- <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <?php
                                                 if ($ktg === "Dasar") {
                                                     $class = "text-success";
@@ -83,7 +83,7 @@
                                                 <li class="small <?= $class; ?>"><span class="fa-li">
                                                         <i class="fas fa-lg fa-arrow-circle-up"></i></span> <span class="text-bold">Level:</span> <?= $ktg; ?>
                                                 </li>
-                                            </ul>
+                                            </ul> -->
                                         </div>
                                         <div class="col-5 text-center">
                                             <img src="<?= base_url('assets/dist/img/kelas/' . $gambar); ?>" alt="" class="img-responsive img-fluid img-rounded shadow">

@@ -5,13 +5,11 @@ class M_webinar extends CI_Model
 
     function tampil_webinar()
     {
-        $data = $this->db->query("SELECT webinar.ID_WEBINAR, webinar.TEMA, webinar.FOTO_WEBINAR, webinar.ID_ADM,
-                                webinar.HARGA, webinar.PLATFORM, webinar.TGL_WEB, webinar.TGL_POSTWEB, webinar.ST_POSTWEB, GROUP_CONCAT(fasilitas.NM_FA) AS NM_FA
-                                FROM webinar, detail_fasilitas, fasilitas
-                                WHERE webinar.ID_WEBINAR = detail_fasilitas.ID_WEBINAR 
-                                AND detail_fasilitas.ID_FA = fasilitas.ID_FA
-                                GROUP BY webinar.ID_WEBINAR
-                                ORDER BY webinar.TEMA ASC");
+        $data = $this->db->query("SELECT webinar.ID_WEBINAR, webinar.JUDUL_WEBINAR, webinar.KONTEN_WEB, webinar.FOTO_WEBINAR, webinar.ID_ADM, admin.NM_ADM,
+                                webinar.HARGA, webinar.PLATFORM, webinar.TGL_WEB, webinar.TGL_POSTWEB, webinar.ST_POSTWEB
+                                FROM webinar, admin
+                                WHERE webinar.ID_ADM = admin.ID_ADM
+                                ORDER BY webinar.TGL_WEB DESC");
         return $data;
     }
 
@@ -60,10 +58,13 @@ class M_webinar extends CI_Model
     }
 
     // menampilkan fasilitas yg mau diedit
-    function tampil_edit_fasilitas($ID_WEBINAR)
+    function tampil_edit_fasilitas($JUDUL_WEBINAR)
     {
-        $query = $this->db->query("SELECT detail_fasilitas.ID_WEBINAR, detail_fasilitas.ID_FA FROM detail_fasilitas, webinar 
-                                    WHERE webinar.ID_WEBINAR = '$ID_WEBINAR' AND detail_fasilitas.ID_WEBINAR = webinar.ID_WEBINAR");
+        $query = $this->db->query("SELECT detail_fasilitas.ID_WEBINAR, detail_fasilitas.ID_FA, fasilitas.NM_FA 
+                                    FROM detail_fasilitas, webinar, fasilitas 
+                                    WHERE detail_fasilitas.ID_WEBINAR = webinar.ID_WEBINAR
+                                    AND detail_fasilitas.ID_FA = fasilitas.ID_FA
+                                    AND webinar.JUDUL_WEBINAR = '$JUDUL_WEBINAR'");
         return $query;
     }
 
