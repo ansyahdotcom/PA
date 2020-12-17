@@ -167,7 +167,10 @@ class Auth extends CI_Controller
 
 			$this->session->set_flashdata('message', 'isReg');
 			redirect('auth');
+			
+
 		}
+
 	}
 	
 
