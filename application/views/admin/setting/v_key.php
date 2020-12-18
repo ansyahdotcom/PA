@@ -19,14 +19,26 @@
         <section class="content">
         <div class="card">
             <div class="card-header">
-            <h3 class="card-title pt-2">Manajemen Kunci API</h3>
-            <div class="card-tools">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
-                <i class="fas fa-plus-circle"></i> Data</button>
+                <h3 class="card-title pt-2">Manajemen Kunci API</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
+                    <i class="fas fa-plus-circle"></i> Data</button>
+                </div>
             </div>
-            </div>
+            
             <div class="card-body">
                         <div class="row">
+                        <?php if ($data == null) : ?>
+                            <!-- Jika Belum Terdapat data -->
+                                <div class="col-md">
+                                    <div class="card-body text-center mt-4">
+                                        <img src="<?= base_url('assets/icon/noList.svg'); ?>" alt="noData" class="img-rounded img-responsive img-fluid" width="100">
+                                    </div>
+                                    <div class="card-body pt-0 mt-4">
+                                        <h3 class="text-center text-bold text-muted">Belum terdapat data</h3>
+                                    </div>
+                                </div>
+                        <?php else : ?>
                                 <?php foreach($data as $row):
                                 $id = $row['ID_KEY'];
                                 $nama = $row['NM_KEY'];
@@ -80,6 +92,7 @@
                                 </div>
                             </div>
                             <?php endforeach;?>
+                                <?php endif;?>
                         </div>
                 </div>
             </div>

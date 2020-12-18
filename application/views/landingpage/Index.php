@@ -2,53 +2,43 @@
     <main class="site-main">
 
 
-    	<!--  ======================= Awalan Banner=======================  -->
-    	<section class="site-banner">
-    		<div class="container">
-    			<div class="row">
-    				<div class="col-lg-12 text-center">
-    				</div>
-    			</div>
-    			<div class="row">
-    				<div class="col-lg-6 col-md-12 site-title">
-						<!-- <h1 class="title-text text-uppercase">Awokwowow</h1> -->
-						<h3 class="title-text">Social Entrepreneurship</h3>
-    					<!-- <h3 class="title-text">Course</h3>
-    					<h3 class="title-text">Based</h3>
-    					<h3 class="title-text">Social Enterpreneurship</h3> -->
-    					<div class="site-buttons">
-    						<div class="d-flex flex-row flex-wrap">
-    							<a href="<?=base_url('register');?>" class="btn button primary-button mr-4 text-uppercase">Daftar
-    								Sekarang</a>
-    							<a href="#about-area" class="btn button secondary-button text-uppercase">Pelajari Lebih
-    								Lanjut</a>
-    						</div>
-    					</div>
-    				</div>
-    				<div class="col-lg-6 col-md-12 banner-image">
-    					<img src="<?= base_url(); ?>assets/dist/img/banner/instruktur.svg" alt="banner-img"
-    						class="img-fluid">
-    				</div>
-    			</div>
-    		</div>
-    		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    			<path fill="#FFC107" fill-opacity="1"
-    				d="M0,64L60,96C120,128,240,192,360,192C480,192,600,128,720,112C840,96,960,128,1080,160C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
-    			</path>
-    		</svg>
-    		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    			<path fill="#FFC107" fill-opacity="1"
-    				d="M0,288L60,256C120,224,240,160,360,160C480,160,600,224,720,213.3C840,203,960,117,1080,106.7C1200,96,1320,160,1380,192L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z">
-    			</path>
-    		</svg>
-    	</section>
+		<!--  ======================= Awalan Banner=======================  -->
+		<section class="bg-warning py-5">
+			<div class="container h-100">
+				<div class="row h-100 align-items-center">
+					<div class="col-lg-12">
+					<div class="site-buttons p-5">
+						<div class="d-flex flex-row flex-wrap">
+							<div class="kelas">
+								<h1 class="display-4 title-text">Social Entrepreneurship</h1>
+								<p class="lead mb-5 para">and <b>Course</b>.</p>
+								<div class="site-buttons">
+									<div class="d-flex flex-row flex-wrap justify-content-center">
+										<a href="<?=base_url('register');?>" class="btn button primary-button ml-4 mr-4 text-uppercase">Daftar
+											Sekarang</a>
+										<a href="#about-area" class="btn button secondary-button mr-4 ml-4 text-uppercase">Pelajari Lebih
+											Lanjut</a>
+									</div>
+								</div>
+							</div>
+							<img src="<?= base_url(); ?>assets/dist/img/banner/instruktur.svg" width="300" alt="gambar kelas" class="img-fluid ml-5">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+    	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    		<path fill="#FFC107" fill-opacity="1"
+    			d="M0,288L60,256C120,224,240,160,360,160C480,160,600,224,720,213.3C840,203,960,117,1080,106.7C1200,96,1320,160,1380,192L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z">
+    		</path>
+    	</svg>
     	<!--  ======================= Batas Banner =======================  -->
 
     	<!--  ========================= Awalan About ==========================  -->
 
-    	<section class="about-area mt-5" id="about-area">
-    		<div class="container-fluid">
-    			<div class="row">
+    	<section class="about-area p-5 mt-5" id="about-area">
+    		<div class="container p-5">
+    			<div class="row p-5">
     				<div class="col-lg-6 col-md-12">
     					<div class="about-image">
     						<img src="<?= base_url(); ?>assets/dist/img/about-us.png" alt="About us" class="img-fluid">

@@ -88,6 +88,7 @@ class index extends CI_Controller
         $data['kebijakan'] = $this->m_kebijakan->get_data(); 
         $data['judul'] = 'Preneur Academy | Kelas';
         $data['kelas'] = $this->m_landingpage->dt_kls($ID_KLS)->result();
+        $data['materi'] = $this->m_landingpage->materi($ID_KLS)->result();
         $this->load->view("landingpage/template/header" , $data);
         $this->load->view("landingpage/dt_kls", $data);
         $this->load->view("landingpage/template/footer", $data);

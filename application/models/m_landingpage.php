@@ -62,13 +62,19 @@ class M_landingpage extends CI_Model
 
     function kelas()
     {
-        $data = $this->db->query("SELECT * FROM kelas WHERE STAT = 1");
+        $data = $this->db->query("SELECT * FROM kelas, ktg_kelas, admin WHERE kelas.ID_ADM = admin.ID_ADM AND kelas.ID_KTGKLS = ktg_kelas.ID_KTGKLS AND kelas.STAT = 1");
         return $data;
     }
 
     function dt_kls($ID_KLS)
     {
-        $data = $this->db->query("SELECT * FROM kelas WHERE ID_KLS = '$ID_KLS'");
+        $data = $this->db->query("SELECT * FROM kelas, ktg_kelas,admin WHERE kelas.ID_KTGKLS = ktg_kelas.ID_KTGKLS AND admin.ID_ADM = kelas.ID_ADM AND ID_KLS = '$ID_KLS'");
+        return $data;
+    }
+
+    function materi($ID_KLS)
+    {
+        $data = $this->db->query("SELECT * FROM materi, materi_sub, kelas WHERE materi.ID_MT = materi_sub.ID_MT AND ID_KLS = '$ID_KLS' ORDER BY materi.ID_MT DESC ");
         return $data;
     }
 }
