@@ -116,13 +116,12 @@ class Webinar extends CI_Controller
                 $upload_data = $this->upload->data();
                 //Compress Image buat foto web
                 $config['image_library'] = 'gd2';
+                $config['quality'] = '110%';
+                $config['width'] = 500;
+                $config['height'] = 500;
                 $config['source_image'] = './assets/fotowebinar/' . $upload_data['file_name'];
                 $config['create_thumb'] = FALSE;
                 $config['maintain_ratio'] = FALSE;
-                $config['quality'] = '50%';
-                $config['width'] = 160;
-                $config['height'] = 130;
-                $config['new_image'] = './assets/fotowebinar/fotoweb/' . $upload_data['file_name'];
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
 
@@ -207,12 +206,11 @@ class Webinar extends CI_Controller
         $where = array(
             'ID_WEBINAR' => $ID_WEBINAR
         );
-        // $query = $this->db->query("SELECT FOTO_WEBINAR FROM webinar WHERE ID_WEBINAR = '$ID_WEBINAR'");
-        // foreach ($query->result() as $row){
-        //     $FOTO = $row->FOTO_WEBINAR;
-        // }
-        // $fto = $FOTO;
-        // unlink(base_url('assets/fotowebinar/'. $fto));
+        $query = $this->db->query("SELECT FOTO_WEBINAR FROM webinar WHERE ID_WEBINAR = '$ID_WEBINAR'");
+        foreach ($query->result() as $row){
+            $FOTO = $row->FOTO_WEBINAR;
+        }
+        unlink(FCPATH. 'assets/fotowebinar/'. $FOTO);
         $this->m_webinar->delete($where, 'detail_fasilitas');
         $this->m_webinar->delete($where, 'webinar');
         $this->session->set_flashdata('message', 'hapus');

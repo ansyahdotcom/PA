@@ -1,5 +1,5 @@
 		<!-- Header -->
-		<header class="bg-warning py-5 mb-5">
+		<!-- <header class="bg-warning py-5 mb-5">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-lg-12">
@@ -7,7 +7,7 @@
 							<div class="d-flex flex-row flex-wrap">
 								<div class="kelas mr-5">
 									<h1 class="display-4 title-text">Kelas Online</h1>
-									<!-- <p class="lead mb-5 para">Pada halaman ini terdapat list kelas online.</p> -->
+									<p class="lead mb-5 para">Pada halaman ini terdapat list kelas online.</p>
 								</div>
 								<img src="<?= base_url(); ?>assets/dist/img/program/study.svg" width="500" alt="gambar kelas"
 									class="img-fluid ml-5">
@@ -15,29 +15,29 @@
 						</div>
 					</div>
 				</div>
-		</header>
+		</header> -->
 
 		<!-- Page Content -->
 		<div class="container p-5 mt-5 mb-5">
 			<div class="row">
-				<?php foreach ($kelas as $k) : ?>
+				<?php foreach ($webinar as $wbnr) : ?>
 				<div class="col-md-4 mb-5">
 					<div class="card h-100">
-						<img class="card-img-top" src="<?= base_url('assets/dist/img/kelas/'). $k->GBR_KLS;?>" alt="">
+						<img class="card-img-top" src="<?= base_url('assets/fotowebinar/'). $wbnr->FOTO_WEBINAR;?>" alt="">
 						<div class="card-body">
-							<h4 class="card-title"><?= $k->TITTLE?></h4>
+							<h4 class="card-title"><?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></h4>
 							<div class="deskripsi">
-								<p class="para text-dark">Disusun oleh : <?= $k->NM_ADM?></p>
+								<!-- <p class="para text-dark">Disusun oleh : <?= $wbnr->NM_ADM?></p> -->
 							</div>
 						</div>
 						<div class="card-footer">
 							<div class="harga">
-								<h5 class="float-right font-weight-bold">Rp. <?= number_format($k->PRICE, 0, ".", "."); ?>
+								<h5 class="float-right font-weight-bold"><?= $wbnr->HARGA; ?>
 								</h5>
 							</div>
-							<span class="badge bg-warning">Kategori: <?= $k->KTGKLS?></span>
+							<!-- <span class="badge bg-warning">Kategori: <?= $wbnr->KTGKLS?></span> -->
 						</div>
-						<a href="<?= base_url('class/detail/'.$k->ID_KLS);?>"
+						<a href="<?= base_url('index/dt_webinar/'. $wbnr->JUDUL_WEBINAR);?>"
 							class="btn btn-primary font-weight-bold text-uppercase m-2">Lihat Detail</a>
 					</div>
 				</div>

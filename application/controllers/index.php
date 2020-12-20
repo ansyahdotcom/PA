@@ -92,6 +92,33 @@ class index extends CI_Controller
         $this->load->view("landingpage/template/header" , $data);
         $this->load->view("landingpage/dt_kls", $data);
         $this->load->view("landingpage/template/footer", $data);
+        
+    }
+    
+    public function webinar()
+    {
+        $data['footer'] = $this->m_medsos->get_data(); 
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+        $data['judul'] = 'Preneur Academy | Webinar';
+        $data['webinar'] = $this->m_landingpage->webinar()->result();
+        $this->load->view("landingpage/template/header" , $data);
+        $this->load->view("landingpage/wbnr", $data);
+        $this->load->view("landingpage/template/footer", $data);
+        
+    }
 
+    public function dt_webinar($JUDUL_WEBINAR)
+    {
+        $data['footer'] = $this->m_medsos->get_data(); 
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+        $data['judul'] = 'Preneur Academy | Kelas';
+        $data['webinar'] = $this->m_landingpage->dt_webinar($JUDUL_WEBINAR)->result();
+        $data['materi'] = $this->m_landingpage->materi($JUDUL_WEBINAR)->result();
+        $this->load->view("landingpage/template/header" , $data);
+        $this->load->view("landingpage/dt_wbnr", $data);
+        $this->load->view("landingpage/template/footer", $data);
+        
     }
 }

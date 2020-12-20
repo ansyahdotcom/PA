@@ -45,8 +45,8 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-sm-3">
-								<img class="img img-bordered-sm"
-									src="<?= base_url('assets/fotowebinar/fotoweb/' . $wbnr->FOTO_WEBINAR); ?>">
+								<img class="card-img-top"
+									src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_WEBINAR); ?>">
 							</div>
 							<div class="col-sm-8">
 								<table>
@@ -68,7 +68,7 @@
 											<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_WEB))); ?>
 										</td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<td><b>Fasilitas</b> &nbsp;</td>
 										<td for="NM_FA">:&nbsp;
 											<?php 
@@ -84,7 +84,7 @@
                                                         $i++; }
                                                     ?>
 										</td>
-									</tr>
+									</tr> -->
 								</table>
 							</div>
 						</div>
@@ -152,11 +152,11 @@ foreach ($webinar as $wbnr) {
 			<?php
                 if ($ST_POSTWEB == 0) {
                     echo '<div class="modal-header">
-						<h3 class="modal-title" id="myModalLabel">Publikasikan Artikel</h3>
+						<h3 class="modal-title" id="myModalLabel">Publikasikan Webinar</h3>
 					</div>
-					<form action="' . base_url('admin/webinar/pr_webinar') . '" method="post" class="form-horizontal">
+					<form action="' . base_url('admin/webinar/pr_posting') . '" method="post" class="form-horizontal">
 						<div class="modal-body">
-							<p>Apakah Anda yakin ingin mempublikasikan artikel ini?</p>
+							<p>Apakah Anda yakin ingin mempublikasikan webinar ini?</p>
 						</div>
 						<div class="modal-footer">
 							<input type="hidden" name="ST_POSTWEB" value="' . $ST_POSTWEB . '">
@@ -169,9 +169,9 @@ foreach ($webinar as $wbnr) {
                     echo '<div class="modal-header">
 						<h3 class="modal-title" id="myModalLabel">Kembalikan ke Draf</h3>
 					</div>
-					<form action="' . base_url('admin/webinar/pr_webinar') . '" method="post" class="form-horizontal">
+					<form action="' . base_url('admin/webinar/pr_posting') . '" method="post" class="form-horizontal">
 						<div class="modal-body">
-							<p>Apakah Anda ingin mengembalikan artikel ke draf?</p>
+							<p>Apakah Anda ingin mengembalikan webinar ke draf?</p>
 						</div>
 						<div class="modal-footer">
 							<input type="hidden" name="ST_POSTWEB" value="' . $ST_POSTWEB . '">

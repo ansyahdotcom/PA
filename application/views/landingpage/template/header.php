@@ -63,12 +63,15 @@
                         $link = $h['LINK_NV'];
                     ?>
 							<li class="nav-item">
-								<a class="nav-link" href="<?= base_url(). $link;?>"><?= $name;?></a>
+								<a class="nav-link" href="<?= base_url('class')?>">KELAS</a>
 							</li>
 							<?php endforeach;?>
-							<!-- <li class="nav-item">
+							<li class="nav-item">
+								<a class="nav-link" href="<?= base_url('index/webinar')?>">WEBINAR</a>
+							</li>
+							<li class="nav-item">
 								<a class="nav-link" href="#Blog">Blog</a>
-							</li> -->
+							</li>
 						</ul>
 						<div class="mr-auto"></div>
 						<ul class="navbar-nav">

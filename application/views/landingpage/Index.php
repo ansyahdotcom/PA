@@ -11,7 +11,7 @@
 						<div class="d-flex flex-row flex-wrap">
 							<div class="kelas">
 								<h1 class="display-4 title-text">Social Entrepreneurship</h1>
-								<p class="lead mb-5 para">and <b>Course</b>.</p>
+								<p class="lead mb-5 para"><b> Based Course</b>.</p>
 								<div class="site-buttons">
 									<div class="d-flex flex-row flex-wrap justify-content-center">
 										<a href="<?=base_url('register');?>" class="btn button primary-button ml-4 mr-4 text-uppercase">Daftar
