@@ -81,6 +81,20 @@
     <!--  custom js file  -->
     <script src="<?= base_url(); ?>assets/dist/js/main.js"></script>
 
+    <!-- Summernote -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <!-- Accordion -->
+    <script src="<?= base_url(); ?>assets/dist/js/accordion.js"></script>
+
+    <!-- Script -->
+    <script>
+    $(function() {
+        //Add text editor
+        $('textarea#compose-textarea').summernote()
+    })
+    </script>
+
     <script>
         jQuery('.owl-carousel').owlCarousel({
 

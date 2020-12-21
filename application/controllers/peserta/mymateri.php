@@ -20,7 +20,7 @@ class Mymateri extends CI_Controller
         $data['cek'] = $this->m_kelas->getmateri($id)->result_array();
         $data['sub'] = $this->m_kelas->getsub()->result_array();
 
-        $data['tittle'] = "Kelas Saya";
+        $data['tittle'] = "Materi Kelas";
         $this->load->view("peserta/template/v_header", $data);
         $this->load->view("peserta/template/v_navbar", $data);
         $this->load->view("peserta/template/v_sidebar", $data);

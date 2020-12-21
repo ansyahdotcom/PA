@@ -14,6 +14,7 @@
             $this->db->join('admin', 'admin.ID_ADM = kelas.ID_ADM', 'left');
             $this->db->limit($limit, $start);
             $this->db->where('STAT', 1);
+            $this->db->order_by('ID_KLS', 'DESC');
             $query = $this->db->get()->result_array();
             return $query;
         }

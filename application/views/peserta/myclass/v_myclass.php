@@ -25,9 +25,9 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <div class="card-header">
+                        <!-- <div class="card-header">
                             <h3 class="card-title">Detail Kelas</h3>
-                        </div>
+                        </div> -->
                         <!-- /.card-header -->
                         <div class="row">
                             <?php if ($cekmyclass['STATUS_BELI'] == 0 || $cekmyclass['STATUS_BELI'] == 201) : ?>
@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="">
                                             <h4 class="text-bold"><b><?= $myclass['TITTLE']; ?></b></h4>
-                                            <h5 class="text-muted"> <?= htmlspecialchars_decode($myclass['DESKRIPSI']); ?></h5>
+                                            <!-- <h5 class="text-muted"> <?= htmlspecialchars_decode($myclass['DESKRIPSI']); ?></h5> -->
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                 <?php
                                                 if ($myclass['KTGKLS'] === "Dasar") {
@@ -76,15 +76,15 @@
                                                 }
                                                 ?>
                                             </ul>
-                                            <span class="btn <?= $class; ?> btn-block shadow">
+                                            <!-- <span class="btn <?= $class; ?> btn-block shadow">
                                                 <i class="fas fa-lg fa-arrow-circle-up"></i>
                                                 <span class="text-bold">
                                                     Level:
                                                 </span> <?= $myclass['KTGKLS']; ?>
-                                            </span>
+                                            </span> -->
                                             <?php $link = $myclass['PERMALINK'];?>
                                         <?php $id = $myclass['ID_KLS'];?>
-                                        <a href="<?= base_url("peserta/mymateri/materi/".$link."/$id") ?>" class="btn btn-primary btn-block text-bold">Akses Kelas</a>
+                                        <a href="<?= base_url("peserta/mymateri/materi/".$link."/$id") ?>" class="btn btn-primary btn-block text-bold">Masuk Kelas</a>
                                         </div>
                                     </div>
                                 </div>
@@ -116,8 +116,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- END timeline item -->
-                                                    <!-- timeline item -->
                                                     <div>
                                                         <i class="fas fa-circle-notch bg-warning"></i>
                                                         <div class="timeline-item">
@@ -128,8 +126,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- END timeline item -->
-                                                    <!-- timeline item -->
                                                     <div>
                                                         <i class="fas fa-circle-notch bg-primary"></i>
                                                         <div class="timeline-item">
@@ -140,7 +136,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- END timeline item -->
                                                     <div>
                                                         <i class="fas fa-circle-notch bg-warning"></i>
                                                         <div class="timeline-item">

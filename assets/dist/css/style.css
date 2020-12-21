@@ -58,7 +58,7 @@ html {
 
 .site-main .site-banner .site-title h3 {
 	padding-top: 25%;
-	font-weight: 500;
+	font-weight: 300;
 }
 
 .site-main .site-banner .site-title h3::after {
@@ -357,6 +357,37 @@ html {
 }
 
 /* End subscribe me */
+
+.glyphicon {
+	margin-right: 5px;
+}
+
+.rating .glyphicon {
+	font-size: 22px;
+}
+
+.rating-num {
+	margin-top: 0px;
+	font-size: 54px;
+}
+
+.progress {
+	margin-bottom: 5px;
+}
+
+.progress-bar {
+	text-align: left;
+}
+
+.rating-desc .col-md-3 {
+	padding-right: 0px;
+}
+
+.sr-only {
+	margin-left: 5px;
+	overflow: visible;
+	clip: auto;
+}
 
 /* Footer Area */
 

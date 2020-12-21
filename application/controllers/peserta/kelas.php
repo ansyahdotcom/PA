@@ -163,10 +163,6 @@ class Kelas extends CI_Controller
 		$id_ps  = $this->input->post('id_ps');
 
 		$result = json_decode($this->input->post('result_data'), true);
-		// echo 'RESULT <br><pre>';
-		// var_dump($result);
-		// echo '</pre>';
-		// die;
 
 		/** Expired time pembayaran */
 		$exp_time = date("Y-m-d H:i:s", strtotime('+1 day'));

@@ -56,43 +56,49 @@
 								<?php } } ?>
 							</select>
 							<br>
-							<!-- <label for="FOTO_POST">Foto</label>
-							<input type="file" class="form-control" name="FOTO_POST"
-								value="<?= $blg->FOTO_POST ?>">
-							<br>
 							<div class="form-group">
-								<label for="icon">Foto</label>
+								<label for="icon">Gambar</label>
 								<div class="container">
-									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<div class="preview-zone hidden">
-													<div class="box box-solid">
-														<div class="box-header with-border">
-															<div><b>Preview</b></div>
-															<div class="box-tools pull-right">
-																<button type="button"
-																	class="btn btn-danger btn-xs remove-preview">
-																	<i class="fa fa-times"></i> Reset
-																</button>
-															</div>
-														</div>
-														<div class="box-body"></div>
-													</div>
-												</div>
-												<div class="dropzone-wrapper">
-													<div class="dropzone-desc">
-														<i class="glyphicon glyphicon-download-alt"></i>
-														<div>Pilih file gambar atau seret gambar kesini .</div>
-													</div>
-													<input type="file" name="FOTO_POST" class="dropzone" value="<?= $blg->FOTO_POST?>">
-												</div>
-											</div>
+								<div class="row">
+									<div class="col-md-5">
+									<div class="card">
+										<img src="<?= base_url(); ?>assets/fotoblog/<?= $blg->FOTO_POST; ?>" class="card-img-top" alt="gambar-foto">
+										<div class="card-body">
+											<h6 class="card-title"><?=$blg->FOTO_POST;?></h6>
 										</div>
 									</div>
+									</div>
+									<div class="col-md-7">
+									<div class="form-group">
+										<label class="control-label">Upload File</label>
+										<div class="preview-zone hidden">
+										<div class="box box-solid">
+											<div class="box-header with-border">
+											<div><b>Preview</b></div>
+											<div class="box-tools pull-right">
+												<button
+												type="button"
+												class="btn btn-danger btn-xs remove-preview">
+												<i class="fa fa-times"></i> Reset
+												</button>
+											</div>
+											</div>
+											<div class="box-body"></div>
+										</div>
+										</div>
+										<div class="dropzone-wrapper">
+										<div class="dropzone-desc">
+											<i class="glyphicon glyphicon-download-alt"></i>
+											<div>Pilih file gambar atau seret gambar kesini .</div>
+										</div>
+										<input type="file" name="image" value="<?=$blg->FOTO_POST;?>" class="dropzone" />
+										</div>
+									</div>
+									</div>
+								</div>
 								</div>
 							</div>
-							<br> -->
+							<br>
 
 							<label for="KONTEN_POST">Konten</label>
 							<textarea class="textarea" class="form-control"

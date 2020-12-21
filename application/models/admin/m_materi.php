@@ -9,6 +9,11 @@ class M_materi extends CI_Model{
 		return $result->result_array();
 	}
 
+	function get_tugas(){
+		$result = $this->db->query("SELECT * FROM tugas");
+		return $result->result_array();
+	}
+
 	// GET DATA SUB
 	// function get_sub($id){
 	// 	$this->db->select('*');
@@ -19,6 +24,13 @@ class M_materi extends CI_Model{
 	// }
 
 	// CREATE
+
+	function selectMaxID_TUGAS()
+    {
+        $query = $this->db->query("SELECT MAX(ID_TG) AS ID_TG FROM tugas");
+        $hasil = $query->row();
+        return $hasil->ID_TG;
+    }
 	function create_($materi,$detail,$id_kelas){
 		$this->db->trans_start();
 			//INSERT KE MATERI
@@ -42,7 +54,7 @@ class M_materi extends CI_Model{
 	// INSERT
 	function upload_($data, $table)
     {
-        $this->db->where($where);
+        // $this->db->where($where);
         $this->db->insert($table, $data);
     }
 	// UPDATE

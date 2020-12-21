@@ -67,7 +67,9 @@ $route['forgot'] = 'peserta/auth/lupapsw';
 $route['repass'] = 'peserta/auth/ubahpassword';
 $route['verify'] = 'peserta/auth/verify';
 $route['class'] = 'index/kelas';
+$route['webinar'] = 'index/webinar';
 $route [ 'class/detail/(:num)' ]  =  'index/dt_kls/$1' ;
+$route [ 'webinar/detail/(:any)' ]  =  'index/dt_webinar/$1' ;
 
 /**
  * ==================================================================

@@ -26,6 +26,17 @@
             </div>
             </div>
             <div class="card-body">
+            <?php if ($data == null) : ?>
+                        <!-- Jika Belum Terdapat data -->
+                            <div class="col-md">
+                                <div class="card-body text-center mt-4">
+                                    <img src="<?= base_url('assets/icon/noList.svg'); ?>" alt="noData" class="img-rounded img-responsive img-fluid" width="100">
+                                </div>
+                                <div class="card-body pt-0 mt-4">
+                                    <h3 class="text-center text-bold text-muted">Belum terdapat data</h3>
+                                </div>
+                            </div>
+                    <?php else : ?>
                 <?php foreach($data as $row):
                     $id = $row['ID_NV'];
                     $nama = $row['NM_NV'];
@@ -43,6 +54,7 @@
                     </div>
                 </div>
                 <?php endforeach;?>
+                <?php endif;?>
             </div>
         </div>
     </section>

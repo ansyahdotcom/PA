@@ -17,6 +17,12 @@
 		sizes="32x32" />
 	<link rel="icon" type="image/png" href="<?= base_url(); ?>assets/dist/img/favicon/favicon-16x16.png"
 		sizes="16x16" />
+	
+	<!-- CSS Accordion -->
+	<link rel="stylesheet" href="<?= base_url();?>assets/dist/css/accordion.css">
+	
+	<!-- summernote -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/summernote/summernote-bs4.css">
 
 	<!--  font awesome icons  -->
 	<link rel="stylesheet" href="<?= base_url();?>assets/dist/css/all.min.css">
@@ -57,17 +63,20 @@
                         $link = $h['LINK_NV'];
                     ?>
 							<li class="nav-item">
-								<a class="nav-link" href="<?= base_url('index/'). $link;?>"><?= $name;?></a>
+								<a class="nav-link" href="<?= base_url('class')?>">KELAS</a>
 							</li>
 							<?php endforeach;?>
-							<!-- <li class="nav-item">
+							<li class="nav-item">
+								<a class="nav-link" href="<?= base_url('webinar')?>">WEBINAR</a>
+							</li>
+							<li class="nav-item">
 								<a class="nav-link" href="#Blog">Blog</a>
-							</li> -->
+							</li>
 						</ul>
 						<div class="mr-auto"></div>
 						<ul class="navbar-nav">
 							<li class="nav-item mr-2 ml-2 mb-2">
-								<a href="<?= base_url('auth'); ?>" class="nav-link btn button primary-button">Masuk</a>
+								<a href="<?= base_url('auth'); ?>" class="nav-link btn button primary-button text-white">Masuk</a>
 							</li>
 							<li class="nav-item ml-2 mr-2 mb-2">
 								<a href="<?= base_url('register'); ?>" class="nav-link btn button secondary-button">Daftar</a>

@@ -88,7 +88,7 @@ class Kelas extends CI_Controller
             $kategori = htmlspecialchars($this->input->post('ktg'));
             $harga = htmlspecialchars($this->input->post('harga'));
             $link = htmlspecialchars($this->input->post('link'));
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+            $deskripsi = $this->input->post('deskripsi');
             
             /** upload gambar */
             $upload_image = $_FILES['gbrkls']['name'];
@@ -181,7 +181,7 @@ class Kelas extends CI_Controller
             $hari = htmlspecialchars($this->input->post('hari'));
             $harga = htmlspecialchars($this->input->post('harga'));
             $link = htmlspecialchars($this->input->post('link'));
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+            $deskripsi = $this->input->post('deskripsi');
             $kategori = htmlspecialchars($this->input->post('ktg'));
             $oldimg = $this->input->post('old');
 
