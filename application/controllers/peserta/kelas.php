@@ -192,6 +192,7 @@ class Kelas extends CI_Controller
 			'STATUS_BELI' => $result['status_code']
 		);
 
+		/** Insert ke tabel notifikasi */
 		$notif = array(
 			'GLOBAL_ID' => $data['eID'],
 			'TITTLE_NOT' => 'Transaksi baru',
@@ -202,12 +203,25 @@ class Kelas extends CI_Controller
 			'DATE_NOT' => date('Y-m-d H:i:s', strtotime($data['TIME']))
 		);
 
+		$notif1 = array(
+			'GLOBAL_ID' => $data['eID'],
+			'TITTLE_NOT' => 'Transaksi berhasil',
+			'MSG_NOT' => 'Order id ' . $data['ID_TRN'],
+			'LINK' => 'peserta/transaksi/dettransaksi/' . $data['eID'],
+			'IS_READ' => 0,
+			'ST_NOT' => 1,
+			'DATE_NOT' => date('Y-m-d H:i:s', strtotime($data['TIME']))
+		);
+
 		$this->m_kelas->transaksi($data);
 		$this->m_kelas->detilkls($data1);
 		$this->m_kelas->pending($id_ps, $data2);
 
-		/** Insert notifikasi */
+		/** admin */
 		$this->db->insert('notif', $notif);
+
+		/** peserta */
+		$this->db->insert('notif', $notif1);
 
 		$this->session->set_flashdata('message', 'success_trn');
 		redirect('peserta/transaksi');

@@ -52,7 +52,7 @@
                             <tbody>
                                 <?php foreach ($notif as $n) : ?>
                                     <?php
-                                    if ($n['TITTLE_NOT'] == "Transaksi baru" || $n['TITTLE_NOT'] == "Transaksi sukses dibayar" || $n['TITTLE_NOT'] == "Transaksi dibatalkan") :
+                                    if ($n['TITTLE_NOT'] == "Transaksi berhasil" || $n['TITTLE_NOT'] == "Transaksi sukses dibayar" || $n['TITTLE_NOT'] == "Transaksi dibatalkan") :
                                         $icon = "fas fa-money-check";
                                     elseif ($n['TITTLE_NOT'] == "Aktivasi akun") :
                                         $icon = "fas fa-user-check";

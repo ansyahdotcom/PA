@@ -105,7 +105,7 @@
                 for (var i = 0; i < data.length; i++) {
                     var icon = '';
                     var d = new Date(data[i].DATE_NOT);
-                    if (data[i].TITTLE_NOT == "Transaksi baru" || data[i].TITTLE_NOT == "Transaksi sukses dibayar" || data[i].TITTLE_NOT == "Transaksi dibatalkan") {
+                    if (data[i].TITTLE_NOT == "Transaksi berhasil" || data[i].TITTLE_NOT == "Transaksi sukses dibayar" || data[i].TITTLE_NOT == "Transaksi dibatalkan") {
                         icon = "fas fa-money-check";
                     } else if (data[i].TITTLE_NOT == "Selamat datang!") {
                         icon = "fas fa-users";
@@ -115,7 +115,7 @@
 
                     notif += `  <a href="<?= base_url('peserta/notifikasi/read_msg/'); ?>` + data[i].ID_NOT + `" class="dropdown-item">
                                     <i class="` + icon + ` mr-2"></i>` + data[i].TITTLE_NOT + `
-                                    <span class="float-right text-muted text-sm">` + d.getDate() + `-` + months[d.getMonth()] + `-` + d.getFullYear() + ` ` + d.getHours() + `:` + d.getMinutes() + `</span>
+                                    <span class="float-right text-muted text-sm">` + d.getDate() + `-` + months[d.getMonth()] + `-` + d.getFullYear() + `</br>` + d.getHours() + `:` + d.getMinutes() + `</span>
                                     <p class="text-muted text-bold">` + data[i].MSG_NOT + `</p>
                                     <input type="hidden" name="nID" value="` + data[i].ID_NOT + `">
                                 </a>
@@ -270,6 +270,11 @@
             Toast.fire({
                 icon: 'success',
                 title: 'Transaksi berhasil, silahkan selesaikan pembayaran!',
+            });
+        } else if (flashData == 'hapus_msg') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Pemberitahuan dihapus!',
             });
         }
     });

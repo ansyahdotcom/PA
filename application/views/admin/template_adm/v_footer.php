@@ -144,7 +144,7 @@
         } else if (flashData == 'hapus_msg') {
             Toast.fire({
                 icon: 'success',
-                title: 'Pemberitahuan berhasil dihapus!',
+                title: 'Pemberitahuan dihapus!',
             });
         }
     });
@@ -203,7 +203,7 @@
 
                     notif += `  <a href="<?= base_url('admin/notifikasi/read_msg/'); ?>` + data[i].ID_NOT + `" class="dropdown-item">
                                     <i class="` + icon + ` mr-2"></i>` + data[i].TITTLE_NOT + `
-                                    <span class="float-right text-muted text-sm">` + d.getDate() + `-` + months[d.getMonth()] + `-` + d.getFullYear() + ` ` + d.getHours() + `:` + d.getMinutes() + `</span>
+                                    <span class="float-right text-muted text-sm">` + d.getDate() + `-` + months[d.getMonth()] + `-` + d.getFullYear() + `</br>` + d.getHours() + `:` + d.getMinutes() + `</span>
                                     <p class="text-muted text-bold">` + data[i].MSG_NOT + `</p>
                                     <input type="hidden" name="nID" value="` + data[i].ID_NOT + `">
                                 </a>

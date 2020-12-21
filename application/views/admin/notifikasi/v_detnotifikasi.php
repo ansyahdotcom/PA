@@ -25,9 +25,17 @@
                 <div class="card card-primary card-outline">
                     <div class="card-header">
                         <?php
-                        if ($detnot['TITTLE_NOT'] == "Transaksi baru" || $detnot['TITTLE_NOT'] == "Transaksi sukses dibayar" || $detnot['TITTLE_NOT'] == "Transaksi dibatalkan") :
+                        if ($detnot['TITTLE_NOT'] == "Transaksi baru") :
                             $icon = "fas fa-money-check";
                             $text = "Ada " . $detnot['TITTLE_NOT'] . ': ' . $detnot['MSG_NOT'];
+                            $text_btn = "Lihat detail transaksi";
+                        elseif ($detnot['TITTLE_NOT'] == "Transaksi sukses dibayar") :
+                            $icon = "fas fa-money-check";
+                            $text = $detnot['TITTLE_NOT'] . ': ' . $detnot['MSG_NOT'];
+                            $text_btn = "Lihat detail transaksi";
+                        elseif ($detnot['TITTLE_NOT'] == "Transaksi dibatalkan") :
+                            $icon = "fas fa-money-check";
+                            $text = $detnot['TITTLE_NOT'] . ': ' . $detnot['MSG_NOT'] . ", karena melebihi batas waktu pembayaran";
                             $text_btn = "Lihat detail transaksi";
                         else :
                             $icon = "fas fa-users";

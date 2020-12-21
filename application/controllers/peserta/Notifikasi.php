@@ -70,6 +70,6 @@ class Notifikasi extends CI_Controller
     {
         $this->m_notifikasi->del($nID);
         $this->session->set_flashdata('message', 'hapus_msg');
-        redirect('admin/notifikasi');
+        redirect('peserta/notifikasi');
     }
 }
