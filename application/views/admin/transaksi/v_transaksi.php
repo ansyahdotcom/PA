@@ -65,7 +65,7 @@
                                             <?php elseif ($status == 200) : ?>
                                                 <span class="badge-pill bg-success"><b>Success</b></span>
                                             <?php else : ?>
-                                                <span class="badge-pill bg-danger"><b>Dibatalkan</b></span>
+                                                <span class="badge-pill bg-danger"><b>Cancel</b></span>
                                             <?php endif; ?>
                                         </td>
                                         <td>

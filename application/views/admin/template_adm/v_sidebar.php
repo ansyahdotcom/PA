@@ -60,6 +60,17 @@
                             </li>
                         </ul>
                     </li>
+                    
+                    <li class="nav-header">Pemberitahuan</li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('admin/notifikasi'); ?>" class="nav-link">
+                            <i class="nav-icon fas fa-bell"></i>
+                            <p>
+                                Pemberitahuan
+                                <span class="badge badge-danger right pemberitahuan"></span>
+                            </p>
+                        </a>
+                    </li>                
 
                     <li class="nav-header">Transaksi</li>
 
@@ -294,12 +305,6 @@
                                     <p>Data Diskon</p>
                                 </a>
                             </li> -->
-                            <li class="nav-item">
-                                <a href="<?= base_url('admin/#'); ?>" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Notifikasi</p>
-                                </a>
-                            </li>
                         </ul>
                     </li>
 

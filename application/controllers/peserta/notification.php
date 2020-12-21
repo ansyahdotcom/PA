@@ -33,7 +33,7 @@ class Notification extends CI_Controller {
 	{
 		/** Mengambil data peserta berdasarkan session */
 		$email = $this->session->userdata('email');
-        $data['peserta'] = $this->db->get_where('peserta', [
+        $peserta = $this->db->get_where('peserta', [
             'EMAIL_PS' => $email
 		])->row_array();
 		
@@ -44,7 +44,9 @@ class Notification extends CI_Controller {
 		$status = $result['status_code'];
 		$trn_time = $result['transaction_time'];
 		$order_id = $result['order_id'];
-		$id_ps = $data['peserta']['ID_PS'];
+		$eID = $result['transaction_id'];
+		$id_ps = $peserta['ID_PS'];
+		$nm_ps = $peserta['NM_PS'];
 
 		$data = [
 			'STATUS' => $status,
@@ -55,15 +57,39 @@ class Notification extends CI_Controller {
 			'STATUS_BELI' => $status
 		];
 
+		$notif_success = [
+			'GLOBAL_ID' => $eID,
+			'TITTLE_NOT' => 'Transaksi sukses dibayar',
+			'MSG_NOT' => 'Order id ' . $order_id . ', atas nama ' . $nm_ps  . '.',
+			'LINK' => 'admin/transaksi',
+			'IS_READ' => 0,
+			'ST_NOT' => 0,
+			'DATE_NOT' => date('Y-m-d H:i:s', strtotime($trn_time))
+		];
+
+		$notif_cancel = [
+			'GLOBAL_ID' => $eID,
+			'TITTLE_NOT' => 'Transaksi dibatalkan',
+			'MSG_NOT' => 'Order id ' . $order_id . ', atas nama ' . $nm_ps  . '.',
+			'LINK' => 'admin/transaksi',
+			'IS_READ' => 0,
+			'ST_NOT' => 0,
+			'DATE_NOT' => date('Y-m-d H:i:s', strtotime($trn_time))
+		];
+
 		if ($status == 200) {
 			$this->db->update('transaksi', $data, array('ID_TRN' => $order_id));
 			$this->db->update('peserta', $data1, array('ID_PS' => $id_ps));
+			/** Insert Notifikasi */
+			$this->db->insert('notif', $notif_success);
 		} elseif ($status == 201) {
 			$this->db->update('transaksi', $data, array('ID_TRN' => $order_id));
 			$this->db->update('peserta', $data1, array('ID_PS' => $id_ps));
 		} elseif($status == 202) {
 			$this->db->update('transaksi', $data, array('ID_TRN' => $order_id));
 			$this->db->update('peserta', $data1, array('ID_PS' => $id_ps));
+			/** Insert Notifikasi */
+			$this->db->insert('notif', $notif_cancel);
 		}
 		// if($result){
 		// $notif = $this->veritrans->status($result->order_id);

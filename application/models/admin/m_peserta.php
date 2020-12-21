@@ -3,8 +3,10 @@
     {
         public function peserta()
         {
-            $peserta  = $this->db->get('peserta')->result_array();
-            return $peserta;
+            $this->db->select('*');
+            $this->db->from('peserta');
+            $this->db->order_by('ID_PS', 'DESC');
+            return $this->db->get()->result_array();
         }
 
         public function delps($id)

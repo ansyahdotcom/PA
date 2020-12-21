@@ -80,8 +80,7 @@
     })
 </script>
 
-
-<!-- Sweet Alert Hapus data Master-->
+<!-- Sweet Alert -->
 <script>
     $(function() {
         const Toast = Swal.mixin({
@@ -142,8 +141,78 @@
                 icon: 'success',
                 title: 'Artikel dikembalikan ke draf!',
             });
+        } else if (flashData == 'hapus_msg') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Pemberitahuan berhasil dihapus!',
+            });
         }
     });
+</script>
+
+<!-- Get jumlah notif -->
+<script>
+    jmlNotif();
+    dataNotif();
+
+    function jmlNotif() {
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url('admin/notifikasi/jml'); ?>',
+            dataType: 'json',
+            success: function(data) {
+                setInterval(function() {
+                    data.length
+                }, 100);
+                if (data.length > 5) {
+                    $(".jml-not").text(5 + ` +`);
+                    $(".jml-not1").text(`Ada 5 lebih pemberitahuan masuk`);
+                    $(".pemberitahuan").text(5 + ` +`);
+                } else if (data.length == 0) {
+                    $(".jml-not").text(data.length);
+                    $(".jml-not1").text(data.length + ` pemberitahuan`);
+                    $(".kosong").text(`Belum ada pemberitahuan masuk`);
+                    $(".pemberitahuan").text(data.length);
+                } else {
+                    $(".jml-not").text(data.length);
+                    $(".jml-not1").text(`Ada ` + data.length + ` pemberitahuan masuk`);
+                    $(".pemberitahuan").text(data.length);
+                }
+            }
+        });
+    }
+
+    function dataNotif() {
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url('admin/notifikasi/msg'); ?>',
+            dataType: 'json',
+            success: function(data) {
+                var notif = '';
+                var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                for (var i = 0; i < data.length; i++) {
+                    var icon = '';
+                    var d = new Date(data[i].DATE_NOT);
+                    if (data[i].TITTLE_NOT == "Transaksi baru" || data[i].TITTLE_NOT == "Transaksi sukses dibayar" || data[i].TITTLE_NOT == "Transaksi dibatalkan") {
+                        icon = "fas fa-money-check";
+                    } else if (data[i].TITTLE_NOT == "Aktivasi akun") {
+                        icon = "fas fa-user-check";
+                    } else {
+                        icon = "fas fa-users";
+                    }
+
+                    notif += `  <a href="<?= base_url('admin/notifikasi/read_msg/'); ?>` + data[i].ID_NOT + `" class="dropdown-item">
+                                    <i class="` + icon + ` mr-2"></i>` + data[i].TITTLE_NOT + `
+                                    <span class="float-right text-muted text-sm">` + d.getDate() + `-` + months[d.getMonth()] + `-` + d.getFullYear() + ` ` + d.getHours() + `:` + d.getMinutes() + `</span>
+                                    <p class="text-muted text-bold">` + data[i].MSG_NOT + `</p>
+                                    <input type="hidden" name="nID" value="` + data[i].ID_NOT + `">
+                                </a>
+                                <div class="dropdown-divider"></div>`
+                }
+                $(".msg-not").html(notif);
+            }
+        });
+    }
 </script>
 
 <!-- Get Data Kategori Kelas -->
@@ -501,9 +570,7 @@
             } else {
                 input.attr("type", "password");
             }
-
         });
-
     });
 </script>
 
@@ -542,15 +609,11 @@
             "responsive": true,
             "autoWidth": false,
         });
-        // $('#example2').DataTable({
-        //     "paging": true,
-        //     "lengthChange": false,
-        //     "searching": false,
-        //     "ordering": true,
-        //     "info": true,
-        //     "autoWidth": false,
-        //     "responsive": true,
-        // });
+
+        $("#example4").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
     });
 </script>
 
@@ -566,7 +629,6 @@
         })
     })
 </script>
-
 
 </body>
 

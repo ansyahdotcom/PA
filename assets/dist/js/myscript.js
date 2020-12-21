@@ -12,6 +12,36 @@ $(function() {
             icon: 'success',
             title:'Anda Berhasil Login!',
         });
+    } else if (flashData == 'isReg') {
+        Toast.fire({
+            icon: 'success',
+            title: 'Pendaftaran berhasil, silahkan cek email anda untuk mengaktivasi akun!',
+        });
+    } else if (flashData == 'Activate') {
+        Toast.fire({
+            icon: 'success',
+            title: 'Akun anda berhasil diaktivasi, silahkan login!',
+        });
+    } else if (flashData == 'Exp-token') {
+        Toast.fire({
+            icon: 'info',
+            title: 'Token sudah kadaluarsa!',
+        });
+    } else if (flashData == 'Wrg-token') {
+        Toast.fire({
+            icon: 'error',
+            title: 'Token anda salah!',
+        });
+    } else if (flashData == 'Fail-active') {
+        Toast.fire({
+            icon: 'error',
+            title: 'Gagal mengaktivasi akun!',
+        });
+    } else if (flashData == 'blocked') {
+        Toast.fire({
+            icon: 'info',
+            title: 'Akun anda diblokir untuk sementara, anda terdeteksi melakukan hal mencurigakan!',
+        });
     } else if(flashData == 'Ubah Profil'){
         Toast.fire({
             icon: 'success',
@@ -24,7 +54,7 @@ $(function() {
         });
     } else if(flashData == 'Pswbaru=Pswlama'){
         Toast.fire({
-            icon: 'error',
+            icon: 'info',
             title:'Password baru tidak boleh sama dengan password sekarang!',
         });
     } else if(flashData == 'Pswslh'){
@@ -47,11 +77,6 @@ $(function() {
             icon: 'info',
             title:'Akun Telah Diaktifkan Kembali!',
         });
-    } else if(flashData == 'isLogin'){
-        Toast.fire({
-            icon: 'success',
-            title:'Anda Berhasil Login!',
-        });
     } else if(flashData == 'email/pswwrong'){
         Toast.fire({
             icon: 'error',
@@ -60,7 +85,7 @@ $(function() {
     } else if(flashData == 'emailnotactivate'){
         Toast.fire({
             icon: 'error',
-            title:'Email Belum Diaktivasi',
+            title:'Email Belum Terdaftar/diaktivasi',
         });
     } else if(flashData == 'emailnotreg'){
         Toast.fire({
@@ -176,6 +201,51 @@ $(function() {
         Toast.fire({
             icon: 'success',
             title:'Data berhasil di Restore!',
+        });
+    }else if (flashData == 'draft') {
+        Toast.fire({
+            icon: 'info',
+            title: 'Data telah didraftkan!',
+        });
+    } else if (flashData == 'publish') {
+        Toast.fire({
+            icon: 'info',
+            title: 'Data telah dipublish!',
+        });
+    } else if (flashData == 'save') {
+        Toast.fire({
+            icon: 'success',
+            title: 'Data berhasil disimpan',
+        });
+    } else if (flashData == 'formempty') {
+        Toast.fire({
+            icon: 'error',
+            title: 'Kesalahan saat menyimpan data, mohon inputkan data yang sesuai!',
+        });
+    } else if (flashData == 'edit') {
+        Toast.fire({
+            icon: 'success',
+            title: 'Data berhasil diubah!',
+        });
+    } else if (flashData == 'hapus') {
+        Toast.fire({
+            icon: 'success',
+            title: 'Data berhasil dihapus!',
+        });
+    } else if (flashData == 'aktif') {
+        Toast.fire({
+            icon: 'success',
+            title: 'Data berhasil diaktifkan!',
+        });
+    } else if (flashData == 'nonaktif') {
+        Toast.fire({
+            icon: 'info',
+            title: 'Data dinonaktifkan!',
+        });
+    } else if (flashData == 'success_trn') {
+        Toast.fire({
+            icon: 'success',
+            title: 'Transaksi berhasil, silahkan selesaikan pembayaran!',
         });
     }
             // else if(flashData == 'blSuccess'){

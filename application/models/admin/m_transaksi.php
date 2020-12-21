@@ -60,5 +60,10 @@
             $this->db->where('eID', $eID);
             return $this->db->get()->row_array();
         }
+
+        public function jmltrn()
+        {
+            return $this->db->get('transaksi')->num_rows();
+        }
     }
 ?>

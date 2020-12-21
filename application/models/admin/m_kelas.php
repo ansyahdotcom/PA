@@ -84,5 +84,10 @@
             $this->db->update('kelas');
             return $this->db;
         }
+
+        public function jmlkls()
+        {
+            return $this->db->get_where('kelas')->num_rows();
+        }
     }
 ?>

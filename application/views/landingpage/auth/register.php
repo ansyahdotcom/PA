@@ -7,7 +7,9 @@
                 <div class="card-body">
                     <h5 class="card-title text-center">Daftar Akun</h5>
                     <form class="form-signin" method="POST" action="<?= base_url('peserta/auth/register'); ?>">
-                        <?= $this->session->flashdata('message'); ?>
+                        <div>
+                            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+                        </div>
                         <div class="form-label-group">
                             <input type="text" id="nama" name="nama" class="form-control" placeholder="Username" required autofocus>
                             <label for="nama">Nama Lengkap</label>

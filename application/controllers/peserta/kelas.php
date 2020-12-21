@@ -4,81 +4,81 @@ header('*Access-Control-Allow-Method: GET, OPTIONS*');
 
 class Kelas extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->model('peserta/m_kelas');
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('peserta/m_kelas');
 		$params = array('server_key' => 'SB-Mid-server-tNBThkCAIbSjBODU1WuDkHfU', 'production' => false);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
-        psrt_logged_in();
-        cekpsrt();
-    }
-
-    public function index()
-    {
-        $email = $this->session->userdata('email');
-        $data['peserta'] = $this->db->get_where('peserta', [
-            'EMAIL_PS' => $email
-        ])->row_array();
-
-        $data['tittle'] = "Daftar Kelas";
-
-        /** Function Search Data */
-        if (isset($_POST['btn-search'])) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']);
-        } else {
-            $data['keyword'] = $this->session->userdata('keyword');
-        }
-
-        /** Pagination halaman kelas */
-
-        /** Query terakhir untuk helper search*/
-        $this->db->like('TITTLE', $data['keyword']);
-        $this->db->from('kelas');
-
-
-        $config['total_rows'] = $this->db->count_all_results();
-        $data['rows'] = $config['total_rows'];
-        $config['per_page'] = 6;
-        // $config['num_links'] = 3;
-
-        /** Initialize library pagination */
-        $this->pagination->initialize($config);
-        $data['start'] = $this->uri->segment(4);
-
-
-        /** Mengambil data kelas */
-        $data['kls'] = $this->m_kelas->getkelas($config['per_page'], $data['start'], $data['keyword']);
-        $this->load->view("peserta/template/v_header", $data);
-        $this->load->view("peserta/template/v_navbar", $data);
-        $this->load->view("peserta/template/v_sidebar", $data);
-        $this->load->view("peserta/kelas/v_kelas", $data);
-        $this->load->view("peserta/template/v_footer");
+		psrt_logged_in();
+		cekpsrt();
 	}
-	
+
+	public function index()
+	{
+		$email = $this->session->userdata('email');
+		$data['peserta'] = $this->db->get_where('peserta', [
+			'EMAIL_PS' => $email
+		])->row_array();
+
+		$data['tittle'] = "Daftar Kelas";
+
+		/** Function Search Data */
+		if (isset($_POST['btn-search'])) {
+			$data['keyword'] = $this->input->post('keyword');
+			$this->session->set_userdata('keyword', $data['keyword']);
+		} else {
+			$data['keyword'] = $this->session->userdata('keyword');
+		}
+
+		/** Pagination halaman kelas */
+
+		/** Query terakhir untuk helper search*/
+		$this->db->like('TITTLE', $data['keyword']);
+		$this->db->from('kelas');
+
+
+		$config['total_rows'] = $this->db->count_all_results();
+		$data['rows'] = $config['total_rows'];
+		$config['per_page'] = 6;
+		// $config['num_links'] = 3;
+
+		/** Initialize library pagination */
+		$this->pagination->initialize($config);
+		$data['start'] = $this->uri->segment(4);
+
+
+		/** Mengambil data kelas */
+		$data['kls'] = $this->m_kelas->getkelas($config['per_page'], $data['start'], $data['keyword']);
+		$this->load->view("peserta/template/v_header", $data);
+		$this->load->view("peserta/template/v_navbar", $data);
+		$this->load->view("peserta/template/v_sidebar", $data);
+		$this->load->view("peserta/kelas/v_kelas", $data);
+		$this->load->view("peserta/template/v_footer");
+	}
+
 	/** Mengambil  */
 	public function getkelas()
 	{
 		$id = $this->input->post('eID');
-        $data['kelas'] = $this->m_kelas->kelas($id);
-        echo json_encode($data['kelas']);
+		$data['kelas'] = $this->m_kelas->kelas($id);
+		echo json_encode($data['kelas']);
 	}
 
-    public function token()
+	public function token()
 	{
-        /** Menangkap data ajax */
-        $id  = $this->input->post('id');
-        $kelas = $this->input->post('kelas');
-        $harga = $this->input->post('harga');
-        $nama = $this->input->post('nama');
-        $hp  = $this->input->post('hp');
-        $email  = $this->input->post('email');
+		/** Menangkap data ajax */
+		$id  = $this->input->post('id');
+		$kelas = $this->input->post('kelas');
+		$harga = $this->input->post('harga');
+		$nama = $this->input->post('nama');
+		$hp  = $this->input->post('hp');
+		$email  = $this->input->post('email');
 
 		// Required
 		$transaction_details = array(
-			'order_id' => rand(),
+			'order_id' => 'TRN' . rand(),
 			'gross_amount' => $harga, // no decimal allowed for creditcard
 		);
 
@@ -153,10 +153,15 @@ class Kelas extends CI_Controller
 
 	public function finish()
 	{
+		$email = $this->session->userdata('email');
+		$peserta = $this->db->get_where('peserta', [
+			'EMAIL_PS' => $email
+		])->row_array();
+
 		/** Menangkap data ajax */
 		$id  = $this->input->post('id');
 		$id_ps  = $this->input->post('id_ps');
-		
+
 		$result = json_decode($this->input->post('result_data'), true);
 		// echo 'RESULT <br><pre>';
 		// var_dump($result);
@@ -191,9 +196,23 @@ class Kelas extends CI_Controller
 			'STATUS_BELI' => $result['status_code']
 		);
 
+		$notif = array(
+			'GLOBAL_ID' => $data['eID'],
+			'TITTLE_NOT' => 'Transaksi baru',
+			'MSG_NOT' => 'Order id ' . $data['ID_TRN'] . ', atas nama ' . $peserta['NM_PS']  . '.',
+			'LINK' => 'admin/transaksi/detpending/' . $data['eID'],
+			'IS_READ' => 0,
+			'ST_NOT' => 0,
+			'DATE_NOT' => date('Y-m-d H:i:s', strtotime($data['TIME']))
+		);
+
 		$this->m_kelas->transaksi($data);
 		$this->m_kelas->detilkls($data1);
 		$this->m_kelas->pending($id_ps, $data2);
+
+		/** Insert notifikasi */
+		$this->db->insert('notif', $notif);
+
 		$this->session->set_flashdata('message', 'success_trn');
 		redirect('peserta/transaksi');
 	}

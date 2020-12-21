@@ -6,7 +6,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?= base_url(); ?>" target="_blank" class="nav-link"><i class="fas fa-external-link-alt"></i></a>
+            <a href="<?= base_url(); ?>" target="_blank" class="nav-link"><i class="fas fa-external-link-alt"></i></a>
         </li>
     </ul>
 
@@ -16,22 +16,17 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">4</span>
+                <span class="badge badge-danger navbar-badge jml-not text-bold"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">4 Notifications</span>
+                <span class="dropdown-item dropdown-header jml-not1"></span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-receipt mr-2"></i> 1 transaksi baru
-                    <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
+                    <p class="text-center text-sm text-muted kosong"></p>
+                    <div class="msg-not">
+
+                    </div>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-tasks mr-2"></i> 3 tugas baru
-                    <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                <a href="<?= base_url('peserta/notifikasi'); ?>" class="dropdown-item dropdown-footer">Lihat semua pemberitahuan</a>
             </div>
         </li>
 
@@ -56,7 +51,7 @@
                     <small>
                         <?php if ($peserta['DATE_CREATE'] != 0) { ?>
                             Terdaftar <?= date('d F Y', $peserta['DATE_CREATE']); ?>
-                        <?php } else {?>
+                        <?php } else { ?>
                             Terdaftar <span title='caption' class='badge badge-secondary'></span>
                         <?php } ?>
                     </small>
@@ -91,7 +86,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-                <a href="<?= base_url('peserta/auth/logout'); ?>" type="button" class="btn btn-danger" >Ya</a>
+                <a href="<?= base_url('peserta/auth/logout'); ?>" type="button" class="btn btn-danger">Ya</a>
             </div>
         </div>
         <!-- /.modal-content -->

@@ -33,9 +33,9 @@
                   <p>Jumlah Peserta</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fas fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('admin/peserta'); ?>" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -43,14 +43,14 @@
               <!-- small box -->
               <div class="small-box bg-dark">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
+                  <h3><?= $jmlkls; ?></h3>
 
-                  <p>Bounce Rate</p>
+                  <p>Jumlah Kelas</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fab fa-leanpub"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('admin/kelas'); ?>" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -58,14 +58,14 @@
               <!-- small box -->
               <div class="small-box bg-primary">
                 <div class="inner">
-                  <h3>44</h3>
+                  <h3><?= $jmltrn; ?></h3>
 
-                  <p>User Registrations</p>
+                  <p>Jumlah Transaksi</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person-add"></i>
+                  <i class="ion ion-ios-cart"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('admin/transaksi'); ?>" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -75,12 +75,12 @@
                 <div class="inner">
                   <h3>65</h3>
 
-                  <p>Unique Visitors</p>
+                  <p>Pengujung Blog</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
+                  <i class="fas fa-chart-bar"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

@@ -50,8 +50,18 @@
                         </ul>
                     </li>
 
-                    <li class="nav-header">Transaksi</li>
+                    <li class="nav-header">Pemberitahuan</li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('peserta/notifikasi'); ?>" class="nav-link">
+                            <i class="nav-icon fas fa-bell"></i>
+                            <p>
+                                Pemberitahuan
+                                <span class="badge badge-danger right pemberitahuan"></span>
+                            </p>
+                        </a>
+                    </li> 
 
+                    <li class="nav-header">Transaksi</li>
                     <li class="nav-item">
                         <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>

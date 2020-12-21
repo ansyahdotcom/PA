@@ -159,7 +159,17 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                       </div>
-                      <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan" value="<?= $peserta['PEKERJAAN']; ?>" disabled>
+                      <select name="pekerjaan" id="pekerjaan" class="custom-select form-control" disabled>
+                        <option selected>--Pilih--</option>
+                        <option value="Pelajar/Mahasiswa" <?= $peserta['PEKERJAAN'] == "Pelajar/Mahasiswa" ? "selected" : "" ?>>Pelajar/Mahasiswa</option>
+                        <option value="Wiraswasta" <?= $peserta['PEKERJAAN'] == "Wiraswasta" ? "selected" : "" ?>>Wiraswasta</option>
+                        <option value="PNS" <?= $peserta['PEKERJAAN'] == "PNS" ? "selected" : "" ?>>PNS</option>
+                        <option value="Petani" <?= $peserta['PEKERJAAN'] == "Petani" ? "selected" : "" ?>>Petani</option>
+                        <option value="Peternak" <?= $peserta['PEKERJAAN'] == "Peternak" ? "selected" : "" ?>>Peternak</option>
+                        <option value="TNI/Polisi" <?= $peserta['PEKERJAAN'] == "TNI/Polisi" ? "selected" : "" ?>>TNI/Polisi</option>
+                        <option value="Lain-lain" <?= $peserta['PEKERJAAN'] == "Lain-lain" ? "selected" : "" ?>>Lain-lain</option>
+                      </select>
+                      <!-- <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan" value="<?= $peserta['PEKERJAAN']; ?>" disabled> -->
                     </div>
                     <div class="offset-sm-2">
                       <?= form_error('pekerjaan', '<small class="text-danger">', '</small>'); ?>

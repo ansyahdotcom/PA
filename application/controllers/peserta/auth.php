@@ -63,6 +63,9 @@ class Auth extends CI_Controller
 					$this->session->set_flashdata('message', 'email/pswwrong');
 					redirect('auth');
 				}
+			} elseif ($user['ACTIVE'] == 2) {
+				$this->session->set_flashdata('message', 'blocked');
+				redirect('auth');
 			} else {
 				$this->session->set_flashdata('message', 'emailnotactivate');
 				redirect('auth');
@@ -83,20 +86,17 @@ class Auth extends CI_Controller
 			redirect('peserta/dashboard');
 		}
 
-		$tabel = $this->m_auth->idpsr();
-		$num = $tabel + 1;
+		/** Periksa apa ada data di tabel peserta */
+		$tabel = $this->m_auth->idps()->num_rows();
 
-		if ($tabel >= 0 && $tabel < 10) {
-			$id = "PSR0000" . $num;
-		} elseif ($tabel >= 10 && $tabel < 100) {
-			$id = "PSR000" . $num;
-		} elseif ($tabel >= 100 && $tabel < 1000) {
-			$id = "PSR00" . $num;
-		} elseif ($tabel >= 1000 && $tabel < 10000) {
-			$id = "PSR0" . $num;
-		} elseif ($tabel >= 10000 && $tabel < 100000) {
-			$id = "PSR" . $num;
-		}
+		/** Ambil id terakhir */
+		$getID = $this->m_auth->idps()->row_array(); 
+
+		if ($tabel > 0) :
+			$id_ps = autonumber($getID['ID_PS'], 2, 8);
+		else :
+			$id_ps = 'PS00000001';
+		endif;
 
 		$this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
 			'required' => 'Kolom ini harus diisi'
@@ -129,7 +129,7 @@ class Auth extends CI_Controller
 		if ($this->form_validation->run() == false) {
 			$data['judul'] = 'Preneur Academy | Buat akun';
 			$this->load->view("landingpage/template/header", $data);
-			$this->load->view("landingpage/auth/register");
+			$this->load->view("landingpage/auth/register", $data);
 			$this->load->view("landingpage/template/footer");
 		} else {
 			/** Proses insert ke database */
@@ -147,7 +147,7 @@ class Auth extends CI_Controller
 			];
 
 			$register = [
-				'ID_PS' => $id,
+				'ID_PS' => $id_ps,
 				'NM_PS' => $name,
 				'HP_PS' => $nohp,
 				'EMAIL_PS' => $email,
@@ -159,9 +159,22 @@ class Auth extends CI_Controller
 				'STATUS_BELI' => 0
 			];
 
+			$notif = [
+				'GLOBAL_ID' => $register['ID_PS'],
+				'TITTLE_NOT' => 'Pendaftar baru',
+				'MSG_NOT' => 'Ada pendaftar baru, atas nama ' . $register['NM_PS'] . '.',
+				'LINK' => 'admin/peserta',
+				'IS_READ' => 0,
+				'ST_NOT' => 0,
+				'DATE_NOT' => date('Y-m-d H:i:s', $register['DATE_CREATE'])	
+			];
+
 			/** Insert ke database */
 			$this->db->insert('token', $token_user);
 			$this->m_auth->regpeserta($register);
+
+			/** Insert notifikasi */
+			$this->db->insert('notif', $notif);
 
 			$this->_sendMail($token, 'verify');
 
@@ -230,6 +243,33 @@ class Auth extends CI_Controller
 		";
 
 		if ($type == 'verify') {
+			/** Insert ke tabel notif */
+			$notif = [
+				'GLOBAL_ID' => $name['user']['ID_PS'],
+				'TITTLE_NOT' => 'Selamat datang!',
+				'MSG_NOT' => 'Selamat bergabung di Preneur Academy',
+				'LINK' => 'peserta/profile',
+				'IS_READ' => 0,
+				'ST_NOT' => 1,
+				'DATE_NOT' => date('Y-m-d H:i:s', time())	
+			];
+
+			$notif1 = [
+				'GLOBAL_ID' => $name['user']['ID_PS'],
+				'TITTLE_NOT' => 'Aktivasi akun',
+				'MSG_NOT' => 'Pendaftar dengan nama ' . $name['user']['NM_PS'] . ' berhasil mangaktivasi akun.',
+				'LINK' => 'admin/peserta',
+				'IS_READ' => 0,
+				'ST_NOT' => 0,
+				'DATE_NOT' => date('Y-m-d H:i:s', time())	
+			];
+
+			/** kirim notif ke peserta */
+			$this->db->insert('notif', $notif);
+			
+			/** kirim notif ke admin */
+			$this->db->insert('notif', $notif1);
+
 			$this->email->subject('Verifikasi Akun Baru');
 			$this->email->message($AktivasiEmail);
 			$this->email->set_mailtype('html');
@@ -268,9 +308,7 @@ class Auth extends CI_Controller
 					$this->db->delete('token', [
 						'EMAIL' => $email
 					]);
-					$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-text-center">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<p class="text-center"><i class="icon fas fa-check"></i><b> Akun berhasil di aktivasi </b></br>silahkan login!</p></div>');
+					$this->session->set_flashdata('message', 'Activate');
 					redirect('auth');
 				} else {
 					$this->m_auth->del($email);
@@ -279,9 +317,7 @@ class Auth extends CI_Controller
 						'EMAIL' => $email
 					]);
 
-					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<p class="text-center"><i class="icon fas fa-ban"></i><b> Token sudah kadaluarsa!</b></p></div>');
+					$this->session->set_flashdata('message', 'Exp-token');
 					redirect('auth');
 				}
 			} else {
@@ -291,15 +327,11 @@ class Auth extends CI_Controller
 					'EMAIL' => $email
 				]);
 
-				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<p class="text-center"><i class="icon fas fa-ban"></i><b> Token anda salah!</b></p></div>');
+				$this->session->set_flashdata('message', 'Wrg-token');
 				redirect('auth');
 			}
 		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<p class="text-center"><i class="icon fas fa-ban"></i><b> Aktivasi akun gagal!</b></p></div>');
+			$this->session->set_flashdata('message', 'Fail-active');
 			redirect('auth');
 		}
 	}
@@ -338,15 +370,10 @@ class Auth extends CI_Controller
 				$this->db->insert('token', $user_token);
 				$this->_sendMail($token, 'forgot');
 
-				$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-center">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<p class="text-center"><i class="icon fas fa-check"></i><b> Silahkan cek email anda untuk ubah password!</b></p></div>');
+				$this->session->set_flashdata('message', 'cekemail');
 				redirect('forgot');
 			} else {
-
-				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<p class="text-center"><i class="icon fas fa-ban"></i><b> Email belum terdaftar/aktif!</b></p></div>');
+				$this->session->set_flashdata('message', 'emailnotactivate');
 				redirect('forgot');
 			}
 		}
@@ -381,21 +408,15 @@ class Auth extends CI_Controller
 						'EMAIL' => $email
 					]);
 
-					$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<p class="text-center"><i class="icon fas fa-ban"></i><b> Token sudah kadaluarsa!</b></p></div>');
+					$this->session->set_flashdata('message', 'exptoken');
 					redirect('auth');
 				}
 			} else {
-				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				<p class="text-center"><i class="icon fas fa-ban"></i><b> Reset password gagal!</b> token salah</p></div>');
+				$this->session->set_flashdata('message', 'wrongtoken');
 				redirect('auth');
 			}
 		} else {
-			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible text-center">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<p class="text-center"><i class="icon fas fa-ban"></i><b> Reset password gagal!</b> email salah</p></div>');
+			$this->session->set_flashdata('message', 'emailwrong');
 			redirect('auth');
 		}
 	}
@@ -435,9 +456,7 @@ class Auth extends CI_Controller
 
 			$this->session->unset_userdata('reset_email');
 
-			$this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible text-center">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<p class="text-center"><i class="icon fas fa-check"></i><b> Password berhasil diubah!</b> Silahkan login kembali</p></div>');
+			$this->session->set_flashdata('message', 'Password');
 			redirect('auth');
 		}
 	}
