@@ -37,31 +37,12 @@
 							</div>
 							<!-- <span class="badge bg-warning">Kategori: <?= $wbnr->KTGKLS?></span> -->
 						</div>
-						<a href="<?= base_url('index/dt_webinar/'. $wbnr->JUDUL_WEBINAR);?>"
+						<a href="<?= base_url('webinar/detail/'. $wbnr->JUDUL_WEBINAR);?>"
 							class="btn btn-primary font-weight-bold text-uppercase m-2">Lihat Detail</a>
 					</div>
 				</div>
 				<?php endforeach;?>
 			</div>
-			<nav aria-label="pagination">
-				<ul class="pagination">
-					<li class="page-item disabled">
-						<span class="page-link">Previous</span>
-					</li>
-					<li class="page-item active">
-						<a class="page-link" href="#">1</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">2</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">3</a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href="#">Next</a>
-					</li>
-				</ul>
-			</nav>
 		</div>
 
 		<hr>

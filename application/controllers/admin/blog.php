@@ -122,7 +122,7 @@ class Blog extends CI_Controller
             $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
             $ID_TAGS = $this->input->post('ID_TAGS');
             $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
-            $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
+            $KONTEN_POST = $this->input->post('KONTEN_POST');
             $TGL_POST = date('Y-m-d');
             $UPDT_TRAKHIR = date('Y-m-d');
             // untuk upload proposal

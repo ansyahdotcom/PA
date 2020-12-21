@@ -67,7 +67,7 @@
 							</li>
 							<?php endforeach;?>
 							<li class="nav-item">
-								<a class="nav-link" href="<?= base_url('index/webinar')?>">WEBINAR</a>
+								<a class="nav-link" href="<?= base_url('webinar')?>">WEBINAR</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#Blog">Blog</a>

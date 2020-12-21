@@ -96,7 +96,7 @@ class Webinar extends CI_Controller
             $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
             $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
             $JUDUL_WEBINAR = htmlspecialchars($this->input->post('JUDUL_WEBINAR'));
-            $KONTEN_WEB = htmlspecialchars($this->input->post('KONTEN_WEB'));
+            $KONTEN_WEB = $this->input->post('KONTEN_WEB');
             $ID_FA = $this->input->post('ID_FA');
             $FOTO_WEBINAR = htmlspecialchars($this->input->post('FOTO_WEBINAR'));
             $HARGA = htmlspecialchars($this->input->post('HARGA'));
