@@ -4,7 +4,7 @@
         <a href="<?= base_url('admin/dashboard'); ?>" class="brand-link">
             <img src="<?= base_url(); ?>assets/dist/img/PA02.jpg" alt="PA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-bold text-uppercase">
-                <h5 class="text-bold"> Preneur Academy </h5>
+                <h5>Preneur Academy</h5>
             </span>
         </a>
 

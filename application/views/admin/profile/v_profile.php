@@ -96,8 +96,8 @@
                 <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                   <!-- <form class="form-horizontal" action="<?= base_url('admin/profile'); ?>" method="POST"> -->
                   <div class="form-group row">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
@@ -108,8 +108,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="email" class="col-sm-3 col-form-label">Email</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                       </div>
@@ -120,8 +120,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="hp" class="col-sm-2 col-form-label">No Handphone</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="hp" class="col-sm-3 col-form-label">No Handphone</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                       </div>
@@ -132,8 +132,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                       </div>
@@ -144,8 +144,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="alamat" class="col-sm-2 col-form-label">Terakhir update</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="alamat" class="col-sm-3 col-form-label">Terakhir update</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <?php if ($admin['UPDATE_ADM'] == 0) : ?>
                         <span class="badge-pill bg-secondary text-bold">--</span>
                       <?php else : ?>
@@ -157,7 +157,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <div class="offset-sm-2 col-sm-10">
+                    <div class="offset-sm-3 col-sm-9">
                       <button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
                       <button type="submit" class="btn btn-primary" id="btn-save" hidden><i class="fas fa-save"></i> Simpan</button>
                       <button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i> Edit</button>
