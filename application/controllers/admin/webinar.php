@@ -20,7 +20,7 @@ class Webinar extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
         $data['tittle'] = "Data Webinar";
-        date_default_timezone_set('Asia/Jakarta');
+        // date_default_timezone_set('Asia/Jakarta');
 
         /** Ambil data webinar */
         $data['webinar'] = $this->m_webinar->tampil_webinar()->result();
