@@ -249,17 +249,20 @@
                                         <p class="card-text"><small class="text-muted"><?= date('d F Y', strtotime($blg->TGL_POST)); ?></small></p>
 										<p>
 										<?php 
-										$i = 100;
+										$aa = 100;
 										$konten = htmlspecialchars_decode($blg->KONTEN_POST);
-										$kont = str_replace('<p>', '', $konten);
-										$KONTEN_POST = str_replace('</p>', '. ', $kont);
-										// $konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
-
-										$char = $KONTEN_POST[$i - 1];
-										while($char != ' ') {
-											$char = $KONTEN_POST[--$i]; // Cari spasi pada posisi 49, 48, 47, dst...
+										$em = str_replace('<em>', '', $konten);
+										$strong = str_replace('<strong>', '', $em);
+										$count = strlen($strong);
+										if ($count > $aa){
+											$char = $strong[$aa - 1];
+											while($char != ' ') {
+												$char = $strong[--$aa];
+											}
+											echo substr($strong, 0, $aa) . ' ...';
+										} else {
+											echo $strong;
 										}
-										echo substr($KONTEN_POST, 0, $i) . ' ...';
 										?>
 										</p>
                                         <a class="btn btn-primary" href="<?= base_url('index/lihat_post/'. $blg->JUDUL_POST);?>">Lihat Post</a>

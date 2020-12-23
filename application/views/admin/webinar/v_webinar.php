@@ -23,9 +23,6 @@
 		<div class="card-header">
 			<div class="text-right">
 				<!-- dilihat tampilan webinarnya sebelum diposting -->
-				<a class="btn btn-secondary"
-					href="<?= base_url('webinar'); ?>"><i class="fas fa-eye"></i>
-					Pratinjau</a>
 				<a class="btn btn-primary" href="<?= base_url('admin/webinar/tambah_webinar'); ?>"><i
 						class="fas fa-plus"></i>
 					Tambah Webinar</a>
@@ -98,7 +95,9 @@
 								<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';
 							}
 							?>
-
+							
+							<a class="btn btn-secondary btn-sm" href="<?= base_url('admin/webinar/pratinjau/'. $wbnr->JUDUL_WEBINAR); ?>"><i class="fas fa-eye"></i>
+								Pratinjau</a>
 							<!-- edit artikel -->
 							<a href="<?= base_url('admin/webinar/edit/' . $wbnr->JUDUL_WEBINAR); ?>">
 								<button type="button" class="btn btn-primary btn-circle btn-sm">

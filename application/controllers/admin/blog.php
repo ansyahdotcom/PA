@@ -1,16 +1,4 @@
 <?php
-
-// <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); "></div>
-// $i = 100;
-// 										$KONTEN_POST = htmlspecialchars_decode($blg->KONTEN_POST);
-// 										$konten = htmlspecialchars_decode(substr($KONTEN_POST, 0, $i));
-
-// 										$char = $KONTEN_POST[$i - 1];
-// 										while($char != ' ') {
-// 											$char = $KONTEN_POST[--$i]; // Cari spasi pada posisi 49, 48, 47, dst...
-// 										}
-// 										echo substr($KONTEN_POST, 0, $i) . ' ...';
-
 class Blog extends CI_Controller
 {
     function __construct()
@@ -31,6 +19,7 @@ class Blog extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
         $data['tittle'] = "Data Blog";
+        date_default_timezone_set('Asia/Jakarta');
 
         /** Ambil data blog */
         $data['blog'] = $this->m_blog->tampil_blog()->result();
@@ -387,13 +376,13 @@ class Blog extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
 
-        $data['judul'] = "Detail Blog";
+        $data['judul'] = "Preneur Academy Blog";
         $data['data'] = $this->m_medsos->get_data();
         $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
-        $this->load->view("admin/blog/pratinjau/headerblog", $data);
+        $this->load->view("landingpage/template/headerblog", $data);
         $this->load->view('admin/blog/detail_blog', $data);
-        $this->load->view("admin/blog/pratinjau/footer", $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
 }

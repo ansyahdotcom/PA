@@ -6,8 +6,9 @@ class Webinar extends CI_Controller
         parent::__construct();
         $this->load->model('admin/m_webinar');
         $this->load->model('admin/m_medsos');
+        $this->load->model('admin/m_navbar');
+        $this->load->model('admin/m_kebijakan');
         $this->load->library('upload');
-        $this->load->helper('file');
         // $this->load->library('form_validation');
         adm_logged_in();
         cekadm();
@@ -20,7 +21,7 @@ class Webinar extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
         $data['tittle'] = "Data Webinar";
-        // date_default_timezone_set('Asia/Jakarta');
+        date_default_timezone_set('Asia/Jakarta');
 
         /** Ambil data webinar */
         $data['webinar'] = $this->m_webinar->tampil_webinar()->result();
@@ -211,7 +212,7 @@ class Webinar extends CI_Controller
             $FOTO = $row->FOTO_WEBINAR;
         }
         unlink(FCPATH. 'assets/fotowebinar/'. $FOTO);
-        $this->m_webinar->delete($where, 'detail_fasilitas');
+        // $this->m_webinar->delete($where, 'detail_fasilitas_wbnr');
         $this->m_webinar->delete($where, 'webinar');
         $this->session->set_flashdata('message', 'hapus');
         redirect('admin/webinar');
@@ -228,8 +229,8 @@ class Webinar extends CI_Controller
         $where = array('JUDUL_WEBINAR' => $JUDUL_WEBINAR);
 
         $data['webinar'] = $this->m_webinar->tampil_edit($where, 'webinar')->result();
-        $data['dt_fasilitas'] = $this->m_webinar->tampil_edit_fasilitas($JUDUL_WEBINAR, 'detail_fasilitas')->result();
-        $data['fasilitas'] = $this->m_webinar->tampil_fasilitas()->result();
+        // $data['dt_fasilitas'] = $this->m_webinar->tampil_edit_fasilitas($JUDUL_WEBINAR, 'detail_fasilitas_wbnr')->result();
+        // $data['fasilitas'] = $this->m_webinar->tampil_fasilitas()->result();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
@@ -248,44 +249,91 @@ class Webinar extends CI_Controller
         $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
         $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
         $JUDUL_WEBINAR = htmlspecialchars($this->input->post('JUDUL_WEBINAR'));
-        $KONTEN_WEB = htmlspecialchars($this->input->post('KONTEN_WEB'));
+        $KONTEN_WEB = $this->input->post('KONTEN_WEB');
         $FOTO_WEBINAR = htmlspecialchars($this->input->post('FOTO_WEBINAR'));
+        $HAPUS_FOTO = $this->input->post('HAPUS_FOTO');
         $HARGA = htmlspecialchars($this->input->post('HARGA'));
         $PLATFORM = htmlspecialchars($this->input->post('PLATFORM'));
         $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
         $TGL_POSTWEB = date('Y-m-d');
-        $ID_FA = $this->input->post('ID_FA');
+        // $ID_FA = $this->input->post('ID_FA');
+        // untuk upload foto webinar
+        $config['upload_path']          = './assets/fotowebinar/';
+        $config['allowed_types']        = 'jpg|jpeg|JPG';
+        $config['max_size']             = 0;
+        // $config['encrypt_name']         = true;
 
-        $where = array('ID_WEBINAR' => $ID_WEBINAR);
+        $this->load->library('upload');
+        $this->upload->initialize($config);
 
-        $data = array(
-            'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
-            'ID_ADM' => $ID_ADM,
-            'KONTEN_WEB' => $KONTEN_WEB,
-            'FOTO_WEBINAR' => $FOTO_WEBINAR,
-            'HARGA' => $HARGA,
-            'PLATFORM' => $PLATFORM,
-            'TGL_WEB' => $TGL_WEB,
-            'TGL_POSTWEB' => $TGL_POSTWEB
-        );
+        if ($FOTO_WEBINAR != $HAPUS_FOTO){
+            if ($this->upload->do_upload('FOTO_WEBINAR')) {
+                $upload_data = $this->upload->data();
+                //Compress Image buat foto web
+                unlink(FCPATH. 'assets/fotowebinar/'. $HAPUS_FOTO);
+                $config['image_library'] = 'gd2';
+                $config['quality'] = '100%';
+                $config['width'] = 1000;
+                $config['height'] = 1000;
+                $config['source_image'] = './assets/fotowebinar/' . $upload_data['file_name'];
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
 
-        $this->m_webinar->update($where, $data, 'webinar');
-        $this->m_webinar->delete($where, 'detail_fasilitas');
-
-        for ($i = 0; $i < count($ID_FA); $i++) {
-            $dt_fasilitas = array(
-                'ID_WEBINAR' => $ID_WEBINAR,
-                'ID_FA' => $ID_FA[$i]
+                $where = array('ID_WEBINAR' => $ID_WEBINAR);
+        
+                $data = array(
+                    'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
+                    'ID_ADM' => $ID_ADM,
+                    'KONTEN_WEB' => $KONTEN_WEB,
+                    'FOTO_WEBINAR' => $upload_data['file_name'],
+                    'HARGA' => $HARGA,
+                    'PLATFORM' => $PLATFORM,
+                    'TGL_WEB' => $TGL_WEB,
+                    'TGL_POSTWEB' => $TGL_POSTWEB
+                );
+        
+                $this->m_webinar->update($where, $data, 'webinar');
+                // $this->m_webinar->delete($where, 'detail_fasilitas');
+        
+                // for ($i = 0; $i < count($ID_FA); $i++) {
+                //     $dt_fasilitas = array(
+                //         'ID_WEBINAR' => $ID_WEBINAR,
+                //         'ID_FA' => $ID_FA[$i]
+                //     );
+                //     $this->m_webinar->insert($dt_fasilitas, 'detail_fasilitas');
+                // }
+        
+                $this->session->set_flashdata('message', 'edit');
+                redirect('admin/webinar');
+            } else {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('admin/webinar', $error);
+            }
+        } else {
+            $where = array('ID_WEBINAR' => $ID_WEBINAR);
+        
+            $data = array(
+                'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
+                'ID_ADM' => $ID_ADM,
+                'KONTEN_WEB' => $KONTEN_WEB,
+                // 'FOTO_WEBINAR' => $upload_data['file_name'],
+                'HARGA' => $HARGA,
+                'PLATFORM' => $PLATFORM,
+                'TGL_WEB' => $TGL_WEB,
+                'TGL_POSTWEB' => $TGL_POSTWEB
             );
-            $this->m_webinar->insert($dt_fasilitas, 'detail_fasilitas');
+    
+            $this->m_webinar->update($where, $data, 'webinar');
+            
+            $this->session->set_flashdata('message', 'edit');
+            redirect('admin/webinar');
         }
-
-        $this->session->set_flashdata('message', 'edit');
-        redirect('admin/webinar');
     }
 
     // pratinjau / lihat post / lihat postingan webinar
-    public function pratinjau($ID_WEBINAR)
+    public function pratinjau($JUDUL_WEBINAR)
     {
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' =>
@@ -293,12 +341,14 @@ class Webinar extends CI_Controller
         ])->row_array();
         date_default_timezone_set('Asia/Jakarta');
 
-        $data['judul'] = "Detail Webinar";
-        $data['data'] = $this->m_medsos->get_data();
-        $data['webinar'] = $this->m_webinar->tampil_dt_webinar($ID_WEBINAR, 'webinar')->result();
-        $data['dt_fasilitas'] = $this->m_webinar->tampil_dt_fasilitas($ID_WEBINAR, 'detail_fasilitas')->result();
-        $this->load->view("admin/webinar/pratinjau/headerwebinar", $data);
+        $data['judul'] = "Webinar";
+        $data['footer'] = $this->m_medsos->get_data();
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data();
+        $data['webinar'] = $this->m_webinar->tampil_dt_webinar($JUDUL_WEBINAR, 'webinar')->result();
+        // $data['dt_fasilitas'] = $this->m_webinar->tampil_dt_fasilitas($JUDUL_WEBINAR, 'detail_fasilitas')->result();
+        $this->load->view("landingpage/template/header", $data);
         $this->load->view('admin/webinar/detail_webinar', $data);
-        $this->load->view("admin/webinar/pratinjau/footer", $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
 }

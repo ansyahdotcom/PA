@@ -38,15 +38,15 @@
                             <?= form_error('JUDUL_WEBINAR', '<small class="text-danger">', '</small>'); ?>
                             <br>
                             <!-- Fasilitas -->
-                            <i class="fa fa-tag"></i>
+                            <!-- <i class="fa fa-tag"></i>
                             <label for="ID_FA">Fasilitas</label><br>
                             <select name="ID_FA[]" id="ID_FA[]" class="select2bs4" multiple="multiple" data-placeholder="Pilih fasilitas" style="width: 100%;">
                                 <?php foreach ($fasilitas as $fas) { ?>
                                     <option value="<?= $fas->ID_FA; ?>"><?= $fas->NM_FA; ?></option>
                                 <?php } ?>
-                            </select>
-                            <button type="button" id="tambah_fasilitas" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_fasilitas">Tambah Fasilitas Baru</button>
-                            <br> <br>
+                            </select> -->
+                            <!-- <button type="button" id="tambah_fasilitas" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_fasilitas">Tambah Fasilitas Baru</button>
+                            <br> <br> -->
                             <div class="form-group">
                                 <label for="icon">Foto</label>
                                 <div class="container">

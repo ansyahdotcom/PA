@@ -36,7 +36,7 @@
 							<input type="text" class="form-control" name="JUDUL_WEBINAR"
 								value="<?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?>" autocomplete="off" autofocus
 								required>
-							<br>
+							<!-- <br>
 							<label for="ID_FA">fasilitas</label>
 							<select name="ID_FA[]" id="ID_FA[]" class="select2bs4" multiple="multiple"
 								data-placeholder="Pilih fasilitas" style="width: 100%;">
@@ -48,19 +48,30 @@
 									<?= $fs->NM_FA; ?></option>
 								<?php 
                                     }} ?>
-							</select>
+							</select> -->
 							<br>
 							<div class="form-group">
 								<label for="icon">Foto</label>
 								<div class="container">
 									<div class="row">
-										<div class="col-md-6">
+										<div class="col-md-5">
+											<div class="card">
+												<img src="<?= base_url(); ?>assets/fotowebinar/<?= $wbnr->FOTO_WEBINAR; ?>"
+													class="card-img-top" alt="gambar-foto">
+												<div class="card-body">
+													<h6 class="card-title"><?=$wbnr->FOTO_WEBINAR;?></h6>
+													<input type="hidden" name="HAPUS_FOTO"
+														value="<?= $wbnr->FOTO_WEBINAR; ?>">
+												</div>
+											</div>
+										</div>
+										<div class="col-md-7">
 											<div class="form-group">
+												<label class="control-label">Upload File</label>
 												<div class="preview-zone hidden">
 													<div class="box box-solid">
 														<div class="box-header with-border">
 															<div><b>Preview</b></div>
-															<!-- <img src="<?= base_url('assets/fotowebinar/fotoweb/'. $wbnr->FOTO_WEBINAR); ?>" alt=""> -->
 															<div class="box-tools pull-right">
 																<button type="button"
 																	class="btn btn-danger btn-xs remove-preview">
@@ -76,8 +87,8 @@
 														<i class="glyphicon glyphicon-download-alt"></i>
 														<div>Pilih file gambar atau seret gambar kesini .</div>
 													</div>
-													<input type="file" name="FOTO_WEBINAR" class="dropzone"
-														value="<?= $wbnr->FOTO_WEBINAR ?>">
+													<input type="file" name="FOTO_WEBINAR"
+														value="<?= $wbnr->FOTO_WEBINAR; ?>" class="dropzone" />
 												</div>
 											</div>
 										</div>
@@ -88,11 +99,16 @@
 
 							<label for="HARGA">Harga</label>
 							<input type="text" class="form-control" name="HARGA" value="<?= $wbnr->HARGA; ?>"
-								autocomplete="off" autofocus required>
+								autocomplete="off" required>
+							<datalist id="HARGA" class="form-control" name="HARGA" hidden>
+								<option value="GRATIS">GRATIS</option>
+							</datalist>
 							<br>
 							<label for="PLATFORM">Platform</label>
-							<input type="text" class="form-control" name="PLATFORM" value="<?= $wbnr->PLATFORM; ?>"
-								autocomplete="off" autofocus required>
+							<select name="PLATFORM" id="PLATFORM" class="form-control" required>
+								<option value="ZOOM">ZOOM</option>
+								<option value="GOOGLE MEET">GOOGLE MEET</option>
+							</select>
 							<br>
 							<label for="TGL_WEB">Tanggal Webinar</label> <br>
 							<input type="date" name="TGL_WEB" id="TGL_WEB" class="form-control"

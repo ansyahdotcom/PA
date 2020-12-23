@@ -1,104 +1,69 @@
-	<?php foreach ($webinar as $wbnr) { ?>
+<header class="bg-warning py-5 mb-5">
+	<div class="container h-100">
+		<div class="row h-100 align-items-center">
+			<a href="<?= base_url('admin/webinar');?>" class="btn button secondary-button float-left"><i
+					class="fas fa-arrow-left"></i> Kembali</a>
+			<?php foreach ($webinar as $row) { ?>
+			<div class="col-lg-12">
+				<div class="site-buttons p-5">
+					<div class="d-flex flex-row flex-wrap">
+						<img src="<?= base_url('assets/fotowebinar/'). $row->FOTO_WEBINAR;?>" width="500"
+							alt="gambar kelas" class="img-fluid ml-5">
+						<div class="kelas ml-5">
+							<h4 class="display-4 title-text"><?= str_replace('-', ' ', $row->JUDUL_WEBINAR); ?></h4>
+							<p class="para text-dark">Oleh : <?= $row->NM_ADM?></p>
+							<h5 class="font-weight-bold"><?= $row->HARGA; ?></h5>
+							<a href="<?= base_url('register')?>" class="btn button primary-button mt-5 float-right"><i
+									class="fas fa-shopping-cart"></i> Beli Webinar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</header>
 
-		<main role="main" class="container">
-			<!-- Page Content -->
-			<div class="container">
+<div class="container mt-2 mb-2">
+	<div class="card">
+		<!-- <div class="card-header" id="headingOne">
+			<h3 class="card-title pt-2"> Deskripsi</h3>
+		</div> -->
+		<div class="card-body">
+			<p><?= htmlspecialchars_decode($row->KONTEN_WEB); ?></p>
+			<!-- <p class="card-text">Tanggal Pelaksanaan</p> -->
+			<!-- <p class="font-weight-bold"><?= date('d F Y', strtotime($row->TGL_WEB)); ?></p> -->
+		</div>
+	</div>
+</div>
 
-				<div class="row">
+<?php } ?>
 
-					<!-- Post Content Column -->
-					<div class="col-lg-8">
+<hr>
 
-						<!-- Title -->
-						<h1 class="mt-4">
-							<?= $wbnr->TEMA; ?>
-						</h1>
 
-						<hr>
-
-						<!-- Date/Time -->
-						<span>
-
-							<table>
-								<tr>
-									<td for="TGL_WEB"><i class="fas fa-calendar"></i> <?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_WEB))); ?> &nbsp;</td>
-									<td><i class="fa fa-clock"></i></td>
-								</tr>
-								<tr>
-									<td for="PLATFORM"><i class="fa fa-map-marker-alt"></i> <?= $wbnr->PLATFORM; ?> &nbsp;</td>
-									<td for="HARGA"><i class="fa fa-coins"></i> <?= $wbnr->HARGA; ?></td>
-								</tr>
-							</table>
-
+<!--  ========================== Subscribe me Area ============================  -->
+<section class="newsletter mt-5">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-10 text-center jumbotron bg-primary p-12 shadow">
+				<img src="<?=base_url();?>assets/dist/img/subscribe.svg" width="200" alt="gambar-envelope">
+				<div class="content text-center mt-5">
+					<h2 class="text-white">SUBSCRIBE</h2>
+					<p class="text-white">Dengan meng-klik subscribe artinya anda menyetujui layanan langganan ke
+						website ini.</p>
+					<div class="input-group p-5 mt-5 mb-5">
+						<input type="email" class="form-control mr-2 mb-2" placeholder="Enter your email">
+						<span class="input-group-btn">
+							<button class="btn btn-warning ml-2 mb-2" type="submit">Subscribe Now</button>
 						</span>
-
-						<hr>
-
-						<!-- Preview Image -->
-						<p><i class="fa fa-user-tie"></i> <?= $wbnr->ID_ADM ?></p>
-						<img class="img-fluid rounded" src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_WEBINAR); ?>" alt="foto-webinar">
-						<br>
-						<p>
-							<i class="fas fa-tag"></i>
-							<?php foreach ($detail_fasilitas as $dtf) { ?>
-								<a class="btn btn-sm-primary" href="#"><?= $dtf->NM_FA; ?></a>
-							<?php } ?>
-						</p>
-						<hr>
 					</div>
-					<!--  ======================= Awalan Sidebar ============================== -->
-					<aside class="col-md-4 blog-sidebar">
-
-						<!--  ======================= Awalan Media sosial ============================== -->
-						<div class="card my-4">
-							<h5 class="card-header">Ikuti akun sosial media kami</h5>
-							<div class="card-body">
-								<div class="social">
-									<!-- <a href="https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
-					<a href="https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
-					<a href="https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i class="fab fa-youtube"></i></a>
-					<a href="https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>   -->
-									<a href="#"><i class="fab fa-facebook"></i></a>
-									<a href="#"><i class="fab fa-instagram"></i></a>
-									<a href="#"><i class="fab fa-youtube"></i></a>
-									<a href="#"><i class="fab fa-twitter"></i></a>
-								</div>
-							</div>
-						</div>
-						<!--  ======================= Batas Media sosial ============================== -->
-					</aside>
-					<!--  ======================= Batas Sidebar ============================== -->
-				</div>
-		</main>
-		<!--  ======================= Batas Main class ============================== -->
-		</div>
-	<?php } ?>
-
-	<!--  ========================== Subscribe me Area ============================  -->
-	<section class="subscribe-us-area">
-		<div class="container subscribe bg-warning justify-content-center">
-			<div class="row">
-				<div class="col-lg-12 text-center subscribe-title">
-					<h4 class="text-uppercase">Dapatkan update dari mana saja</h4>
-					<p class="para">Dengan mengklik subscribe, anda akan mendapatkan update artikel terbaru.</p>
 				</div>
 			</div>
-			<div class="d-sm-flex  form justify-content-center">
-				<form class="ml-10">
-					<div class="row">
-						<div class="col-md-8 pl-4 pr-4 mt-2">
-							<input type="email" class="form-control" placeholder="Email">
-						</div>
-						<div class="col-md-4 pl-4 pr-4 mt-2">
-							<button type="submit" class="btn btn-success form-control">Subscribe</button>
-						</div>
-					</div>
-				</form>
-			</div>
 		</div>
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-			<path fill="#FFC107" fill-opacity="1" d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-			</path>
-		</svg>
-	</section>
-	<!--  ========================== Batas Subscribe Area ============================  -->
+	</div>
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+		<path fill="#FFC107" fill-opacity="1"
+			d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+		</path>
+	</svg>
+</section>
+<!--  ========================== Batas Subscribe Area ============================  -->

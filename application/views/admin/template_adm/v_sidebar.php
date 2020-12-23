@@ -192,7 +192,7 @@
                                     <p>Webinar</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?= base_url('admin/fasilitas'); ?>" class="nav-link 
                                 <?php if ($this->uri->segment(2) == "fasilitas") {
                                     echo "active";
@@ -200,7 +200,7 @@
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Fasilitas</p>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
 

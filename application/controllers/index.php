@@ -28,16 +28,16 @@ class index extends CI_Controller
     
     public function lihat_post($JUDUL_POST)
     {
-        // $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
-        // $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
-        // $data['kategori'] = $this->m_blog->tampil_kategori()->result();
-        // $data['header'] = $this->m_navbar->get_navbar(); 
-        // $data['kebijakan'] = $this->m_kebijakan->get_data(); 
-        // $data['footer'] = $this->m_medsos->get_data();
-        // $data['judul'] = 'Preneur Academy';
-        // $this->load->view("landingpage/template/headerblog" , $data);
-        // $this->load->view("landingpage/lihat_post", $data);
-        // $this->load->view("landingpage/template/footer", $data);
+        $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
+        $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
+        $data['kategori'] = $this->m_blog->tampil_kategori()->result();
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+        $data['footer'] = $this->m_medsos->get_data();
+        $data['judul'] = 'Preneur Academy';
+        $this->load->view("landingpage/template/headerblog" , $data);
+        $this->load->view("landingpage/lihat_post", $data);
+        $this->load->view("landingpage/template/footer", $data);
     }
     
     
@@ -113,7 +113,7 @@ class index extends CI_Controller
         $data['footer'] = $this->m_medsos->get_data(); 
         $data['header'] = $this->m_navbar->get_navbar(); 
         $data['kebijakan'] = $this->m_kebijakan->get_data(); 
-        $data['judul'] = 'Preneur Academy | Kelas';
+        $data['judul'] = 'Preneur Academy | Webinar';
         $data['webinar'] = $this->m_landingpage->dt_webinar($JUDUL_WEBINAR)->result();
         $data['materi'] = $this->m_landingpage->materi($JUDUL_WEBINAR)->result();
         $this->load->view("landingpage/template/header" , $data);
