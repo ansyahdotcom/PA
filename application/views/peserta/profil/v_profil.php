@@ -33,12 +33,12 @@
 
               <h3 class="profile-username text-center text-bold"><?= $peserta['NM_PS']; ?></h3>
 
-              <ul class="list-group mb-3">
+              <ul class="list-group">
                 <li class="list-group-item">
                   <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $peserta['ROLE']; ?></span>
                 </li>
                 <li class="list-group-item">
-                  <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= date('d F Y', $peserta['DATE_CREATE']); ?></span>
+                  <b>Terdaftar</b> <span class="badge-pill bg-primary text-bold float-right"><?= date('d M Y', $peserta['DATE_CREATE']); ?></span>
                 </li>
               </ul>
               <!-- <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button> -->
@@ -90,8 +90,8 @@
                 <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                   <!-- <form class="form-horizontal" action="<?= base_url('peserta/profil'); ?>" method="POST"> -->
                   <div class="form-group row">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
@@ -102,8 +102,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="email" class="col-sm-3 col-form-label">Email</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                       </div>
@@ -114,8 +114,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="hp" class="col-sm-2 col-form-label">No Handphone</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="hp" class="col-sm-3 col-form-label">No Handphone</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                       </div>
@@ -126,8 +126,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="alamat" class="col-sm-2 col-form-label">Alamat Domisili</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="alamat" class="col-sm-3 col-form-label">Alamat Domisili</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                       </div>
@@ -138,8 +138,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="jk" class="col-sm-2 col-form-label">Jenis Kelamin</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="jk" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text" for="jk"><i class="fas fa-venus-mars"></i></span>
                       </div>
@@ -154,8 +154,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="pekerjaan" class="col-sm-2 col-form-label">Pekerjaan</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                       </div>
@@ -176,8 +176,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="agama" class="col-sm-2 col-form-label">Agama</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="agama" class="col-sm-3 col-form-label">Agama</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text" for="agama"><i class="fas fa-praying-hands"></i></span>
                       </div>
@@ -196,8 +196,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="kotaasal" class="col-sm-2 col-form-label">Kota Asal</label>
-                    <div class="input-group mb-1 col-sm-10">
+                    <label for="kotaasal" class="col-sm-3 col-form-label">Kota Asal</label>
+                    <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-city"></i></span>
                       </div>
@@ -208,7 +208,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <div class="offset-sm-2 col-sm-10">
+                    <div class="offset-sm-3 col-sm-9">
                       <button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
                       <button type="submit" class="btn btn-primary" id="btn-save" hidden><i class="fas fa-save"></i> Simpan</button>
                       <button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i> Edit</button>

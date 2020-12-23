@@ -31,7 +31,7 @@
                             $text_btn = "Lihat detail transaksi";
                         elseif ($detnot['TITTLE_NOT'] == "Transaksi sukses dibayar") :
                             $icon = "fas fa-money-check";
-                            $text = $detnot['TITTLE_NOT'] . ': ' . $detnot['MSG_NOT'];
+                            $text = $detnot['TITTLE_NOT'] . ': ' . $detnot['MSG_NOT'] . ", dibayarkan pada tanggal <b class='text-success'>" . date('d-F-Y', strtotime($detnot['TRN_TIME'])) . "</b> jam <b class='text-success'>" . date('H:i', strtotime($detnot['TRN_TIME'])) . "</b> !.";
                             $text_btn = "Lihat detail transaksi";
                         elseif ($detnot['TITTLE_NOT'] == "Transaksi dibatalkan") :
                             $icon = "fas fa-money-check";

@@ -39,12 +39,12 @@
               }
               ?>
 
-              <ul class="list-group mb-3">
+              <ul class="list-group">
                 <li class="list-group-item">
                   <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $admin['ROLE'] ?></span>
                 </li>
                 <li class="list-group-item">
-                  <b>Terdaftar Sejak</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl ?></span>
+                  <b>Terdaftar Sejak</b> <span class="badge-pill bg-primary text-bold float-right"><?= date('d M Y', $tgl); ?></span>
                 </li>
               </ul>
               <!-- <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button> -->
