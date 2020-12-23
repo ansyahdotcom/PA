@@ -102,7 +102,7 @@
                     <li class="nav-header">Bantuan</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/#'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/bantuan'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-question-circle"></i>
                             <p>
                                 FAQ
