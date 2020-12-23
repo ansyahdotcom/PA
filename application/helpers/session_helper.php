@@ -18,7 +18,7 @@
     function cekadm()
     {
         $var_ci = get_instance();
-        if($user['role'] != 1) {
+        if($var_ci->session->userdata('role') != 1) {
             redirect('peserta/dashboard');
             die;
         }
@@ -27,7 +27,7 @@
     function cekpsrt()
     {
         $var_ci = get_instance();
-        if($user['role'] != 2) {
+        if($var_ci->session->userdata('role') != 2) {
             redirect('admin/dashboard');
             die;
         }
