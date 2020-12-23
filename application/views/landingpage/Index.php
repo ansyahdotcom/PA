@@ -3,11 +3,11 @@
 
 
 		<!--  ======================= Awalan Banner=======================  -->
-		<section class="bg-warning py-5">
+		<section class="bg-warning mt-lg-5 py-4 w-100">
 			<div class="container h-100">
 				<div class="row h-100 align-items-center">
 					<div class="col-lg-12">
-					<div class="site-buttons p-5">
+					<div class="site-buttons mt-lg-5 p-5">
 						<div class="d-flex flex-row flex-wrap">
 							<div class="kelas">
 								<h1 class="display-4 title-text">Social Entrepreneurship</h1>
@@ -21,7 +21,9 @@
 									</div>
 								</div>
 							</div>
-							<img src="<?= base_url(); ?>assets/dist/img/banner/instruktur.svg" width="300" alt="gambar kelas" class="img-fluid ml-5">
+							<div class="gambar">
+								<img src="<?= base_url(); ?>assets/dist/img/banner/instruktur.svg" width="300" alt="gambar kelas" class="img-fluid">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -37,8 +39,8 @@
     	<!--  ========================= Awalan About ==========================  -->
 
     	<section class="about-area p-5 mt-5" id="about-area">
-    		<div class="container p-5">
-    			<div class="row p-5">
+    		<div class="container">
+    			<div class="row">
     				<div class="col-lg-6 col-md-12">
     					<div class="about-image">
     						<img src="<?= base_url(); ?>assets/dist/img/about-us.png" alt="About us" class="img-fluid">
@@ -73,7 +75,7 @@
 
     	<section class="program-area">
     		<div class="container-fluid">
-    			<div class="row">
+    			<div class="row justify-content-center">
     				<div class="col-lg-6 col-md-12">
     					<div class="about-image">
     						<img src="<?= base_url(); ?>assets/dist/img/setup.svg" alt="About us" class="img-fluid">

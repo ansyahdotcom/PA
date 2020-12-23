@@ -47,7 +47,7 @@
 <body>
 
 	<div class="container-all">
-		<header class="header_area">
+		<header class="header_area navbar_fixed">
 			<div class="main-menu">
 				<nav class="navbar navbar-expand-lg navbar-light bg-warning">
 					<a class="navbar-brand" href="<?=base_url('home');?>"><img

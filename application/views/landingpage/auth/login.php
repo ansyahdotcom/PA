@@ -1,4 +1,8 @@
-<div class="container">
+<!--  ======================= Awalan Area Utama ================================ -->
+<main class="site-main mt-lg-5">
+
+
+<div class="container  mt-lg-5">
     <div class="row">
         <div class="col-lg-10 col-xl-9 mx-auto">
             <div class="card card-signin flex-row my-5">
@@ -30,3 +34,5 @@
         </div>
     </div>
 </div>
+
+</main>

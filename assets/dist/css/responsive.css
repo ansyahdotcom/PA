@@ -1,5 +1,5 @@
 /* if the viewport is equal to 340px or less than that */
-@media only screen and (max-width: 340px) {
+@media only screen and (max-width: 489px) {
 
 	.header_area .main-menu .navbar,
 	.header_area .main-menu .navbar .navbar-brand,
@@ -13,7 +13,7 @@
 	}
 
 	.site-main .site-banner .site-title h3 {
-		font-size: 41px;
+		font-size: 20px;
 	}
 
 	.site-main .subscribe-us-area .subscribe form .input-textbox input {
@@ -24,6 +24,12 @@
 		width: 13rem;
 	}
 
+	.site-main .program-area .program-title h2>span {
+		display: block;
+		font: normal bold 25px var(--roboto);
+		letter-spacing: 10px;
+	}
+
 }
 
 
@@ -32,6 +38,11 @@
 	.site-main .about-area .about-title h2>span {
 		font-size: 31px;
 		letter-spacing: 10px;
+	}
+
+	.site-main .title-text {
+		font-size: 41px;
+		font: normal bold 39px/ 60px var(--roboto);
 	}
 
 	.site-main .brand-area .experience-area .years-area {
@@ -59,6 +70,12 @@
 	.site-main .subscribe-us-area .subscribe form .input-textbox input {
 		width: 20rem;
 		margin: 5%;
+	}
+
+	.site-main .program-area .program-title h2>span {
+		display: block;
+		font: normal bold 35px var(--roboto);
+		letter-spacing: 10px;
 	}
 }
 

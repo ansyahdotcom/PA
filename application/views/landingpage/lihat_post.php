@@ -1,8 +1,8 @@
-	<?php foreach ($blog as $blg) { ?>
 
 	<main role="main" class="container">
 		<!-- Page Content -->
 		<div class="container">
+		<?php foreach ($blog as $blg) { ?>
 
 			<div class="row">
 
@@ -91,6 +91,7 @@
 			<?php } ?>
 
 			<!--  ========================== Subscribe me Area ============================  -->
+		</div>
 		</div>
 		<section class="newsletter">
 			<div class="container">

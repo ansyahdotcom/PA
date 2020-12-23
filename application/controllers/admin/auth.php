@@ -58,15 +58,15 @@ class Auth extends CI_Controller
 					} 
 				} else {
 					$this->session->set_flashdata('message', 'email/pswwrong');
-					redirect('admin/auth');
+					redirect('authadm');
 				}
 			} else {
 				$this->session->set_flashdata('message', 'emailnotactivate');
-				redirect('admin/auth');
+				redirect('authadm');
 			}
 		} else {
 			$this->session->set_flashdata('message', 'emailnotreg');
-			redirect('admin/auth');
+			redirect('authadm');
 		}
 	}
 
@@ -175,10 +175,10 @@ class Auth extends CI_Controller
 				$this->_sendEmail($token, 'forgot');
 
 				$this->session->set_flashdata('message', 'cekemail');
-				redirect('admin/auth/forgotpsw');
+				redirect('forgotadm');
 			} else {
 				$this->session->set_flashdata('message', 'emailnotreg');
-				redirect('admin/auth/forgotpsw');
+				redirect('forgotadm');
 			}
 		}
 	}
@@ -215,15 +215,15 @@ class Auth extends CI_Controller
 					]);
 
 					$this->session->set_flashdata('message', 'exptoken');
-					redirect('admin/auth');
+					redirect('authadm');
 				}
 			} else {
 				$this->session->set_flashdata('message', 'wrongtoken');
-				redirect('admin/auth');
+				redirect('authadm');
 			}
 		} else {
 			$this->session->set_flashdata('message', 'emailwrong');
-			redirect('admin/auth');
+			redirect('authadm');
 		}
 	}
 
@@ -231,7 +231,7 @@ class Auth extends CI_Controller
 	public function recoverpsw()
 	{
 		if (!$this->session->userdata('reset_email')) {
-			redirect('admin/auth');
+			redirect('authadm');
 		}
 
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|matches[newpassword]', [
@@ -262,7 +262,7 @@ class Auth extends CI_Controller
 			$this->session->unset_userdata('reset_email');
 
 			$this->session->set_flashdata('message', 'Password');
-			redirect('admin/auth');
+			redirect('authadm');
 		}
 	}
 
@@ -272,6 +272,6 @@ class Auth extends CI_Controller
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role');
 		$this->session->set_flashdata('message', 'logout');
-		redirect('admin/auth');
+		redirect('authadm');
 	}
 }

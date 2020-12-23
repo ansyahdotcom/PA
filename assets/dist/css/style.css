@@ -10,6 +10,7 @@
 
 .container-all {
 	overflow: hidden;
+	margin-top: 50px;
 }
 
 html {
@@ -23,7 +24,7 @@ html {
 }
 
 .header_area .main-menu .navbar {
-	padding: 1rem 20rem;
+	padding: 1rem 15rem;
 }
 
 .header_area .main-menu .nav-item .nav-link {
@@ -57,7 +58,7 @@ html {
 } */
 
 .site-main .site-banner .site-title h3 {
-	padding-top: 25%;
+	padding-top: 30%;
 	font-weight: 300;
 }
 
@@ -67,12 +68,15 @@ html {
 	width: 18vw;
 	background: black;
 	display: inline-block;
-	margin-left: 5%;
 	transform: translateY(-10px);
 }
 
 .site-main .site-banner .site-title h1 {
-	font-size: 5rem;
+	font-size: 4rem;
+}
+
+.site-main .site-banner .site-title h3 {
+	font-size: 1rem;
 }
 
 .site-main .site-banner .site-title h4 {

@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body login-card-body">
     <div class="login-logo">
-      <a href="<?= base_url('admin/auth') ?>">
+      <a href="<?= base_url('authadm') ?>">
         <img src="<?= base_url(); ?>assets/dist/img/PA-white.svg" alt="PA Logo" class="brand-image" width="150px" style="opacity: .8">
       </a>
     </div>
@@ -52,7 +52,7 @@
     </form>
 
     <p class="mb-1">
-      <a href="<?= base_url('admin/auth'); ?>">Batal ubah password?</a>
+      <a href="<?= base_url('authadm'); ?>">Batal ubah password?</a>
     </p>
   </div>
   <!-- /.login-card-body -->
