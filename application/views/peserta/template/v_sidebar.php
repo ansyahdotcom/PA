@@ -63,6 +63,14 @@
 
                     <li class="nav-header">Transaksi</li>
                     <li class="nav-item">
+                        <a href="<?= base_url('peserta/webinar'); ?>" class="nav-link <?php if($this->uri->segment(2)=="webinar"){echo "active";}?>">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Daftar Webinar Baru
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
