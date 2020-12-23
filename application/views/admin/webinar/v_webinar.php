@@ -18,11 +18,14 @@
 		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 	</div>
 	<!-- /.content-header -->
-
 	<!-- Main content -->
 	<section class="content">
 		<div class="card-header">
 			<div class="text-right">
+				<!-- dilihat tampilan webinarnya sebelum diposting -->
+				<a class="btn btn-secondary"
+					href="<?= base_url('webinar'); ?>"><i class="fas fa-eye"></i>
+					Pratinjau</a>
 				<a class="btn btn-primary" href="<?= base_url('admin/webinar/tambah_webinar'); ?>"><i
 						class="fas fa-plus"></i>
 					Tambah Webinar</a>
@@ -68,23 +71,6 @@
 											<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_WEB))); ?>
 										</td>
 									</tr>
-									<!-- <tr>
-										<td><b>Fasilitas</b> &nbsp;</td>
-										<td for="NM_FA">:&nbsp;
-											<?php 
-                                                    $queryy = $this->db->query("SELECT detail_fasilitas.ID_FA, fasilitas.NM_FA 
-                                                                    FROM detail_fasilitas, fasilitas, webinar
-                                                                WHERE fasilitas.ID_FA = detail_fasilitas.ID_FA
-                                                                AND detail_fasilitas.ID_WEBINAR = webinar.ID_WEBINAR
-                                                                AND webinar.ID_WEBINAR = '$ID_WEBINAR'"); 
-                                                    $i = 1;
-                                                    foreach ($queryy->result() as $que) {
-                                                        echo $que->NM_FA;
-                                                        echo $i == count((array) $queryy->result()) ? '' : ', ';
-                                                        $i++; }
-                                                    ?>
-										</td>
-									</tr> -->
 								</table>
 							</div>
 						</div>
@@ -112,10 +98,6 @@
 								<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';
 							}
 							?>
-							<!-- dilihat tampilan webinarnya sebelum diposting -->
-							<a class="btn btn-secondary btn-sm btn-round"
-								href="<?= base_url('admin/webinar/pratinjau/' . $wbnr->ID_WEBINAR); ?>"><i
-									class="fas fa-eye"></i> Pratinjau</a>
 
 							<!-- edit artikel -->
 							<a href="<?= base_url('admin/webinar/edit/' . $wbnr->JUDUL_WEBINAR); ?>">
@@ -135,10 +117,6 @@
 		<?php } ?>
 	</section>
 </div>
-</div>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
 
 <!-- modal posting -->
 <?php

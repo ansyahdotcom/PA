@@ -100,9 +100,6 @@ class Blog extends CI_Controller
         $this->form_validation->set_rules('JUDUL_POST', 'judul', 'required|trim', [
             'required' => 'Kolom judul harus diisi!'
         ]);
-        $this->form_validation->set_rules('FOTO_POST', 'Foto', 'required|trim', [
-            'required' => 'Kolom foto harus diisi!'
-        ]);
         $this->form_validation->set_rules('KONTEN_POST', 'Konten', 'required|trim', [
             'required' => 'Kolom konten harus diisi!'
         ]);
@@ -125,7 +122,7 @@ class Blog extends CI_Controller
             $KONTEN_POST = $this->input->post('KONTEN_POST');
             $TGL_POST = date('Y-m-d');
             $UPDT_TRAKHIR = date('Y-m-d');
-            // untuk upload proposal
+            // untuk upload foto blog
             $config['upload_path']          = './assets/fotoblog/';
             $config['allowed_types']        = 'jpg|jpeg|JPG';
             $config['max_size']             = 0;
@@ -138,13 +135,15 @@ class Blog extends CI_Controller
                 $upload_data = $this->upload->data();
                 //Compress Image buat foto web
                 $config['image_library'] = 'gd2';
+                $config['width'] = 1600;
+                $config['height'] = 900;
                 $config['source_image'] = './assets/fotoblog/' . $upload_data['file_name'];
                 $config['create_thumb'] = FALSE;
                 $config['maintain_ratio'] = FALSE;
-                $config['quality'] = '50%';
-                $config['width'] = 160;
-                $config['height'] = 130;
-                $config['new_image'] = './assets/fotoblog/fotoweb/' . $upload_data['file_name'];
+                $config['quality'] = '100%';
+                $config['width'] = 600;
+                $config['height'] = 400;
+                $config['new_image'] = './assets/fotoblog/fotoweb/'. $upload_data['file_name'];
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
 
@@ -169,8 +168,6 @@ class Blog extends CI_Controller
                     $this->m_blog->insert($dt_tags, 'detail_tags');
                 }
 
-
-                // $this->session->set_flashdata('message', 'blSuccess');
                 $this->session->set_flashdata('message', 'save');
                 redirect('admin/blog');
             } else {
@@ -240,6 +237,12 @@ class Blog extends CI_Controller
         $where = array(
             'ID_POST' => $ID_POST
         );
+        $sql = $this->db->query("SELECT FOTO_POST FROM post WHERE ID_POST = '$ID_POST'");
+        foreach ($sql->result() as $row){
+            $FOTO_POST = $row->FOTO_POST;
+        }
+        unlink(FCPATH. 'assets/fotoblog/'. $FOTO_POST);
+        unlink(FCPATH. 'assets/fotoblog/fotoweb/'. $FOTO_POST);
         $this->m_blog->delete($where, 'detail_tags');
         $this->m_blog->delete($where, 'post');
         $this->session->set_flashdata('message', 'hapus');
@@ -277,42 +280,103 @@ class Blog extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-
+        
         $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
         $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
         $JUDUL_POST = htmlspecialchars($this->input->post('JUDUL_POST'));
         $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
         $ID_TAGS = $this->input->post('ID_TAGS');
-        // $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
-        $KONTEN_POST = htmlspecialchars($this->input->post('KONTEN_POST'));
-        $TGL_POST = date('Y-m-d');
+        $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
+        $HAPUS_FOTO = $this->input->post('HAPUS_FOTO');
+        $KONTEN_POST = $this->input->post('KONTEN_POST');
+        $ST_POST = 0;
+        // $TGL_POST = date('Y-m-d');
         $UPDT_TRAKHIR = date('Y-m-d');
+        // untuk upload foto blog
+        $config['upload_path']          = './assets/fotoblog/';
+        $config['allowed_types']        = 'jpg|jpeg|JPG';
+        $config['max_size']             = 0;
+        // $config['encrypt_name']         = true;
 
-        $where = array('ID_POST' => $ID_POST);
+        $this->load->library('upload');
+        $this->upload->initialize($config);
 
-        $data = array(
-            'JUDUL_POST' => str_replace(' ', '-', $JUDUL_POST),
-            'ID_ADM' => $ID_ADM,
-            'ID_CT' => $ID_CT,
-            // 'FOTO_POST' => $FOTO_POST,
-            'KONTEN_POST' => $KONTEN_POST,
-            'TGL_POST' => $TGL_POST,
-            'UPDT_TRAKHIR' => $UPDT_TRAKHIR
-        );
-
-        $this->m_blog->update($where, $data, 'post');
-        $this->m_blog->delete($where, 'detail_tags');
-
-        for ($i = 0; $i < count($ID_TAGS); $i++) {
-            $dt_tags = array(
-                'ID_POST' => $ID_POST,
-                'ID_TAGS' => $ID_TAGS[$i]
+        if ($FOTO_POST != $HAPUS_FOTO){
+            if ($this->upload->do_upload('FOTO_POST')) {
+                $upload_data = $this->upload->data();
+                //Compress Image buat foto web
+                unlink(FCPATH. 'assets/fotoblog/'. $HAPUS_FOTO);
+                unlink(FCPATH. 'assets/fotoblog/fotoweb/'. $HAPUS_FOTO);
+                $config['image_library'] = 'gd2';
+                $config['width'] = 1600;
+                $config['height'] = 900;
+                $config['source_image'] = './assets/fotoblog/' . $upload_data['file_name'];
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '100%';
+                $config['width'] = 600;
+                $config['height'] = 400;
+                $config['new_image'] = './assets/fotoblog/fotoweb/'. $upload_data['file_name'];
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+    
+            $where = array('ID_POST' => $ID_POST);
+    
+            $data = array(
+                'JUDUL_POST' => str_replace(' ', '-', $JUDUL_POST),
+                'ID_ADM' => $ID_ADM,
+                'ID_CT' => $ID_CT,
+                'FOTO_POST' => $upload_data['file_name'],
+                'KONTEN_POST' => $KONTEN_POST,
+                // 'TGL_POST' => $TGL_POST,
+                'UPDT_TRAKHIR' => $UPDT_TRAKHIR,
+                'ST_POST' => $ST_POST
             );
-            $this->m_blog->insert($dt_tags, 'detail_tags');
+    
+            $this->m_blog->update($where, $data, 'post');
+            $this->m_blog->delete($where, 'detail_tags');
+    
+            for ($i = 0; $i < count($ID_TAGS); $i++) {
+                $dt_tags = array(
+                    'ID_POST' => $ID_POST,
+                    'ID_TAGS' => $ID_TAGS[$i]
+                );
+                $this->m_blog->insert($dt_tags, 'detail_tags');
+            }
+    
+            $this->session->set_flashdata('message', 'edit');
+            redirect('admin/blog');
+            } else {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('admin/blog', $error);
+            }
+        } else {
+            $where = array('ID_POST' => $ID_POST);
+    
+            $data = array(
+                'JUDUL_POST' => str_replace(' ', '-', $JUDUL_POST),
+                'ID_ADM' => $ID_ADM,
+                'ID_CT' => $ID_CT,
+                // 'FOTO_POST' => $upload_data['file_name'],
+                'KONTEN_POST' => $KONTEN_POST,
+                // 'TGL_POST' => $TGL_POST,
+                'UPDT_TRAKHIR' => $UPDT_TRAKHIR
+            );
+    
+            $this->m_blog->update($where, $data, 'post');
+            $this->m_blog->delete($where, 'detail_tags');
+    
+            for ($i = 0; $i < count($ID_TAGS); $i++) {
+                $dt_tags = array(
+                    'ID_POST' => $ID_POST,
+                    'ID_TAGS' => $ID_TAGS[$i]
+                );
+                $this->m_blog->insert($dt_tags, 'detail_tags');
+            }
+    
+            $this->session->set_flashdata('message', 'edit');
+            redirect('admin/blog');
         }
-
-        $this->session->set_flashdata('message', 'edit');
-        redirect('admin/blog');
     }
 
     // pratinjau / lihat post / lihat artikel

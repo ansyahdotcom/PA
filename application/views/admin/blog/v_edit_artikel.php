@@ -65,6 +65,7 @@
 										<img src="<?= base_url(); ?>assets/fotoblog/<?= $blg->FOTO_POST; ?>" class="card-img-top" alt="gambar-foto">
 										<div class="card-body">
 											<h6 class="card-title"><?=$blg->FOTO_POST;?></h6>
+											<input type="hidden" name="HAPUS_FOTO" value="<?= $blg->FOTO_POST; ?>">
 										</div>
 									</div>
 									</div>
@@ -91,7 +92,7 @@
 											<i class="glyphicon glyphicon-download-alt"></i>
 											<div>Pilih file gambar atau seret gambar kesini .</div>
 										</div>
-										<input type="file" name="image" value="<?=$blg->FOTO_POST;?>" class="dropzone" />
+										<input type="file" name="FOTO_POST" value="<?= $blg->FOTO_POST; ?>" class="dropzone" />
 										</div>
 									</div>
 									</div>

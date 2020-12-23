@@ -45,7 +45,7 @@
                 <a href="<?=base_url('home')?>"><img src="<?= base_url();?>assets/dist/img/logo.png" width="130" alt="logo"></a>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="">Preneur Blog</a>
+                <a class="blog-header-logo text-dark" href="">Preneur Academy Blog</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="text-muted" href="#" aria-label="Search">
