@@ -1,11 +1,14 @@
+<!--  ======================= Awalan Area Utama ================================ -->
+<main class="site-main mt-lg-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-xl-9 mx-auto">
                     <div class="card card-signin flex-row my-5">
-                        <div class="card-img-left d-none d-md-flex">
+                        <div class="col-md-6 card-img-left d-none d-md-flex">
+                            <img src="<?= base_url('assets/dist/img/combi.svg'); ?>" class="card-img" width="50" alt="gambar">
                         </div>
                         <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
-                        <div class="card-body">
+                        <div class="card-body col-md-6">
                             <h5 class="card-title text-center">Lupa Kata Sandi</h5>
                             <form class="form-signin text-center" action="<?= base_url('peserta/auth/lupapsw'); ?>" method="POST">
                                 <img src="<?= base_url(); ?>assets/dist/img/forgot.svg" width="150" alt="lupasandi">
@@ -26,3 +29,4 @@
                 </div>
             </div>
         </div>
+</main>

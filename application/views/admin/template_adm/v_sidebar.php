@@ -271,7 +271,7 @@
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link 
-                        <?php if ($this->uri->segment(2) == "peserta" || $this->uri->segment(2) == "kelas" || $this->uri->segment(2) == "ktgkelas") {
+                        <?php if ($this->uri->segment(2) == "peserta" || $this->uri->segment(2) == "ktgkelas") {
                             echo "active";
                         } ?>">
                             <i class="nav-icon fas fa-database"></i>

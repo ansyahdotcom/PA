@@ -1,7 +1,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-light-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="<?= base_url('landingpage/auth'); ?>" class="brand-link">
+        <a href="<?= base_url('peserta/dashboard'); ?>" class="brand-link">
             <img src="<?= base_url(); ?>assets/dist/img/PA02.jpg" alt="PA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="text-uppercase">Preneur Academy</span>
         </a>
@@ -98,19 +98,19 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="<?= base_url('peserta/#'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-tasks"></i>
                             <p>
                                 Proyek
                             </p>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="nav-header">Bantuan</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/bantuan'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/faq'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-question-circle"></i>
                             <p>
                                 FAQ
@@ -119,7 +119,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/#'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/ketentuan'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-gavel"></i>
 
                             <p>

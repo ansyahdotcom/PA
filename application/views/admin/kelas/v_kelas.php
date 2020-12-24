@@ -76,16 +76,16 @@
 										<?php } ?>
 									</td>
 									<td class="text-center">
-										<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-detail<?= $id; ?>"><i class="fas fa-edit"></i>
+										<button class="btn btn-sm btn-primary m-2" data-toggle="modal" data-target="#modal-detail<?= $id; ?>"><i class="fas fa-edit"></i>
 											<b>Detail</b></button>
-										<a class="btn btn-sm btn-warning" type="button" href="<?= base_url('admin/materi/materikelas/') . $id; ?>"><i class="fas fa-edit"></i> <b>Materi</b></a>
-										<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><i class="fas fa-trash"></i>
+										<a class="btn btn-sm btn-warning m-2" type="button" href="<?= base_url('admin/materi/materikelas/') . $id; ?>"><i class="fas fa-edit"></i> <b>Materi</b></a>
+										<button class="btn btn-sm btn-danger m-2" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><i class="fas fa-trash"></i>
 											<b>Hapus</b></button>
 										<?php if ($status == 1) { ?>
-											<button class="btn btn-sm btn-dark" data-toggle="modal" data-target="#modal-blok<?= $id; ?>"><i class="fas fa-save"></i>
+											<button class="btn btn-sm btn-dark m-2" data-toggle="modal" data-target="#modal-blok<?= $id; ?>"><i class="fas fa-save"></i>
 												<b>Draft</b></button>
 										<?php } elseif ($status == 0) { ?>
-											<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-unblok<?= $id; ?>"><i class="fas fa-arrow-circle-up"></i>
+											<button class="btn btn-sm btn-success m-2" data-toggle="modal" data-target="#modal-unblok<?= $id; ?>"><i class="fas fa-arrow-circle-up"></i>
 												<b>Publish</b></button>
 										<?php } ?>
 									</td>

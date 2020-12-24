@@ -1,10 +1,13 @@
-<div class="container mt-lg-5">
+<!--  ======================= Awalan Area Utama ================================ -->
+<main class="site-main mt-lg-5">
+<div class="container">
     <div class="row">
         <div class="col-lg-10 col-xl-9 mx-auto">
-            <div class="card card-signin flex-row my-5">
-                <div class="card-img-left d-none d-md-flex">
-                </div>
-                <div class="card-body">
+            <div class="card row card-signin flex-row my-5">
+                    <div class="col-md-6 card-img-left d-none d-md-flex">
+                        <img src="<?= base_url('assets/dist/img/combi.svg'); ?>" class="card-img" width="50" alt="gambar">
+                    </div>
+                    <div class="card-body col-md-6">
                     <h5 class="card-title text-center">Daftar Akun</h5>
                     <form class="form-signin" method="POST" action="<?= base_url('peserta/auth/register'); ?>">
                         <div>
@@ -47,3 +50,4 @@
         </div>
     </div>
 </div>
+</main>
