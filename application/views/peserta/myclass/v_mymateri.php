@@ -76,7 +76,7 @@
 								<div class="card-header">
 									<h1 class="card-title mt-2"><i class="<?= $i['ICON_TG']?> fa-lg mr-2"></i> <?= $i['NM_TG'];?></h1>
 									<div class="card-tools pb-2">
-										<a href="" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_tg<?=$id_tg;?>">
+										<a href="<?=base_url()?>peserta/tugas/detail/<?=$id_tg?>" class="btn btn-warning">
 											<i class="fas fa-eye"></i> Detail
 										</a>
 									</div>
