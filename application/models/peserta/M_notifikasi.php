@@ -1,11 +1,12 @@
 <?php
     class M_notifikasi extends CI_Model
     {
-        public function get_not()
+        public function get_not($id_ps)
         {
             $this->db->select('*');
             $this->db->from('notif');
             $this->db->where('ST_NOT', 1);
+            $this->db->where('GLOBAL_ID', $id_ps);
             $this->db->order_by('ID_NOT', 'DESC');
             return $this->db->get()->result_array();
         }
@@ -21,28 +22,33 @@
             return $this->db->get()->row_array();
         }
 
-        public function not_kosong()
+        public function not_kosong($id_ps)
         {
-            return $this->db->get('notif')->num_rows();
+            return $this->db->get_where('notif', [
+                'GLOBAL_ID' => $id_ps
+            ])->num_rows();
         }
 
-        public function jml_not()
+        public function jml_not($id_ps)
         {
             $this->db->select('*');
             $this->db->from('notif');
             $this->db->where('IS_READ', 0);
             $this->db->where('ST_NOT', 1);
+            $this->db->where('GLOBAL_ID', $id_ps);
             $this->db->order_by('ID_NOT', 'DESC');
             return $this->db->get()->result_array();
         }
 
-        public function msg_not($limit, $start)
+        public function msg_not($limit, $start, $id_ps)
         {
             $this->db->select('*');
             $this->db->from('notif');
             $this->db->where('IS_READ', 0);
             $this->db->where('ST_NOT', 1);
+            $this->db->where('GLOBAL_ID', $id_ps);
             $this->db->order_by('ID_NOT', 'DESC');
+            $this->db->limit($limit, $start);
             return $this->db->get()->result_array();
         }
 

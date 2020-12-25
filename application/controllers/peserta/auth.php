@@ -50,6 +50,7 @@ class Auth extends CI_Controller
 			if ($user['ACTIVE'] == 1) {
 				if (password_verify($password, $user['PSW_PS'])) {
 					$data = [
+						'id_ps' => $user['ID_PS'],
 						'email' => $user['EMAIL_PS'],
 						'name' => $user['NM_PS'],
 						'role' => $user['ID_ROLE']
@@ -251,7 +252,7 @@ class Auth extends CI_Controller
 				'GLOBAL_ID' => $name['user']['ID_PS'],
 				'TITTLE_NOT' => 'Selamat datang!',
 				'MSG_NOT' => 'Selamat bergabung di Preneur Academy',
-				'LINK' => 'peserta/profile',
+				'LINK' => 'peserta/profil',
 				'IS_READ' => 0,
 				'ST_NOT' => 1,
 				'DATE_NOT' => date('Y-m-d H:i:s', time())	
