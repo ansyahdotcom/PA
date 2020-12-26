@@ -34,9 +34,11 @@
 
               <h3 class="profile-username text-center text-bold"><?= $admin['NM_ADM']; ?></h3>
               <?php
-              if ($admin['DATE_ADM'] == 0) {
+              if ($admin['DATE_ADM'] == 0) :
                 $tgl = "--";
-              }
+              else :
+                $tgl = date('d M Y', $admin['DATE_ADM']);
+              endif;
               ?>
 
               <ul class="list-group">
@@ -44,7 +46,7 @@
                   <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $admin['ROLE'] ?></span>
                 </li>
                 <li class="list-group-item">
-                  <b>Terdaftar Sejak</b> <span class="badge-pill bg-primary text-bold float-right"><?= date('d M Y', $tgl); ?></span>
+                  <b>Terdaftar Sejak</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl; ?></span>
                 </li>
               </ul>
               <!-- <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button> -->
