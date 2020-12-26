@@ -95,8 +95,8 @@
 							<div class="card-footer">
 								<div class="text-right">
 									<span class="btn btn-sm bg-teal text-bold">
-										<i class="fas fa-money-check"></i> Rp.
-										<?= number_format($harga, 0, ".", "."); ?>
+										<i class="fas fa-money-check"></i> 
+										Rp. <?= number_format($harga, 0, ".", "."); ?>
 									</span>
 									<button class="btn btn-sm btn-primary beli" id="<?= $id; ?>" data-toggle="modal"
 										data-target="#cekout<?= $id; ?>">

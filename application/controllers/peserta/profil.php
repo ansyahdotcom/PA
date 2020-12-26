@@ -49,9 +49,9 @@ class Profil extends CI_Controller
             'required' => 'kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('kotaasal', 'Asal', 'required|trim', [
-            'required' => 'kolom ini harus diisi'
-        ]);
+        // $this->form_validation->set_rules('kotaasal', 'Asal', 'required|trim', [
+        //     'required' => 'kolom ini harus diisi'
+        // ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view("peserta/template/v_header", $data);
@@ -66,7 +66,7 @@ class Profil extends CI_Controller
             $jeniskelamin = htmlspecialchars($this->input->post('jk'));
             $pekerjaan = htmlspecialchars($this->input->post('pekerjaan'));
             $agama = htmlspecialchars($this->input->post('agama'));
-            $kota = htmlspecialchars($this->input->post('kotaasal'));
+            // $kota = htmlspecialchars($this->input->post('kotaasal'));
 
             /** Proses Edit Gambar */
             $upload_image = $_FILES['image']['name'];
@@ -97,10 +97,12 @@ class Profil extends CI_Controller
                 'JK_PS' => $jeniskelamin,
                 'PEKERJAAN' => $pekerjaan,
                 'AGAMA_PS' => $agama,
-                'KOTA' => $kota,
+                // 'KOTA' => $kota,
             ];
+
+            $id_ps = $data['peserta']['ID_PS'];
             $get = $this->db->get_where('peserta', ['ID_PS' => $id_ps])->row();
-            unlink(FCPATH. 'assets/dist/img/peserta' .$get->FILE_SUB);
+            unlink(FCPATH. 'assets/dist/img/peserta/' . $get->FILE_SUB);
             $this->db->set($edit);
             $this->db->where('EMAIL_PS', $email);
             $this->db->update('peserta');

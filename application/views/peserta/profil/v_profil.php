@@ -97,19 +97,19 @@
                       </div>
                       <input type="text" class="form-control" id="nm" name="nmps" placeholder="Nama Lengkap" value="<?= $peserta['NM_PS']; ?>" disabled>
                     </div>
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-3">
                       <?= form_error('nmps', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="email" class="col-sm-3 col-form-label">Email</label>
                     <div class="input-group mb-1 col-sm-9">
-                      <div class="input-group-prepend">
+                      <div class="input-group-prepend"> 
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                       </div>
                       <input type="email" class="form-control" id="em" name="email" placeholder="Email" value="<?= $peserta['EMAIL_PS']; ?>" disabled>
                     </div>
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-3">
                       <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
@@ -121,19 +121,19 @@
                       </div>
                       <input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="<?= $peserta['HP_PS']; ?>" disabled>
                     </div>
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-3">
                       <?= form_error('hp', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="alamat" class="col-sm-3 col-form-label">Alamat Domisili</label>
+                    <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                     <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                       </div>
                       <input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat" value="<?= $peserta['ALMT_PS']; ?>" disabled>
                     </div>
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-3">
                       <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
@@ -149,7 +149,7 @@
                         <option value="Perempuan" <?= $peserta['JK_PS'] == "Perempuan" ? "selected" : "" ?>>Perempuan</option>
                       </select>
                     </div>
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-3">
                       <?= form_error('jk', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
@@ -171,7 +171,7 @@
                       </select>
                       <!-- <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan" value="<?= $peserta['PEKERJAAN']; ?>" disabled> -->
                     </div>
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-3">
                       <?= form_error('pekerjaan', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
@@ -191,11 +191,11 @@
                         <option value="Konghucu" <?= $peserta['AGAMA_PS'] == "Konghucu" ? "selected" : "" ?>>Konghucu</option>
                       </select>
                     </div>
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-3">
                       <?= form_error('agama', '<small class="text-danger">', '</small>'); ?>
                     </div>
                   </div>
-                  <div class="form-group row">
+                  <!-- <div class="form-group row">
                     <label for="kotaasal" class="col-sm-3 col-form-label">Kota Asal</label>
                     <div class="input-group mb-1 col-sm-9">
                       <div class="input-group-prepend">
@@ -203,10 +203,10 @@
                       </div>
                       <input type="text" class="form-control" id="kota" name="kotaasal" placeholder="Kota Asal" value="<?= $peserta['KOTA']; ?>" disabled>
                     </div>
-                    <div class="offset-sm-2">
+                    <div class="offset-sm-3">
                       <?= form_error('kotaasal', '<small class="text-danger">', '</small>'); ?>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group row">
                     <div class="offset-sm-3 col-sm-9">
                       <button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
