@@ -58,6 +58,8 @@
 						$gambar = $k['GBR_KLS'];
 						$deskripsi = $k['DESKRIPSI'];
 						$ktg = $k['KTGKLS'];
+						$tgl_daftar = strtotime($k['TGL_PENDAFTARAN']);
+						$tgl_penutupan = strtotime($k['TGL_PENUTUPAN']);
 					?>
 						<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
 							<div class="card bg-light">
@@ -98,56 +100,99 @@
                                             </ul> -->
 										</div>
 									</div>
+									<div class="row pt-2">
+										<span class="btn btn-outline-dark text-justify text-bold btn-block">
+											<div class="col-md-12">
+												<i class="far fa-calendar-check pr-2"></i>
+												Pendaftaran: <?= date('d F Y', $tgl_daftar); ?> - <?= date('d F Y', $tgl_penutupan); ?>
+											</div>
+										</span>
+									</div>
+									<div class="row pt-2">
+										<span class="btn btn-outline-dark text-justify text-bold btn-block">
+											<div class="col-md-12">
+												<i class="fas fa-user-tie pr-2"></i>
+												Jumlah Pendaftar: <?= $pendaftar; ?>
+											</div>
+										</span>
+									</div>
+									<div class="row pt-2">
+										<span class="btn btn-outline-dark text-justify text-bold btn-block">
+											<div class="col-md-12">
+												<i class="fas fa-users pr-2"></i>
+												Sisa Kuota: <?= 50 - $pendaftar; ?>
+											</div>
+										</span>
+									</div>
 								</div>
 								<div class="card-footer">
+									<?php
+										$tgl = date('Y-m-d', time());
+										$tgl_now = strtotime($tgl);
+									?>
 									<div class="text-center">
-										<?php if ($peserta['STATUS_BELI'] == 200) : ?>
-											<div class="row pt-2">
+										<?php if ($tgl_daftar > $tgl_now) : ?>
+											<div class="row">
 												<div class="col-md-12">
-													<span class="btn btn-sm btn-success text-bold btn-block">
-														<div class="text-justify">
+													<span class="btn btn-sm btn-info text-bold btn-block">
+														<div class="text-center">
 															<i class="fas fa-info pr-2"> </i>
-															Anda sudah melakukan pembelian kelas, mohon selesaikan kelas anda terlebih dahulu untuk dapat mendaftar ke kelas lainnya.
+															Kelas ini belum membuka pendaftaran
+														</div>
+													</span>
+												</div>
+											</div>
+										<?php elseif ($tgl_penutupan < $tgl_now) : ?>
+											<div class="row">
+												<div class="col-md-12">
+													<span class="btn btn-sm btn-danger text-bold btn-block">
+														<div class="text-center">
+															<i class="fas fa-ban pr-2"> </i>
+															Pendaftaran kelas ini telah di tutup
 														</div>
 													</span>
 												</div>
 											</div>
 										<?php else : ?>
-										<div class="row">
-											<div class="col-md-12">
-												<span class="btn btn-sm btn-dark text-bold btn-block">
-													<i class="fas fa-user-tie"> </i>
-													Jumlah pendaftar: <?= $pendaftar; ?> | <i class="fas fa-users"> </i>
-													Sisa kuota: <?= 50 - $pendaftar; ?>
-												</span>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6 pt-2">
-												<span class="btn btn-sm bg-teal text-bold btn-block">
-													<i class="fas fa-money-check"></i>
-													Rp. <?= number_format($harga, 0, ".", "."); ?>
-												</span>
-											</div>
-											<?php
-											if ($pendaftar == 50) :
-												$btn = "btn-danger";
-												$stts_btn = "disabled";
-												$text = "Kuota Habis";
-												$icon = "fas fa-ban";
-											else :
-												$btn = "btn-primary";
-												$stts_btn = "";
-												$text = "Beli Kelas";
-												$icon = "fas fa-cart-plus";
-											endif;
-											?>
-											<div class="col-md-6 pt-2">
-												<button class="btn btn-sm <?= $btn; ?> beli btn-block" id="<?= $id; ?>" data-toggle="modal" data-target="#cekout<?= $id; ?>" <?= $stts_btn; ?>>
-													<i class="<?= $icon; ?>"></i> <?= $text; ?>
-												</button>
-											</div>
-										</div>
+											<?php if ($peserta['STATUS_BELI'] == 200) : ?>
+												<div class="row">
+													<div class="col-md-12">
+														<span class="btn btn-sm btn-success text-bold btn-block">
+															<div class="text-justify">
+																<i class="fas fa-info pr-2"> </i>
+																Anda sudah melakukan pembelian kelas, mohon selesaikan kelas anda terlebih dahulu untuk dapat mendaftar ke kelas lainnya.
+															</div>
+														</span>
+													</div>
+												</div>
+											<?php else : ?>
+												<div class="row">
+													<div class="col-md-6 pt-2">
+														<span class="btn btn-sm bg-teal text-bold btn-block">
+															<i class="fas fa-money-check"></i>
+															Rp. <?= number_format($harga, 0, ".", "."); ?>
+														</span>
+													</div>
+													<?php
+													if ($pendaftar == 50) :
+														$btn = "btn-danger";
+														$stts_btn = "disabled";
+														$text = "Kuota Habis";
+														$icon = "fas fa-ban";
+													else :
+														$btn = "btn-primary";
+														$stts_btn = "";
+														$text = "Beli Kelas";
+														$icon = "fas fa-cart-plus";
+													endif;
+													?>
+													<div class="col-md-6 pt-2">
+														<button class="btn btn-sm <?= $btn; ?> beli btn-block" id="<?= $id; ?>" data-toggle="modal" data-target="#cekout<?= $id; ?>" <?= $stts_btn; ?>>
+															<i class="<?= $icon; ?>"></i> <?= $text; ?>
+														</button>
+													</div>
+												</div>
+											<?php endif; ?>
 										<?php endif; ?>
 									</div>
 								</div>
