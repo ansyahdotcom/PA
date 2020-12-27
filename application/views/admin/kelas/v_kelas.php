@@ -144,19 +144,34 @@
 								<select name="ktg" class="custom-select slct-ktg" required>
 
 								</select>
+								<?= form_error('ktg', '<small class="text-danger">', '</small>'); ?>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="tgl_mulai">Tanggal Mulai</label>
+								<label for="tgl_mulai">Tanggal Pembukaan Pendaftaran</label>
+								<input class="form-control" type="date" name="tgl_daftar">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="tgl_mulai">Tanggal Penutupan Pendaftaran</label>
+								<input class="form-control" type="date" name="tgl_penutupan">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="tgl_mulai">Tanggal Mulai Kelas</label>
 								<input class="form-control" type="date" name="tgl_mulai">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="tgl_selesai">Tanggal Selesai</label>
+								<label for="tgl_selesai">Tanggal Selesai Kelas</label>
 								<input class="form-control" type="date" name="tgl_selesai">
 							</div>
 						</div>
@@ -166,7 +181,9 @@
 							<div class="form-group">
 								<label for="lok_kls">Lokasi</label>
 								<select name="lok_kls" id="lok_kls" class="form-control">
+									<option value="" selected>--Pilih--</option>
 									<option value="Online Class">Online Class</option>
+									<option value="Offline Class">Offline Class</option>
 								</select>
 							</div>
 						</div>
@@ -174,11 +191,10 @@
 							<div class="form-group">
 								<label for="hari">Hari Pelaksanaan</label>
 								<select name="hari" id="hari" class="form-control">
+									<option value="" selected>--Pilih--</option>
 									<option value="3 Hari (Senin-Rabu)">3 Hari (Senin-Rabu)</option>
 									<option value="4 Hari (Senin-Kamis)">4 Hari (Senin-Kamis)</option>
 									<option value="5 Hari (Senin-Jumat)">5 Hari (Senin-Jumat)</option>
-									<option value="6 Hari (Senin-Sabtu)">6 Hari (Senin-Sabtu)</option>
-									<option value="7 Hari (Senin-Minggu)">7 Hari (Senin-Minggu)</option>
 								</select>
 							</div>
 						</div>
@@ -186,14 +202,14 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="jam_mulai">Jam Mulai</label>
-								<input class="form-control" type="text" autocomplete="off" required placeholder="Contoh 08.00">
+								<label for="jam_mulai">Jam Mulai Kelas</label>
+								<input class="form-control" type="text" name="jam_mulai" autocomplete="off" required placeholder="Contoh 08:00">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="jam_selesai">Jam Selesai</label>
-								<input class="form-control" type="text" autocomplete="off" required placeholder="Contoh 11.00">
+								<label for="jam_selesai">Jam Selesai Kelas</label>
+								<input class="form-control" type="text" name="jam_selesai" autocomplete="off" required placeholder="Contoh 13:00">
 							</div>
 						</div>
 					</div>
@@ -217,19 +233,19 @@
 							</div>
 						</div>
 						<!-- <div class="col-md-6 row-diskon" hidden>
-				<div class="form-group">
-				<label for="diskon">Diskon</label>
-				<select name="diskon" id="inkls" class="custom-select slct-diskon" disabled>
+							<div class="form-group">
+							<label for="diskon">Diskon</label>
+							<select name="diskon" id="inkls" class="custom-select slct-diskon" disabled>
 
-				</select>
-				</div>
-			</div> -->
+							</select>
+							</div>
+						</div> -->
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="hp">Link Kelas</label>
-								<input type="text" class="form-control" name="link" placeholder="link" required>
+								<input type="text" class="form-control" autocomplete="off" name="link" placeholder="link" required>
 								<?= form_error('link', '<small class="text-danger">', '</small>'); ?>
 							</div>
 						</div>
@@ -261,6 +277,8 @@
 <?php foreach ($kelas as $k) :
 	$id = $k['ID_KLS'];
 	$namakls = $k['TITTLE'];
+	$tgl_daftar = $k['TGL_PENDAFTARAN'];
+	$tgl_penutupan = $k['TGL_PENUTUPAN'];
 	$tgl_mulai = $k['TGL_MULAI'];
 	$tgl_selesai = $k['TGL_SELESAI'];
 	$lok_kls = $k['LOK_KLS'];
@@ -352,28 +370,54 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-6 tgl_mulai1">
+							<div class="col-md-6 tgl_daftar1">
 								<div class="form-group">
-									<label for="tgl_mulai1">Tanggal Mulai</label>
-									<input type="text" class="form-control" name="tgl_mulai1" value="<?= date('d F Y', strtotime($tgl_mulai)); ?>" disabled>
+									<label for="tgl_daftar1">Tanggal Pembukaan Pendaftaran</label>
+									<input type="text" class="form-control" name="tgl_daftar1" value="<?= date('d F Y', strtotime($tgl_daftar)); ?>" disabled>
 								</div>
 							</div>
-							<div class="col-md-6 tgl_mulai" hidden>
+							<div class="col-md-6 tgl_penutupan1">
 								<div class="form-group">
-									<label for="tgl_mulai">Tanggal Mulai</label>
-									<input type="date" class="form-control" name="tgl_mulai" required>
+									<label for="tgl_mulai1">Tanggal Penutupan Pendaftaran</label>
+									<input type="text" class="form-control" name="tgl_daftar1" value="<?= date('d F Y', strtotime($tgl_penutupan)); ?>" disabled>
+								</div>
+							</div>
+							<div class="col-md-6 tgl_daftar" hidden>
+								<div class="form-group">
+									<label for="tgl_daftar">Tanggal Pembukaan Pendaftaran</label>
+									<input type="date" class="form-control" name="tgl_daftar">
+								</div>
+							</div>
+							<div class="col-md-6 tgl_penutupan" hidden>
+								<div class="form-group">
+									<label for="tgl_penutupan">Tanggal Penutupan Pendaftaran</label>
+									<input type="date" class="form-control" name="tgl_penutupan">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 tgl_mulai1">
+								<div class="form-group">
+									<label for="tgl_mulai1">Tanggal Mulai Kelas</label>
+									<input type="text" class="form-control" name="tgl_mulai1" value="<?= date('d F Y', strtotime($tgl_mulai)); ?>" disabled>
 								</div>
 							</div>
 							<div class="col-md-6 tgl_selesai1">
 								<div class="form-group">
-									<label for="tgl_selesai1">Tanggal Selesai</label>
+									<label for="tgl_selesai1">Tanggal Selesai Kelas</label>
 									<input type="text" class="form-control" name="tgl_selesai1" value="<?= date('d F Y', strtotime($tgl_selesai)); ?>" disabled>
+								</div>
+							</div>
+							<div class="col-md-6 tgl_mulai" hidden>
+								<div class="form-group">
+									<label for="tgl_mulai">Tanggal Mulai Kelas</label>
+									<input type="date" class="form-control" name="tgl_mulai">
 								</div>
 							</div>
 							<div class="col-md-6 tgl_selesai" hidden>
 								<div class="form-group">
-									<label for="tgl_selesai">Tanggal Selesai</label>
-									<input type="date" class="form-control" name="tgl_selesai" required>
+									<label for="tgl_selesai">Tanggal Selesai Kelas</label>
+									<input type="date" class="form-control" name="tgl_selesai">
 								</div>
 							</div>
 						</div>
@@ -388,7 +432,9 @@
 								<div class="form-group">
 									<label for="lok_kls">Lokasi</label>
 									<select name="lok_kls" id="lok_kls" class="form-control" required>
-										<option value="Online Class">Online Class</option>
+										<option value="">--Pilih--</option>
+										<option value="Online Class" <?= $lok_kls == "Online Class" ? "selected" : "" ?>>Online Class</option>
+										<option value="Offline Class" <?= $lok_kls == "Offline Class" ? "selected" : "" ?>>Offline Class</option>
 									</select>
 								</div>
 							</div>
@@ -402,12 +448,25 @@
 								<div class="form-group">
 									<label for="">Hari Pelaksanaan</label>
 									<select name="hari" id="hari" required class="form-control">
-										<option value="3 Hari (Senin-Rabu)">3 Hari (Senin-Rabu)</option>
-										<option value="4 Hari (Senin-Kamis)">4 Hari (Senin-Kamis)</option>
-										<option value="5 Hari (Senin-Jumat)">5 Hari (Senin-Jumat)</option>
-										<option value="6 Hari (Senin-Sabtu)">6 Hari (Senin-Sabtu)</option>
-										<option value="7 Hari (Senin-Minggu)">7 Hari (Senin-Minggu)</option>
+										<option value="">--Pilih--</option>
+										<option value="3 Hari (Senin-Rabu)" <?= $hari == "3 Hari (Senin-Rabu)" ? "selected" : "" ?>>3 Hari (Senin-Rabu)</option>
+										<option value="4 Hari (Senin-Kamis)" <?= $hari == "4 Hari (Senin-Kamis)" ? "selected" : "" ?>>4 Hari (Senin-Kamis)</option>
+										<option value="5 Hari (Senin-Jumat)" <?= $hari == "5 Hari (Senin-Jumat)" ? "selected" : "" ?>>5 Hari (Senin-Jumat)</option>
 									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="jam_mulai">Jam Mulai Kelas</label>
+									<input type="text" class="form-control" value="<?= $jam_mulai; ?>" id="inkls" name="jam_mulai" autocomplete="off" disabled>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="jam_selesai">Jam Selesai Kelas</label>
+									<input type="text" class="form-control" value="<?= $jam_selesai; ?>" id="inkls" name="jam_selesai" autocomplete="off" disabled>
 								</div>
 							</div>
 						</div>

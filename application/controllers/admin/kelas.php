@@ -79,6 +79,8 @@ class Kelas extends CI_Controller
             $this->session->set_flashdata('message', 'formempty');
         } else {
             $namakls = htmlspecialchars($this->input->post('namakls'));
+            $tgl_daftar = htmlspecialchars($this->input->post('tgl_daftar'));
+            $tgl_penutupan = htmlspecialchars($this->input->post('tgl_penutupan'));
             $tgl_mulai = htmlspecialchars($this->input->post('tgl_mulai'));
             $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
             $lok_kls = htmlspecialchars($this->input->post('lok_kls'));
@@ -96,12 +98,27 @@ class Kelas extends CI_Controller
                 $config['allowed_types'] = 'gif|jpg|jpeg|png';
                 $config['max_size'] = '2048';
                 $config['upload_path']  = './assets/dist/img/kelas/';
+                $config['encrypt_name'] = TRUE;
 
                 $this->upload->initialize($config);
 
                 if (!$this->upload->do_upload('gbrkls')) {
                     echo $this->upload->display_errors();
                 } else {
+                    $upload_img = $this->upload->data();
+
+                    /** konfigurasi gambar */
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/dist/img/kelas/' . $upload_img['file_name'];
+                    $config['create_thumb'] = TRUE;
+                    $config['maintain_ratio'] = FALSE;
+                    $config['quality'] = '80%';
+                    $config['width'] = 600;
+                    $config['height'] = 400;
+                    $config['new_image'] = './assets/dist/img/kelas/v_kelas/' . $upload_img['file_name'];
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+
                     $image = $this->upload->data('file_name');
                 }
             } else {
@@ -114,6 +131,8 @@ class Kelas extends CI_Controller
                 'ID_KTGKLS' => $kategori,
                 'ID_DISKON' => 0,
                 'TITTLE' => $namakls,
+                'TGL_PENDAFTARAN' => $tgl_daftar,
+                'TGL_PENUTUPAN' => $tgl_penutupan,
                 'TGL_MULAI' => $tgl_mulai,
                 'TGL_SELESAI' => $tgl_selesai,
                 'LOK_KLS' => $lok_kls,
@@ -129,8 +148,8 @@ class Kelas extends CI_Controller
                 'UPDATE_KLS' => 0
             ];
 
-            $get = $this->db->get_where('kelas', ['ID_KLS' => $id_kls])->row();
-            unlink(FCPATH. 'assets/dist/img/kelas' .$get->FILE_SUB);
+            // $get = $this->db->get_where('kelas', ['ID_KLS' => $id_kls])->row();
+            // unlink(FCPATH. 'assets/dist/img/kelas' .$get->FILE_SUB);
             $this->m_kelas->saveall($kelas);
             $this->session->set_flashdata('message', 'save');
             redirect('admin/kelas');
@@ -153,18 +172,18 @@ class Kelas extends CI_Controller
             'required' => 'Kolom ini harus diisi'
         ]);
 
-        // $this->form_validation->set_rules('link', 'Link', 'required|trim', [
-        //     'required' => 'Kolom ini harus diisi'
-        // ]);
+        $this->form_validation->set_rules('link', 'Link', 'required|trim', [
+            'required' => 'Kolom ini harus diisi'
+        ]);
 
-        // $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric', [
-        //     'required' => 'Kolom ini harus diisi',
-        //     'numeric' => 'Data harus berisi angka'
-        // ]);
+        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric|is_natural', [
+            'required' => 'Kolom ini harus diisi',
+            'is_natural' => 'data yang diinputkan salah'
+        ]);
 
-        // $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim', [
-        //     'required' => 'Kolom ini harus diisi'
-        // ]);
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim', [
+            'required' => 'Kolom ini harus diisi',
+        ]);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('admin/template_adm/v_header', $data);
@@ -175,14 +194,18 @@ class Kelas extends CI_Controller
         } else {
             $id = $this->input->post('id');
             $nama = htmlspecialchars($this->input->post('namakls'));
+            $tgl_daftar = htmlspecialchars($this->input->post('tgl_daftar'));
+            $tgl_penutupan = htmlspecialchars($this->input->post('tgl_penutupan'));
             $tgl_mulai = htmlspecialchars($this->input->post('tgl_mulai'));
             $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
             $lok_kls = htmlspecialchars($this->input->post('lok_kls'));
             $hari = htmlspecialchars($this->input->post('hari'));
+            $jam_mulai = htmlspecialchars($this->input->post('jam_mulai'));
+            $jam_selesai = htmlspecialchars($this->input->post('jam_selesai'));
             $harga = htmlspecialchars($this->input->post('harga'));
             $link = htmlspecialchars($this->input->post('link'));
-            $deskripsi = $this->input->post('deskripsi');
             $kategori = htmlspecialchars($this->input->post('ktg'));
+            $deskripsi = $this->input->post('deskripsi');
             $oldimg = $this->input->post('old');
 
             /** Proses edit gambar */
@@ -196,6 +219,21 @@ class Kelas extends CI_Controller
                 $this->upload->initialize($config);
 
                 if ($this->upload->do_upload('gbrkls')) {
+                    /** file yang di upload */
+                    $upload_img = $this->upload->data();
+
+                    /** konfigurasi gambar */    
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/dist/img/kelas/' . $upload_img['file_name'];
+                    $config['create_thumb'] = TRUE;
+                    $config['maintain_ratio'] = FALSE;
+                    $config['quality'] = '80%';
+                    $config['width'] = 600;
+                    $config['height'] = 400;
+                    $config['new_image'] = './assets/dist/img/kelas/v_kelas/' . $upload_img['file_name'];
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+
                     if ($oldimg != 'default.jpg') {
                         unlink(FCPATH . 'assets/dist/img/kelas/' . $oldimg);
                     }
@@ -209,10 +247,14 @@ class Kelas extends CI_Controller
 
             $edit = [
                 'TITTLE' => $nama,
+                'TGL_PENDAFTARAN' => $tgl_daftar,
+                'TGL_PENUTUPAN' => $tgl_penutupan,
                 'TGL_MULAI' => $tgl_mulai,
                 'TGL_SELESAI' => $tgl_selesai,
                 'LOK_KLS' => $lok_kls,
                 'HARI' => $hari,
+                'JAM_MULAI' => $jam_mulai,
+                'JAM_SELESAI' => $jam_selesai,
                 'PERMALINK' => $link,
                 'GBR_KLS' => $new_image,
                 'DESKRIPSI' => $deskripsi,

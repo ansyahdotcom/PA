@@ -226,7 +226,7 @@
             dataType: 'json',
             success: function(data) {
                 var ktgklss = '';
-                ktgklss += '<option value="" selected>--Kategori kelas--</option>'
+                ktgklss += '<option value="" selected>--Pilih--</option>'
                 for (var i = 0; i < data.length; i++) {
                     ktgklss += '<option value=' + data[i].ID_KTGKLS + '>' + data[i].KTGKLS + '</option>'
                 }
@@ -395,6 +395,10 @@
             $("button#save-kls").prop('hidden', false);
             $("button#edit-kls").prop('hidden', true);
             $("input#inkls").prop('disabled', false);
+            $("div.tgl_daftar").prop('hidden', false);
+            $("div.tgl_penutupan").prop('hidden', false);
+            $("div.tgl_daftar1").prop('hidden', true);
+            $("div.tgl_penutupan1").prop('hidden', true);
             $("div.tgl_mulai").prop('hidden', false);
             $("div.tgl_mulai1").prop('hidden', true);
             $("div.tgl_selesai").prop('hidden', false);
@@ -418,6 +422,10 @@
             $("button#save-kls").prop('hidden', true);
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
+            $("div.tgl_daftar").prop('hidden', true);
+            $("div.tgl_penutupan").prop('hidden', true);
+            $("div.tgl_daftar1").prop('hidden', false);
+            $("div.tgl_penutupan1").prop('hidden', false);
             $("div.tgl_mulai").prop('hidden', true);
             $("div.tgl_mulai1").prop('hidden', false);
             $("div.tgl_selesai").prop('hidden', true);
@@ -441,6 +449,10 @@
             $("button#save-kls").prop('hidden', true);
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
+            $("div.tgl_daftar").prop('hidden', true);
+            $("div.tgl_penutupan").prop('hidden', true);
+            $("div.tgl_daftar1").prop('hidden', false);
+            $("div.tgl_penutupan1").prop('hidden', false);
             $("div.tgl_mulai").prop('hidden', true);
             $("div.tgl_mulai1").prop('hidden', false);
             $("div.tgl_selesai").prop('hidden', true);

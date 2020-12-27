@@ -19,7 +19,6 @@ class Blog extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
         $data['tittle'] = "Data Blog";
-        date_default_timezone_set('Asia/Jakarta');
 
         /** Ambil data blog */
         $data['blog'] = $this->m_blog->tampil_blog()->result();
