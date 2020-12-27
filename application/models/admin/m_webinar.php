@@ -10,13 +10,6 @@ class M_webinar extends CI_Model
         return $data;
     }
 
-    // tampil fasilitas di select
-    function tampil_fasilitas()
-    {
-        $data = $this->db->query("SELECT ID_FA, NM_FA FROM fasilitas ORDER BY ID_FA ASC");
-        return $data;
-    }
-
     // nyari data id webinar terakhir
     function selectMaxID_WEBINAR()
     {

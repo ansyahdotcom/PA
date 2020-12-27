@@ -66,6 +66,7 @@ class Webinar extends CI_Controller
         $JK_PS = htmlspecialchars($this->input->post('JK_PS'));
         $PEKERJAAN = $this->input->post('PEKERJAAN');
         $AGAMA_PS = htmlspecialchars($this->input->post('AGAMA_PS'));
+        $ALASAN = htmlspecialchars($this->input->post('ALASAN'));
         $DATE_PS_WBNR = date("h:i:s");
         // untuk upload foto webinar
         $config['upload_path']          = './assets/dist/img/peserta/';
@@ -103,19 +104,20 @@ class Webinar extends CI_Controller
                 $data2 = array(
                     'ID_WEBINAR' => $ID_WEBINAR,
                     'ID_PS' => $ID_PS,
+                    'ALASAN' => $ALASAN,
                     'DATE_PS_WBNR' => $DATE_PS_WBNR
                 );
         
                 $this->m_webinar->update($where, $data, 'peserta');
                 $this->m_webinar->insert($data2, 'peserta_wbnr');
         
-                // $this->session->set_flashdata('message', 'edit');
+                $this->session->set_flashdata('message', 'berhasil_daftar');
                 redirect('peserta/webinar');
             } 
-            // else {
-            //     $error = array('error' => $this->upload->display_errors());
-            //     $this->load->view('peserta/webinar/v_webinar', $error);
-            // }
+            else {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('peserta/webinar/v_webinar', $error);
+            }
         } else {
             $where = array('ID_PS' => $ID_PS);
         
@@ -132,6 +134,7 @@ class Webinar extends CI_Controller
                 $data2 = array(
                     'ID_WEBINAR' => $ID_WEBINAR,
                     'ID_PS' => $ID_PS,
+                    'ALASAN' => $ALASAN,
                     'DATE_PS_WBNR' => $DATE_PS_WBNR
                 );
         
@@ -141,5 +144,22 @@ class Webinar extends CI_Controller
                 // $this->session->set_flashdata('message', 'edit');
                 redirect('peserta/webinar');
         }
+    }
+
+    public function mywebinar()
+    {
+        $email = $this->session->userdata('email');
+		$data['peserta'] = $this->db->get_where('peserta', [
+            'EMAIL_PS' => $email
+            ])->row_array();
+        $data['tittle'] = "Webinar Saya";
+
+        $data['pesertaa'] = $this->m_webinar->mywebinar($email)->result();
+        
+        $this->load->view("peserta/template/v_header", $data);
+		$this->load->view("peserta/template/v_navbar", $data);
+		$this->load->view("peserta/template/v_sidebar", $data);
+        $this->load->view('peserta/webinar/v_mywebinar', $data);
+		$this->load->view("peserta/template/v_footer");
     }
 }

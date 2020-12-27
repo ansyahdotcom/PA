@@ -28,7 +28,9 @@
 						<div class="card">
 							<div class="card-body">
 								<?php foreach ($webinar as $wbnr){ ?>
-								<h3><?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></h3>
+								<h3><strong><?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></strong></h3>
+								<br>
+								<h5>Mohon lengkapi data berikut.</h5>
 								<input type="hidden" name="ID_WEBINAR" value="<?= $wbnr->ID_WEBINAR; ?>">
 								<?php } ?>
 							</div>
@@ -52,13 +54,13 @@
 											</div>
 											<div>
 												<img src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>"
-													onClick="triggerClick()" id="profileDisplay" width="200px"
+													onClick="triggerClick()" id="daftarDisplay" width="200px"
 													alt="User profile picture">
 											</div>
 										</span>
 										<input type="hidden" name="ID_PS" value="<?= $peserta['ID_PS']; ?>">
 										<input type="file" name="FTO_PS" value="<?= $peserta['FTO_PS']; ?>"
-											id="profileImage" class="form-control" style="display: none;">
+											id="daftarImage" class="form-control" style="display: none;" onChange="displayImage(this)">
 										<input type="hidden" name="HAPUS_FOTO" value="<?= $peserta['FTO_PS']; ?>">
 										<!-- <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?> -->
 										<label class="text-bold text-gray">Foto Profil</label>
@@ -234,6 +236,9 @@
 											<div class="offset-sm-2">
 												<!-- <?= form_error('agama', '<small class="text-danger">', '</small>'); ?> -->
 											</div>
+										</div>
+										<div class="form-group row">
+											<textarea name="ALASAN" id="ALASAN" class="form-control" cols="30" rows="10" required autocomplete="off" placeholder="Tulis alasan ingin mengikuti webinar secara singkat"></textarea>
 										</div>
 										<div class="form-group row">
 											<div class="offset-sm-3 col-sm-9">

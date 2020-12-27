@@ -27,31 +27,18 @@
 				<div class="card">
 					<!-- /.card-header -->
 					<?php foreach ($webinar as $wbnr) { ?>
-					<form action="<?= base_url() . 'admin/webinar/update'; ?>" method="post"
+					<form action="<?= base_url() . 'admin/blog/update'; ?>" method="post"
 						enctype="multipart/form-data" class="form-horizontal">
 						<div class="card-body">
-							<input type="hidden" name="ID_WEBINAR" value="<?= $wbnr->ID_WEBINAR ?>">
+							<input type="hidden" name="ID_POST" value="<?= $wbnr->ID_WEBINAR ?>">
 							<input type="hidden" name="ID_ADM" value="<?= $wbnr->ID_ADM ?>">
-							<label for="JUDUL_WEBINAR">Judul</label>
-							<input type="text" class="form-control" name="JUDUL_WEBINAR"
+							<label for="JUDUL_POST">Judul</label>
+							<input type="text" class="form-control" name="JUDUL_POST"
 								value="<?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?>" autocomplete="off" autofocus
 								required>
-							<!-- <br>
-							<label for="ID_FA">fasilitas</label>
-							<select name="ID_FA[]" id="ID_FA[]" class="select2bs4" multiple="multiple"
-								data-placeholder="Pilih fasilitas" style="width: 100%;">
-								<?php
-								foreach($fasilitas as $fs) {
-                                    foreach ($dt_fasilitas as $dtf) { ?>
-								<option value="<?= $fs->ID_FA; ?>"
-									<?= $fs->ID_FA == $dtf->ID_FA ? "selected" : null ?>>
-									<?= $fs->NM_FA; ?></option>
-								<?php 
-                                    }} ?>
-							</select> -->
 							<br>
 							<div class="form-group">
-								<label for="icon">Foto</label>
+								<label for="icon">Gambar</label>
 								<div class="container">
 									<div class="row">
 										<div class="col-md-5">
@@ -59,7 +46,7 @@
 												<img src="<?= base_url(); ?>assets/fotowebinar/<?= $wbnr->FOTO_WEBINAR; ?>"
 													class="card-img-top" alt="gambar-foto">
 												<div class="card-body">
-													<h6 class="card-title"><?=$wbnr->FOTO_WEBINAR;?></h6>
+													<h6 class="card-title"><?= $wbnr->FOTO_WEBINAR; ?></h6>
 													<input type="hidden" name="HAPUS_FOTO"
 														value="<?= $wbnr->FOTO_WEBINAR; ?>">
 												</div>
@@ -87,8 +74,8 @@
 														<i class="glyphicon glyphicon-download-alt"></i>
 														<div>Pilih file gambar atau seret gambar kesini .</div>
 													</div>
-													<input type="file" name="FOTO_WEBINAR"
-														value="<?= $wbnr->FOTO_WEBINAR; ?>" class="dropzone" />
+													<input type="file" name="FOTO_POST" value="<?= $wbnr->FOTO_WEBINAR; ?>"
+														class="dropzone" />
 												</div>
 											</div>
 										</div>
@@ -96,7 +83,6 @@
 								</div>
 							</div>
 							<br>
-
 							<label for="HARGA">Harga</label>
 							<input type="text" class="form-control" name="HARGA" value="<?= $wbnr->HARGA; ?>"
 								autocomplete="off" required>
@@ -113,7 +99,7 @@
 							<label for="TGL_WEB">Tanggal Webinar</label> <br>
 							<input type="date" name="TGL_WEB" id="TGL_WEB" class="form-control"
 								value="<?php echo date('Y-m-d', strtotime($wbnr->TGL_WEB)); ?>">
-							<br> <br>
+							<br><br>
 							<button class="btn btn-primary btn-round">Batal</button>
 							<button type="submit" class="btn btn-success btn-round">Simpan</button>
 						</div>

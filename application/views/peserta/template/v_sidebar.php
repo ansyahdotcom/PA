@@ -98,6 +98,18 @@
                             </p>
                         </a>
                     </li>
+
+                    <li class="nav-header">Webinar</li>
+
+                    <li class="nav-item">
+                        <a href="<?= base_url('peserta/webinar/mywebinar'); ?>" class="nav-link <?php if($this->uri->segment(2)=="mywebinar"){echo "active";}?>">
+                            <i class="nav-icon fab fa-leanpub"></i>
+                            <p>
+                                Webinar Saya
+                                <!-- <span class="badge badge-info right">2</span> -->
+                            </p>
+                        </a>
+                    </li>
                     <!-- <li class="nav-item">
                         <a href="<?= base_url('peserta/#'); ?>" class="nav-link">
                             <i class="nav-icon fas fa-tasks"></i>

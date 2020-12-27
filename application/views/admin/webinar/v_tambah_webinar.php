@@ -92,6 +92,9 @@
                                 <option value="ZOOM">ZOOM</option>
                                 <option value="GOOGLE MEET">GOOGLE MEET</option>
                             </select>
+                            <br>
+                            <label for="LINK_ZOOM">Link Meeting</label>
+                            <textarea name="LINK_ZOOM" id="LINK_ZOOM" class="textarea" class="form-control" cols="30" rows="5" placeholder="Isikan link meeting disini" required autocomplete="off"></textarea>
                             <?= form_error('PLATFORM', '<small class="text-danger">', '</small>'); ?>
                             <br>
                             <!-- Tanggal Webinar -->
