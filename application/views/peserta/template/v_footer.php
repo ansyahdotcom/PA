@@ -276,6 +276,11 @@
                 icon: 'success',
                 title: 'Pemberitahuan dihapus!',
             });
+        } else if (flashData == 'berhasil_daftar') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Berhasil Mendaftar webinar!',
+            });
         }
     });
 </script>
@@ -521,6 +526,23 @@
             var reader = new FileReader();
             reader.onload = function(b) {
                 document.querySelector('#profileDisplay').setAttribute('src', b.target.result);
+            }
+            reader.readAsDataURL(b.files[0]);
+        }
+    }
+</script>
+
+<!-- Upload gambar -->
+<script>
+    function triggerClick(b) {
+        document.querySelector('#daftarImage').click();
+    }
+
+    function displayImage(b) {
+        if (b.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(b) {
+                document.querySelector('#daftarDisplay').setAttribute('src', b.target.result);
             }
             reader.readAsDataURL(b.files[0]);
         }
