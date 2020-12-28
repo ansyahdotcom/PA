@@ -165,7 +165,7 @@ class Kelas extends CI_Controller
 		$result = json_decode($this->input->post('result_data'), true);
 
 		/** Expired time pembayaran */
-		$exp_time = date("Y-m-d H:i:s", strtotime('+1 day'));
+		$exp_time = date("Y-m-d H:i:s", strtotime('+12 hours'));
 
 		$data = array(
 			'ID_TRN'  => $result['order_id'],
@@ -183,7 +183,7 @@ class Kelas extends CI_Controller
 		);
 
 		$data1 = array(
-			'ID_TRN' => $result['order_id'],
+			'ID_TRN' => $data['ID_TRN'],
 			'ID_KLS' => $id,
 			'ID_PS' => $id_ps
 		);
@@ -195,6 +195,7 @@ class Kelas extends CI_Controller
 		/** Insert ke tabel notifikasi */
 		$notif = array(
 			'GLOBAL_ID' => $data['eID'],
+			'ID_US' => $data['ID_PS'],
 			'TITTLE_NOT' => 'Transaksi baru',
 			'MSG_NOT' => 'Order id ' . $data['ID_TRN'] . ', atas nama ' . $peserta['NM_PS']  . '.',
 			'LINK' => 'admin/transaksi/detpending/' . $data['eID'],
@@ -205,9 +206,10 @@ class Kelas extends CI_Controller
 
 		$notif1 = array(
 			'GLOBAL_ID' => $data['eID'],
+			'ID_US' => $data['ID_PS'],
 			'TITTLE_NOT' => 'Transaksi berhasil',
 			'MSG_NOT' => 'Order id ' . $data['ID_TRN'],
-			'LINK' => 'peserta/transaksi/dettransaksi/' . $data['eID'],
+			'LINK' => 'peserta/transaksi/dettrn/' . $data['eID'],
 			'IS_READ' => 0,
 			'ST_NOT' => 1,
 			'DATE_NOT' => date('Y-m-d H:i:s', strtotime($data['TIME']))

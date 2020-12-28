@@ -60,6 +60,7 @@ class Notification extends CI_Controller {
 		/** Insert ke tabel Notifikasi */
 		$notif_success = [
 			'GLOBAL_ID' => $eID,
+			'ID_US' => $id_ps,
 			'TITTLE_NOT' => 'Transaksi sukses dibayar',
 			'MSG_NOT' => 'Order id ' . $order_id . ', atas nama ' . $nm_ps,
 			'LINK' => 'admin/transaksi/detsuccess/' . $eID,
@@ -70,6 +71,7 @@ class Notification extends CI_Controller {
 
 		$notif_cancel = [
 			'GLOBAL_ID' => $eID,
+			'ID_US' => $id_ps,
 			'TITTLE_NOT' => 'Transaksi dibatalkan',
 			'MSG_NOT' => 'Order id ' . $order_id . ', atas nama ' . $nm_ps,
 			'LINK' => 'admin/transaksi/detcancel/' . $eID,
@@ -81,6 +83,7 @@ class Notification extends CI_Controller {
 		/** Insert ke tabel Notifikasi 1 */
 		$notif_success1 = [
 			'GLOBAL_ID' => $eID,
+			'ID_US' => $id_ps,
 			'TITTLE_NOT' => 'Transaksi sukses dibayar',
 			'MSG_NOT' => 'Order id ' . $order_id,
 			'LINK' => 'admin/transaksi/detsuccess/' . $eID,
@@ -91,6 +94,7 @@ class Notification extends CI_Controller {
 
 		$notif_cancel1 = [
 			'GLOBAL_ID' => $eID,
+			'ID_US' => $id_ps,
 			'TITTLE_NOT' => 'Transaksi dibatalkan',
 			'MSG_NOT' => 'Order id ' . $order_id,
 			'LINK' => 'admin/transaksi/detcancel/' . $eID,

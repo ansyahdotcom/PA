@@ -162,6 +162,7 @@ class Auth extends CI_Controller
 
 			$notif = [
 				'GLOBAL_ID' => $register['ID_PS'],
+				'ID_US' => $register['ID_PS'],
 				'TITTLE_NOT' => 'Pendaftar baru',
 				'MSG_NOT' => 'Ada pendaftar baru, atas nama ' . $register['NM_PS'] . '.',
 				'LINK' => 'admin/peserta',
@@ -250,6 +251,7 @@ class Auth extends CI_Controller
 			/** Insert ke tabel notif */
 			$notif = [
 				'GLOBAL_ID' => $name['user']['ID_PS'],
+				'ID_US' => $name['user']['ID_PS'],
 				'TITTLE_NOT' => 'Selamat datang!',
 				'MSG_NOT' => 'Selamat bergabung di Preneur Academy',
 				'LINK' => 'peserta/profil',
@@ -260,6 +262,7 @@ class Auth extends CI_Controller
 
 			$notif1 = [
 				'GLOBAL_ID' => $name['user']['ID_PS'],
+				'ID_US' => $name['user']['ID_PS'],
 				'TITTLE_NOT' => 'Aktivasi akun',
 				'MSG_NOT' => 'Pendaftar dengan nama ' . $name['user']['NM_PS'] . ' berhasil mangaktivasi akun.',
 				'LINK' => 'admin/peserta',

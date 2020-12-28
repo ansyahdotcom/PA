@@ -6,7 +6,7 @@
             $this->db->select('*');
             $this->db->from('notif');
             $this->db->where('ST_NOT', 1);
-            $this->db->where('GLOBAL_ID', $id_ps);
+            $this->db->where('ID_US', $id_ps);
             $this->db->order_by('ID_NOT', 'DESC');
             return $this->db->get()->result_array();
         }
@@ -25,7 +25,7 @@
         public function not_kosong($id_ps)
         {
             return $this->db->get_where('notif', [
-                'GLOBAL_ID' => $id_ps
+                'ID_US' => $id_ps
             ])->num_rows();
         }
 
@@ -35,7 +35,7 @@
             $this->db->from('notif');
             $this->db->where('IS_READ', 0);
             $this->db->where('ST_NOT', 1);
-            $this->db->where('GLOBAL_ID', $id_ps);
+            $this->db->where('ID_US', $id_ps);
             $this->db->order_by('ID_NOT', 'DESC');
             return $this->db->get()->result_array();
         }
@@ -46,7 +46,7 @@
             $this->db->from('notif');
             $this->db->where('IS_READ', 0);
             $this->db->where('ST_NOT', 1);
-            $this->db->where('GLOBAL_ID', $id_ps);
+            $this->db->where('ID_US', $id_ps);
             $this->db->order_by('ID_NOT', 'DESC');
             $this->db->limit($limit, $start);
             return $this->db->get()->result_array();
