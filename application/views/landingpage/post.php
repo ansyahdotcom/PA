@@ -1,16 +1,11 @@
-        <header class="bg-warning rounded py-5 mb-5">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-lg-12">
-                                <div class="text-center">
-                                    <div class="kelas mr-5">
-                                        <h1 class="display-4 title-text">Blog</h1>
-                                        <p class="lead mb-5 para">Blog Halaman Utama.</p>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-    </header>
+        <!--  ======================= Awalan Banner ============================== -->
+        <div class="jumbotron text-center p-4 p-md-5 text-white rounded bg-dark join">
+            <div class="col-md-12 text-center px-0">
+                <h1 class="display-4">Blog</h1>
+                <p class="lead my-3">Blog halaman utama.</p>
+            </div>
+        </div>
+        <!--  ======================= Batas Banner ============================== -->
     </div>
   <main role="main" class="container">
     <div class="row">
@@ -128,60 +123,8 @@
             </div>
             <!--/.Card : Dynamic content wrapper-->
 
-                <!--Card-->
-            <div class="card mb-4 wow fadeIn">
-
-                <div class="card-header font-weight-bold bg-warning text-center">Artikel Terkait</div>
-
-                <!--Card content-->
-                <div class="card-body">
-
-                    <ul class="list-unstyled">
-                    <li class="media">
-                        <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder7.jpg" alt="Generic placeholder image">
-                        <div class="media-body">
-                        <a href="">
-                            <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-                        </a>
-                        Cras sit amet nibh libero, in gravida nulla (...)
-                        </div>
-                    </li>
-                    <li class="media my-4">
-                        <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder6.jpg" alt="An image">
-                        <div class="media-body">
-                        <a href="">
-                            <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-                        </a>
-                        Cras sit amet nibh libero, in gravida nulla (...)
-                        </div>
-                    </li>
-                    <li class="media">
-                        <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder5.jpg" alt="Generic placeholder image">
-                        <div class="media-body">
-                        <a href="">
-                            <h5 class="mt-0 mb-1 font-weight-bold">List-based media object</h5>
-                        </a>
-                        Cras sit amet nibh libero, in gravida nulla (...)
-                        </div>
-                    </li>
-                    </ul>
-
-                </div>
-
-                </div>
-                <!--/.Card-->
-
             </div>
             <!--Grid column-->
-            <!--  ======================= Awalan Banner ============================== -->
-            <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark join">
-                <div class="col-md-6 px-0">
-                <h1 class="display-4">Join Komunitas</h1>
-                <p class="lead my-3">Preneur academy merupakan media untuk membangun generasi muda yang lebih baik. bergabunglah bersama kami dan bersama kita membangun generasi enterpreneur yang berkualitas.</p>
-                <p class="lead mb-0"><a href="#" class="btn btn-primary text-white font-weight-bold">Bergabunglah bersama kami</a></p>
-                </div>
-            </div>
-            <!--  ======================= Batas Banner ============================== -->
         </div>
         
     </main>

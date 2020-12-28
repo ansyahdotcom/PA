@@ -27,6 +27,54 @@ class Materi extends CI_Controller
         $this->load->view("admin/kelas/v_listmateri", $data);
         $this->load->view("admin/template_adm/v_footer");
     }
+    // 
+    public function meet()
+    {
+        $id = htmlspecialchars($this->input->post('id_kelas'));
+        $ID_MT = htmlspecialchars($this->input->post('id_materi'));
+        $NM_SUB = htmlspecialchars($this->input->post('nama'));
+        $DETAIL_SUB = htmlspecialchars($this->input->post('detail'));
+        $FILE_SUB = htmlspecialchars($this->input->post('link'));
+        $ICON_SUB = htmlspecialchars($this->input->post('icon'));
+        
+        $data = array(
+            'NM_SUB' => $NM_SUB,
+            'DETAIL_SUB' => $DETAIL_SUB,
+            'FILE_SUB' => $FILE_SUB, 
+            'ICON_SUB' => $ICON_SUB, 
+            'ID_MT' => $ID_MT 
+        );
+        $this->m_materi->create($data, 'materi_sub');
+        $this->session->set_flashdata('message', 'dataSuccess');
+    
+        redirect("admin/materi/materikelas/$id");
+    }
+
+    public function meet_edit()
+    {
+        $id = htmlspecialchars($this->input->post('id_kelas'));
+        $ID_SUB = htmlspecialchars($this->input->post('id_sub'));
+        $ID_MT = htmlspecialchars($this->input->post('id_materi'));
+        $NM_SUB = htmlspecialchars($this->input->post('nama'));
+        $FILE_SUB = htmlspecialchars($this->input->post('link'));
+        $ICON_SUB = htmlspecialchars($this->input->post('icon'));
+        
+        $where= array(
+            'ID_SUB' => $ID_SUB
+        );
+
+        $data = array(
+            'NM_SUB' => $NM_SUB,
+            'FILE_SUB' => $FILE_SUB, 
+            'ICON_SUB' => $ICON_SUB, 
+            'ID_MT' => $ID_MT 
+        );
+
+        $this->m_materi->update_($where, $data, 'materi_sub');
+        $this->session->set_flashdata('message', 'edit');
+    
+        redirect("admin/materi/materikelas/$id");
+    }
 
     // CREATE FILE MATERI
     public function upload_file() 

@@ -30,7 +30,12 @@ class M_materi extends CI_Model{
         $query = $this->db->query("SELECT MAX(ID_TG) AS ID_TG FROM tugas");
         $hasil = $query->row();
         return $hasil->ID_TG;
-    }
+	}
+	
+	function create($data, $table){
+		$this->db->insert($table, $data);
+	}
+
 	function create_($materi,$detail,$id_kelas){
 		$this->db->trans_start();
 			//INSERT KE MATERI

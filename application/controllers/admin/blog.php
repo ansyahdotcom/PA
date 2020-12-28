@@ -22,6 +22,8 @@ class Blog extends CI_Controller
         ])->row_array();
         $data['tittle'] = "Data Blog";
 
+        date_default_timezone_set('Asia/Jakarta');
+        
         /** Ambil data blog */
         $data['blog'] = $this->m_blog->tampil_blog()->result();
         $this->load->view("admin/template_adm/v_header", $data);

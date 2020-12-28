@@ -101,6 +101,7 @@
 							<textarea class="textarea" class="form-control" name="KONTEN_POST" id="KONTEN_POST"
 								placeholder="Isi artikel disini..." required></textarea>
 							<br>
+							<a href="<?= base_url('admin/blog');?>" class="btn btn-primary btn-round">Batal</a>
 							<button type="submit" class="btn btn-success btn-round">Simpan</button>
 						</div>
 					</form>

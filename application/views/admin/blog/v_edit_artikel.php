@@ -109,7 +109,7 @@
 							<textarea class="textarea" class="form-control"
 								name="KONTEN_POST"><?= $blg->KONTEN_POST  ?></textarea>
 							<br>
-							<a href="<?= base_url('blog');?>" class="btn btn-primary btn-round">Batal</a>
+							<a href="<?= base_url('admin/blog');?>" class="btn btn-primary btn-round">Batal</a>
 							<button type="submit" class="btn btn-success btn-round">Simpan</button>
 						</div>
 					</form>
