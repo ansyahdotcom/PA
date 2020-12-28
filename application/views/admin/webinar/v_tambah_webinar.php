@@ -71,7 +71,7 @@
                                                         <i class="glyphicon glyphicon-download-alt"></i>
                                                         <div>Pilih file gambar atau seret gambar kesini .</div>
                                                     </div>
-                                                    <input type="file" name="FOTO_WEBINAR" class="dropzone" required>
+                                                    <input type="file" name="FOTO_WEBINAR" accept="image/x-png,image/gif,image/jpeg" class="dropzone" required>
                                                 </div>
                                             </div>
                                         </div>

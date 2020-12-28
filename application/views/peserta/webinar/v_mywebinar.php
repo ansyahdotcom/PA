@@ -54,18 +54,24 @@
 											<td for="NM_ADM">:&nbsp; <?= $ps->NM_ADM; ?></td>
 										</tr>
 										<tr>
+											<td><b>Tanggal Webinar</b> &nbsp;</td>
+											<td for="TGL_WEB">:&nbsp;
+												<?= date('l, d F Y', strtotime(str_replace('.', '-', $ps->TGL_WEB))); ?>
+											</td>
+										</tr>
+										<tr>
 											<td><b>Platform</b> &nbsp;</td>
 											<td for="PLATFORM">:&nbsp; <?= $ps->PLATFORM; ?></td>
 										</tr>
 										<tr>
 											<td><b>Link Meeting</b> &nbsp;</td>
-											<td for="LINK_ZOOM">:&nbsp; <?= $ps->LINK_ZOOM; ?></td>
-										</tr>
-										<tr>
-											<td><b>Tanggal Webinar</b> &nbsp;</td>
-											<td for="TGL_WEB">:&nbsp;
-												<?= date('l, d F Y', strtotime(str_replace('.', '-', $ps->TGL_WEB))); ?>
-											</td>
+											<?php 
+											if ($ps->ST_LINK == 0) { ?>
+												<td for="LINK_ZOOM">:&nbsp; Belum diizinkan mengakses link meeting</td>
+											<?php 
+											} else { ?>
+												<td for="LINK_ZOOM">:&nbsp; <?= $ps->LINK_ZOOM; ?></td>
+											<?php } ?>
 										</tr>
 									</table>
 								</div>

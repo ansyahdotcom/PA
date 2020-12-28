@@ -70,6 +70,17 @@
 									</tr>
 								</table>
 							</div>
+							<br>
+								<div class="col-md-12 mt-5">
+									<div class="card">
+										<div class="card-header">
+											<label for="LINK_MEETING">Link Meeting</label>
+										</div>
+										<div class="card-body">
+											<?= htmlspecialchars_decode($wbnr->LINK_ZOOM); ?>
+										</div>
+									</div>
+								</div>
 						</div>
 					</div>
 					<div class="card-footer">
