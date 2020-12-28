@@ -43,6 +43,7 @@
             $this->db->where('IS_READ', 0);
             $this->db->where('ST_NOT', 0);
             $this->db->order_by('ID_NOT', 'DESC');
+            $this->db->limit($limit, $start);
             return $this->db->get()->result_array();
         }
 

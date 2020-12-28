@@ -69,12 +69,11 @@
 								</div>
 								<div class="position-relative card-body pt-3">
 									<?php
-									$this->db->select('*');
-									$this->db->from('kelas');
-									$this->db->join('transaksi', 'transaksi.ID_KLS=kelas.ID_KLS');
-									$this->db->where('STATUS', 200);
-									$this->db->where('transaksi.ID_KLS', $id);
-									$pendaftar = $this->db->get()->num_rows();
+								    /** Untuk mengecek jumlah pendaftar */
+									$jml_pendaftar = $this->db->get_where('transaksi', [
+										'STATUS' => 200,
+										'ID_KLS' => $id
+									])->num_rows();
 									?>
 									<input type="hidden" name="idkls" value="<?= $id; ?>">
 									<div class="row">
@@ -112,7 +111,7 @@
 										<span class="btn btn-outline-dark text-justify text-bold btn-block">
 											<div class="col-md-12">
 												<i class="fas fa-user-tie pr-2"></i>
-												Jumlah Pendaftar: <?= $pendaftar; ?>
+												Jumlah Pendaftar: <?= $jml_pendaftar; ?>
 											</div>
 										</span>
 									</div>
@@ -120,7 +119,7 @@
 										<span class="btn btn-outline-dark text-justify text-bold btn-block">
 											<div class="col-md-12">
 												<i class="fas fa-users pr-2"></i>
-												Sisa Kuota: <?= 50 - $pendaftar; ?>
+												Sisa Kuota: <?= 50 - $jml_pendaftar; ?>
 											</div>
 										</span>
 									</div>
