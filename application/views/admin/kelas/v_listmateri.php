@@ -201,7 +201,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="file">
+                                <input type="file" name="file" class="custom-file-input" id="file" accept="application/msword, application/vnd.ms-powerpoint, application/pdf">
                                 <label class="custom-file-label" for="file">Unggah file</label>
                             </div>
                             <small class="form-text text-success">Unggah file materi. *maximal ukuran 5mb</small>
@@ -248,7 +248,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" value="<?=$file_sub;?>" class="custom-file-input" id="file">
+                                <input type="file" name="file" value="<?=$file_sub;?>" class="custom-file-input" id="file" accept="application/msword, application/vnd.ms-powerpoint, application/pdf">
                                 <label class="custom-file-label" for="file"><?=$file_sub;?></label>
                             </div>
                             <small class="form-text text-success">Unggah file materi. *maksimal ukuran 5mb</small>
@@ -401,7 +401,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="file">
+                                <input type="file" name="file" class="custom-file-input" id="file" accept="application/msword, application/vnd.ms-powerpoint, application/pdf">
                                 <label class="custom-file-label" for="file">Unggah file</label>
                             </div>
                             <small class="form-text text-success">Unggah file materi. *maximal ukuran 5mb</small>
@@ -476,7 +476,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" value="<?=$file_tg;?>" class="custom-file-input" id="file">
+                                <input type="file" name="file" value="<?=$file_tg;?>" class="custom-file-input" id="file" accept="application/msword, application/vnd.ms-powerpoint, application/pdf">
                                 <label class="custom-file-label" for="file"><?=$file_tg;?></label>
                             </div>
                             <small class="form-text text-success">Unggah file materi. *maksimal ukuran 5mb</small>

@@ -247,6 +247,11 @@ $(function() {
             icon: 'success',
             title: 'Transaksi berhasil, silahkan selesaikan pembayaran!',
         });
+    } else if (flashData == 'gagal_upload') {
+        Toast.fire({
+            icon: 'error',
+            title: 'Gagal upload!',
+        });
     }
             // else if(flashData == 'blSuccess'){
             //     Toast.fire({

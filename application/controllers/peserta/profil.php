@@ -86,7 +86,8 @@ class Profil extends CI_Controller
                     $new_image = $this->upload->data('file_name');
                     $this->db->set('FTO_PS', $new_image);
                 } else {
-                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect('peserta/profil');
                 }
             }
 

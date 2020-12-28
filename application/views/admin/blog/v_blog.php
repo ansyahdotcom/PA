@@ -24,7 +24,7 @@
 		<div class="card-header">
 			<div class="text-right">
 				<a class="btn btn-primary" href="<?= base_url('admin/blog/tulis_artikel'); ?>"><i
-						class="fas fa-plus"></i>
+						class="fas fa-plus-circle"></i>
 					Tulis artikel</a>
 			</div>
 		</div>
@@ -113,11 +113,11 @@
 								?>
 								<!-- dilihat tampilan blognya sebelum diposting -->
 								<a class="btn btn-secondary btn-sm btn-round"
-									href="<?= base_url('admin/blog/pratinjau/'.$blg->JUDUL_POST);?>"><i
+									href="<?= base_url('admin/blog/pratinjau/'. strtolower($blg->JUDUL_POST));?>"><i
 										class="fas fa-eye"></i> Pratinjau</a>
 
 								<!-- edit artikel -->
-								<a href="<?= base_url('admin/blog/edit_artikel/' .$blg->JUDUL_POST); ?>">
+								<a href="<?= base_url('admin/blog/edit_artikel/' .strtolower($blg->JUDUL_POST)); ?>">
 									<button type="button" class="btn btn-primary btn-circle btn-sm">
 										<i class="fas fa-edit" style="color: white"></i> Edit
 									</button>

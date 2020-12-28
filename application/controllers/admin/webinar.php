@@ -184,12 +184,13 @@ class Webinar extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-        $data['tittle'] = "Edit Webinar";
+        $data['tittle'] = 'Edit Webinar';
         date_default_timezone_set('Asia/Jakarta');
         $where = array('JUDUL_WEBINAR' => $JUDUL_WEBINAR);
 
         $data['webinar'] = $this->m_webinar->tampil_edit($where, 'webinar')->result();
-        echo "askgfiu";
+        // echo "askgfiu";
+        $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
         $this->load->view("admin/webinar/v_edit", $data);

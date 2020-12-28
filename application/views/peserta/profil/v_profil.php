@@ -57,7 +57,7 @@
                       <img src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
                     </div>
                   </span>
-                  <input type="file" name="image" value="<?= $peserta['FTO_PS']; ?>" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">
+                  <input type="file" name="image" value="<?= $peserta['FTO_PS']; ?>" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;" accept="image/x-png,image/gif,image/jpeg">
                   <?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
                   <label class="text-bold text-gray">Foto Profil</label>
                   <div>

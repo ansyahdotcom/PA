@@ -68,10 +68,12 @@ $route['repass'] = 'peserta/auth/ubahpassword';
 $route['verify'] = 'peserta/auth/verify';
 $route['class'] = 'index/kelas';
 $route['webinar'] = 'index/webinar';
+$route['blog'] = 'index/post';
 $route['peserta/faq'] = 'peserta/bantuan/faq';
 $route['peserta/ketentuan'] = 'peserta/bantuan/ketentuan';
 $route [ 'class/detail/(:num)' ]  =  'index/dt_kls/$1' ;
 $route [ 'webinar/detail/(:any)' ]  =  'index/dt_webinar/$1' ;
+$route [ 'blog/detail/(:any)' ]  =  'index/lihat_post/$1' ;
 
 /**
  * ==================================================================

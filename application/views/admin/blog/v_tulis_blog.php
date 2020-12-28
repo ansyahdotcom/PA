@@ -89,7 +89,7 @@
 														<i class="glyphicon glyphicon-download-alt"></i>
 														<div>Pilih file gambar atau seret gambar kesini .</div>
 													</div>
-													<input type="file" name="FOTO_POST" class="dropzone" required>
+													<input type="file" name="FOTO_POST" class="dropzone" accept="image/x-png,image/gif,image/jpeg" required>
 												</div>
 											</div>
 										</div>

@@ -10,8 +10,8 @@
 					<div class="site-buttons mt-lg-5 p-5">
 						<div class="d-flex flex-row flex-wrap">
 							<div class="kelas">
-								<h1 class="display-4 title-text">Social Entrepreneurship</h1>
-								<h3 class="title-text text-black mb-5 para"><b> Based Course</b></h3>
+								<h1 class="display-4 title-text">Social Enterprise</h1>
+								<h3 class="title-text text-black mb-5 para"><b> Based Academy</b></h3>
 								<div class="site-buttons">
 									<div class="d-flex flex-row flex-wrap justify-content-center">
 										<a href="<?=base_url('register');?>" class="btn button primary-button ml-4 mr-4 text-uppercase">Daftar
@@ -76,16 +76,18 @@
     	<section class="program-area">
     		<div class="container-fluid">
     			<div class="row justify-content-center">
+					<div class="row">
+						<div class="col-lg-12 text-center program-title">
+							<h1 class="text-uppercase title-text">Program Kami di Preneur Academy
+							</h1>
+						</div>
+					</div>
     				<div class="col-lg-6 col-md-12">
     					<div class="about-image">
     						<img src="<?= base_url(); ?>assets/dist/img/setup.svg" alt="About us" class="img-fluid">
     					</div>
     				</div>
-    				<div class="col-lg-6 col-md-12 program-title">
-    					<h2 class="text-uppercase pt-5">
-    						<span>Program kami di</span>
-    						<span>Preneur Academy</span>
-    					</h2>
+    				<div class="col-lg-6 p-5 col-md-12 program-title">
     					<div class="program">
     						<div class="card mb-3 bg-warning" style="max-width: 540px;">
     							<div class="row no-gutters">
@@ -134,7 +136,7 @@
     					<h1 class="text-uppercase title-text">Mengapa harus Preneur Academy ?
     					</h1>
     					<p class="para">
-    						Berikut merupakan program yang akan kamu dapat di Preneur Academy
+    						Berikut merupakan fasilitas yang akan kamu dapat di Preneur Academy
     					</p>
     				</div>
     			</div>
@@ -267,7 +269,7 @@
 										}
 										?>
 										</p>
-                                        <a class="btn btn-primary" href="<?= base_url('index/lihat_post/'. $blg->JUDUL_POST);?>">Lihat Post</a>
+                                        <a class="btn btn-primary" href="<?= base_url('blog/detail/'.strtolower($blg->JUDUL_POST));?>">Lihat Post</a>
                                     </div>
                                 </div>
                             </div>
@@ -284,12 +286,12 @@
     	<section class="newsletter">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-md-10 text-center jumbotron bg-primary p-12 shadow">
+					<div class="col-md-10 text-center jumbotron bg-primary shadow">
 						<img src="<?=base_url();?>assets/dist/img/subscribe.svg" width="200" alt="gambar-envelope">
-						<div class="content text-center mt-5">
+						<div class="content text-center">
 							<h2 class="text-white">SUBSCRIBE</h2>
 							<p class="text-white">Dengan meng-klik subscribe artinya anda menyetujui layanan langganan ke website ini.</p>
-							<div class="input-group p-5 mt-5 mb-5">
+							<div class="input-group p-5">
 								<input type="email" class="form-control mr-2 mb-2" placeholder="Enter your email">
 								<span class="input-group-btn">
 								<button class="btn btn-warning ml-2 mb-2" type="submit">Subscribe Now</button>

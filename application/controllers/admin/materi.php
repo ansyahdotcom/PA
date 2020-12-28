@@ -38,7 +38,7 @@ class Materi extends CI_Controller
         $upload = $_FILES['file']['name'];
             if ($upload) {
                 $config['upload_path'] = './assets/dist/materi/';
-                $config['allowed_types'] = 'pdf|zip|doc|docx|ppt|pptx';
+                $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
                 $config['max_size'] = 5000;
                 $config['overwrite'] = TRUE;
                 // $config['max_width'] = 1500;
@@ -50,7 +50,8 @@ class Materi extends CI_Controller
                     $new = $this->upload->data('file_name');
                     $this->db->set('FILE_SUB', $new);
                 } else {
-                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect("admin/materi/materikelas/$id");
                 }
             }
 
@@ -76,7 +77,7 @@ class Materi extends CI_Controller
         $upload = $_FILES['file']['name'];
             if ($upload) {
                 $config['upload_path'] = './assets/dist/materi/';
-                $config['allowed_types'] = 'pdf|zip|doc|docx|ppt|pptx';
+                $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
                 $config['max_size'] = 5000;
                 // $config['max_width'] = 1500;
                 // $config['max_height'] = 1500;
@@ -89,7 +90,8 @@ class Materi extends CI_Controller
                     $get = $this->db->get_where('materi_sub', ['ID_SUB' => $ID_SUB])->row();
                     unlink(FCPATH. 'assets/dist/materi/' .$get->FILE_SUB);
                 } else {
-                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect("admin/materi/materikelas/$id");
                 }
             }
 
@@ -126,7 +128,7 @@ class Materi extends CI_Controller
         $upload = $_FILES['file']['name'];
             if ($upload) {
                 $config['upload_path'] = './assets/dist/tugas/';
-                $config['allowed_types'] = 'pdf|zip|doc|docx|ppt|pptx';
+                $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
                 $config['max_size'] = 5000;
                 $config['overwrite'] = TRUE;
                 // $config['max_width'] = 1500;
@@ -138,7 +140,8 @@ class Materi extends CI_Controller
                     $new = $this->upload->data('file_name');
                     $this->db->set('FILE_TG', $new);
                 } else {
-                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect("admin/materi/materikelas/$id");
                 }
             }
 
@@ -168,7 +171,7 @@ class Materi extends CI_Controller
         $upload = $_FILES['file']['name'];
             if ($upload) {
                 $config['upload_path'] = './assets/dist/materi/';
-                $config['allowed_types'] = 'pdf|zip|doc|docx|ppt|pptx';
+                $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
                 $config['max_size'] = 5000;
                 // $config['max_width'] = 1500;
                 // $config['max_height'] = 1500;
@@ -181,7 +184,8 @@ class Materi extends CI_Controller
                     $get = $this->db->get_where('tugas', ['ID_TG' => $ID_TG])->row();
                     unlink(FCPATH. 'assets/dist/tugas/' .$get->FILE_TG);
                 } else {
-                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect("admin/materi/materikelas/$id");
                 }
             }
 

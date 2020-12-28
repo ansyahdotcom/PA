@@ -37,7 +37,7 @@
 							</div>
 							<!-- <span class="badge bg-warning">Kategori: <?= $wbnr->KTGKLS?></span> -->
 						</div>
-						<a href="<?= base_url('webinar/detail/'. $wbnr->JUDUL_WEBINAR);?>"
+						<a href="<?= base_url('webinar/detail/'. strtolower($wbnr->JUDUL_WEBINAR));?>"
 							class="btn btn-primary font-weight-bold text-uppercase m-2">Lihat Detail</a>
 					</div>
 				</div>

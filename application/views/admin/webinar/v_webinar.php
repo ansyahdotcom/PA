@@ -24,7 +24,7 @@
 			<div class="text-right">
 				<!-- dilihat tampilan webinarnya sebelum diposting -->
 				<a class="btn btn-primary" href="<?= base_url('admin/webinar/tambah_webinar'); ?>"><i
-						class="fas fa-plus"></i>
+						class="fas fa-plus-circle"></i>
 					Tambah Webinar</a>
 			</div>
 		</div>
@@ -96,10 +96,10 @@
 							}
 							?>
 							
-							<a class="btn btn-secondary btn-sm" href="<?= base_url('admin/webinar/pratinjau/'. $wbnr->JUDUL_WEBINAR); ?>"><i class="fas fa-eye"></i>
+							<a class="btn btn-secondary btn-sm" href="<?= base_url('admin/webinar/pratinjau/'. strtolower($wbnr->JUDUL_WEBINAR)); ?>"><i class="fas fa-eye"></i>
 								Pratinjau</a>
 							<!-- edit artikel -->
-							<a href="<?= base_url('admin/webinar/edit/' . $wbnr->JUDUL_WEBINAR); ?>">
+							<a href="<?= base_url('admin/webinar/edit/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>">
 								<button type="button" class="btn btn-primary btn-circle btn-sm">
 									<i class="fas fa-edit" style="color: white"></i> Edit
 								</button>
