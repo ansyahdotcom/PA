@@ -127,28 +127,28 @@
 								</div>
 								<div class="card-footer">
 									<?php
-										$tgl = date('Y-m-d', time());
-										$tgl_now = strtotime($tgl);
+									$tgl = date('Y-m-d', time());
+									$tgl_now = strtotime($tgl);
 									?>
 									<div class="text-center">
-										<?php if ($tgl_daftar > $tgl_now) : ?>
+										<?php if ($tgl_daftar > $tgl_now && $tgl_penutupan < $tgl_now) : ?>
+											<?php
+											if ($tgl_daftar > $tgl_now) :
+												$text = "Kelas ini belum membuka pendaftaran";
+												$btn = "btn-info";
+												$icon = "fas fa-info";
+											elseif ($tgl_penutupan < $tgl_now) :
+												$text = "Pendaftaran kelas ini telah di tutup";
+												$btn = "btn-danger";
+												$icon = "fas fa-ban";
+											endif;
+											?>
 											<div class="row">
 												<div class="col-md-12">
-													<span class="btn btn-sm btn-info text-bold btn-block">
+													<span class="btn btn-sm <?= $btn; ?> text-bold btn-block">
 														<div class="text-center">
-															<i class="fas fa-info pr-2"> </i>
-															Kelas ini belum membuka pendaftaran
-														</div>
-													</span>
-												</div>
-											</div>
-										<?php elseif ($tgl_penutupan < $tgl_now) : ?>
-											<div class="row">
-												<div class="col-md-12">
-													<span class="btn btn-sm btn-danger text-bold btn-block">
-														<div class="text-center">
-															<i class="fas fa-ban pr-2"> </i>
-															Pendaftaran kelas ini telah di tutup
+															<i class="<?= $icon; ?> pr-2"> </i>
+															<?= $text; ?>
 														</div>
 													</span>
 												</div>
