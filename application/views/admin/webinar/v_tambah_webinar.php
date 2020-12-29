@@ -37,16 +37,6 @@
                             <input class="form-control" type="text" autocomplete="off" name="JUDUL_WEBINAR" placeholder="Tambahkan judul webinar" autofocus required>
                             <?= form_error('JUDUL_WEBINAR', '<small class="text-danger">', '</small>'); ?>
                             <br>
-                            <!-- Fasilitas -->
-                            <!-- <i class="fa fa-tag"></i>
-                            <label for="ID_FA">Fasilitas</label><br>
-                            <select name="ID_FA[]" id="ID_FA[]" class="select2bs4" multiple="multiple" data-placeholder="Pilih fasilitas" style="width: 100%;">
-                                <?php foreach ($fasilitas as $fas) { ?>
-                                    <option value="<?= $fas->ID_FA; ?>"><?= $fas->NM_FA; ?></option>
-                                <?php } ?>
-                            </select> -->
-                            <!-- <button type="button" id="tambah_fasilitas" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_fasilitas">Tambah Fasilitas Baru</button>
-                            <br> <br> -->
                             <div class="form-group">
                                 <label for="icon">Poster Webinar</label>
                                 <div class="container">
@@ -102,9 +92,8 @@
                             <input type="date" class="form-control" name="TGL_WEB" id="TGL_WEB" required>
                             <br>
                             <label for="KONTEN_WEB">Deskripsi Webinar</label>
-                            <textarea class="textarea" class="form-control" name="KONTEN_WEB" id="KONTEN_WEB"
-								placeholder="Isi deskripsi disini..." required></textarea>
-							<br><br>
+                            <textarea class="textarea" class="form-control" name="KONTEN_WEB" id="KONTEN_WEB" placeholder="Isi deskripsi disini..." required></textarea>
+                            <br><br>
                             <button type="submit" class="btn btn-success btn-round">Simpan</button>
                         </div>
                     </form>
@@ -119,28 +108,3 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-<!-- Modal tambah fasilitas -->
-<div class="modal fade" id="modal_tambah_fasilitas" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title title-1" id="myModalLabel">Tambah Fasilitas</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="post" action="<?= base_url('admin/webinar/pr_tmbh_fasilitas'); ?>">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="ID_FA" value="<?= $ID_FA; ?>">
-                        <input type="text" class="form-control" name="NM_FA" autocomplete="off" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
