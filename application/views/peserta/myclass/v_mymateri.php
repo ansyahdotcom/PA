@@ -31,11 +31,6 @@
                 <div class="card">
                     <div class="card-header">
                     <h3 class="card-title pt-2"><?= $nama;?></h3>
-                    <div class="card-tools">
-						<div class="form-check-lg">
-							<input class="form-check-input position-static" type="checkbox" value="">
-						</div>
-                    </div>
                     </div>
                     <div class="card-body">
                         <?php
@@ -49,7 +44,7 @@
                         <div class="row">
                         <div class="card col-sm-12 bg-navy mt-2">
                             <div class="card-header">
-                                <h1 class="card-title mt-2"><i class="<?=$i['ICON_SUB'];?> fa-lg mr-2"></i> <?= str_replace( '_', ' ', $i['FILE_SUB']);?></h1>
+                                <h1 class="card-title mt-2"><i class="<?=$i['ICON_SUB'];?> fa-lg mr-2"></i> <?= str_replace( '_', ' ', htmlspecialchars_decode($i['FILE_SUB']));?></h1>
                                 <div class="card-tools pb-2">
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_edit_sub<?=$id_sub;?>">
                                     <i class="fas fa-download"></i></button>
