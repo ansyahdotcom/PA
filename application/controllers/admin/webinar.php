@@ -147,7 +147,7 @@ class Webinar extends CI_Controller
                 'ST_POSTWEB' => $ST_POSTWEB
             );
             $this->m_webinar->update($where, $data, 'webinar');
-            $this->session->set_flashdata('message', 'posting');
+            $this->session->set_flashdata('message', 'w_posting');
             redirect('admin/webinar');
         } else {
             $ST_POSTWEB--;
@@ -155,9 +155,106 @@ class Webinar extends CI_Controller
                 'ST_POSTWEB' => $ST_POSTWEB
             );
             $this->m_webinar->update($where, $data, 'webinar');
-            $this->session->set_flashdata('message', 'draf');
+            $this->session->set_flashdata('message', 'w_draf');
             redirect('admin/webinar');
         }
+    }
+
+    // proses posting link
+    public function posting_link()
+    {
+        $ST_LINK = htmlspecialchars($this->input->post('ST_LINK'));
+        $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
+        $where = array(
+            'ID_WEBINAR' => $ID_WEBINAR
+        );
+
+        if ($ST_LINK == 0) {
+            $ST_LINK++;
+            $data = array(
+                'ST_LINK' => $ST_LINK
+            );
+            $this->m_webinar->update($where, $data, 'webinar');
+            $this->session->set_flashdata('message', 'link_posting');
+            redirect('admin/webinar');
+        } else {
+            $ST_LINK--;
+            $data = array(
+                'ST_LINK' => $ST_LINK
+            );
+            $this->m_webinar->update($where, $data, 'webinar');
+            $this->session->set_flashdata('message', 'link_draf');
+            redirect('admin/webinar');
+        }
+    }
+
+    // proses posting link
+    public function posting_srt()
+    {
+        $ST_SRT = htmlspecialchars($this->input->post('ST_SRT'));
+        $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
+        $where = array(
+            'ID_WEBINAR' => $ID_WEBINAR
+        );
+
+        if ($ST_SRT == 0) {
+            $ST_SRT++;
+            $data = array(
+                'ST_SRT' => $ST_SRT
+            );
+            $this->m_webinar->update($where, $data, 'webinar');
+            $this->session->set_flashdata('message', 'srt_posting');
+            redirect('admin/webinar');
+        } else {
+            $ST_SRT--;
+            $data = array(
+                'ST_SRT' => $ST_SRT
+            );
+            $this->m_webinar->update($where, $data, 'webinar');
+            $this->session->set_flashdata('message', 'srt_draf');
+            redirect('admin/webinar');
+        }
+    }
+
+    public function file_srt()
+    {
+        $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
+        $ST_SRT = 0;
+        // $SRT_WEBINAR = htmlspecialchars($this->input->post('SRT_WEBINAR'));
+
+        $upload = $_FILES['SRT_WEBINAR']['name'];
+            if ($upload) {
+                $config['upload_path'] = './assets/fotowebinar/sertifikat/';
+                $config['allowed_types'] = 'pdf';
+                $config['max_size'] = 2000;
+                $config['encrypt_name'] = true;
+                // $config['max_height'] = 1500;
+
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('SRT_WEBINAR')) {
+                    $new = $this->upload->data('file_name');
+                    $this->db->set('SRT_WEBINAR', $new);
+                    $get = $this->db->get_where('webinar', ['ID_WEBINAR' => $ID_WEBINAR])->row();
+                    unlink(FCPATH. 'assets/fotowebinar/sertifikat/' .$get->SRT_WEBINAR);
+                } else {
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect("admin/webinar");
+                }
+            }
+
+            $data = array(
+                'SRT_WEBINAR' => $new  
+            );
+            
+            $where = array(
+                'ID_WEBINAR' => $ID_WEBINAR,
+                'ST_SRT' => $ST_SRT
+            );
+            
+            $this->m_webinar->update($where, $data, 'webinar');  
+            $this->session->set_flashdata('message', 'edit');
+            redirect('admin/webinar');
     }
 
     //hapus webinar
@@ -292,5 +389,22 @@ class Webinar extends CI_Controller
         $this->load->view("landingpage/template/header", $data);
         $this->load->view('admin/webinar/detail_webinar', $data);
         $this->load->view("landingpage/template/footer", $data);
+    }
+
+    public function listpeserta($JUDUL_WEBINAR)
+    {
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' =>
+            $this->session->userdata('email')
+        ])->row_array();
+        date_default_timezone_set('Asia/Jakarta');
+
+        $data['judul'] = "List Peserta";
+        $data['list_ps'] = $this->m_webinar->list_ps($JUDUL_WEBINAR)->result();
+        $this->load->view("admin/template_adm/v_header", $data);
+        $this->load->view("admin/template_adm/v_navbar", $data);
+        $this->load->view("admin/template_adm/v_sidebar", $data);
+        $this->load->view("admin/webinar/v_list_ps", $data);
+        $this->load->view("admin/template_adm/v_footer");
     }
 }
