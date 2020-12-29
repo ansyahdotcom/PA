@@ -18,14 +18,6 @@ class M_webinar extends CI_Model
         return $hasil->ID_WEBINAR;
     }
 
-    // nyari data id tag terakhir
-    function selectMaxID_FA()
-    {
-        $query = $this->db->query("SELECT MAX(ID_FA) AS ID_FA FROM fasilitas");
-        $hasil = $query->row();
-        return $hasil->ID_FA;
-    }
-
     function insert($data, $table)
     {
         $this->db->insert($table, $data);
@@ -45,17 +37,6 @@ class M_webinar extends CI_Model
     function tampil_edit($where, $table)
     {
         return $this->db->get_where($table, $where);
-    }
-
-    // menampilkan fasilitas yg mau diedit
-    function tampil_edit_fasilitas($JUDUL_WEBINAR)
-    {
-        $query = $this->db->query("SELECT detail_fasilitas_wbnr.ID_WEBINAR, detail_fasilitas_wbnr.ID_FA, fasilitas.NM_FA 
-                                    FROM detail_fasilitas_wbnr, webinar, fasilitas 
-                                    WHERE detail_fasilitas_wbnr.ID_WEBINAR = webinar.ID_WEBINAR
-                                    AND detail_fasilitas_wbnr.ID_FA = fasilitas.ID_FA
-                                    AND webinar.JUDUL_WEBINAR = '$JUDUL_WEBINAR'");
-        return $query;
     }
 
     // pratinjau

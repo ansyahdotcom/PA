@@ -223,38 +223,38 @@ class Webinar extends CI_Controller
         // $SRT_WEBINAR = htmlspecialchars($this->input->post('SRT_WEBINAR'));
 
         $upload = $_FILES['SRT_WEBINAR']['name'];
-            if ($upload) {
-                $config['upload_path'] = './assets/fotowebinar/sertifikat/';
-                $config['allowed_types'] = 'pdf';
-                $config['max_size'] = 2000;
-                $config['encrypt_name'] = true;
-                // $config['max_height'] = 1500;
+        if ($upload) {
+            $config['upload_path'] = './assets/fotowebinar/sertifikat/';
+            $config['allowed_types'] = 'pdf';
+            $config['max_size'] = 2000;
+            $config['encrypt_name'] = false;
+            // $config['max_height'] = 1500;
 
-                $this->upload->initialize($config);
+            $this->upload->initialize($config);
 
-                if ($this->upload->do_upload('SRT_WEBINAR')) {
-                    $new = $this->upload->data('file_name');
-                    $this->db->set('SRT_WEBINAR', $new);
-                    $get = $this->db->get_where('webinar', ['ID_WEBINAR' => $ID_WEBINAR])->row();
-                    unlink(FCPATH. 'assets/fotowebinar/sertifikat/' .$get->SRT_WEBINAR);
-                } else {
-                    $this->session->set_flashdata('message', 'gagal_upload');
-                    redirect("admin/webinar");
-                }
+            if ($this->upload->do_upload('SRT_WEBINAR')) {
+                $new = $this->upload->data('file_name');
+                $this->db->set('SRT_WEBINAR', $new);
+                $get = $this->db->get_where('webinar', ['ID_WEBINAR' => $ID_WEBINAR])->row();
+                unlink(FCPATH . 'assets/fotowebinar/sertifikat/' . $get->SRT_WEBINAR);
+            } else {
+                $this->session->set_flashdata('message', 'gagal_upload');
+                redirect("admin/webinar");
             }
+        }
 
-            $data = array(
-                'SRT_WEBINAR' => $new  
-            );
-            
-            $where = array(
-                'ID_WEBINAR' => $ID_WEBINAR,
-                'ST_SRT' => $ST_SRT
-            );
-            
-            $this->m_webinar->update($where, $data, 'webinar');  
-            $this->session->set_flashdata('message', 'edit');
-            redirect('admin/webinar');
+        $data = array(
+            'SRT_WEBINAR' => $new
+        );
+
+        $where = array(
+            'ID_WEBINAR' => $ID_WEBINAR,
+            'ST_SRT' => $ST_SRT
+        );
+
+        $this->m_webinar->update($where, $data, 'webinar');
+        $this->session->set_flashdata('message', 'edit');
+        redirect('admin/webinar');
     }
 
     //hapus webinar
@@ -265,10 +265,10 @@ class Webinar extends CI_Controller
             'ID_WEBINAR' => $ID_WEBINAR
         );
         $query = $this->db->query("SELECT FOTO_WEBINAR FROM webinar WHERE ID_WEBINAR = '$ID_WEBINAR'");
-        foreach ($query->result() as $row){
+        foreach ($query->result() as $row) {
             $FOTO = $row->FOTO_WEBINAR;
         }
-        unlink(FCPATH. 'assets/fotowebinar/'. $FOTO);
+        unlink(FCPATH . 'assets/fotowebinar/' . $FOTO);
         $this->m_webinar->delete($where, 'webinar');
         $this->session->set_flashdata('message', 'hapus');
         redirect('admin/Webinar');
@@ -315,61 +315,60 @@ class Webinar extends CI_Controller
         // untuk upload foto webinar
         $upload_image = $_FILES['FOTO_WEBINAR']['name'];
 
-            $upload_image = $_FILES['FOTO_WEBINAR']['name'];
-            if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|jpeg|png';
-                $config['max_size'] = '2048';
-                $config['upload_path']  = './assets/fotowebinar/';
-                $config['encrypt_name'] = TRUE;
+        $upload_image = $_FILES['FOTO_WEBINAR']['name'];
+        if ($upload_image) {
+            $config['allowed_types'] = 'gif|jpg|jpeg|png';
+            $config['max_size'] = '2048';
+            $config['upload_path']  = './assets/fotowebinar/';
+            $config['encrypt_name'] = TRUE;
 
-                $this->upload->initialize($config);
+            $this->upload->initialize($config);
 
-                if (!$this->upload->do_upload('FOTO_WEBINAR')) {
-                    $this->session->set_flashdata('message', 'gagal_upload');
-                    redirect("admin/webinar");
-                } else {
-                    $upload_data = $this->upload->data();
-
-                    //Compress Image buat foto web
-                    $config['image_library'] = 'gd2';
-                    $config['quality'] = '80%';
-                    $config['width'] = 500;
-                    $config['height'] = 500;
-                    $config['source_image'] = './assets/fotowebinar/' . $upload_data['file_name'];
-                    $config['create_thumb'] = FALSE;
-                    $config['maintain_ratio'] = FALSE;
-                    $this->load->library('image_lib', $config);
-                    $this->image_lib->resize();
-
-                    $get = $this->db->get_where('webinar', ['ID_WEBINAR' => $ID_WEBINAR])->row();
-                    unlink(FCPATH. 'assets/fotowebinar/' .$get->FOTO_WEBINAR);
-
-                    $upload_image = $this->upload->data('file_name');
-                }
+            if (!$this->upload->do_upload('FOTO_WEBINAR')) {
+                $this->session->set_flashdata('message', 'gagal_upload');
+                redirect("admin/webinar");
             } else {
-                $upload_image = $HAPUS_FOTO;
+                $upload_data = $this->upload->data();
+
+                //Compress Image buat foto web
+                $config['image_library'] = 'gd2';
+                $config['quality'] = '80%';
+                $config['width'] = 500;
+                $config['height'] = 500;
+                $config['source_image'] = './assets/fotowebinar/' . $upload_data['file_name'];
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+
+                $get = $this->db->get_where('webinar', ['ID_WEBINAR' => $ID_WEBINAR])->row();
+                unlink(FCPATH . 'assets/fotowebinar/' . $get->FOTO_WEBINAR);
+
+                $upload_image = $this->upload->data('file_name');
             }
+        } else {
+            $upload_image = $HAPUS_FOTO;
+        }
 
-            $where = array('ID_WEBINAR' => $ID_WEBINAR);
+        $where = array('ID_WEBINAR' => $ID_WEBINAR);
 
-            $data = array(
-                'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
-                'ID_ADM' => $ID_ADM,
-                'KONTEN_WEB' => $KONTEN_WEB,
-                'FOTO_WEBINAR' => $upload_image,
-                'HARGA' => $HARGA,
-                'PLATFORM' => $PLATFORM,
-                'LINK_ZOOM' => $LINK_ZOOM,
-                'TGL_WEB' => $TGL_WEB,
-                'TGL_POSTWEB' => $TGL_POSTWEB
-            );
-            
-            // var_dump($data);die;
-            $this->m_webinar->update($where, $data, 'webinar');
-    
-            $this->session->set_flashdata('message', 'edit');
-            redirect('admin/webinar');
-        
+        $data = array(
+            'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
+            'ID_ADM' => $ID_ADM,
+            'KONTEN_WEB' => $KONTEN_WEB,
+            'FOTO_WEBINAR' => $upload_image,
+            'HARGA' => $HARGA,
+            'PLATFORM' => $PLATFORM,
+            'LINK_ZOOM' => $LINK_ZOOM,
+            'TGL_WEB' => $TGL_WEB,
+            'TGL_POSTWEB' => $TGL_POSTWEB
+        );
+
+        // var_dump($data);die;
+        $this->m_webinar->update($where, $data, 'webinar');
+
+        $this->session->set_flashdata('message', 'edit');
+        redirect('admin/webinar');
     }
 
     // pratinjau / lihat post / lihat postingan webinar
@@ -383,7 +382,7 @@ class Webinar extends CI_Controller
 
         $data['judul'] = "Webinar";
         $data['footer'] = $this->m_medsos->get_data();
-        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['header'] = $this->m_navbar->get_navbar();
         $data['kebijakan'] = $this->m_kebijakan->get_data();
         $data['webinar'] = $this->m_webinar->tampil_dt_webinar($JUDUL_WEBINAR, 'webinar')->result();
         $this->load->view("landingpage/template/header", $data);
@@ -397,6 +396,7 @@ class Webinar extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
+        $data['tittle'] = "List Peserta Webinar";
         date_default_timezone_set('Asia/Jakarta');
 
         $data['judul'] = "List Peserta";

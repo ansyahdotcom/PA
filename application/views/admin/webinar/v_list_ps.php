@@ -5,15 +5,15 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<?php foreach ($list_ps as $list) { ?>
-				<div class="col-sm-6">
-					<h1 class="m-0 text-dark">List Peserta Webinar <?= str_replace('-', ' ', $list->JUDUL_WEBINAR); ?>
-					</h1>
-				</div><!-- /.col -->
+					<div class="col-sm-6">
+						<h1 class="m-0 text-dark"><?= $tittle; ?> <?= str_replace('-', ' ', $list->JUDUL_WEBINAR); ?>
+						</h1>
+					</div><!-- /.col -->
 				<?php } ?>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
-						<li class="breadcrumb-item active">List Peserta</li>
+						<li class="breadcrumb-item active"><?= $tittle; ?></li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -43,12 +43,12 @@
 								<tbody>
 									<?php $no = 1; ?>
 									<?php foreach ($list_ps as $list) {
-                                ?>
-									<tr>
-										<td class="text-center" width="100px"><?= $no++ ?></td>
-										<td><?= $list->NM_PS; ?></td>
-										<td><?= $list->PEKERJAAN; ?></td>
-									</tr>
+									?>
+										<tr>
+											<td class="text-center" width="100px"><?= $no++ ?></td>
+											<td><?= $list->NM_PS; ?></td>
+											<td><?= $list->PEKERJAAN; ?></td>
+										</tr>
 									<?php } ?>
 								</tbody>
 							</table>
