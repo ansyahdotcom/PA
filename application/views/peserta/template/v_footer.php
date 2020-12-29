@@ -64,67 +64,66 @@
 
 <!-- Get jumlah notif -->
 <script>
-    jmlNotif();
-    dataNotif();
-
-    function jmlNotif() {
-        $.ajax({
-            type: 'POST',
-            url: '<?= base_url('peserta/notifikasi/jml'); ?>',
-            dataType: 'json',
-            success: function(data) {
-                setInterval(function() {
+    $(document).ready(function() {
+        setInterval(function() {
+            $.ajax({
+                type: 'POST',
+                url: '<?= base_url('peserta/notifikasi/jml'); ?>',
+                dataType: 'json',
+                success: function(data) {
                     data.length
-                }, 100);
-                if (data.length > 5) {
-                    $(".jml-not").text(5 + ` +`);
-                    $(".jml-not1").text(`Ada 5 lebih pemberitahuan masuk`);
-                    $(".pemberitahuan").text(5 + ` +`);
-                } else if (data.length == 0) {
-                    $(".jml-not").text(data.length);
-                    $(".jml-not1").text(data.length + ` pemberitahuan`);
-                    $(".kosong").text(`Belum ada pemberitahuan masuk`);
-                    $(".pemberitahuan").text(data.length);
-                } else {
-                    $(".jml-not").text(data.length);
-                    $(".jml-not1").text(`Ada ` + data.length + ` pemberitahuan masuk`);
-                    $(".pemberitahuan").text(data.length);
-                }
-            }
-        });
-    }
-
-    function dataNotif() {
-        $.ajax({
-            type: 'POST',
-            url: '<?= base_url('peserta/notifikasi/msg'); ?>',
-            dataType: 'json',
-            success: function(data) {
-                var notif = '';
-                var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                for (var i = 0; i < data.length; i++) {
-                    var icon = '';
-                    var d = new Date(data[i].DATE_NOT);
-                    if (data[i].TITTLE_NOT == "Transaksi berhasil" || data[i].TITTLE_NOT == "Transaksi sukses dibayar" || data[i].TITTLE_NOT == "Transaksi dibatalkan") {
-                        icon = "fas fa-money-check";
-                    } else if (data[i].TITTLE_NOT == "Selamat datang!") {
-                        icon = "fas fa-users";
+                    if (data.length > 5) {
+                        $(".jml-not").text(5 + ` +`);
+                        $(".jml-not1").text(`Ada 5 lebih pemberitahuan masuk`);
+                        $(".pemberitahuan").text(5 + ` +`);
+                    } else if (data.length == 0) {
+                        $(".jml-not").text(data.length);
+                        $(".jml-not1").text(data.length + ` pemberitahuan`);
+                        $(".kosong").text(`Belum ada pemberitahuan masuk`);
+                        $(".pemberitahuan").text(data.length);
                     } else {
-                        icon = "fas fa-users";
+                        $(".jml-not").text(data.length);
+                        $(".jml-not1").text(`Ada ` + data.length + ` pemberitahuan masuk`);
+                        $(".pemberitahuan").text(data.length);
                     }
+                }
+            });
+        }, 1000);
+    });
 
-                    notif += `  <a href="<?= base_url('peserta/notifikasi/read_msg/'); ?>` + data[i].ID_NOT + `" class="dropdown-item">
+    $(document).ready(function() {
+        setInterval(function() {
+            $.ajax({
+                type: 'POST',
+                url: '<?= base_url('peserta/notifikasi/msg'); ?>',
+                dataType: 'json',
+                success: function(data) {
+                    var notif = '';
+                    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    for (var i = 0; i < data.length; i++) {
+                        var icon = '';
+                        var d = new Date(data[i].DATE_NOT);
+                        if (data[i].TITTLE_NOT == "Transaksi berhasil" || data[i].TITTLE_NOT == "Transaksi sukses dibayar" || data[i].TITTLE_NOT == "Transaksi dibatalkan") {
+                            icon = "fas fa-money-check";
+                        } else if (data[i].TITTLE_NOT == "Selamat datang!") {
+                            icon = "fas fa-users";
+                        } else {
+                            icon = "fas fa-users";
+                        }
+
+                        notif += `  <a href="<?= base_url('peserta/notifikasi/read_msg/'); ?>` + data[i].ID_NOT + `" class="dropdown-item">
                                     <i class="` + icon + ` mr-2"></i>` + data[i].TITTLE_NOT + `
                                     <span class="float-right text-muted text-sm">` + d.getDate() + `-` + months[d.getMonth()] + `-` + d.getFullYear() + `</br>` + d.getHours() + `:` + d.getMinutes() + `</span>
                                     <p class="text-muted text-bold">` + data[i].MSG_NOT + `</p>
                                     <input type="hidden" name="nID" value="` + data[i].ID_NOT + `">
                                 </a>
                                 <div class="dropdown-divider"></div>`
+                    }
+                    $(".msg-not").html(notif);
                 }
-                $(".msg-not").html(notif);
-            }
-        });
-    }
+            });
+        }, 1000);
+    });
 </script>
 
 <!-- Mengambil data kelas -->
@@ -133,13 +132,15 @@
         $('.beli').click(function() {
             var eID = $(this).attr('id');
             $.ajax({
-                url:'<?= site_url(); ?>/peserta/kelas/getkelas',
-                method:'POST',
-                data: {eID:eID},
+                url: '<?= site_url(); ?>/peserta/kelas/getkelas',
+                method: 'POST',
+                data: {
+                    eID: eID
+                },
                 dataType: 'json',
-                success:function(data) {
+                success: function(data) {
                     var i;
-                    for(i in data) {
+                    for (i in data) {
                         $('#id').val(data[i].ID_KLS);
                         $('#kelas').val(data[i].TITTLE);
                         $('#harga').val(data[i].PRICE);

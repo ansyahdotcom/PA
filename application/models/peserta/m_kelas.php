@@ -86,14 +86,23 @@
             $this->db->update('peserta');
         }
 
-        public function countmyclass($email)
+        public function countmyclass($idps)
         {
-            $this->db->select('detail_kelas.ID_PS');
+            $this->db->select('*');
             $this->db->from('detail_kelas');
             $this->db->join('peserta', 'peserta.ID_PS = detail_kelas.ID_PS', 'left');
-            $this->db->where('EMAIL_PS', $email);
+            $this->db->join('transaksi', 'transaksi.ID_TRN = detail_kelas.ID_TRN', 'left');
+            $this->db->where('detail_kelas.ID_PS', $idps);
+            $this->db->where('transaksi.STATUS', 200);
             $query = $this->db->get()->num_rows();
             return $query;
+        }
+
+        public function countmysertif($idps)
+        {
+            return $this->db->get_where('sertifikat', [
+                'ID_PS' => $idps
+            ])->num_rows();
         }
 
         public function getmateri($id){

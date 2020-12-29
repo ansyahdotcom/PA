@@ -34,7 +34,9 @@
 
         public function jmlps()
         {
-            $jml = $this->db->get('peserta')->num_rows();
+            $jml = $this->db->get_where('peserta', [
+                'ACTIVE' => 1
+            ])->num_rows();
             return $jml;
         }
     }

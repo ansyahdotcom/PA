@@ -30,7 +30,7 @@
                 <div class="inner">
                   <h3><?= $jmlps; ?></h3>
 
-                  <p>Jumlah Peserta</p>
+                  <p>Peserta Aktif</p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-users"></i>
@@ -60,10 +60,10 @@
                 <div class="inner">
                   <h3><?= $jmltrn; ?></h3>
 
-                  <p>Jumlah Transaksi</p>
+                  <p>Transaksi Berhasil</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-ios-cart"></i>
+                  <i class="fas fa-shopping-cart"></i>
                 </div>
                 <a href="<?= base_url('admin/transaksi'); ?>" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
               </div>
@@ -73,12 +73,12 @@
               <!-- small box -->
               <div class="small-box bg-dark">
                 <div class="inner">
-                  <h3>65</h3>
+                  <h3>Rp. <?= number_format($pendapatan['pendapatan'], "0", ".", "."); ?></h3>
 
-                  <p>Pengujung Blog</p>
+                  <p>Total Pendapatan</p>
                 </div>
                 <div class="icon">
-                  <i class="fas fa-chart-bar"></i>
+                  <i class="fas fa-money-bill"></i>
                 </div>
                 <a href="#" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
               </div>
