@@ -127,22 +127,6 @@
                                                         <td class="text-bold">Waktu Order</td>
                                                         <td><?= date('d/F/Y -- H:i', strtotime($detnot['TIME'])); ?></td>
                                                     </tr>
-                                                    <tr>
-                                                        <?php
-                                                        if ($detnot['STATUS'] == 200) :
-                                                            $text = "Success";
-                                                            $bg = "bg-success";
-                                                        elseif ($detnot['STATUS'] == 201) :
-                                                            $text = "Pending...";
-                                                            $bg = "bg-secondary";
-                                                        elseif ($detnot['STATUS'] == 202) :
-                                                            $text = "Cancel";
-                                                            $bg = "bg-danger";
-                                                        endif;
-                                                        ?>
-                                                        <td class="text-bold">Status Pembayaran</td>
-                                                        <td><span class="badge-pill <?= $bg; ?> bg-sm text-bold"><?= $text; ?></span></td>
-                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>

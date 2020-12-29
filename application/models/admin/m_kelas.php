@@ -8,6 +8,7 @@
             $this->db->join('ktg_kelas', 'ktg_kelas.ID_KTGKLS = kelas.ID_KTGKLS', 'left');
             $this->db->join('diskon', 'diskon.ID_DISKON = kelas.ID_DISKON', 'left');
             $this->db->join('admin', 'admin.ID_ADM = kelas.ID_ADM', 'left');
+            $this->db->order_by('kelas.ID_KLS', 'DESC');
             $query = $this->db->get()->result_array();
             return $query;
         }
@@ -88,6 +89,37 @@
         public function jmlkls()
         {
             return $this->db->get_where('kelas')->num_rows();
+        }
+
+        public function listpeserta($id)
+        {
+            $this->db->select('*');
+            $this->db->from('detail_kelas');
+            $this->db->join('kelas', 'kelas.ID_KLS=detail_kelas.ID_KLS', 'left');
+            $this->db->join('peserta', 'peserta.ID_PS=detail_kelas.ID_PS', 'left');
+            $this->db->join('transaksi', 'transaksi.ID_TRN=detail_kelas.ID_TRN', 'left');
+            $this->db->where('transaksi.ID_KLS', $id);
+            return $this->db->get()->result_array();
+        }
+
+        public function nmkelas($id)
+        {
+            return $this->db->get_where('kelas', [
+                'ID_KLS' => $id
+            ])->row_array();
+        }
+
+        public function sertif($data)
+        {
+            $this->db->insert('sertifikat', $data);
+        }
+
+        public function filesertif($id, $idps)
+        {
+            $this->db->get_where('sertifikat', [
+                'ID_PS' => $idps,
+                'ID_KLS' => $id
+            ])->row_array();
         }
     }
 ?>

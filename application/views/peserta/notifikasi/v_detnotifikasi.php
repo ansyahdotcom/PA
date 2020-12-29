@@ -96,8 +96,8 @@
                                                         <td class="text-bold">Waktu Order</td>
                                                         <td><?= date('d/F/Y -- H:i', strtotime($detnot['TIME'])); ?></td>
                                                     </tr>
-                                                    <tr>
-                                                        <?php
+                                                    <!-- <tr> -->
+                                                        <!-- <?php
                                                         if ($detnot['STATUS'] == 200) :
                                                             $text = "Success";
                                                             $bg = "bg-success";
@@ -108,10 +108,10 @@
                                                             $text = "Cancel";
                                                             $bg = "bg-danger";
                                                         endif;
-                                                        ?>
-                                                        <td class="text-bold">Status Pembayaran</td>
-                                                        <td><span class="badge-pill <?= $bg; ?> bg-sm text-bold"><?= $text; ?></span></td>
-                                                    </tr>
+                                                        ?> -->
+                                                        <!-- <td class="text-bold">Status Pembayaran</td>
+                                                        <td><span class="badge-pill <?= $bg; ?> bg-sm text-bold"><?= $text; ?></span></td> -->
+                                                    <!-- </tr> -->
                                                 </tbody>
                                             </table>
                                         </div>

@@ -173,7 +173,7 @@
 														</span>
 													</div>
 													<?php
-													if ($pendaftar == 50) :
+													if ($jml_pendaftar == 50) :
 														$btn = "btn-danger";
 														$stts_btn = "disabled";
 														$text = "Kuota Habis";
