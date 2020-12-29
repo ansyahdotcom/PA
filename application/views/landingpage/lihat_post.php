@@ -1,5 +1,6 @@
 
-	<main role="main" class="container">
+	</div>
+	<main role="main">
 		<!-- Page Content -->
 		<div class="container">
 		<?php foreach ($blog as $blg) { ?>
@@ -7,7 +8,7 @@
 			<div class="row">
 
 				<!-- Post Content Column -->
-				<div class="col-lg-8">
+				<div class="col-lg-8 blog-main">
 
 					<!-- Title -->
 					<h1 class="mt-4">
@@ -48,46 +49,71 @@
 					<hr>
 				</div>
 				<!--  ======================= Awalan Sidebar ============================== -->
-				<aside class="col-md-4 blog-sidebar">
+				<div class="col-md-4 mb-2">
 
-					<!--  ======================= Awalan Kategori ============================== -->
-					<div class="card my-4">
-						<h5 class="card-header"> Kategori</h5>
-						<div class="card-body">
-							<div class="row">
-								<div class="col-lg-6">
-									<ul class="list-unstyled mb-0">
-										<?php foreach ($kategori as $ktg) { ?>
-										<li>
-											<a class="text-dark"
-												href="<?= base_url('index/kategori/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
-										</li>
-										<?php } ?>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--  ======================= Batas Artikel populer ============================== -->
+            <!--Card: Jumbotron-->
+            <div class="jumbotron bg-warning p-4 p-md-5 fadeIn">
 
-					<!--  ======================= Awalan Media sosial ============================== -->
-					<div class="card my-4">
-						<h5 class="card-header">Ikuti akun sosial media kami</h5>
-						<div class="card-body">
-							<div class="social">
-								<a href="https://www.facebook.com/preneuracademy/"><i class="fab fa-facebook"></i></a>
-								<a href="https://www.instagram.com/preneuracademy/"><i class="fab fa-instagram"></i></a>
-								<a href="https://www.youtube.com/channel/UCr5MmNPr-xNwbyt7Hrzu6Hw"><i
-										class="fab fa-youtube"></i></a>
-								<a href="https://twitter.com/preneuracademy"><i class="fab fa-twitter"></i></a>
-							</div>
-						</div>
-					</div>
-					<!--  ======================= Batas Media sosial ============================== -->
-				</aside>
-				<!--  ======================= Batas Sidebar ============================== -->
-			</div>
-			<!--  ======================= Batas Main class ============================== -->
+            <!-- Content -->
+            <div class="card-body text-white text-center">
+                <img src="<?= base_url();?>assets/dist/img/logo.png" width="130" alt="logo">
+                <h4 class="para mb-2">
+                    <strong><h5 class="text-dark font-weight-bold">Apa itu Preneur Academy</h5></strong>
+                </h4>
+                        <p class="para text-dark mb-2">
+                        <strong>
+                            merupakan ruang edukasi, ekosistem, dan komunitas wirausaha (E2KWU) yang mendorong
+                            pemberdayaan potensi diri untuk memberi manfaat pada lingkungannya melalui kegiatan
+                            kewirausahaan yang berkelanjutan.</strong>
+                        </p>
+                        <p class="para text-dark mb-2">
+                            <strong>
+                                Preneur Academy dirancang dengan pendekatan <b>training</b>, <b>mentoring</b>,
+                                <b>consulting</b>, dan <b>coaching (TM2C)</b>
+                                dalam proses pembelajaran.
+                            </strong>
+                        </p>
+                        
+                    </div>
+            <!-- Content -->
+            </div>
+            <!--Card: Jumbotron-->
+
+            <!--Card : Dynamic content wrapper-->
+            <div class="card mb-4 wow fadeIn">
+
+            <div class="card-header text-center font-weight-bold bg-warning">Berlangganan ke website ini?</div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+                <!-- Default form login -->
+                <form>
+
+                <!-- Default input email -->
+                <label for="defaultFormEmailEx" class="grey-text">Email Anda</label>
+                <input type="email" id="defaultFormLoginEmailEx" class="form-control">
+
+                <br>
+
+                <!-- Default input password -->
+                <label for="defaultFormNameEx" class="grey-text">Nama Anda</label>
+                <input type="text" id="defaultFormNameEx" class="form-control">
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary join btn-md" type="submit">Subscribe</button>
+                </div>
+                </form>
+                <!-- Default form login -->
+
+            </div>
+
+            </div>
+            <!--/.Card : Dynamic content wrapper-->
+
+            </div>
+            <!--Grid column-->
+        </div>			<!--  ======================= Batas Main class ============================== -->
 			<?php } ?>
 
 			<!--  ========================== Subscribe me Area ============================  -->

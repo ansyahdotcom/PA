@@ -5,12 +5,13 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0 text-dark">List Peserta</h1>
+					<h1 class="m-0 text-dark"><?= $tittle; ?></h1>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
-						<li class="breadcrumb-item active">List Peserta</li>
+						<li class="breadcrumb-item"><a href="<?= base_url('admin/kelas'); ?>">Data Kelas</a></li>
+						<li class="breadcrumb-item active"><?= $tittle; ?></li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -21,15 +22,12 @@
 
 	<!-- Main content -->
 	<section class="content">
-		<div class="card-header">
-			<div class="text-right">
-				<button class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah">
-					<i class="fas fa-plus"></i> Tambahkan Peserta</button>
-			</div>
-		</div>
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
+                    <div class="card-header bg-dark">
+                        <h3 class="card-title float-left text-bold">Kelas <?= $nmkelas['TITTLE']; ?></h3>
+                    </div>
 					<!-- /.card-header -->
 					<div class="card-body">
 						<table id="example1" class="table table-bordered table-striped">
@@ -37,34 +35,76 @@
 								<tr class="text-center">
 									<th>No</th>
 									<th>Nama</th>
-									<th>Kota</th>
 									<th>Pekerjaan</th>
-									<th>Universitas</th>
-									<th>HP</th>
-									<th>Alamat</th>
+									<th>Progress Belajar</th>
+									<th>Sertifikat</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
-								<?php $no = 1; ?>
-								<?php foreach ($listpeserta as $lps) {
-                                ?>
-								<tr>
-									<td class="text-center" width="100px"><?= $no++ ?></td>
-									<td><?= $lps->NM_PS; ?></td>
-									<td><?= $lps->KOTA; ?></td>
-									<td><?= $lps->PEKERJAAN; ?></td>
-									<td><?= $lps->UNIVERSITAS; ?></td>
-									<td><?= $lps->HP_PS; ?></td>
-									<td><?= $lps->ALMT_PS; ?></td>
-									<td class="text-right" width="150px">
-										<button class="btn btn-sm btn-danger" data-toggle="modal"
-											data-target="#modal_hapus<?= $lps->ID_PS; ?>"><i class="fas fa-trash"></i>
-											<b>Hapus</b></button>
-									</td>
-								</tr>
-								<?php } ?>
+								<?php $i = 1; ?>
+								<?php foreach ($listpeserta as $l) : ?>
+									<tr class="justify-content-md-center">
+										<td class="text-center" width="100px"><?= $i++ ?></td>
+										<td><?= $l['NM_PS']; ?></td>
+										<td width="150px"><?= $l['PEKERJAAN']; ?></td>
+										<td>
+											<div class="progress" style="height: 30px">
+												<div class="progress-bar text-bold" role="progressbar" style="width: 1	0%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+											</div>
+										</td>
+										<td class="text-center" width="170px">
+											<?php
+											$file_sertif = $this->db->get_where('sertifikat', [
+												'ID_PS' => $l['ID_PS'],
+												'ID_KLS' => $l['ID_KLS']
+											])->row_array();
+											?>
+											<div class="row">
+												<div class="col-md-12">
+													<?php if ($file_sertif == "") : $disabled="" ?>
+														<span class="btn btn-sm btn-secondary text-bold">
+															<i class="fas fa-file-pdf mr-2"></i>
+															Belum Menerima
+														</span>
+													<?php else : $disabled="disabled" ?>
+														<a href="<?= base_url('assets/dist/img/sertifikat/' . $file_sertif['SERTIFIKAT']); ?>" target="_blank" class="btn btn-sm btn-success text-bold">
+															<i class="fas fa-file-pdf mr-2"></i>
+															Lihat Sertifikat
+														</a>
+													<?php endif; ?>
+												</div>
+											</div>
+										</td>
+										<td class="text-center" width="150px">
+											<!-- <div class="row">
+												<div class="col-md-12">
+													<button class="btn btn-sm btn-primary text-bold btn-block" data-toggle="modal" data-target="#"><i class="fas fa-edit"></i>
+														Detail
+													</button>
+												</div>
+											</div> -->
+											<div class="row">
+												<div class="col-md-12">
+													<button class="btn btn-sm btn-warning text-bold btn-block" data-toggle="modal" data-target="#modal_hapus<?= $l['ID_PS']; ?>" <?= $disabled; ?>><i class="fas fa-certificate"></i>
+														Upload Sertifikat
+													</button>
+												</div>
+											</div>
+										</td>
+									</tr>
+								<?php endforeach; ?>
 							</tbody>
+							<tfoot>
+								<tr class="text-center">
+									<th>No</th>
+									<th>Nama</th>
+									<th>Pekerjaan</th>
+									<th>Progress Belajar</th>
+									<th>Sertifikat</th>
+									<th>Aksi</th>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
 					<!-- /.card-body -->
@@ -79,82 +119,38 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php
-foreach ($listpeserta as $lps) {
-    $ID_KLS = $lps->ID_KLS;
-    $ID_PS = $lps->ID_PS;
-?>
-<!-- Modal tambah list peserta -->
-<div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title title-1" id="myModalLabel">Tambah Peserta</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<form method="post" action="<?= base_url('admin/listpeserta/tambah_peserta'); ?>">
+<?php foreach ($listpeserta as $l) : ?>
+	<!-- Modal upload sertifikat -->
+	<div class="modal fade" id="modal_hapus<?= $l['ID_PS']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="myModalLabel">Upload Sertifikat</h3>
+				</div>
+				<?php echo form_open_multipart('admin/kelas/sertifikat/' . $l['ID_KLS']); ?>
+				<input type="hidden" name="idps" value="<?= $l['ID_PS']; ?>">
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="hidden" name="ID_KLS" value="<?= $ID_KLS; ?>">
-						<select name="ID_PS" id="ID_PS" class="form-control">
-							<?php foreach($peserta as $psr) { ?>
-							<option value="<?= $psr->ID_PS; ?>"><?= $psr->NM_PS; ?></option>
-							<?php } ?>
-						</select>
+						<label for="nama">Nama Peserta</label>
+						<input type="nama" class="form-control" name="nama" value="<?= $l['NM_PS']; ?>" disabled>
+						<?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+					</div>
+					<div class="form-group">
+						<label for="email">Sertifikat</label>
+						<div class="input-group">
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="sertif">
+								<label class="custom-file-label" for="sertif">Pilih file...</label>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<!-- modal hapus data list peserta -->
-<div class="modal fade" id="modal_hapus<?= $ID_PS; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
-			</div>
-			<form action="<?= base_url('admin/listpeserta/hapus'); ?>" method="post" class="form-horizontal">
-				<div class="modal-body">
-					<p>Apakah Anda yakin ingin menghapus data ini?</p>
-				</div>
-				<div class="modal-footer">
-                    <input type="hidden" name="ID_KLS" value="<?= $ID_KLS; ?>">
-					<input type="hidden" name="ID_PS" value="<?= $ID_PS; ?>">
 					<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
-					<button class="btn btn-danger">Hapus</button>
+					<button class="btn btn-primary">Simpan</button>
 				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<!-- Modal edit list peserta -->
-<div class="modal fade" id="modal-edit<?= $lps->ID_KLS; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title title-1" id="myModalLabel">Edit List Peserta</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<?php echo form_close(); ?>
 			</div>
-			<form method="post" action="<?= base_url('admin/listpeserta/update_peserta'); ?>">
-				<div class="modal-body">
-					<input type="hidden" name="ID_KLS" value="<?php echo $lps->ID_KLS ?>" class="form-control">
-				</div>
-				<div class="modal-footer">
-					<button type="submit" id="save-btn" class="btn btn-success">Simpan</button>
-				</div>
-			</form>
 		</div>
 	</div>
-</div>
-
-<?php } ?>
+<?php endforeach; ?>

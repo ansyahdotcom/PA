@@ -50,7 +50,7 @@ class Kelas extends CI_Controller
             'EMAIL_ADM' => $email
         ])->row_array();
         $data['tittle'] = 'Data Kelas';
-        
+
         $this->form_validation->set_rules('namakls', 'Namakls', 'required|trim', [
             'required' => 'Kolom ini harus diisi'
         ]);
@@ -91,7 +91,7 @@ class Kelas extends CI_Controller
             $harga = htmlspecialchars($this->input->post('harga'));
             $link = htmlspecialchars($this->input->post('link'));
             $deskripsi = $this->input->post('deskripsi');
-            
+
             /** upload gambar */
             $upload_image = $_FILES['gbrkls']['name'];
             if ($upload_image) {
@@ -102,9 +102,7 @@ class Kelas extends CI_Controller
 
                 $this->upload->initialize($config);
 
-                if (!$this->upload->do_upload('gbrkls')) {
-                    echo $this->upload->display_errors();
-                } else {
+                if ($this->upload->do_upload('gbrkls')) {
                     $upload_img = $this->upload->data();
 
                     /** konfigurasi gambar */
@@ -120,6 +118,10 @@ class Kelas extends CI_Controller
                     $this->image_lib->resize();
 
                     $image = $this->upload->data('file_name');
+                } else {
+                    // echo $this->upload->display_errors();
+                    $this->session->set_flashdata('message', 'upload_gagal');
+                    redirect('admin/kelas');
                 }
             } else {
                 $image = 'default.jpg';
@@ -222,7 +224,7 @@ class Kelas extends CI_Controller
                     /** file yang di upload */
                     $upload_img = $this->upload->data();
 
-                    /** konfigurasi gambar */    
+                    /** konfigurasi gambar */
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = './assets/dist/img/kelas/' . $upload_img['file_name'];
                     $config['create_thumb'] = TRUE;
@@ -239,7 +241,9 @@ class Kelas extends CI_Controller
                     }
                     $new_image = $this->upload->data('file_name');
                 } else {
-                    echo $this->upload->display_errors();
+                    // echo $this->upload->display_errors();
+                    $this->session->set_flashdata('message', 'upload_gagal');
+                    redirect('admin/kelas');
                 }
             } else {
                 $new_image = $oldimg;
@@ -263,8 +267,6 @@ class Kelas extends CI_Controller
                 'ID_KTGKLS' => $kategori,
                 'UPDATE_KLS' => time(),
             ];
-            // var_dump($edit);
-            // die;
 
             $this->m_kelas->editkls($edit, $id);
             $this->session->set_flashdata('message', 'edit');
@@ -272,6 +274,29 @@ class Kelas extends CI_Controller
         }
     }
 
+    /** Menampilkan list peserta yang terdaftar di masing2 kelas */
+    public function peserta($id)
+    {
+        $email = $this->session->userdata('email');
+        $data['admin'] = $this->db->get_where('admin', [
+            'EMAIL_ADM' => $email
+        ])->row_array();
+        $data['tittle'] = 'List Peserta';
+
+        /** Mengambil data peserta */
+        $data['listpeserta'] = $this->m_kelas->listpeserta($id);
+
+        /** Mengambil nama kelas */
+        $data['nmkelas'] = $this->m_kelas->nmkelas($id);
+
+        $this->load->view('admin/template_adm/v_header', $data);
+        $this->load->view('admin/template_adm/v_navbar', $data);
+        $this->load->view('admin/template_adm/v_sidebar', $data);
+        $this->load->view('admin/kelas/v_listpeserta', $data);
+        $this->load->view('admin/template_adm/v_footer');
+    }
+
+    /** Hapus data kelas */
     public function hapuskls()
     {
         $id = $this->input->post('id');
@@ -280,6 +305,7 @@ class Kelas extends CI_Controller
         redirect('admin/kelas');
     }
 
+    /** Mengarsipkan kelas */
     public function draftkls()
     {
         $id = $this->input->post('id');
@@ -288,11 +314,49 @@ class Kelas extends CI_Controller
         redirect('admin/kelas');
     }
 
+    /** Mempublish kelas */
     public function publishkls()
     {
         $id = $this->input->post('id');
         $this->m_kelas->pubkls($id);
         $this->session->set_flashdata('message', 'publish');
         redirect('admin/kelas');
+    }
+
+    /** Mengirim sertifikat ke peserta */
+    public function sertifikat($id)
+    {
+        $idps = $this->input->post('idps');
+        $upload_sertif = $_FILES['sertif']['name'];
+
+        /** Proses Upload Sertifikat */
+        if ($upload_sertif) {
+            $config['allowed_types'] = 'pdf';
+            $config['max_size'] = '2048';
+            $config['upload_path'] = './assets/dist/img/sertifikat/';
+
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('sertif')) {
+                $sertifikat = $this->upload->data('file_name');
+            } else {
+                // echo $this->upload->display_errors();
+                $this->session->set_flashdata('message', 'upload_gagal');
+                redirect('admin/kelas/peserta/' . $id);
+            }
+        } else {
+            $this->session->set_flashdata('message', 'upload_gagal');
+            redirect('admin/kelas/peserta/' . $id);
+        }
+
+        $data = [
+            'ID_PS' => $idps,
+            'ID_KLS' => $id,
+            'SERTIFIKAT' => $sertifikat
+        ];
+
+        $this->m_kelas->sertif($data);
+        $this->session->set_flashdata('message', 'save');
+        redirect('admin/kelas/peserta/' . $id);
     }
 }

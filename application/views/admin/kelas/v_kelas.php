@@ -9,7 +9,7 @@
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
 						<li class="breadcrumb-item active"><?= $tittle; ?></li>
 					</ol>
 				</div>
@@ -76,18 +76,31 @@
 											<?php } ?>
 										</td>
 										<td class="text-center">
-											<button class="btn btn-sm btn-primary m-2" data-toggle="modal" data-target="#modal-detail<?= $id; ?>"><i class="fas fa-edit"></i>
-												<b>Detail</b></button>
-											<a class="btn btn-sm btn-warning m-2" type="button" href="<?= base_url('admin/materi/materikelas/') . $id; ?>"><i class="fas fa-edit"></i> <b>Materi</b></a>
-											<button class="btn btn-sm btn-danger m-2" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><i class="fas fa-trash"></i>
-												<b>Hapus</b></button>
-											<?php if ($status == 1) { ?>
-												<button class="btn btn-sm btn-dark m-2" data-toggle="modal" data-target="#modal-blok<?= $id; ?>"><i class="fas fa-save"></i>
-													<b>Draft</b></button>
-											<?php } elseif ($status == 0) { ?>
-												<button class="btn btn-sm btn-success m-2" data-toggle="modal" data-target="#modal-unblok<?= $id; ?>"><i class="fas fa-arrow-circle-up"></i>
-													<b>Publish</b></button>
-											<?php } ?>
+											<div class="row">
+												<div class="col-md-6 pt-2">
+													<button class="btn btn-sm btn-primary btn-block text-bold" data-toggle="modal" data-target="#modal-detail<?= $id; ?>"><i class="fas fa-edit"></i> Detail</button>
+												</div>
+												<div class="col-md-6 pt-2">
+													<a class="btn btn-sm btn-warning btn-block text-bold" type="button" href="<?= base_url('admin/materi/materikelas/') . $id; ?>"><i class="fas fa-edit"></i> Materi</a>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6 pt-2">
+													<?php if ($status == 1) { ?>
+														<button class="btn btn-sm btn-dark btn-block text-bold" data-toggle="modal" data-target="#modal-blok<?= $id; ?>"><i class="fas fa-save"></i> Draft</button>
+													<?php } elseif ($status == 0) { ?>
+														<button class="btn btn-sm btn-success btn-block text-bold" data-toggle="modal" data-target="#modal-unblok<?= $id; ?>"><i class="fas fa-arrow-circle-up"></i> Publish</button>
+													<?php } ?>
+												</div>
+												<div class="col-md-6 pt-2">
+													<button class="btn btn-sm btn-danger btn-block text-bold" data-toggle="modal" data-target="#modal-hapus<?= $id; ?>"><i class="fas fa-trash"></i> Hapus</button>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12 pt-2">
+													<a href="<?= base_url('admin/kelas/peserta/' . $id); ?>" class="btn btn-sm btn-secondary btn-block text-bold"><i class="fas fa-users"></i> List Peserta</a>
+												</div>
+											</div>
 										</td>
 									</tr>
 									<?php $no++; ?>
