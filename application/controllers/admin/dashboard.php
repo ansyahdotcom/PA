@@ -30,6 +30,9 @@ class Dashboard extends CI_Controller
         /** Menghitung jumlah transaksi */
         $data['jmltrn'] = $this->m_transaksi->jmltrn();
 
+        /** Menghitung jumlah pendapatan */
+        $data['pendapatan'] = $this->m_transaksi->pendapatan();
+
         $data['tittle'] = "Dashboard";
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);

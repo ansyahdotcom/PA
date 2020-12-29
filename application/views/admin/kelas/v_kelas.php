@@ -35,7 +35,7 @@
 									<th>No</th>
 									<!-- <th>Id</th> -->
 									<th>Nama Kelas</th>
-									<th>Tanggal</th>
+									<th>Tanggal Pelaksanaan</th>
 									<!-- <th>Link Kelas</th> -->
 									<th>Harga</th>
 									<th>Status</th>
@@ -58,7 +58,7 @@
 									<tr>
 										<td class="text-center"><?= $no; ?></td>
 										<!-- <td><?= $id; ?></td> -->
-										<td><?= $namakls; ?></td>
+										<td width="250px"><?= $namakls; ?></td>
 										<td>
 											<p><?= 'Mulai : ' . date('d F Y', strtotime($tgl_mulai)); ?></p>
 											<p><?= 'Selesai : ' . date('d F Y', strtotime($tgl_selesai)); ?></p>
@@ -110,7 +110,7 @@
 								<tr class="text-center">
 									<th>No</th>
 									<th>Nama Kelas</th>
-									<th>Tanggal</th>
+									<th>Tanggal Pelaksanaan</th>
 									<!-- <th>Link Kelas</th> -->
 									<th>Harga</th>
 									<th>Status</th>

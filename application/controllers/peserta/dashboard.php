@@ -5,6 +5,7 @@ class Dashboard extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('peserta/m_kelas');
+        $this->load->model('peserta/m_transaksi');
         psrt_logged_in();
         cekpsrt();
     }
@@ -15,6 +16,8 @@ class Dashboard extends CI_Controller{
             'EMAIL_PS' => $email
         ])->row_array();
 
+        $idps = $data['peserta']['ID_PS'];
+
         /** Kelas yang dipilih peserta */
         $data['myclass'] = $this->m_kelas->myclass($email);
 
@@ -22,7 +25,13 @@ class Dashboard extends CI_Controller{
         $data['cekmyclass'] = $this->m_kelas->cekmyclass($email);
 
         /** Jumlah kelas */
-        $data['countmyclass'] = $this->m_kelas->countmyclass($email);
+        $data['countmyclass'] = $this->m_kelas->countmyclass($idps);
+
+        /** Jumlah transaksi */
+        $data['countmytrn'] = $this->m_transaksi->countmytrn($idps);
+
+        /** Jumlah sertifikat */
+        $data['countmysertif'] = $this->m_kelas->countmysertif($idps);
 
         $data['tittle'] = "Beranda";
         $this->load->view("peserta/template/v_header", $data);

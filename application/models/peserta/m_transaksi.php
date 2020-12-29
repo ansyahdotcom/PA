@@ -21,5 +21,12 @@
             $this->db->where('EMAIL_PS', $email);
             return $this->db->get()->row_array();
         }
+
+        public function countmytrn($idps)
+        {
+            return $this->db->get_where('transaksi', [
+                'ID_PS' => $idps
+            ])->num_rows();
+        }
     }
 ?>

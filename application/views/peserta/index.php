@@ -44,9 +44,9 @@
           <!-- small box -->
           <div class="small-box bg-light shadow">
             <div class="inner">
-              <h3>0</h3>
+              <h3><?= $countmysertif; ?></h3>
               <p class="text-uppercase">
-                <center>Sertifikat</center>
+                <center>Sertifikat Saya</center>
               </p>
             </div>
             <div class="icon">
@@ -60,15 +60,15 @@
           <!-- small box -->
           <div class="small-box bg-light shadow">
             <div class="inner">
-              <h3>0</h3>
+              <h3><?= $countmytrn; ?></h3>
               <p>
-                <center>Transaksi Pembelian Kelas</center>
+                <center>Transaksi Saya</center>
               </p>
             </div>
             <div class="icon">
               <i class="fas fa-shopping-cart"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="<?= base_url('peserta/transaksi'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
