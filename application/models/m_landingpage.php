@@ -14,6 +14,17 @@ class M_landingpage extends CI_Model
         return $data;
     }
 
+    function get_blog_list($limit, $start){
+        $query = $this->db->get('post', $limit, $start);
+        return $query;
+    }
+
+    function kebijakan()
+    {
+        $data = $this->db->get('kebijakan');
+        return $data->result();
+    }
+
     // pratinjau
     function tampil_dt_blog($JUDUL_POST)
     {

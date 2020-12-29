@@ -16,7 +16,8 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-    
+
+    <section class="content">
     <div class="card-row">
     <div class="accordion" id="accordionExample">
                 <div class="card">
@@ -126,5 +127,6 @@
       </div>
       
     </div>
+    </section>
 
 </div>

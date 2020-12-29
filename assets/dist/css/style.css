@@ -19,6 +19,10 @@ html {
 
 /* start navigation */
 
+/* .header_area .main-manu nav .bg-gray {
+	background-color: #a7a7a7;
+} */
+
 .header_area .main-menu .navbar .navbar-brand {
 	padding: 0 2rem 0 5rem;
 }

@@ -89,7 +89,7 @@
 														<i class="glyphicon glyphicon-download-alt"></i>
 														<div>Pilih file gambar atau seret gambar kesini .</div>
 													</div>
-													<input type="file" name="FOTO_POST" class="dropzone" required>
+													<input type="file" name="FOTO_POST" class="dropzone" accept="image/x-png,image/gif,image/jpeg" required>
 												</div>
 											</div>
 										</div>
@@ -101,6 +101,7 @@
 							<textarea class="textarea" class="form-control" name="KONTEN_POST" id="KONTEN_POST"
 								placeholder="Isi artikel disini..." required></textarea>
 							<br>
+							<a href="<?= base_url('admin/blog');?>" class="btn btn-primary btn-round">Batal</a>
 							<button type="submit" class="btn btn-success btn-round">Simpan</button>
 						</div>
 					</form>

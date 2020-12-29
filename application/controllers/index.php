@@ -26,6 +26,31 @@ class index extends CI_Controller
         $this->load->view("landingpage/template/footer", $data);
     }
     
+    public function post(){
+
+		$config['total_rows'] = $this->db->count_all_results();
+		$data['rows'] = $config['total_rows'];
+		$config['per_page'] = 3;
+		// $config['num_links'] = 3;
+
+		/** Initialize library pagination */
+		$this->pagination->initialize($config);
+		$data['start'] = $this->uri->segment(3);
+
+		/** Mengambil data kelas */
+		$data['kls'] = $this->m_landingpage->get_blog_list($config['per_page'], $data['start']);
+
+        $data['blog'] = $this->m_landingpage->tampil_blog_web()->result();
+        $data['kategori'] = $this->m_blog->tampil_kategori()->result();
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+        $data['footer'] = $this->m_medsos->get_data();
+        $data['judul'] = 'Preneur Academy | Blog';
+        $this->load->view("landingpage/template/headerblog" , $data);
+        $this->load->view("landingpage/post", $data);
+        $this->load->view("landingpage/template/footer", $data);
+    }
+    
     public function lihat_post($JUDUL_POST)
     {
         $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
@@ -34,7 +59,7 @@ class index extends CI_Controller
         $data['header'] = $this->m_navbar->get_navbar(); 
         $data['kebijakan'] = $this->m_kebijakan->get_data(); 
         $data['footer'] = $this->m_medsos->get_data();
-        $data['judul'] = 'Preneur Academy';
+        $data['judul'] = 'Preneur Academy | Blog';
         $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view("landingpage/lihat_post", $data);
         $this->load->view("landingpage/template/footer", $data);
@@ -121,4 +146,10 @@ class index extends CI_Controller
         $this->load->view("landingpage/template/footer", $data);
         
     }
+
+    public function block()
+	{
+		$data['title'] = '403 Forbidden Page';
+        $this->load->view('forbidden', $data);
+	}
 }

@@ -49,7 +49,7 @@
 	<div class="container-all">
 		<header class="header_area navbar_fixed">
 			<div class="main-menu">
-				<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e8e7e7;">
 					<a class="navbar-brand" href="<?=base_url('home');?>"><img
 							src="<?= base_url(); ?>assets/dist/img/logo.png" width="130" alt="logo"></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -58,11 +58,11 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav">
-							<!-- <?php foreach ($header as $h) :
-                        $name = $h['NM_NV'];
-                        $link = $h['LINK_NV'];
-                    ?>
-							<?php endforeach;?> -->
+							<?php foreach ($header as $h) :
+								$name = $h['NM_NV'];
+								$link = $h['LINK_NV'];
+							?>
+							<?php endforeach;?>
 							<li class="nav-item">
 								<a class="nav-link" href="<?= base_url('class')?>">KELAS</a>
 							</li>

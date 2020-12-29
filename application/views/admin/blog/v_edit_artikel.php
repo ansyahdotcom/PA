@@ -96,7 +96,7 @@
 														<div>Pilih file gambar atau seret gambar kesini .</div>
 													</div>
 													<input type="file" name="FOTO_POST" value="<?= $blg->FOTO_POST; ?>"
-														class="dropzone" />
+														class="dropzone" accept="image/x-png,image/gif,image/jpeg"/>
 												</div>
 											</div>
 										</div>
@@ -109,7 +109,7 @@
 							<textarea class="textarea" class="form-control"
 								name="KONTEN_POST"><?= $blg->KONTEN_POST  ?></textarea>
 							<br>
-							<button class="btn btn-primary btn-round">Batal</button>
+							<a href="<?= base_url('admin/blog');?>" class="btn btn-primary btn-round">Batal</a>
 							<button type="submit" class="btn btn-success btn-round">Simpan</button>
 						</div>
 					</form>

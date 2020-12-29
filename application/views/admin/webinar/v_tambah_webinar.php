@@ -48,7 +48,7 @@
                             <!-- <button type="button" id="tambah_fasilitas" class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_tambah_fasilitas">Tambah Fasilitas Baru</button>
                             <br> <br> -->
                             <div class="form-group">
-                                <label for="icon">Foto</label>
+                                <label for="icon">Poster Webinar</label>
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -71,7 +71,7 @@
                                                         <i class="glyphicon glyphicon-download-alt"></i>
                                                         <div>Pilih file gambar atau seret gambar kesini .</div>
                                                     </div>
-                                                    <input type="file" name="FOTO_WEBINAR" class="dropzone" required>
+                                                    <input type="file" name="FOTO_WEBINAR" accept="image/x-png,image/gif,image/jpeg" class="dropzone" required>
                                                 </div>
                                             </div>
                                         </div>

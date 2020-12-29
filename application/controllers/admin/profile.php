@@ -59,7 +59,8 @@
                             $new_image = $this->upload->data('file_name');
                             $this->db->set('FTO_ADM', $new_image);
                         } else {
-                            echo $this->upload->display_errors();
+                            $this->session->set_flashdata('message', 'gagal_upload');
+                            redirect('admin/profile');
                         }
                 }        
 
@@ -69,8 +70,8 @@
                     'ALMT_ADM' => $alamat,
                     'UPDATE_ADM' => time(),
                 ];
-                $get = $this->db->get_where('admin', ['ID_ADM' => $id_adm])->row();
-                unlink(FCPATH. 'assets/dist/img/admin' .$get->FILE_SUB);
+                $get = $this->db->get_where('admin', ['EMAIL_ADM' => $email])->row();
+                unlink(FCPATH. 'assets/dist/img/admin' .$get->FTO_ADM);
                 $this->db->set($edit);
                 $this->db->where('EMAIL_ADM', $email);
                 $this->db->update('admin');

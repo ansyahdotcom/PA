@@ -54,6 +54,8 @@
                         <i class="fas fa-plus-circle"></i> File Tugas</button>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalSub<?= $id;?>">
                         <i class="fas fa-plus-circle"></i> File Materi</button>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalLink<?= $id;?>">
+                        <i class="fas fa-plus-circle"></i> Link Meeting</button>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?= $id;?>">
                         <i class="fas fa-edit"></i> Edit</button>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete<?= $id;?>">
@@ -70,14 +72,20 @@
                         foreach ($sub as $i) :
                             $id_sub = $i['ID_SUB'];
                             $nm_sub = $i['NM_SUB'];
+                            $icon_sub = $i['ICON_SUB'];
                             ?> 
                         <div class="row">
                         <div class="card col-sm-12 bg-navy mt-2">
                             <div class="card-header">
-                                <h1 class="card-title mt-2"><i class="<?=$i['ICON_SUB'];?> fa-lg mr-2"></i> <?= $i['FILE_SUB'];?></h1>
+                                <h1 class="card-title mt-2"><i class="<?=$i['ICON_SUB'];?> fa-md"></i> <?= htmlspecialchars_decode($i['FILE_SUB']);?></h1>
                                 <div class="card-tools pb-2">
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sub<?=$id_sub;?>">
-                                    <i class="fas fa-edit"></i> Edit</button>
+                                    <?php if ($icon_sub == "fas fa-link") {?>
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_edit_link<?=$id_sub;?>">
+                                        <i class="fas fa-edit"></i> Edit Link</button>
+                                        <?php } else {?>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sub<?=$id_sub;?>">
+                                        <i class="fas fa-edit"></i> Edit</button>
+                                    <?php } ?>
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus_sub<?=$id_sub;?>">
                                     <i class="fas fa-trash"></i> Hapus</button>
                                 </div>
@@ -201,7 +209,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="file">
+                                <input type="file" name="file" class="custom-file-input" id="file" accept="application/msword, application/vnd.ms-powerpoint, application/pdf">
                                 <label class="custom-file-label" for="file">Unggah file</label>
                             </div>
                             <small class="form-text text-success">Unggah file materi. *maximal ukuran 5mb</small>
@@ -248,7 +256,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" value="<?=$file_sub;?>" class="custom-file-input" id="file">
+                                <input type="file" name="file" value="<?=$file_sub;?>" class="custom-file-input" id="file" accept="application/msword, application/vnd.ms-powerpoint, application/pdf">
                                 <label class="custom-file-label" for="file"><?=$file_sub;?></label>
                             </div>
                             <small class="form-text text-success">Unggah file materi. *maksimal ukuran 5mb</small>
@@ -265,6 +273,83 @@
             </div>
         </div>
         </form>
+
+        <form action="<?php echo base_url().'admin/materi/meet'?>" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="modalLink<?=$id;?>" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                    <h4 class="modal-title">Tambah Link Meeting</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nama">Nama Link</label>
+                            <input type="text" name="nama" class="form-control" placeholder="Nama Menu">
+                            <small class="form-text text-success">Contoh: Link pertemuan</small>
+                            <?= form_error('nama', '<small class="text-danger col-md">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Link Meeting</label>
+                            <textarea class="textarea" name="link" placeholder="Isi Konten"
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            <?= form_error('nama', '<small class="text-danger col-md">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="hidden" name="detail" value="Link meeting" required>
+                        <input type="hidden" name="icon" value="fas fa-link" required>
+                        <input type="hidden" name="id_materi" value="<?=$id;?>" required>
+                        <input type="hidden" name="id_kelas" value="<?=$id_kls;?>" required>
+                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="<?php echo base_url().'admin/materi/meet_edit'?>" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="modal_edit_link<?=$id_sub;?>" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                    <h4 class="modal-title">Edit Link Meeting</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nama">Nama Link</label>
+                            <input type="text" name="nama" value="<?= $nm_sub;?>" class="form-control" placeholder="Nama Menu">
+                            <small class="form-text text-success">Contoh: Link pertemuan</small>
+                            <?= form_error('nama', '<small class="text-danger col-md">', '</small>'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama">Link Meeting</label>
+                            <textarea class="textarea" name="link" placeholder="Isi Konten"
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?=$file_sub;?></textarea>
+                            <?= form_error('nama', '<small class="text-danger col-md">', '</small>'); ?>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="hidden" name="detail" value="Link meeting" required>
+                        <input type="hidden" name="icon" value="fas fa-link" required>
+                        <input type="hidden" name="id_materi" value="<?=$id;?>" required>
+                        <input type="hidden" name="id_sub" value="<?=$id_sub;?>" required>
+                        <input type="hidden" name="id_kelas" value="<?=$id_kls;?>" required>
+                        <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
         <form action="<?php echo base_url().'admin/materi/delete_file'?>" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="modal_hapus_sub<?=$id_sub;?>" aria-hidden="true">
@@ -401,7 +486,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="file">
+                                <input type="file" name="file" class="custom-file-input" id="file" accept="application/msword, application/vnd.ms-powerpoint, application/pdf">
                                 <label class="custom-file-label" for="file">Unggah file</label>
                             </div>
                             <small class="form-text text-success">Unggah file materi. *maximal ukuran 5mb</small>
@@ -476,7 +561,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <div class="custom-file">
-                                <input type="file" name="file" value="<?=$file_tg;?>" class="custom-file-input" id="file">
+                                <input type="file" name="file" value="<?=$file_tg;?>" class="custom-file-input" id="file" accept="application/msword, application/vnd.ms-powerpoint, application/pdf">
                                 <label class="custom-file-label" for="file"><?=$file_tg;?></label>
                             </div>
                             <small class="form-text text-success">Unggah file materi. *maksimal ukuran 5mb</small>

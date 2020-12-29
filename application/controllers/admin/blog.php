@@ -6,6 +6,8 @@ class Blog extends CI_Controller
         parent::__construct();
         $this->load->model('admin/m_blog');
         $this->load->model('admin/m_medsos');
+        $this->load->model('admin/m_navbar');
+        $this->load->model('admin/m_kebijakan');
         $this->load->library('upload');
         // $this->load->library('form_validation');
         adm_logged_in();
@@ -20,6 +22,8 @@ class Blog extends CI_Controller
         ])->row_array();
         $data['tittle'] = "Data Blog";
 
+        date_default_timezone_set('Asia/Jakarta');
+        
         /** Ambil data blog */
         $data['blog'] = $this->m_blog->tampil_blog()->result();
         $this->load->view("admin/template_adm/v_header", $data);
@@ -376,7 +380,9 @@ class Blog extends CI_Controller
         ])->row_array();
 
         $data['judul'] = "Preneur Academy Blog";
-        $data['data'] = $this->m_medsos->get_data();
+        $data['footer'] = $this->m_medsos->get_data();
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data();
         $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
