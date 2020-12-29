@@ -176,7 +176,7 @@
                             <tr>
                                 <td class="text-bold">Panduan Pembayaran</td>
                                 <td>
-                                    <a href="<?= $dettrn['PDF_GUIDE']; ?>" target="_blank" class="btn btn-primary btn-sm btn-block  text-bold">Download</a>
+                                    <a href="<?= $dettrn['PDF_GUIDE']; ?>" target="_blank" class="btn btn-primary btn-sm btn-block  text-bold"><i class="fas fa-download"></i> Download</a>
                                 </td>
                             </tr>
                         </tbody>
