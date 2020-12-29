@@ -123,15 +123,15 @@ class Materi extends CI_Controller
         $NM_SUB = htmlspecialchars($this->input->post('nama'));
         $ICON_SUB = htmlspecialchars($this->input->post('jenis'));
         $upload = $_FILES['file']['name'];
-            if ($upload) {
+        if ($upload) {
                 $config['upload_path'] = './assets/dist/materi/';
                 $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
                 $config['max_size'] = 5000;
                 // $config['max_width'] = 1500;
                 // $config['max_height'] = 1500;
-
+                
                 $this->upload->initialize($config);
-
+                
                 if ($this->upload->do_upload('file')) {
                     $new = $this->upload->data('file_name');
                     $this->db->set('FILE_SUB', $new);
@@ -143,7 +143,7 @@ class Materi extends CI_Controller
                 }
             }
 
-        $data = array(
+            $data = array(
             'NM_SUB' => $NM_SUB,
             'ICON_SUB' => $ICON_SUB, 
             // 'FILE_SUB' => $FILE_SUB,  
@@ -159,6 +159,7 @@ class Materi extends CI_Controller
     }
     
     public function upload_tugas(){
+        $id = htmlspecialchars($this->input->post('id_kelas'));
         $ID_TG = $this->m_materi->selectMaxID_TUGAS();
         if ($ID_TG == NULL) {
             $ID_TG = 'TG00001';
@@ -167,7 +168,7 @@ class Materi extends CI_Controller
             $IDTG = $noTG + 1;
             $ID_TG = 'TG' . sprintf("%05s", $IDTG);
         }
-
+        
         $ID_MT = htmlspecialchars($this->input->post('id_materi'));
         $NM_TG = htmlspecialchars($this->input->post('nama'));
         $ICON_TG = htmlspecialchars($this->input->post('jenis'));
@@ -181,9 +182,9 @@ class Materi extends CI_Controller
                 $config['overwrite'] = TRUE;
                 // $config['max_width'] = 1500;
                 // $config['max_height'] = 1500;
-
+                
                 $this->upload->initialize($config);
-
+                
                 if ($this->upload->do_upload('file')) {
                     $new = $this->upload->data('file_name');
                     $this->db->set('FILE_TG', $new);
@@ -193,8 +194,8 @@ class Materi extends CI_Controller
                 }
             }
 
-        $data = array(
-            'ID_TG' => $ID_TG,
+            $data = array(
+                'ID_TG' => $ID_TG,
             'NM_TG' => $NM_TG,
             'DETAIL_TG' => $DETAIL_TG,
             'DEADLINE' => $DEADLINE,
@@ -210,6 +211,7 @@ class Materi extends CI_Controller
 
     public function update_tugas() 
     {
+        $id = htmlspecialchars($this->input->post('id_kelas'));
         $ID_TG = htmlspecialchars($this->input->post('id_tg'));
         $ID_MT = htmlspecialchars($this->input->post('id_mt'));
         $NM_TG = htmlspecialchars($this->input->post('nama'));

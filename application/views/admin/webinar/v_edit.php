@@ -38,7 +38,7 @@
 								required>
 							<br>
 							<div class="form-group">
-								<label for="icon">Gambar</label>
+								<label for="icon">Poster Webinar</label>
 								<div class="container">
 									<div class="row">
 										<div class="col-md-5">
@@ -103,7 +103,7 @@
 							<input type="date" name="TGL_WEB" id="TGL_WEB" class="form-control"
 								value="<?php echo date('Y-m-d', strtotime($wbnr->TGL_WEB)); ?>">
 							<br>
-							<label for="KONTEN_WEB">Konten</label>
+							<label for="KONTEN_WEB">Deskripsi Webinar</label>
 							<textarea class="textarea" class="form-control"
 								name="KONTEN_WEB"><?= $wbnr->KONTEN_WEB  ?></textarea>
 							<br><br>

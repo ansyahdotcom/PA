@@ -66,14 +66,12 @@ class M_webinar extends CI_Model
         return $data;
     }
 
-    // tampil fasilitas
-    // function tampil_dt_fasilitas($ID_WEBINAR)
-    // {
-    //     $data = $this->db->query("SELECT detail_fasilitas.ID_WEBINAR, detail_fasilitas.ID_FA, fasilitas.NM_FA 
-    //                             FROM detail_fasilitas, fasilitas, webinar 
-    //                             WHERE detail_fasilitas.ID_FA = fasilitas.ID_FA
-    //                             AND detail_fasilitas.ID_WEBINAR = webinar.ID_WEBINAR
-    //                             AND webinar.ID_WEBINAR = '$ID_WEBINAR'");
-    //     return $data;
-    // }
+    // tampil list peserta
+    function list_ps($JUDUL_WEBINAR)
+    {
+        $data = $this->db->query("SELECT peserta_wbnr.ID_PS, peserta.NM_PS, peserta.PEKERJAAN, webinar.JUDUL_WEBINAR FROM peserta_wbnr, peserta, webinar 
+                                    WHERE peserta_wbnr.ID_PS = peserta.ID_PS AND peserta_wbnr.ID_WEBINAR = webinar.ID_WEBINAR
+                                    AND webinar.JUDUL_WEBINAR = '$JUDUL_WEBINAR'");
+        return $data;
+    }
 }

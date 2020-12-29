@@ -11,6 +11,7 @@ class Webinar extends CI_Controller
 		$params = array('server_key' => 'SB-Mid-server-tNBThkCAIbSjBODU1WuDkHfU', 'production' => false);
 		$this->load->library('midtrans');
         $this->load->library('upload');
+        $this->load->helper('download');
 		$this->midtrans->config($params);
 		psrt_logged_in();
 		cekpsrt();
@@ -161,5 +162,11 @@ class Webinar extends CI_Controller
 		$this->load->view("peserta/template/v_sidebar", $data);
         $this->load->view('peserta/webinar/v_mywebinar', $data);
 		$this->load->view("peserta/template/v_footer");
+    }
+
+    public function download_srt($SRT_WEBINAR)
+    {
+        force_download('./assets/fotowebinar/sertifikat/'. $SRT_WEBINAR, NULL);
+        redirect('peserta/webinar/mywebinar');
     }
 }

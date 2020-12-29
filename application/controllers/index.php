@@ -146,4 +146,10 @@ class index extends CI_Controller
         $this->load->view("landingpage/template/footer", $data);
         
     }
+
+    public function block()
+	{
+		$data['title'] = '403 Forbidden Page';
+        $this->load->view('forbidden', $data);
+	}
 }

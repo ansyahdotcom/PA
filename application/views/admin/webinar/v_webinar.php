@@ -41,6 +41,9 @@
 									href="<?= base_url('admin/webinar/edit/' . $wbnr->JUDUL_WEBINAR . '/'); ?>"><?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></a>
 							</span>
 						</div>
+						<div class="text-right">
+							<a class="btn btn-secondary" href="<?= base_url('admin/webinar/listpeserta/'. $wbnr->JUDUL_WEBINAR); ?>"><i class="fas fa-users"></i> List Peserta</a>
+						</div>
 					</div>
 					<div class="card-body">
 						<div class="row">
@@ -71,16 +74,65 @@
 								</table>
 							</div>
 							<br>
-								<div class="col-md-12 mt-5">
-									<div class="card">
-										<div class="card-header">
-											<label for="LINK_MEETING">Link Meeting</label>
-										</div>
-										<div class="card-body">
-											<?= htmlspecialchars_decode($wbnr->LINK_ZOOM); ?>
-										</div>
+							<div class="col-md-6 mt-5">
+								<div class="card">
+									<div class="card-header">
+										<label for="LINK_MEETING">Link Meeting</label>
+									</div>
+									<div class="card-body">
+										<?= htmlspecialchars_decode($wbnr->LINK_ZOOM); ?>
+									</div>
+									<div class="card-footer">
+										<?php
+										if ($wbnr->ST_LINK == 0) {
+											echo '<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
+											data-toggle="modal" data-target="#modal_link' . $wbnr->ID_WEBINAR . '">
+											<i class="fas fa-arrow-circle-right"></i> Posting Link</button>';
+										} else {
+											echo '<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
+											data-toggle="modal" data-target="#modal_link' . $wbnr->ID_WEBINAR . '">
+											<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';
+										}
+										?>
 									</div>
 								</div>
+							</div>
+							<div class="col-md-6 mt-5">
+								<div class="card">
+									<div class="card-header">
+										<label for="SRT_WEBINAR">Sertifikat Webinar</label>
+									</div>
+									<div class="card-body">
+										<label><?= str_replace('_',' ', $wbnr->SRT_WEBINAR);?></label>
+									</div>
+									<div class="card-footer">
+										<?php
+								if ($wbnr->SRT_WEBINAR == NULL) {?>
+										<button type="button" id="detail" class="btn btn-primary btn-sm btn-round"
+											style="color: white" data-toggle="modal"
+											data-target="#modal_srt<?= $ID_WEBINAR; ?>">Upload</button>
+										<?php } else if ($wbnr->SRT_WEBINAR != NULL && $wbnr->ST_SRT == 0) {?>
+										<button type="button" id="detail" class="btn btn-primary btn-sm btn-round"
+											style="color: white" data-toggle="modal"
+											data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
+
+										<button type="button" id="detail" class="btn btn-warning btn-sm btn-round"
+											style="color: white" data-toggle="modal"
+											data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
+											<i class="fas fa-arrow-circle-right"></i> Bagikan Sertifikat</button>
+										<?php } else { ?>
+										<button type="button" id="detail" class="btn btn-primary btn-sm btn-round"
+											style="color: white" data-toggle="modal"
+											data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
+
+										<button type="button" id="detail" class="btn btn-success btn-sm btn-round"
+											style="color: white" data-toggle="modal"
+											data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
+											<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
+										<?php } ?>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="card-footer">
@@ -106,8 +158,10 @@
 								<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';
 							}
 							?>
-							
-							<a class="btn btn-secondary btn-sm" href="<?= base_url('admin/webinar/pratinjau/'. strtolower($wbnr->JUDUL_WEBINAR)); ?>"><i class="fas fa-eye"></i>
+
+							<a class="btn btn-secondary btn-sm"
+								href="<?= base_url('admin/webinar/pratinjau/'. strtolower($wbnr->JUDUL_WEBINAR)); ?>"><i
+									class="fas fa-eye"></i>
 								Pratinjau</a>
 							<!-- edit artikel -->
 							<a href="<?= base_url('admin/webinar/edit/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>">
@@ -132,7 +186,9 @@
 <?php
 foreach ($webinar as $wbnr) {
     $ID_WEBINAR = $wbnr->ID_WEBINAR;
-    $ST_POSTWEB = $wbnr->ST_POSTWEB;
+	$ST_POSTWEB = $wbnr->ST_POSTWEB;
+	$ST_LINK = $wbnr->ST_LINK;
+	$ST_SRT = $wbnr->ST_SRT;
 ?>
 <div class="modal fade" id="modal_posting<?= $ID_WEBINAR; ?>" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
@@ -168,13 +224,126 @@ foreach ($webinar as $wbnr) {
 							<button class="btn btn-primary">Ya</button>
 						</div>
 					</form>';
-                }
-                ?>
+                }?>
 		</div>
 	</div>
 </div>
 
-<!-- Modal Hapus -->
+<!-- modal posting link meeting-->
+<div class="modal fade" id="modal_link<?= $ID_WEBINAR; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<?php
+			if ($ST_LINK == 0) { ?>
+			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">Posting Link</h3>
+			</div>
+			<form action="<?= base_url('admin/webinar/posting_link')?>" method="post" class="form-horizontal">
+				<div class="modal-body">
+					<p>Apakah Anda yakin ingin memposting link ini?</p>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="ST_LINK" value="<?= $ST_LINK; ?>">
+					<input type="hidden" name="ID_WEBINAR" value="<?= $ID_WEBINAR; ?>">
+					<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+					<button class="btn btn-primary">Ya</button>
+				</div>
+			</form>
+			<?php 
+			} else { ?>
+			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">Kembalikan ke Draf</h3>
+			</div>
+			<form action="<?= base_url('admin/webinar/posting_link')?>" method="post" class="form-horizontal">
+				<div class="modal-body">
+					<p>Apakah Anda ingin mengembalikan ke draf?</p>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="ST_LINK" value="<?= $ST_LINK; ?>">
+					<input type="hidden" name="ID_WEBINAR" value="<?= $ID_WEBINAR; ?>">
+					<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+					<button class="btn btn-primary">Ya</button>
+				</div>
+			</form>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+
+<!-- modal bagikan sertifikat-->
+<div class="modal fade" id="modal_sertifikat<?= $ID_WEBINAR; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<?php
+			if ($ST_SRT == 0) { ?>
+			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">Bagikan Sertifikat</h3>
+			</div>
+			<form action="<?= base_url('admin/webinar/posting_srt')?>" method="post" class="form-horizontal">
+				<div class="modal-body">
+					<p>Apakah Anda yakin ingin membagikan sertifikat ini?</p>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="ST_SRT" value="<?= $ST_SRT; ?>">
+					<input type="hidden" name="ID_WEBINAR" value="<?= $ID_WEBINAR; ?>">
+					<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+					<button class="btn btn-primary">Ya</button>
+				</div>
+			</form>
+			<?php 
+			} else { ?>
+			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">Kembalikan ke Draf</h3>
+			</div>
+			<form action="<?= base_url('admin/webinar/posting_srt')?>" method="post" class="form-horizontal">
+				<div class="modal-body">
+					<p>Apakah Anda ingin mengembalikan ke draf?</p>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="ST_SRT" value="<?= $ST_SRT; ?>">
+					<input type="hidden" name="ID_WEBINAR" value="<?= $ID_WEBINAR; ?>">
+					<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+					<button class="btn btn-primary">Ya</button>
+				</div>
+			</form>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+
+<!-- modal ubah file sertifikat-->
+<div class="modal fade" id="modal_srt<?= $ID_WEBINAR; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="myModalLabel">File Sertifikat Webinar</h3>
+			</div>
+			<form action="<?= base_url('admin/webinar/file_srt')?>" enctype="multipart/form-data" method="post"
+				class="form-horizontal">
+				<div class="modal-body">
+					<!-- <p>Apakah Anda yakin ingin menghapus data ini?</p> -->
+					<div class="input-group mb-3">
+						<div class="custom-file">
+							<input type="file" name="SRT_WEBINAR" value="<?= $wbnr->SRT_WEBINAR;?>" class="custom-file-input" id="file" accept="application/pdf">
+							<label class="custom-file-label" for="file">Pilih file PDF 
+								<?php if ($wbnr->SRT_WEBINAR != null) {
+									echo '<b>'.$wbnr->SRT_WEBINAR.'</b>';
+								}?>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="ID_WEBINAR" value="<?= $ID_WEBINAR; ?>">
+					<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+					<button class="btn btn-success">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- modal hapus -->
 <div class="modal fade" id="modal_hapus<?= $ID_WEBINAR; ?>" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

@@ -141,6 +141,36 @@
                 icon: 'success',
                 title: 'Artikel dikembalikan ke draf!',
             });
+        } else if (flashData == 'w_posting') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Webinar berhasil dipublikasikan!',
+            });
+        } else if (flashData == 'w_draf') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Webinar dikembalikan ke draf!',
+            });
+        } else if (flashData == 'link_posting') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Link berhasil dipublikasikan!',
+            });
+        } else if (flashData == 'link_draf') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Link meeting dikembalikan ke draf!',
+            });
+        } else if (flashData == 'srt_posting') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Sertifikat berhasil dibagikan!',
+            });
+        } else if (flashData == 'srt_draf') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Sertifikat dikembalikan ke draf!',
+            });
         } else if (flashData == 'hapus_msg') {
             Toast.fire({
                 icon: 'success',

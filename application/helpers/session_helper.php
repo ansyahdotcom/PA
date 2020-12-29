@@ -19,7 +19,7 @@
     {
         $var_ci = get_instance();
         if($var_ci->session->userdata('role') != 1) {
-            redirect('peserta/dashboard');
+            redirect('block');
             die;
         }
     }
@@ -28,7 +28,7 @@
     {
         $var_ci = get_instance();
         if($var_ci->session->userdata('role') != 2) {
-            redirect('admin/dashboard');
+            redirect('block');
             die;
         }
     }
