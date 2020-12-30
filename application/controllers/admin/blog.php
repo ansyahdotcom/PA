@@ -282,7 +282,7 @@ class Blog extends CI_Controller
         $HAPUS_FOTO = $this->input->post('HAPUS_FOTO');
         $KONTEN_POST = $this->input->post('KONTEN_POST');
         $ST_POST = 0;
-        // $TGL_POST = date('Y-m-d');
+        $TGL_POST = date('Y-m-d');
         $UPDT_TRAKHIR = date('Y-m-d');
         // untuk upload foto blog
         $upload_image = $_FILES['FOTO_POST']['name'];

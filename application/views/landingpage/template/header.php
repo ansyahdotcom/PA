@@ -62,13 +62,10 @@
 								$name = $h['NM_NV'];
 								$link = $h['LINK_NV'];
 							?>
+							<li class="nav-item">
+								<a class="nav-link" href="<?= base_url($link)?>"><?=$name?></a>
+							</li>
 							<?php endforeach;?>
-							<li class="nav-item">
-								<a class="nav-link" href="<?= base_url('class')?>">KELAS</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="<?= base_url('webinar')?>">WEBINAR</a>
-							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#Blog">Blog</a>
 							</li>

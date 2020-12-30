@@ -105,14 +105,17 @@
             ])->num_rows();
         }
 
-        public function getmateri($id){
-            $result = $this->db->query("SELECT * FROM detail_materi, kelas, materi
-            WHERE detail_materi.ID_MT = materi.ID_MT AND kelas.ID_KLS AND kelas.ID_KLS = $id");
-            return $result;
-        }
+        // public function getmateri($id){
+        //     $result = $this->db->query("SELECT * FROM detail_materi, kelas, materi
+        //     WHERE detail_materi.ID_MT = materi.ID_MT AND kelas.ID_KLS = $id");
+        //     return $result;
+        // }
 
-        public function getsub(){
-            $result = $this->db->query("SELECT * FROM materi, materi_sub WHERE materi.ID_MT = materi_sub.ID_MT");
+        public function getsub($id){
+            $result = $this->db->query(
+                "SELECT * FROM materi, kelas, detail_materi WHERE detail_materi.ID_MT = materi.ID_MT  
+                AND detail_materi.ID_KLS = kelas.ID_KLS
+                AND kelas.ID_KLS=$id");
             return $result;
         }
     }
