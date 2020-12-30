@@ -35,6 +35,21 @@ class M_landingpage extends CI_Model
                                 AND post.JUDUL_POST =  '$JUDUL_POST'");
         return $data;
     }
+
+    function legal($LINK_KB)
+    {
+        $data=$this->db->query("SELECT * FROM kebijakan WHERE kebijakan.LINK_KB = '$LINK_KB'");
+        return $data;
+    }
+
+    function list()
+    {
+        $this->db->select('*');
+        $this->db->from('post');
+        $this->db->limit(3);
+        $this->db->order_by('ID_POST', 'DESC');
+        return $this->db->get()->result();
+    }
     
     // tampil tags yg bawahnya judul
     function tampil_dt_tags($JUDUL_POST)

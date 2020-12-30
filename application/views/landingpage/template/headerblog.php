@@ -45,7 +45,7 @@
                 <a href="<?=base_url('home')?>"><img src="<?= base_url();?>assets/dist/img/logo.png" width="130" alt="logo"></a>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href=""><h3>Preneur Academy Blog</h3></a>
+                <a class="blog-header-logo text-dark" href="<?= base_url('blog');?>"><h3>Preneur Academy Blog</h3></a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="text-muted" href="#" aria-label="Search">
@@ -57,12 +57,12 @@
         </header>
 
         <!--  ======================= Awalan Navbar ============================== -->
-      <div class="nav-scroller py-1 mb-2">
-        <nav class="nav justify-content-center d-flex">
-          <a class="p-2 text-muted" href="<?= base_url('blog')?>">Beranda</a>
-          <?php foreach ($kategori as $ktg) {?>
-          <a class="p-2 text-muted" href="#"><?= $ktg->NM_CT?></a>
-          <?php }?>
-        </nav>
-      </div>
-      <!--  ======================= Batas Navbar ============================== -->
+        <div class="nav-scroller py-1 mb-2">
+            <nav class="nav justify-content-center d-flex">
+            <a class="p-2 text-muted" href="<?= base_url('blog')?>">Beranda</a>
+            <?php foreach ($kategori as $ktg) {?>
+            <a class="p-2 text-muted" href="<?= base_url('index/kategori/'. $ktg->NM_CT); ?>"><?= $ktg->NM_CT; ?></a>
+            <?php }?>
+            </nav>
+        </div>
+        <!--  ======================= Batas Navbar ============================== -->

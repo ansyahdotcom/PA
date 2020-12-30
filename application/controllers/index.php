@@ -55,6 +55,7 @@ class index extends CI_Controller
     {
         $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
+        $data['list'] = $this->m_landingpage->list();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
         $data['header'] = $this->m_navbar->get_navbar(); 
         $data['kebijakan'] = $this->m_kebijakan->get_data(); 
@@ -77,6 +78,10 @@ class index extends CI_Controller
                                     FROM post, category
                                     WHERE post.ID_CT = category.ID_CT
                                     AND category.NM_CT = '$NM_CT'");
+        $data['kategori'] = $this->m_blog->tampil_kategori()->result();
+        $data['header'] = $this->m_navbar->get_navbar(); 
+        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+        $data['footer'] = $this->m_medsos->get_data();
         $data['POST'] = $query->result();
         $this->load->view("landingpage/template/headerblog" , $data);
         $this->load->view('landingpage/v_post_ktg', $data);
