@@ -37,7 +37,7 @@
               </div>
             </div>
             <hr>
-            <p class="mb-0">Untuk mengetahui mekanisme pembelajaran bisa menggunakan FAQ, atau download panduan melaui <a href="#">link ini</a>.</p>
+            <p class="mb-0">Untuk mengetahui mekanisme pembelajaran bisa menggunakan FAQ, atau download panduan melaui <a href="https://drive.google.com/file/d/1kSp6LAJMyQmdC7hxtRFbSmUJiYR8M4nk/view?usp=sharing" target="_blank">link ini</a>.</p>
           </div>
         </div>
         <div class="col-lg-4 col-6">

@@ -36,7 +36,7 @@
             <div class="card mb-4 wow fadeIn">
 
               <!--Card content-->
-              <div class="card-body">\
+              <div class="card-body">
                 <p class="h5 my-4"><?= htmlspecialchars_decode($blg->KONTEN_POST)?></p>
 
                 <hr>

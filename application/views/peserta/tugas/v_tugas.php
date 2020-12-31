@@ -17,6 +17,7 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <section class="content">
 <?php 
 $id_tugas=$tugas['ID_TG'];
 $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array();?>
@@ -86,3 +87,4 @@ $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array
         </div>
     </div>
     </div>
+    </section>
