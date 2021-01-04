@@ -17,8 +17,8 @@ class Mymateri extends CI_Controller
         ])->row_array();
         $link = $this->uri->segment(5);
         /** Kelas yang dipilih peserta */
-        $data['cek'] = $this->m_kelas->getmateri($id)->result_array();
-        $data['sub'] = $this->m_kelas->getsub()->result_array();
+        // $data['cek'] = $this->m_kelas->getmateri($id)->result_array();
+        $data['cek'] = $this->m_kelas->getsub($id)->result_array();
 
         $data['tittle'] = "Materi Kelas";
         $this->load->view("peserta/template/v_header", $data);

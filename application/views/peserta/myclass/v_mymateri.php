@@ -25,6 +25,17 @@
             </div>
             </div> -->
             <div class="card-body">
+            <?php if ($cek == null) : ?>
+                        <!-- Jika Belum Terdapat data -->
+                            <div class="col-md">
+                                <div class="card-body text-center mt-4">
+                                    <img src="<?= base_url('assets/icon/noList.svg'); ?>" alt="noData" class="img-rounded img-responsive img-fluid" width="100">
+                                </div>
+                                <div class="card-body pt-0 mt-4">
+                                    <h3 class="text-center text-bold text-muted">Belum terdapat data</h3>
+                                </div>
+                            </div>
+            <?php else : ?>
                 <?php foreach ($cek as $mtr) :
                     $id = $mtr['ID_MT'];
                     $nama = $mtr['NM_MT'];
@@ -47,9 +58,11 @@
                                         <div class="card-header">
                                             <h1 class="card-title mt-2"><i class="<?= $i['ICON_SUB']; ?> fa-lg mr-2"></i> <?= str_replace('_', ' ', htmlspecialchars_decode($i['FILE_SUB'])); ?></h1>
                                             <div class="card-tools pb-2">
+                                                <?php if ($i['ICON_SUB'] != "fas fa-link") {?>
                                                 <a class="btn btn-success" href="<?= base_url('assets/dist/materi/' . $i['FILE_SUB']); ?>" target="_blank">
                                                     <i class="fas fa-download"></i>
                                                 </a>
+                                                <?php }?>
                                             </div>
                                         </div>
                                     </div>
@@ -87,6 +100,7 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
+            <?php endif;?>
             </div>
         </div>
     </section>
