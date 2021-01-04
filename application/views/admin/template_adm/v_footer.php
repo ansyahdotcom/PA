@@ -194,10 +194,10 @@
                 setInterval(function() {
                     data.length
                 }, 100);
-                if (data.length > 5) {
-                    $(".jml-not").text(5 + ` +`);
-                    $(".jml-not1").text(`Ada 5 lebih pemberitahuan masuk`);
-                    $(".pemberitahuan").text(5 + ` +`);
+                if (data.length > 99) {
+                    $(".jml-not").text(99 + ` +`);
+                    $(".jml-not1").text(`Ada 99 lebih pemberitahuan masuk`);
+                    $(".pemberitahuan").text(99 + ` +`);
                 } else if (data.length == 0) {
                     $(".jml-not").text(data.length);
                     $(".jml-not1").text(data.length + ` pemberitahuan`);

@@ -186,9 +186,12 @@
 													endif;
 													?>
 													<div class="col-md-6 pt-2">
-														<button class="btn btn-sm <?= $btn; ?> beli btn-block" id="<?= $id; ?>" data-toggle="modal" data-target="#cekout<?= $id; ?>" <?= $stts_btn; ?>>
+														<!-- <button class="btn btn-sm <?= $btn; ?> beli btn-block" id="<?= $id; ?>" data-toggle="modal" data-target="#cekout<?= $id; ?>" <?= $stts_btn; ?>>
 															<i class="<?= $icon; ?>"></i> <?= $text; ?>
-														</button>
+														</button> -->
+														<a href="<?= base_url('peserta/transaksi/beli/' . $id); ?>" class="btn btn-sm <?= $btn; ?> btn-block" <?= $stts_btn; ?>>
+															<i class="<?= $icon; ?>"></i> <?= $text; ?>
+														</a>
 													</div>
 												</div>
 											<?php endif; ?>
@@ -212,16 +215,16 @@
 </div>
 <!-- /.content-wrapper -->
 
-<?php foreach ($kls as $k) :
+<!-- <?php foreach ($kls as $k) :
 	$id = $k['ID_KLS'];
 	$kelas = $k['TITTLE'];
 	$harga = $k['PRICE'];
 	$gambar = $k['GBR_KLS'];
 	$deskripsi = $k['DESKRIPSI'];
 	$ktg = $k['KTGKLS'];
-?>
+?> -->
 	<!-- Modal Cekout Kelas -->
-	<div class="modal fade" id="cekout<?= $id; ?>">
+	<!-- <div class="modal fade" id="cekout<?= $id; ?>">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -233,24 +236,24 @@
 				<form id="payment-form" method="POST" action="<?= site_url() ?>/peserta/kelas/finish">
 					<div class="modal-body">
 						<input type="hidden" name="result_type" id="result-type" value="">
-						<input type="hidden" name="result_data" id="result-data" value="">
+						<input type="hidden" name="result_data" id="result-data" value=""> -->
 
 						<!-- Input untuk menangkap data json -->
-						<input type="hidden" class="id" name="id" id="id">
+						<!-- <input type="hidden" class="id" name="id" id="id">
 						<input type="hidden" class="kelas" name="kelas" id="kelas">
-						<input type="hidden" class="harga" name="harga" id="harga">
+						<input type="hidden" class="harga" name="harga" id="harga"> -->
 						<!-- End tangkap data json -->
 
 						<!-- Input kirim data json -->
-						<input type="hidden" name="id_ps" id="id_ps" value="<?= $peserta['ID_PS']; ?>">
+						<!-- <input type="hidden" name="id_ps" id="id_ps" value="<?= $peserta['ID_PS']; ?>">
 						<input type="hidden" name="nama" id="nama" value="<?= $peserta['NM_PS']; ?>">
 						<input type="hidden" name="hp" id="hp" value="<?= $peserta['HP_PS']; ?>">
-						<input type="hidden" name="email" id="email" value="<?= $peserta['EMAIL_PS']; ?>">
+						<input type="hidden" name="email" id="email" value="<?= $peserta['EMAIL_PS']; ?>"> -->
 						<!-- End kirim json -->
 
-						<h4 class="text-bold"><?= $kelas; ?></h4>
+						<!-- <h4 class="text-bold"><?= $kelas; ?></h4> -->
 						<!-- <p class="text-muted"><?= htmlspecialchars_decode($deskripsi); ?></p> -->
-						<p class="text-bold">Harga: </p>
+						<!-- <p class="text-bold">Harga: </p>
 						<h2 class="text-bold text-success">Rp. <?= number_format($harga, 0, ".", "."); ?></h2>
 					</div>
 					<div class="modal-footer justify-content-between">
@@ -258,10 +261,10 @@
 						<button type="button" class="btn btn-primary" data-dismiss="modal" name="continue" id="continue">Lanjut Cekout</button>
 					</div>
 				</form>
-			</div>
+			</div> -->
 			<!-- /.modal-content -->
-		</div>
+		<!-- </div> -->
 		<!-- /.modal-dialog -->
-	</div>
+	<!-- </div> -->
 	<!-- /.modal -->
-<?php endforeach; ?>
+<!-- <?php endforeach; ?> -->

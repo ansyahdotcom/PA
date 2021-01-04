@@ -72,10 +72,10 @@
                 dataType: 'json',
                 success: function(data) {
                     data.length
-                    if (data.length > 5) {
-                        $(".jml-not").text(5 + ` +`);
-                        $(".jml-not1").text(`Ada 5 lebih pemberitahuan masuk`);
-                        $(".pemberitahuan").text(5 + ` +`);
+                    if (data.length > 99) {
+                        $(".jml-not").text(99 + ` +`);
+                        $(".jml-not1").text(`Ada 99 lebih pemberitahuan masuk`);
+                        $(".pemberitahuan").text(99 + ` +`);
                     } else if (data.length == 0) {
                         $(".jml-not").text(data.length);
                         $(".jml-not1").text(data.length + ` pemberitahuan`);
@@ -153,28 +153,47 @@
 
 <!-- Menampilkan Checkout -->
 <script type="text/javascript">
-    $('button#continue').click(function(event) {
+    $('#pay-button').click(function(event) {
         event.preventDefault();
-        var id = $('input#id').val()
-        var kelas = $('input#kelas').val();
-        var harga = $('input#harga').val();
-        var id_ps = $('input#id_ps').val();
-        var nama = $('input#nama').val();
-        var hp = $('input#hp').val();
-        var email = $('input#email').val();
+        var idkls = $('#idkls').val();
+        var kelas = $('#kelas').val();
+        var harga = $('#hrg').val();
+        var idps = $('#idps').val();
+        var namaps = $('#namaps').val();
+        var hp = $('#hp').val();
+        var email = $('#email').val();
+
+        // var id = $('input#id').val()
+        // var kelas = $('input#kelas').val();
+        // var harga = $('input#harga').val();
+        // var id_ps = $('input#id_ps').val();
+        // var nama = $('input#nama').val();
+        // var hp = $('input#hp').val();
+        // var email = $('input#email').val();
 
         $.ajax({
             type: 'POST',
-            url: '<?= site_url() ?>/peserta/kelas/token',
+            url: '<?= site_url() ?>/peserta/transaksi/token',
             data: {
-                id: id,
+                idkls: idkls,
                 kelas: kelas,
                 harga: harga,
-                id_ps: id_ps,
-                nama: nama,
+                idps: idps,
+                namaps: namaps,
                 hp: hp,
                 email: email
             },
+
+            // data: {
+            //     id: id,
+            //     kelas: kelas,
+            //     harga: harga,
+            //     id_ps: id_ps,
+            //     nama: nama,
+            //     hp: hp,
+            //     email: email
+            // },
+            
             cache: false,
 
             success: function(data) {

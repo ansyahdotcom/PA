@@ -173,4 +173,6 @@ class Transaksi extends CI_Controller
         $this->session->set_flashdata('message', 'hapus');
         redirect('admin/kelas');
     }
+
+    
 }

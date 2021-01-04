@@ -50,7 +50,7 @@
 										<td width="150px"><?= $l['PEKERJAAN']; ?></td>
 										<td>
 											<div class="progress" style="height: 30px">
-												<div class="progress-bar text-bold" role="progressbar" style="width: 1	0%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+												<div class="progress-bar text-bold" role="progressbar" style="width: <?= ($jmltugas*(100/$jmltugas))-(($jmltugas-$submit)*(100/$jmltugas)); ?>%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><?= ($jmltugas*(100/$jmltugas))-(($jmltugas-$submit)*(100/$jmltugas)); ?>%</div>
 											</div>
 										</td>
 										<td class="text-center" width="170px">
@@ -59,10 +59,12 @@
 												'ID_PS' => $l['ID_PS'],
 												'ID_KLS' => $l['ID_KLS']
 											])->row_array();
+
+											$progress = ($jmltugas*(100/$jmltugas))-(($jmltugas-$submit)*(100/$jmltugas));
 											?>
 											<div class="row">
 												<div class="col-md-12">
-													<?php if ($file_sertif == "") : $disabled="" ?>
+													<?php if ($file_sertif == "" || $progress == 100) : $disabled="" ?>
 														<span class="btn btn-sm btn-secondary text-bold">
 															<i class="fas fa-file-pdf mr-2"></i>
 															Belum Menerima

@@ -115,6 +115,13 @@
             $result = $this->db->query("SELECT * FROM materi, materi_sub WHERE materi.ID_MT = materi_sub.ID_MT");
             return $result;
         }
+
+        public function get_detclass($id)
+        {
+            return $this->db->get_where('kelas', [
+                'ID_KLS' => $id
+            ])->row_array();
+        }
     }
 
 ?>

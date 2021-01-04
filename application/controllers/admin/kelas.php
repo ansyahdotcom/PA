@@ -289,6 +289,12 @@ class Kelas extends CI_Controller
         /** Mengambil nama kelas */
         $data['nmkelas'] = $this->m_kelas->nmkelas($id);
 
+        /** Jumlah tugas */
+        $data['jmltugas'] = $this->m_kelas->jmltugas($id);
+
+        /** Jumlah Submit */
+        $data['submit'] = $this->m_kelas->submit($id);
+
         $this->load->view('admin/template_adm/v_header', $data);
         $this->load->view('admin/template_adm/v_navbar', $data);
         $this->load->view('admin/template_adm/v_sidebar', $data);

@@ -102,6 +102,23 @@
             return $this->db->get()->result_array();
         }
 
+        public function jmltugas($id)
+        {
+            return $this->db->get_where('detail_materi', [
+                'ID_KLS' => $id
+            ])->num_rows();
+        }
+
+        public function submit($id)
+        {
+            $this->db->select('*');
+            $this->db->from('detil_tugas');
+            $this->db->join('detail_materi', 'detail_materi.ID_MT=detil_tugas.ID_MT', 'left');
+            $this->db->where('detil_tugas.STATUS', "Sudah Mengumpulkan");
+            $this->db->where('detail_materi.ID_KLS', $id);
+            return $this->db->get()->num_rows();
+        }
+
         public function nmkelas($id)
         {
             return $this->db->get_where('kelas', [
