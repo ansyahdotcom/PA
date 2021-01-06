@@ -13,21 +13,36 @@
           </ol>
         </div>
       </div>
-      <?= $this->session->flashdata('message'); ?>
-    </div><!-- /.container-fluid -->
+      <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+    </div>
 
 
     </section>
     <section class="content">
         <div class="card">
             <div class="card-header">
-            <h3 class="card-title pt-2">List Materi</h3>
+            <h3 class="card-title pt-2"> List Materi</h3>
             <div class="card-tools">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-tambah">
-                <i class="fas fa-plus"></i> Materi</button>
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
+                <i class="fas fa-plus-circle"></i> Import Excel</button> -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
+                <i class="fas fa-plus-circle"></i> Materi</button>
+                <a href="<?= base_url('admin/listkelas'); ?>" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-circle-left"></i> Kembali</a>
             </div>
             </div>
             <div class="card-body">
+            <?php if ($materi == null) : ?>
+                        <!-- Jika Belum Terdapat data -->
+                            <div class="col-md">
+                                <div class="card-body text-center mt-4">
+                                    <img src="<?= base_url('assets/icon/noList.svg'); ?>" alt="noData" class="img-rounded img-responsive img-fluid" width="100">
+                                </div>
+                                <div class="card-body pt-0 mt-4">
+                                    <h3 class="text-center text-bold text-muted">Belum terdapat data</h3>
+                                </div>
+                            </div>
+                    <?php else : ?>
                 <?php foreach($materi as $mtr):
                     $id = $mtr['ID_MT'];
                     $nama = $mtr['NM_MT'];
@@ -37,148 +52,162 @@
                     <h3 class="card-title pt-2"><?= $nama;?></h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_tambah">
-                        <i class="fas fa-plus"></i> Sub Menu</button>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-edit<?= $id;?>">
+                        <i class="fas fa-plus-circle"></i> File Materi</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEdit<?= $id;?>">
                         <i class="fas fa-edit"></i> Edit</button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?= $id;?>">
-                        <i class="fas fa-trash-alt"></i> Hapus</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete<?= $id;?>">
+                        <i class="fas fa-trash"></i> Hapus</button>
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
                     </div>
                     </div>
                     <div class="card-body">
-                        <div class="card">
+                    <?php if ($sub == null) : ?>
+                        <!-- Jika Belum Terdapat data -->
+                            <div class="col-md">
+                                <div class="card-body pt-0 mt-4">
+                                    <h4 class="text-center text-bold text-muted">Belum terdapat data</h4>
+                                </div>
+                            </div>
+                    <?php else : ?>
+                        <?php foreach($sub as $s):
+                            $id_sub = $s['ID_SUB'];    
+                        ?>
+                        <div class="row">
+                        <div class="card col-sm-8">
                             <div class="card-header">
-                            <h1 class="card-title pt-2"><?= $mtr['FILE_MT'];?></h1>
-                            <p class="card-text"><?= $mtr['DETAIL_MT'];?></p>
+                            <h1 class="card-title pt-2"><?= $s['FILE_SUB'];?></h1>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalEditSub">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal_edit_sub<?=$id_sub?>">
                                 <i class="fas fa-edit"></i> Edit</button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">
-                                <i class="fas fa-trash-alt"></i> Hapus</button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="##modal_hapus_sub<?=$id_sub?>">
+                                <i class="fas fa-trash"></i> Hapus</button>
                             </div>
                             </div>
                         </div>
+                        </div>
+                        <?php endforeach;?>
+                        <?php endif;?>
                     </div>
                 </div>
                 <?php endforeach;?>
+            <?php endif;?>
             </div>
         </div>
     </section>
-</div>
 
-<?php foreach($materi as $mtr) {
-  $id = $mtr['ID_MT'];
-  $nama = $mtr['NM_MT'];
-  $detail_mt = $mtr['DETAIL_MT'];
+
+<?php 
+    $id_kls= $this->uri->segment(4);
 ?>
-<div class="modal fade" id="modal_hapus<?= $id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
-                </div>
-                <form action="<?= base_url('admin/materi/hapus'); ?>" method="post" class="form-horizontal">
-                    <div class="modal-body">
-                        <p>Apakah Anda yakin ingin menghapus data ini?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" name="ID_MT" value="<?= $id; ?>">
-                        <button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
-                        <button class="btn btn-danger">Hapus</button>
-                    </div>
-                </form>
+<!-- Modal Tambah -->
+<div class="modal fade" id="modalAdd" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title">Tambah Materi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <form action="<?php echo base_url('admin/materi/create')?>" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                <div class="form-group">
+                    <label for="nama">Judul Materi</label>
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Menu">
+                    <small class="form-text text-success">Contoh: BAB 1 Pengenalan</small>
+                    <?= form_error('nama', '<small class="text-danger col-md">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="isi">Isi Konten</label>
+                    <textarea class="textarea" name="detail" placeholder="Isi Konten"
+                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    <small class="form-text text-success">Berisi keterangan kebijakan</small>
+                    <?= form_error('detail', '<small class="text-danger col-md">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="id_kelas" value="<?= $id_kls?>" class="form-control" placeholder="Label Icon">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
+                </div>
+                </div>
+                </div>
+            </form>
         </div>
     </div>
+    
+    
+<?php foreach($materi as $p) :
+    $id = $p['ID_MT'];
+    $nama = $p['NM_MT'];
+    $detail = $p['DETAIL_MT'];
+    ?>
 
-    <!-- Modal edit Tags -->
-    <div class="modal fade" id="modal-edit<?= $id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title title-1" id="myModalLabel">Edit Materi</h4>
+<form action="<?php echo base_url().'admin/materi/update'?>" method="post" enctype="multipart/form-data">
+<div class="modal fade" id="modalEdit<?=$id?>" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h4 class="modal-title">Edit Menu</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="<?= base_url('admin/materi/update_materi'); ?>">
-                    <div class="modal-body">
-                        <input type="hidden" readonly name="ID_MT" value="<?= $id; ?>" class="form-control">
-                        <div class="form-group">
-                        <input type="text" name="NM_MT" id="NM_MT" class="form-control"
-							            autocomplete="off" value="<?= $nama; ?>">
-                        </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nama">Judul Materi</label>
+                        <input type="text" name="nama" value="<?=$nama;?>" class="form-control" placeholder="Nama Menu">
+                        <small class="form-text text-success">Contoh: BAB 1 Pengenalan</small>
+                        <?= form_error('nama', '<small class="text-danger col-md">', '</small>'); ?>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="save-btn" class="btn btn-success">Simpan</button>
+                    <div class="form-group">
+                        <label for="isi">Isi Konten</label>
+                        <textarea class="textarea" name="detail" placeholder="Isi Konten"
+                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?=$detail?></textarea>
+                        <small class="form-text text-success">Berisi keterangan kebijakan</small>
+                        <?= form_error('detail', '<small class="text-danger col-md">', '</small>'); ?>
                     </div>
-                </form>
+                </div>
+                <div class="card-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="hidden" name="id_edit" value="<?=$id;?>" required>
+                    <input type="hidden" name="id_kelas" value="<?=$id_kls;?>" required>
+                    <button type="submit" class="btn btn-warning"><i class="far fa-save"></i> Update</button>
+                </div>
+                </div>
             </div>
         </div>
     </div>
+    </form>
 
-<?php } ?>
-
-<div class="modal fade" id="modal-tambah" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title title-1" id="myModalLabel">Tambah Materi</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<form method="post" action="<?= base_url('admin/materi/tambah_materi'); ?>">
-				<div class="modal-body">
-					<div class="form-group">
-                        <input type="hidden" class="form-control" id="ID_MT" name="ID_MT" value="<?= $id; ?>">
-						<input required type="text" name="NM_MT" id="NM_MT" class="form-control" placeholder="Masukkan Nama Materi . ." aria-describedby="namamateri" maxlength="100">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<?php foreach($materi as $row) {
-  $id = $row['ID_MT'];
-  $nama = $row['NM_MT'];
-  $detail_mt = $row['DETAIL_MT'];
-?>
-<div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title title-1" id="myModalLabel">Tambah Materi</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-            <?php echo form_open_multipart('admin/materi/upload_file'); ?>
-            <input type="hidden" name="ID_MT" value="<?= $id?>">
-            
-            <div class="modal-body">
-            <label for="DETAIL_MT">Deskripsi Materi</label>
-					<div class="form-group">
-                    <textarea class="textarea" class="form-control" name="DETAIL_MT"></textarea>
-					</div>
-			</div>
-            <div class="modal-body">
-                <label for="FILE_MT">File Materi</label>
-                <div class="custom-file mb-2">
-                    <input type="file" class="custom-file-input" name="FILE_MT" id="FILE_MT">
-                    <label class="custom-file-label" for="FILE_MT">Masukkan File Materi</label>
-                </div> 
+    <form action="<?php echo base_url().'admin/materi/delete'?>" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="modalDelete<?=$id;?>" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                <h4 class="modal-title">Hapus Menu</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body justify-content-center">
+                    <div class="text-center">
+                        <img class="mt-2 mb-2" src="<?= base_url();?>assets/dist/img/hapus.svg" width=80% alt="delete-img">
+                        <h4 class="mb-4">Apakah anda yakin untuk menghapus menu ini?</h4>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="hidden" name="delete_id" value="<?=$id;?>" required>
+                    <input type="hidden" name="id_kelas" value="<?=$id_kls;?>" required>
+                    <button type="submit" class="btn btn-danger"><i class="far fa-save"></i> Hapus</button>
+                </div>
+                </div>
             </div>
-			<div class="modal-footer">
-					<button type="submit" id="save-btn" class="btn btn-success">Tambah</button>
-				</div>
-			<?php echo form_close(); ?>
-		</div>
-	</div>
+        </div>
+    </div>
+    </form>
 </div>
-<?php } ?>
+<?php endforeach; ?>

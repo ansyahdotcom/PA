@@ -18,63 +18,14 @@ class Materi extends CI_Controller
             $this->session->userdata('email')
         ])->row_array();
         $data['tittle'] = "Materi";
-        $data['materi'] = $this->m_materi->get_materi();
-        // $this->load->view('admin/coba/coba', $data);
+        $data['materi'] = $this->m_materi->get_materi($id);
+        $data['sub'] = $this->m_materi->get_sub();
+        $data['data'] = $this->m_materi->get_data();
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
         $this->load->view("admin/kelas/v_listmateri", $data);
         $this->load->view("admin/template_adm/v_footer");
-    }
-
-    public function tambah_materi()
-    {
-
-
-        $ID_MT = htmlspecialchars($this->input->post('ID_MT'));
-        $NM_MT = htmlspecialchars($this->input->post('NM_MT'));
-        $this->m_materi->tmbh_materi($NM_MT);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-        Materi berhasil dibuat!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
-        redirect("admin/materi/materikelas/$ID_MT");
-    }
-
-    public function hapus()
-    {
-        $ID_MT = $this->input->post('ID_MT');
-        $this->m_materi->hapus_materi($ID_MT);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Materi berhasil dihapus!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
-        redirect("admin/materi/materikelas/$ID_MT");
-    }
-
-    public function update_materi()
-    {
-        $ID_MT = htmlspecialchars($this->input->post('ID_MT'));
-        $NM_MT = htmlspecialchars($this->input->post('NM_MT'));
-
-        $data = array(
-            'NM_MT' => $NM_MT
-        );
-
-        $where = array('ID_MT' => $ID_MT);
-
-        $this->m_materi->update_materi($where, $data, 'materi');
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-															Materi berhasil diedit!
-															<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>');
-        redirect("admin/materi/materikelas/$ID_MT");
     }
 
     public function upload_file() 
@@ -103,14 +54,50 @@ class Materi extends CI_Controller
 
         
         $this->m_materi->update_materi($where, $data, 'materi');
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show">
-        Materi berhasil dibuat!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>');
+        $this->session->set_flashdata('message', 'socialSuccess');
 
 
         redirect("admin/materi/materikelas/$ID_MT");
     }
+
+    //CREATE
+	function create(){
+        $id = $this->input->post('id_kelas', TRUE);
+		$materi = $this->input->post('nama',TRUE);
+		$detail = $this->input->post('detail',TRUE);
+		$id_kelas = $id;
+        $this->m_materi->create_($materi,$detail,$id_kelas);
+        $this->session->set_flashdata('message', 'dataSuccess');
+		redirect("admin/materi/materikelas/$id");
+	}
+    
+	//UPDATE
+	function update(){
+        $id = $this->input->post('id_kelas',TRUE);
+        $id_mt = $this->input->post('id_edit',TRUE);
+        $nama = $this->input->post('nama',TRUE);
+        $detail = $this->input->post('detail',TRUE);
+        $data = array(
+            'NM_MT' => $nama,
+            'DETAIL_MT' => $detail
+        );
+        $where = array(
+            'ID_MT' => $id_mt
+        );
+		$this->m_materi->update_($where, $data, 'materi');
+        $this->session->set_flashdata('message', 'dataUpdate');
+		redirect("admin/materi/materikelas/$id");
+	}
+
+	// DELETE
+	function delete(){
+        $id = $this->input->post('id_kelas',TRUE);
+        $id_mt = $this->input->post('delete_id',TRUE);
+        $where = array(
+            'ID_MT' => $id_mt
+        );
+		$this->m_materi->delete_($where, 'materi');
+		$this->session->set_flashdata('message', 'dataDelete');
+		redirect("admin/materi/materikelas/$id");
+	}
 }
