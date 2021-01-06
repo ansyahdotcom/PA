@@ -267,7 +267,7 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="email">Deskripsi</label>
-								<textarea class="form-control" id="compose-textarea" name="deskripsi" style="weight: 300px" required></textarea>
+								<textarea class="form-control" name="deskripsi" style="weight: 300px" required></textarea>
 								<?= form_error('deskripsi', '<small class="text-danger">', '</small>'); ?>
 							</div>
 						</div>
@@ -398,13 +398,13 @@
 							<div class="col-md-6 tgl_daftar" hidden>
 								<div class="form-group">
 									<label for="tgl_daftar">Tanggal Pembukaan Pendaftaran</label>
-									<input type="date" class="form-control" name="tgl_daftar">
+									<input type="date" class="form-control" name="tgl_daftar" value="<?= date('Y-m-d', strtotime($tgl_daftar)); ?>">
 								</div>
 							</div>
 							<div class="col-md-6 tgl_penutupan" hidden>
 								<div class="form-group">
 									<label for="tgl_penutupan">Tanggal Penutupan Pendaftaran</label>
-									<input type="date" class="form-control" name="tgl_penutupan">
+									<input type="date" class="form-control" name="tgl_penutupan" value="<?= date('Y-m-d', strtotime($tgl_penutupan)); ?>">
 								</div>
 							</div>
 						</div>
@@ -424,13 +424,13 @@
 							<div class="col-md-6 tgl_mulai" hidden>
 								<div class="form-group">
 									<label for="tgl_mulai">Tanggal Mulai Kelas</label>
-									<input type="date" class="form-control" name="tgl_mulai">
+									<input type="date" class="form-control" name="tgl_mulai" value="<?= date('Y-m-d', strtotime($tgl_mulai)); ?>">
 								</div>
 							</div>
 							<div class="col-md-6 tgl_selesai" hidden>
 								<div class="form-group">
 									<label for="tgl_selesai">Tanggal Selesai Kelas</label>
-									<input type="date" class="form-control" name="tgl_selesai">
+									<input type="date" class="form-control" name="tgl_selesai" value="<?= date('Y-m-d', strtotime($tgl_selesai)); ?>">
 								</div>
 							</div>
 						</div>
@@ -511,20 +511,20 @@
 								</div>
 							</div>
 							<!-- <div class="col-md-6 row-hrgdiskon">
-				<div class="form-group">
-				<label for="harga">Harga Diskon</label>
-				<input type="number" class="form-control text-bold text-success" id="inkls" name="harga" placeholder="harga" value="<?= $harga - ($harga * $jmldis); ?>" disabled required>
-				<?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
-				</div>
-			</div> -->
-							<!-- <div class="col-md-6 row-diskon" hidden>
-				<div class="form-group">
-				<label for="diskon">Diskon</label>
-				<select name="diskon" id="inkls" class="custom-select slct-diskon text-bold" disabled>
+								<div class="form-group">
+								<label for="harga">Harga Diskon</label>
+								<input type="number" class="form-control text-bold text-success" id="inkls" name="harga" placeholder="harga" value="<?= $harga - ($harga * $jmldis); ?>" disabled required>
+								<?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
+								</div>
+							</div> -->
+											<!-- <div class="col-md-6 row-diskon" hidden>
+								<div class="form-group">
+								<label for="diskon">Diskon</label>
+								<select name="diskon" id="inkls" class="custom-select slct-diskon text-bold" disabled>
 
-				</select>
-				</div>
-			</div> -->
+								</select>
+								</div>
+							</div> -->
 						</div>
 						<div class="row edit-link">
 							<div class="col-md-12">
@@ -539,7 +539,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label for="email">Deskripsi</label>
-									<textarea class="form-control text-bold inkls" id="compose-textarea" name="deskripsi" style="weight: 300px" required><?= $deskripsi; ?></textarea>
+									<textarea class="form-control text-bold inkls" id="inkls" name="deskripsi" style="weight: 300px" disabled required><?= $deskripsi; ?></textarea>
 									<?= form_error('deskripsi', '<small class="text-danger">', '</small>'); ?>
 								</div>
 							</div>

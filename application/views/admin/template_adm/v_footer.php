@@ -425,6 +425,7 @@
             $("button#save-kls").prop('hidden', false);
             $("button#edit-kls").prop('hidden', true);
             $("input#inkls").prop('disabled', false);
+            $("textarea#inkls").prop('disabled', false);
             $("div.tgl_daftar").prop('hidden', false);
             $("div.tgl_penutupan").prop('hidden', false);
             $("div.tgl_daftar1").prop('hidden', true);
@@ -452,6 +453,7 @@
             $("button#save-kls").prop('hidden', true);
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
+            $("textarea#inkls").prop('disabled', true);
             $("div.tgl_daftar").prop('hidden', true);
             $("div.tgl_penutupan").prop('hidden', true);
             $("div.tgl_daftar1").prop('hidden', false);
@@ -479,6 +481,7 @@
             $("button#save-kls").prop('hidden', true);
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
+            $("textarea#inkls").prop('disabled', true);
             $("div.tgl_daftar").prop('hidden', true);
             $("div.tgl_penutupan").prop('hidden', true);
             $("div.tgl_daftar1").prop('hidden', false);

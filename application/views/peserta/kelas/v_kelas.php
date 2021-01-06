@@ -69,7 +69,7 @@
 								</div>
 								<div class="position-relative card-body pt-3">
 									<?php
-								    /** Untuk mengecek jumlah pendaftar */
+									/** Untuk mengecek jumlah pendaftar */
 									$jml_pendaftar = $this->db->get_where('transaksi', [
 										'STATUS' => 200,
 										'ID_KLS' => $id
@@ -99,14 +99,38 @@
                                             </ul> -->
 										</div>
 									</div>
-									<div class="row pt-2">
-										<span class="btn btn-outline-dark text-justify text-bold btn-block">
-											<div class="col-md-12">
-												<i class="far fa-calendar-check pr-2"></i>
-												Pendaftaran: <?= date('d F Y', $tgl_daftar); ?> - <?= date('d F Y', $tgl_penutupan); ?>
+									<?php if ($tgl_daftar == "" && $tgl_penutupan == "" || $peserta['STATUS_BELI'] == 200) : ?>
+										<?php if ($tgl_daftar == "" && $tgl_penutupan == "") : ?>
+											<div class="row pt-2">
+												<span class="btn btn-warning text-justify text-bold btn-block">
+													<div class="col-md-12">
+														<i class="fas fa-info pr-2"></i>
+														Kelas ini tidak membuka pendaftaran.
+													</div>
+												</span>
 											</div>
-										</span>
-									</div>
+										<?php elseif ($peserta['STATUS_BELI'] == 200) : ?>
+											<div class="row pt-2">
+												<span class="btn btn-success text-justify text-bold btn-block">
+													<div class="col-md-12">
+														<i class="fas fa-info pr-2"></i>
+														Anda sudah terdaftar disalah satu kelas Preneur Academy, 
+														mohon selesaikan kelas anda agar bisa mendaftar ke kelas lainnya.
+													</div>
+												</span>
+											</div>
+										<?php endif; ?>
+									<?php else : ?>
+										<div class="row pt-2">
+											<span class="btn btn-outline-dark text-justify text-bold btn-block">
+												<div class="col-md-12">
+													<i class="far fa-calendar-check pr-2"></i>
+													Pendaftaran: <?= date('d F Y', $tgl_daftar); ?> - <?= date('d F Y', $tgl_penutupan); ?>
+												</div>
+											</span>
+										</div>
+									<?php endif; ?>
+
 									<div class="row pt-2">
 										<span class="btn btn-outline-dark text-justify text-bold btn-block">
 											<div class="col-md-12">
@@ -153,48 +177,43 @@
 												</div>
 											</div>
 										<?php else : ?>
-											<?php if ($peserta['STATUS_BELI'] == 200) : ?>
-												<div class="row">
-													<div class="col-md-12">
-														<span class="btn btn-sm btn-success text-bold btn-block">
-															<div class="text-justify">
-																<i class="fas fa-info pr-2"> </i>
-																Anda sudah melakukan pembelian kelas, mohon selesaikan kelas anda terlebih dahulu untuk dapat mendaftar ke kelas lainnya.
-															</div>
-														</span>
-													</div>
+											<div class="row">
+												<div class="col-md-6 pt-2">
+													<span class="btn btn-sm bg-teal text-bold btn-block">
+														<i class="fas fa-money-check"></i>
+														Rp. <?= number_format($harga, 0, ".", "."); ?>
+													</span>
 												</div>
-											<?php else : ?>
-												<div class="row">
-													<div class="col-md-6 pt-2">
-														<span class="btn btn-sm bg-teal text-bold btn-block">
-															<i class="fas fa-money-check"></i>
-															Rp. <?= number_format($harga, 0, ".", "."); ?>
-														</span>
-													</div>
-													<?php
-													if ($jml_pendaftar == 50) :
-														$btn = "btn-danger";
-														$stts_btn = "disabled";
-														$text = "Kuota Habis";
-														$icon = "fas fa-ban";
-													else :
-														$btn = "btn-primary";
-														$stts_btn = "";
-														$text = "Beli Kelas";
-														$icon = "fas fa-cart-plus";
-													endif;
-													?>
-													<div class="col-md-6 pt-2">
-														<!-- <button class="btn btn-sm <?= $btn; ?> beli btn-block" id="<?= $id; ?>" data-toggle="modal" data-target="#cekout<?= $id; ?>" <?= $stts_btn; ?>>
+												<?php
+												if ($jml_pendaftar == 50) :
+													$btn = "btn-danger";
+													$stts_btn = "disabled";
+													$text = "Kuota Habis";
+													$icon = "fas fa-ban";
+													$tag = "button";
+												else :
+													$btn = "btn-primary";
+													$stts_btn = "";
+													$text = "Beli Kelas";
+													$icon = "fas fa-cart-plus";
+													$tag = "a";
+												endif;
+												?>
+												<div class="col-md-6 pt-2">
+													<!-- <button class="btn btn-sm <?= $btn; ?> beli btn-block" id="<?= $id; ?>" data-toggle="modal" data-target="#cekout<?= $id; ?>" <?= $stts_btn; ?>>
 															<i class="<?= $icon; ?>"></i> <?= $text; ?>
 														</button> -->
-														<a href="<?= base_url('peserta/transaksi/beli/' . $id); ?>" class="btn btn-sm <?= $btn; ?> btn-block" <?= $stts_btn; ?>>
+													<?php if ($tgl_daftar == "" && $tgl_penutupan == "" || $peserta['STATUS_BELI'] == 200) : ?>
+														<button class="btn btn-sm btn-primary btn-block" disabled>
+															<i class="fas fa-cart-plus"></i> Beli Kelas
+														</button>
+													<?php else : ?>
+														<<?= $tag; ?> href="<?= base_url('peserta/transaksi/beli/' . $id); ?>" class="btn btn-sm <?= $btn; ?> btn-block" <?= $stts_btn; ?>>
 															<i class="<?= $icon; ?>"></i> <?= $text; ?>
-														</a>
-													</div>
+														</<?= $tag; ?>>
+													<?php endif; ?>
 												</div>
-											<?php endif; ?>
+											</div>
 										<?php endif; ?>
 									</div>
 								</div>
@@ -216,15 +235,15 @@
 <!-- /.content-wrapper -->
 
 <!-- <?php foreach ($kls as $k) :
-	$id = $k['ID_KLS'];
-	$kelas = $k['TITTLE'];
-	$harga = $k['PRICE'];
-	$gambar = $k['GBR_KLS'];
-	$deskripsi = $k['DESKRIPSI'];
-	$ktg = $k['KTGKLS'];
-?> -->
-	<!-- Modal Cekout Kelas -->
-	<!-- <div class="modal fade" id="cekout<?= $id; ?>">
+			$id = $k['ID_KLS'];
+			$kelas = $k['TITTLE'];
+			$harga = $k['PRICE'];
+			$gambar = $k['GBR_KLS'];
+			$deskripsi = $k['DESKRIPSI'];
+			$ktg = $k['KTGKLS'];
+		?> -->
+<!-- Modal Cekout Kelas -->
+<!-- <div class="modal fade" id="cekout<?= $id; ?>">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -238,22 +257,22 @@
 						<input type="hidden" name="result_type" id="result-type" value="">
 						<input type="hidden" name="result_data" id="result-data" value=""> -->
 
-						<!-- Input untuk menangkap data json -->
-						<!-- <input type="hidden" class="id" name="id" id="id">
+<!-- Input untuk menangkap data json -->
+<!-- <input type="hidden" class="id" name="id" id="id">
 						<input type="hidden" class="kelas" name="kelas" id="kelas">
 						<input type="hidden" class="harga" name="harga" id="harga"> -->
-						<!-- End tangkap data json -->
+<!-- End tangkap data json -->
 
-						<!-- Input kirim data json -->
-						<!-- <input type="hidden" name="id_ps" id="id_ps" value="<?= $peserta['ID_PS']; ?>">
+<!-- Input kirim data json -->
+<!-- <input type="hidden" name="id_ps" id="id_ps" value="<?= $peserta['ID_PS']; ?>">
 						<input type="hidden" name="nama" id="nama" value="<?= $peserta['NM_PS']; ?>">
 						<input type="hidden" name="hp" id="hp" value="<?= $peserta['HP_PS']; ?>">
 						<input type="hidden" name="email" id="email" value="<?= $peserta['EMAIL_PS']; ?>"> -->
-						<!-- End kirim json -->
+<!-- End kirim json -->
 
-						<!-- <h4 class="text-bold"><?= $kelas; ?></h4> -->
-						<!-- <p class="text-muted"><?= htmlspecialchars_decode($deskripsi); ?></p> -->
-						<!-- <p class="text-bold">Harga: </p>
+<!-- <h4 class="text-bold"><?= $kelas; ?></h4> -->
+<!-- <p class="text-muted"><?= htmlspecialchars_decode($deskripsi); ?></p> -->
+<!-- <p class="text-bold">Harga: </p>
 						<h2 class="text-bold text-success">Rp. <?= number_format($harga, 0, ".", "."); ?></h2>
 					</div>
 					<div class="modal-footer justify-content-between">
@@ -262,9 +281,9 @@
 					</div>
 				</form>
 			</div> -->
-			<!-- /.modal-content -->
-		<!-- </div> -->
-		<!-- /.modal-dialog -->
-	<!-- </div> -->
-	<!-- /.modal -->
+<!-- /.modal-content -->
+<!-- </div> -->
+<!-- /.modal-dialog -->
+<!-- </div> -->
+<!-- /.modal -->
 <!-- <?php endforeach; ?> -->
