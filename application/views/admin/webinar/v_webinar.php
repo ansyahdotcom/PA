@@ -44,7 +44,7 @@
 						</div>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-3">
+								<div class="col-sm-4">
 									<img class="card-img-top" src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_WEBINAR); ?>">
 								</div>
 								<div class="col-sm-8">
@@ -61,10 +61,22 @@
 											<td><b>Harga</b> &nbsp;</td>
 											<td for="HARGA">:&nbsp; <?= $wbnr->HARGA; ?></td>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td><b>Tanggal Webinar</b> &nbsp;</td>
 											<td for="TGL_WEB">:&nbsp;
 												<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_WEB))); ?>
+											</td>
+										</tr> -->
+										<tr>
+											<td><b>Tanggal Pembukaan Pendaftaran</b> &nbsp;</td>
+											<td for="TGL_BUKA">:&nbsp;
+												<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_BUKA))); ?>
+											</td>
+										</tr>
+										<tr>
+											<td><b>Tanggal Penutupan Pendaftaran</b> &nbsp;</td>
+											<td for="TGL_TUTUP">:&nbsp;
+												<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_TUTUP))); ?>
 											</td>
 										</tr>
 									</table>
@@ -80,15 +92,19 @@
 										</div>
 										<div class="card-footer">
 											<?php
-											if ($wbnr->ST_LINK == 0) {
-												echo '<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
-											data-toggle="modal" data-target="#modal_link' . $wbnr->ID_WEBINAR . '">
-											<i class="fas fa-arrow-circle-right"></i> Posting Link</button>';
-											} else {
-												echo '<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
-											data-toggle="modal" data-target="#modal_link' . $wbnr->ID_WEBINAR . '">
-											<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';
-											}
+											if ($wbnr->ST_POSTWEB == 1) {
+												if ($wbnr->ST_LINK == 0) { ?>
+													<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
+													data-toggle="modal" data-target="#modal_link<?= $ID_WEBINAR; ?>">
+													<i class="fas fa-arrow-circle-right"></i> Posting Link</button>
+												<?php 
+												} else { ?>
+													<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
+													data-toggle="modal" data-target="#modal_link<?= $ID_WEBINAR; ?>">
+													<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
+												<?php
+												}
+											} 
 											?>
 										</div>
 									</div>
@@ -103,18 +119,26 @@
 										</div>
 										<div class="card-footer">
 											<?php
-											if ($wbnr->SRT_WEBINAR == NULL) { ?>
+											if ($wbnr->ST_POSTWEB == 0 && $wbnr->SRT_WEBINAR == NULL) {?>
 												<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Upload</button>
-											<?php } else if ($wbnr->SRT_WEBINAR != NULL && $wbnr->ST_SRT == 0) { ?>
+												<?php } 
+											elseif ($wbnr->ST_POSTWEB == 0 && $wbnr->SRT_WEBINAR != NULL) { ?>
 												<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
+											<?php } 
+											elseif ($wbnr->ST_POSTWEB != 0 && $wbnr->SRT_WEBINAR == NULL) { ?>
+												<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Upload</button>
+											<?php } 
+											elseif ($wbnr->ST_POSTWEB !=0 && $wbnr->SRT_WEBINAR != NULL && $wbnr->ST_SRT == 0) { ?>
+											<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
 
-												<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
-													<i class="fas fa-arrow-circle-right"></i> Bagikan Sertifikat</button>
-											<?php } else { ?>
-												<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
+											<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
+												<i class="fas fa-arrow-circle-right"></i> Bagikan Sertifikat</button>
+											<?php }
+											elseif ($wbnr->ST_POSTWEB !=0 && $wbnr->SRT_WEBINAR != NULL && $wbnr->ST_SRT != 0) { ?>
+											<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
 
-												<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
-													<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
+											<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
+												<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
 											<?php } ?>
 										</div>
 									</div>
@@ -134,15 +158,15 @@
 							<span class="float-right">
 								<!-- Nyari status web trus mau diposting apa nggak -->
 								<?php
-								if ($wbnr->ST_POSTWEB == 0) {
-									echo '<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
-								data-toggle="modal" data-target="#modal_posting' . $wbnr->ID_WEBINAR . '">
-								<i class="fas fa-arrow-circle-right"></i> Publikasikan</button>';
-								} else {
-									echo '<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
-								data-toggle="modal" data-target="#modal_posting' . $wbnr->ID_WEBINAR . '">
-								<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>';
-								}
+								if ($wbnr->ST_POSTWEB == 0) { ?>
+									<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
+								data-toggle="modal" data-target="#modal_posting<?= $wbnr->ID_WEBINAR; ?>">
+								<i class="fas fa-arrow-circle-right"></i> Publikasikan</button>
+								<?php } else { ?>
+									<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
+								data-toggle="modal" data-target="#modal_posting<?= $wbnr->ID_WEBINAR; ?>">
+								<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
+								<?php }
 								?>
 
 								<a class="btn btn-secondary btn-sm" href="<?= base_url('admin/webinar/pratinjau/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"><i class="fas fa-eye"></i>
@@ -176,37 +200,37 @@ foreach ($webinar as $wbnr) {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<?php
-				if ($ST_POSTWEB == 0) {
-					echo '<div class="modal-header">
+				if ($ST_POSTWEB == 0) { ?>
+					<div class="modal-header">
 						<h3 class="modal-title" id="myModalLabel">Publikasikan Webinar</h3>
 					</div>
-					<form action="' . base_url('admin/webinar/pr_posting') . '" method="post" class="form-horizontal">
+					<form action="<?= base_url('admin/webinar/pr_posting'); ?>" method="post" class="form-horizontal">
 						<div class="modal-body">
 							<p>Apakah Anda yakin ingin mempublikasikan webinar ini?</p>
 						</div>
 						<div class="modal-footer">
-							<input type="hidden" name="ST_POSTWEB" value="' . $ST_POSTWEB . '">
-							<input type="hidden" name="ID_WEBINAR" value="' . $ID_WEBINAR . '">
+							<input type="hidden" name="ST_POSTWEB" value="<?= $ST_POSTWEB; ?>">
+							<input type="hidden" name="ID_WEBINAR" value="<?= $ID_WEBINAR; ?>">
 							<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
 							<button class="btn btn-primary">Ya</button>
 						</div>
-					</form>';
-				} else {
-					echo '<div class="modal-header">
+					</form>
+				 <?php } else { ?>
+					<div class="modal-header">
 						<h3 class="modal-title" id="myModalLabel">Kembalikan ke Draf</h3>
 					</div>
-					<form action="' . base_url('admin/webinar/pr_posting') . '" method="post" class="form-horizontal">
+					<form action="<?= base_url('admin/webinar/pr_posting'); ?>" method="post" class="form-horizontal">
 						<div class="modal-body">
 							<p>Apakah Anda ingin mengembalikan webinar ke draf?</p>
 						</div>
 						<div class="modal-footer">
-							<input type="hidden" name="ST_POSTWEB" value="' . $ST_POSTWEB . '">
-							<input type="hidden" name="ID_WEBINAR" value="' . $ID_WEBINAR . '">
+							<input type="hidden" name="ST_POSTWEB" value="<?= $ST_POSTWEB; ?>">
+							<input type="hidden" name="ID_WEBINAR" value="<?= $ID_WEBINAR; ?>">
 							<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
 							<button class="btn btn-primary">Ya</button>
 						</div>
-					</form>';
-				} ?>
+					</form>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

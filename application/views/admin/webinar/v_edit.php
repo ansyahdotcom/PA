@@ -99,7 +99,18 @@
 							<label for="LINK_ZOOM">Link Meeting</label>
 							<textarea class="textarea" class="form-control"
 								name="LINK_ZOOM"><?= $wbnr->LINK_ZOOM  ?></textarea>
-							<label for="TGL_WEB">Tanggal Webinar</label> <br>
+							<br>
+							<!-- Tanggal buka pendaftaran -->
+                            <label for="TGL_BUKA">Tanggal Pembukaan Pendaftaran</label>
+							<input type="date" class="form-control" name="TGL_BUKA" id="TGL_BUKA" required
+							value="<?php echo date('Y-m-d', strtotime($wbnr->TGL_BUKA)); ?>">
+                            <br>
+                            <!-- Tanggal tutup pendaftaran -->
+                            <label for="TGL_TUTUP">Tanggal Penutupan Pendaftaran</label>
+							<input type="date" class="form-control" name="TGL_TUTUP" id="TGL_TUTUP" required
+							value="<?php echo date('Y-m-d', strtotime($wbnr->TGL_TUTUP)); ?>">
+                            <br>
+							<label for="TGL_WEB">Tanggal Webinar</label>
 							<input type="date" name="TGL_WEB" id="TGL_WEB" class="form-control"
 								value="<?php echo date('Y-m-d', strtotime($wbnr->TGL_WEB)); ?>">
 							<br>

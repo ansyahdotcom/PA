@@ -26,44 +26,39 @@
 				<div class="row d-flex align-items-stretch">
 					<?php foreach ($webinar as $wbnr) {
 						$ID_WEBINAR = $wbnr->ID_WEBINAR;
-                        $JUDUL_WEBINAR = $wbnr->JUDUL_WEBINAR;
+						if ($ID_WEBINAR == NULL) { ?>
+							<div class="col-md">
+								<div class="card-body text-center mt-4">
+									<img src="<?= base_url('assets/icon/noClass.svg'); ?>" alt=""
+										class="img-rounded img-responsive img-fluid" width="400">
+								</div>
+								<div class="card-body pt-0 mt-4">
+									<h3 class="text-center text-bold text-muted">Belum ada webinar</h3>
+								</div>
+							</div>
+					<?php } else {
                     ?>
-					<!-- <div class="col-md-4 mb-5">
-						<div class="card h-100">
-							<img class="card-img-top" src="<?= base_url('assets/fotowebinar/'). $wbnr->FOTO_WEBINAR;?>"
-								alt="">
-							<div class="card-footer">
-								<a class="btn bg-teal text-bold"><?= $wbnr->HARGA; ?></a>
-								<a href="<?= base_url('webinar/detail/'. $wbnr->JUDUL_WEBINAR);?>"
-									class="btn btn-primary font-weight-bold text-uppercase m-2">Lihat Detail</a>
+					<div class="col-md-5 ml-5 mb-5">
+						<div class="card">
+							<div class="row">
+								<img class="card-img-top"
+									src="<?= base_url('assets/fotowebinar/'). $wbnr->FOTO_WEBINAR;?>" alt="">
 							</div>
 						</div>
-					</div> -->
-
-					<!-- <div class="card bg-light"> -->
-						<!-- <div class="position-relative card-body pt-3"> -->
-							<div class="col-md-5 ml-5 mb-5">
-								<div class="card">
-									<div class="row">
-										<img class="card-img-top"
-											src="<?= base_url('assets/fotowebinar/'). $wbnr->FOTO_WEBINAR;?>" alt="">
-									</div>
-								</div>
-								<div class="card-footer">
-									<div class="text-right">
-										<span class="btn btn-sm bg-teal text-bold">
-											<i class="fas fa-money-check"></i>
-											<?= $wbnr->HARGA; ?>
-										</span>
-										<a class="btn btn-sm btn-primary beli" id="ID_WEBINAR" href="<?= base_url('peserta/webinar/daftar/'. $wbnr->JUDUL_WEBINAR); ?>">
-											<i class="fas fa-cart-plus text-bold"></i> Daftar Webinar
-										</a>
-									</div>
-								</div>
+						<div class="card-footer">
+							<div class="text-right">
+								<span class="btn btn-sm bg-teal text-bold">
+									<i class="fas fa-money-check"></i>
+									<?= $wbnr->HARGA; ?>
+								</span>
+								<a class="btn btn-sm btn-primary beli" id="ID_WEBINAR"
+									href="<?= base_url('peserta/webinar/daftar/'. strtolower($wbnr->JUDUL_WEBINAR)); ?>">
+									<i class="fas fa-cart-plus text-bold"></i> Daftar Webinar
+								</a>
 							</div>
-						<!-- </div> -->
-					<!-- </div> -->
-					<?php } ?>
+						</div>
+					</div>
+					<?php }} ?>
 				</div>
 			</div>
 			<!-- /.card-body -->
