@@ -38,6 +38,9 @@
 <script src="<?= base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="<?= base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- InputMask -->
+<script src="<?= base_url(); ?>assets/plugins/moment/moment.min.js"></script>
+<script src="<?= base_url(); ?>assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <!-- Summernote -->
 <script src="<?= base_url(); ?>assets/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -63,6 +66,145 @@
 <script src="<?= base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- <script src="<?= base_url(); ?>assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script> -->
 <!-- <script src="<?= base_url(); ?>assets/dist/js/jquery-3.4.1.min.js"></script> -->
+
+<!-- Time picker -->
+<script>
+    $(function() {
+        $('.jam_mulai').datetimepicker({
+            format: 'HH:mm',
+            useCurrent: true,
+        });
+
+        $('.jam_selesai').datetimepicker({
+            format: 'HH:mm',
+            useCurrent: true,
+        });
+    });
+</script>
+
+<!-- Date picker -->
+<script>
+    $(function() {
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes();
+        var dateTime = date + ' ' + time;
+
+        // Tanggal pendaftaran dan penutupan kelas
+        $('.pendaftaran').datetimepicker({
+            format: 'DD MMMM YYYY HH:mm',
+            // todayHighlight: false,
+            minDate: dateTime,
+            buttons: {
+                showToday: true,
+                showClear: true,
+                showClose: true
+            },
+            icons: {
+                time: "fas fa-clock",
+                date: "fas fa-calendar-alt",
+                up: "fas fa-arrow-up",
+                down: "fas fa-arrow-down",
+                today: 'fas fa-calendar-check',
+                clear: 'fas fa-trash',
+                close: 'fas fa-times'
+            }
+        });
+
+        $('.pendaftaran').on("change.datetimepicker", function(e) {
+            $('.penutupan').val("")
+            $('.penutupan').datetimepicker('minDate', e.date);
+        });
+
+        $('.pendaftaran').on("change.datetimepicker", function(e) {
+            $('.mulai').val("")
+            $('.mulai').datetimepicker('minDate', e.date);
+        });
+
+        $('.pendaftaran').on("change.datetimepicker", function(e) {
+            $('.selesai').val("")
+            $('.selesai').datetimepicker('minDate', e.date);
+        });
+
+        $('.penutupan').datetimepicker({
+            format: 'DD MMMM YYYY HH:mm',
+            // todayHighlight: false,
+            minDate: dateTime,
+            buttons: {
+                showToday: true,
+                showClear: true,
+                showClose: true
+            },
+            icons: {
+                time: "fas fa-clock",
+                date: "fas fa-calendar-alt",
+                up: "fas fa-arrow-up",
+                down: "fas fa-arrow-down",
+                today: 'fas fa-calendar-check',
+                clear: 'fas fa-trash',
+                close: 'fas fa-times'
+            }
+        });
+
+        $('.penutupan').on("change.datetimepicker", function(e) {
+            $('.mulai').val("")
+            $('.mulai').datetimepicker('minDate', e.date);
+        });
+
+        $('.penutupan').on("change.datetimepicker", function(e) {
+            $('.selesai').val("")
+            $('.selesai').datetimepicker('minDate', e.date);
+        });
+        // End
+
+        // Tanggal mulai dan selesai kelas
+        $('.mulai').datetimepicker({
+            format: 'DD MMMM YYYY',
+            // todayHighlight: false,
+            minDate: dateTime,
+            buttons: {
+                showToday: true,
+                showClear: true,
+                showClose: true
+            },
+            icons: {
+                time: "fas fa-clock",
+                date: "fas fa-calendar-alt",
+                up: "fas fa-arrow-up",
+                down: "fas fa-arrow-down",
+                today: 'fas fa-calendar-check',
+                clear: 'fas fa-trash',
+                close: 'fas fa-times'
+            }
+        });
+
+        $('.mulai').on("change.datetimepicker", function(e) {
+            $('.selesai').val("")
+            $('.selesai').datetimepicker('minDate', e.date);
+        });
+
+        $('.selesai').datetimepicker({
+            format: 'DD MMMM YYYY',
+            // todayHighlight: false,
+            minDate: dateTime,
+            buttons: {
+                showToday: true,
+                showClear: true,
+                showClose: true
+            },
+            icons: {
+                time: "fas fa-clock",
+                date: "fas fa-calendar-alt",
+                up: "fas fa-arrow-up",
+                down: "fas fa-arrow-down",
+                today: 'fas fa-calendar-check',
+                clear: 'fas fa-trash',
+                close: 'fas fa-times'
+            }
+        });
+        // End
+    });
+</script>
 
 <!-- Script input file -->
 <script>
@@ -91,35 +233,10 @@
         });
 
         const flashData = $('.flash-data').data('flashdata');
-        if (flashData == 'draft') {
-            Toast.fire({
-                icon: 'info',
-                title: 'Data telah didraftkan!',
-            });
-        } else if (flashData == 'publish') {
-            Toast.fire({
-                icon: 'info',
-                title: 'Data telah dipublish!',
-            });
-        } else if (flashData == 'save') {
-            Toast.fire({
-                icon: 'success',
-                title: 'Data berhasil disimpan!',
-            });
-        } else if (flashData == 'formempty') {
+        if (flashData == 'formempty') {
             Toast.fire({
                 icon: 'error',
                 title: 'Kesalahan saat menyimpan data, mohon inputkan data yang sesuai!',
-            });
-        } else if (flashData == 'edit') {
-            Toast.fire({
-                icon: 'success',
-                title: 'Data berhasil diubah!',
-            });
-        } else if (flashData == 'hapus') {
-            Toast.fire({
-                icon: 'success',
-                title: 'Data berhasil dihapus!',
             });
         } else if (flashData == 'aktif') {
             Toast.fire({
@@ -175,6 +292,11 @@
             Toast.fire({
                 icon: 'success',
                 title: 'Pemberitahuan dihapus!',
+            });
+        } else if (flashData == 'error_date') {
+            Toast.fire({
+                icon: 'error',
+                title: 'Kesalahan dalam menginputkan tanggal',
             });
         }
     });
@@ -419,21 +541,17 @@
 <script>
     $(document).ready(function() {
         $("button#edit-kls").click(function() {
-            $("h4.tittlekls").html("Edit Data Kelas");
+            $(".tittlekls").html("Edit Data Kelas");
+            $("div.img-kls").prop('hidden', true);
+            $("div.img-edit").prop('hidden', false);
             $("div.row-idkls").prop('hidden', true);
             $("div.row-ktgkls").prop('hidden', false);
+            $("a#back-kls").prop('hidden', true);
+            $("button#cancel-kls").prop('hidden', false);
             $("button#save-kls").prop('hidden', false);
             $("button#edit-kls").prop('hidden', true);
             $("input#inkls").prop('disabled', false);
             $("textarea#inkls").prop('disabled', false);
-            $("div.tgl_daftar").prop('hidden', false);
-            $("div.tgl_penutupan").prop('hidden', false);
-            $("div.tgl_daftar1").prop('hidden', true);
-            $("div.tgl_penutupan1").prop('hidden', true);
-            $("div.tgl_mulai").prop('hidden', false);
-            $("div.tgl_mulai1").prop('hidden', true);
-            $("div.tgl_selesai").prop('hidden', false);
-            $("div.tgl_selesai1").prop('hidden', true);
             $("div.lok_kls1").prop('hidden', true);
             $("div.lok_kls").prop('hidden', false);
             $("div.hari1").prop('hidden', true);
@@ -442,26 +560,20 @@
             $("select#inkls").prop('disabled', false);
             $("div.edit").prop('hidden', false);
             $("div.edit1").prop('hidden', true);
-            $("div.row-diskon").prop('hidden', false);
-            $("div.row-hrgdiskon").prop('hidden', true);
         });
 
         $("button#cancel-kls").click(function() {
-            $("h4.tittlekls").html("Detail Data Kelas");
+            $(".tittlekls").html("Detail Kelas");
+            $("div.img-kls").prop('hidden', false);
+            $("div.img-edit").prop('hidden', true);
             $("div.row-idkls").prop('hidden', false);
             $("div.row-ktgkls").prop('hidden', true);
+            $("a#back-kls").prop('hidden', false);
+            $("button#cancel-kls").prop('hidden', true);
             $("button#save-kls").prop('hidden', true);
             $("button#edit-kls").prop('hidden', false);
             $("input#inkls").prop('disabled', true);
             $("textarea#inkls").prop('disabled', true);
-            $("div.tgl_daftar").prop('hidden', true);
-            $("div.tgl_penutupan").prop('hidden', true);
-            $("div.tgl_daftar1").prop('hidden', false);
-            $("div.tgl_penutupan1").prop('hidden', false);
-            $("div.tgl_mulai").prop('hidden', true);
-            $("div.tgl_mulai1").prop('hidden', false);
-            $("div.tgl_selesai").prop('hidden', true);
-            $("div.tgl_selesai1").prop('hidden', false);
             $("div.lok_kls1").prop('hidden', false);
             $("div.lok_kls").prop('hidden', true);
             $("div.hari1").prop('hidden', false);
@@ -470,36 +582,6 @@
             $("select#inkls").prop('disabled', true);
             $("div.edit").prop('hidden', true);
             $("div.edit1").prop('hidden', false);
-            $("div.row-diskon").prop('hidden', true);
-            $("div.row-hrgdiskon").prop('hidden', false);
-        });
-
-        $("button.close").click(function() {
-            $("h4.tittlekls").html("Detail Data Kelas");
-            $("div.row-idkls").prop('hidden', false);
-            $("div.row-ktgkls").prop('hidden', true);
-            $("button#save-kls").prop('hidden', true);
-            $("button#edit-kls").prop('hidden', false);
-            $("input#inkls").prop('disabled', true);
-            $("textarea#inkls").prop('disabled', true);
-            $("div.tgl_daftar").prop('hidden', true);
-            $("div.tgl_penutupan").prop('hidden', true);
-            $("div.tgl_daftar1").prop('hidden', false);
-            $("div.tgl_penutupan1").prop('hidden', false);
-            $("div.tgl_mulai").prop('hidden', true);
-            $("div.tgl_mulai1").prop('hidden', false);
-            $("div.tgl_selesai").prop('hidden', true);
-            $("div.tgl_selesai1").prop('hidden', false);
-            $("div.lok_kls1").prop('hidden', false);
-            $("div.lok_kls").prop('hidden', true);
-            $("div.hari1").prop('hidden', false);
-            $("div.hari").prop('hidden', true);
-            $("textarea.inkls").prop('disabled', true);
-            $("select#inkls").prop('disabled', true);
-            $("div.edit").prop('hidden', true);
-            $("div.edit1").prop('hidden', false);
-            $("div.row-diskon").prop('hidden', true);
-            $("div.row-hrgdiskon").prop('hidden', false);
         });
     });
 </script>

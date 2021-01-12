@@ -5,7 +5,7 @@ class M_materi extends CI_Model{
 	// GET DATA MATERI
 	function get_materi($id){
 		$result = $this->db->query("SELECT * FROM detail_materi, kelas, materi WHERE
-        detail_materi.ID_MT = materi.ID_MT AND kelas.ID_KLS = detail_materi.ID_KLS AND kelas.ID_KLS =$id");
+        detail_materi.ID_MT = materi.ID_MT AND kelas.ID_KLS = detail_materi.ID_KLS AND kelas.ID_KLS = '$id'");
 		return $result->result_array();
 	}
 

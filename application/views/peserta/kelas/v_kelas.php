@@ -125,7 +125,7 @@
 											<span class="btn btn-outline-dark text-justify text-bold btn-block">
 												<div class="col-md-12">
 													<i class="far fa-calendar-check pr-2"></i>
-													Pendaftaran: <?= date('d F Y', $tgl_daftar); ?> - <?= date('d F Y', $tgl_penutupan); ?>
+													Pendaftaran: <?= date('d/m/Y', $tgl_daftar); ?> -- <?= date('H:i', $tgl_daftar); ?> Sampai <?= date('d/m/Y', $tgl_penutupan); ?> -- <?= date('H:i', $tgl_penutupan); ?> 
 												</div>
 											</span>
 										</div>
@@ -150,11 +150,11 @@
 								</div>
 								<div class="card-footer">
 									<?php
-									$tgl = date('Y-m-d', time());
+									$tgl = date('Y-m-d H:i', time());
 									$tgl_now = strtotime($tgl);
 									?>
 									<div class="text-center">
-										<?php if ($tgl_daftar > $tgl_now && $tgl_penutupan < $tgl_now) : ?>
+										<!-- <?php if ($tgl_daftar > $tgl_now && $tgl_penutupan < $tgl_now) : ?>
 											<?php
 											if ($tgl_daftar > $tgl_now) :
 												$text = "Kelas ini belum membuka pendaftaran";
@@ -176,7 +176,7 @@
 													</span>
 												</div>
 											</div>
-										<?php else : ?>
+										<?php else : ?> -->
 											<div class="row">
 												<div class="col-md-6 pt-2">
 													<span class="btn btn-sm bg-teal text-bold btn-block">
@@ -214,7 +214,7 @@
 													<?php endif; ?>
 												</div>
 											</div>
-										<?php endif; ?>
+										<!-- <?php endif; ?> -->
 									</div>
 								</div>
 							</div>

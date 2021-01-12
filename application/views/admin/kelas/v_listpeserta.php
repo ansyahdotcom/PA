@@ -27,6 +27,7 @@
 				<div class="card">
                     <div class="card-header bg-dark">
                         <h3 class="card-title float-left text-bold">Kelas <?= $nmkelas['TITTLE']; ?></h3>
+						<a href="<?= base_url('admin/kelas'); ?>" class="btn btn-primary float-right"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
                     </div>
 					<!-- /.card-header -->
 					<div class="card-body">

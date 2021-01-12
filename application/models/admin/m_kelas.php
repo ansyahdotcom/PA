@@ -13,7 +13,19 @@
             return $query;
         }
 
-        public function saveall($kelas)
+        public function detilkls($id)
+        {
+            $this->db->select('*');
+            $this->db->from('kelas');
+            $this->db->join('ktg_kelas', 'ktg_kelas.ID_KTGKLS = kelas.ID_KTGKLS', 'left');
+            $this->db->join('diskon', 'diskon.ID_DISKON = kelas.ID_DISKON', 'left');
+            $this->db->join('admin', 'admin.ID_ADM = kelas.ID_ADM', 'left');
+            $this->db->where('kelas.ID_KLS', $id);
+            $query = $this->db->get()->row_array();
+            return $query;
+        }
+
+        public function tambahkls($kelas)
         {   
             return $this->db->insert('kelas', $kelas);
         }
@@ -137,6 +149,15 @@
                 'ID_PS' => $idps,
                 'ID_KLS' => $id
             ])->row_array();
+        }
+
+        public function idkls()
+        {
+            $this->db->select('*');
+            $this->db->from('kelas');
+            $this->db->order_by('ID_KLS', 'DESC');
+            $this->db->limit(1);
+            return $this->db->get();
         }
     }
 ?>

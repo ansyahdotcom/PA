@@ -43,25 +43,34 @@ class Kelas extends CI_Controller
     }
 
     /** Simpan Semua Data Kelas */
-    public function saveall()
+    public function tambahkls()
     {
         $email = $this->session->userdata('email');
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' => $email
         ])->row_array();
-        $data['tittle'] = 'Data Kelas';
+        $data['tittle'] = 'Tambah Data Kelas';
+
+        /** Periksa apa ada data di tabel kelas */
+		$tabel = $this->m_kelas->idkls()->num_rows();
+
+		/** Ambil id terakhir */
+		$getID = $this->m_kelas->idkls()->row_array(); 
+
+		if ($tabel > 0) :
+			$id_kls = autonumber($getID['ID_KLS'], 2, 8);
+		else :
+			$id_kls = 'KL00000001';
+		endif;
 
         $this->form_validation->set_rules('namakls', 'Namakls', 'required|trim', [
             'required' => 'Kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('link', 'Link', 'required|trim', [
-            'required' => 'Kolom ini harus diisi'
-        ]);
-
         $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric|is_natural', [
             'required' => 'Kolom ini harus diisi',
-            'is_natural' => 'data yang diinputkan salah'
+            'numeric' => 'Kolom ini harus diisi angka',
+            'is_natural' => 'Kolom ini harus diisi angka'
         ]);
 
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim', [
@@ -74,7 +83,7 @@ class Kelas extends CI_Controller
             $this->load->view('admin/template_adm/v_header', $data);
             $this->load->view('admin/template_adm/v_navbar', $data);
             $this->load->view('admin/template_adm/v_sidebar', $data);
-            $this->load->view('admin/kelas/v_kelas', $data);
+            $this->load->view('admin/kelas/v_tambahkls', $data);
             $this->load->view('admin/template_adm/v_footer');
             $this->session->set_flashdata('message', 'formempty');
         } else {
@@ -89,7 +98,6 @@ class Kelas extends CI_Controller
             $jam_selesai = htmlspecialchars($this->input->post('jam_selesai'));
             $kategori = htmlspecialchars($this->input->post('ktg'));
             $harga = htmlspecialchars($this->input->post('harga'));
-            $link = htmlspecialchars($this->input->post('link'));
             $deskripsi = $this->input->post('deskripsi');
 
             /** upload gambar */
@@ -129,19 +137,19 @@ class Kelas extends CI_Controller
 
             /** Proses insert ke database */
             $kelas = [
+                'ID_KLS' => $id_kls,
                 'ID_ADM' => $data['admin']['ID_ADM'],
                 'ID_KTGKLS' => $kategori,
                 'ID_DISKON' => 0,
                 'TITTLE' => $namakls,
-                'TGL_PENDAFTARAN' => $tgl_daftar,
-                'TGL_PENUTUPAN' => $tgl_penutupan,
-                'TGL_MULAI' => $tgl_mulai,
-                'TGL_SELESAI' => $tgl_selesai,
+                'TGL_PENDAFTARAN' => date('Y-m-d H:i', strtotime($tgl_daftar)),
+                'TGL_PENUTUPAN' => date('Y-m-d H:i', strtotime($tgl_penutupan)),
+                'TGL_MULAI' => date('Y-m-d', strtotime($tgl_mulai)),
+                'TGL_SELESAI' => date('Y-m-d', strtotime($tgl_selesai)),
                 'LOK_KLS' => $lok_kls,
                 'HARI' => $hari,
                 'JAM_MULAI' => $jam_mulai,
                 'JAM_SELESAI' => $jam_selesai,
-                'PERMALINK' => $link,
                 'GBR_KLS' => $image,
                 'DESKRIPSI' => $deskripsi,
                 'PRICE' => $harga,
@@ -150,37 +158,32 @@ class Kelas extends CI_Controller
                 'UPDATE_KLS' => 0
             ];
 
-            // $get = $this->db->get_where('kelas', ['ID_KLS' => $id_kls])->row();
-            // unlink(FCPATH. 'assets/dist/img/kelas' .$get->FILE_SUB);
-            $this->m_kelas->saveall($kelas);
+            $this->m_kelas->tambahkls($kelas);
             $this->session->set_flashdata('message', 'save');
             redirect('admin/kelas');
         }
     }
 
     /** Edit data kelas */
-    public function editkls()
+    public function detailkls($id)
     {
         $email = $this->session->userdata('email');
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' => $email
         ])->row_array();
-        $data['tittle'] = 'Data Kelas';
+        $data['tittle'] = 'Detail Kelas';
 
         /** Mengambil data kelas */
-        $data['kelas'] = $this->m_kelas->getkelas();
+        $data['kelas'] = $this->m_kelas->detilkls($id);
 
         $this->form_validation->set_rules('namakls', 'Namakls', 'required|trim', [
             'required' => 'Kolom ini harus diisi'
         ]);
 
-        $this->form_validation->set_rules('link', 'Link', 'required|trim', [
-            'required' => 'Kolom ini harus diisi'
-        ]);
-
         $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric|is_natural', [
             'required' => 'Kolom ini harus diisi',
-            'is_natural' => 'data yang diinputkan salah'
+            'numeric' => 'Kolom ini harus diisi angka',
+            'is_natural' => 'Kolom ini harus diisi angka'
         ]);
 
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required|trim', [
@@ -191,7 +194,7 @@ class Kelas extends CI_Controller
             $this->load->view('admin/template_adm/v_header', $data);
             $this->load->view('admin/template_adm/v_navbar', $data);
             $this->load->view('admin/template_adm/v_sidebar', $data);
-            $this->load->view('admin/kelas/v_kelas', $data);
+            $this->load->view('admin/kelas/v_editkls', $data);
             $this->load->view('admin/template_adm/v_footer');
         } else {
             $id = $this->input->post('id');
@@ -205,7 +208,6 @@ class Kelas extends CI_Controller
             $jam_mulai = htmlspecialchars($this->input->post('jam_mulai'));
             $jam_selesai = htmlspecialchars($this->input->post('jam_selesai'));
             $harga = htmlspecialchars($this->input->post('harga'));
-            $link = htmlspecialchars($this->input->post('link'));
             $kategori = htmlspecialchars($this->input->post('ktg'));
             $deskripsi = $this->input->post('deskripsi');
             $oldimg = $this->input->post('old');
@@ -241,9 +243,8 @@ class Kelas extends CI_Controller
                     }
                     $new_image = $this->upload->data('file_name');
                 } else {
-                    // echo $this->upload->display_errors();
                     $this->session->set_flashdata('message', 'upload_gagal');
-                    redirect('admin/kelas');
+                    redirect('admin/kelas/detailkls/' . $id);
                 }
             } else {
                 $new_image = $oldimg;
@@ -251,15 +252,14 @@ class Kelas extends CI_Controller
 
             $edit = [
                 'TITTLE' => $nama,
-                'TGL_PENDAFTARAN' => $tgl_daftar,
-                'TGL_PENUTUPAN' => $tgl_penutupan,
-                'TGL_MULAI' => $tgl_mulai,
-                'TGL_SELESAI' => $tgl_selesai,
+                'TGL_PENDAFTARAN' => date('Y-m-d H:i', strtotime($tgl_daftar)),
+                'TGL_PENUTUPAN' => date('Y-m-d H:i', strtotime($tgl_penutupan)),
+                'TGL_MULAI' => date('Y-m-d', strtotime($tgl_mulai)),
+                'TGL_SELESAI' => date('Y-m-d', strtotime($tgl_selesai)),
                 'LOK_KLS' => $lok_kls,
                 'HARI' => $hari,
                 'JAM_MULAI' => $jam_mulai,
                 'JAM_SELESAI' => $jam_selesai,
-                'PERMALINK' => $link,
                 'GBR_KLS' => $new_image,
                 'DESKRIPSI' => $deskripsi,
                 'PRICE' => $harga,
@@ -270,7 +270,7 @@ class Kelas extends CI_Controller
 
             $this->m_kelas->editkls($edit, $id);
             $this->session->set_flashdata('message', 'edit');
-            redirect('admin/kelas');
+            redirect('admin/kelas/detailkls/' . $id);
         }
     }
 
