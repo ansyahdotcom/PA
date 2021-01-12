@@ -76,12 +76,18 @@
                             foreach ($tugas as $i) :
                                 $id_tg = $i['ID_TG'];
                                 $nm_tg = $i['DETAIL_TG'];
+                                $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tg])->row_array();
                             ?>
                                 <div class="row">
                                     <div class="card bg-blue col-sm-12 mt-2">
                                         <div class="status mt-2">
-                                            <h5 class="card-title badge badge-secondary m-2">Belum mengerjakan</h5>
-                                            <h5 class="card-title badge badge-warning m-2"><i class="fas fa-stopwatch"></i> 25 Desember 2020</h5>
+                                            <?php if($detail != null){?>
+                                                <h5 class="card-title badge badge-success m-2">Sudah mengerjakan</h5>
+                                                <h5 class="card-title badge badge-warning m-2"><i class="fas fa-stopwatch"></i> <?= $detail['TIME_DT_TG'] ?></h5>
+                                            <?php }else{ ?>
+                                                <h5 class="card-title badge badge-secondary m-2">Belum mengerjakan</h5>
+                                                <h5 class="card-title badge badge-warning m-2"><i class="fas fa-stopwatch"></i> <?= $i['DEADLINE'] ?></h5>
+                                            <?php } ?>
                                         </div>
                                         <div class="card-header">
                                             <h1 class="card-title mt-2"><i class="<?= $i['ICON_TG'] ?> fa-lg mr-2"></i> <?= $i['NM_TG']; ?></h1>
