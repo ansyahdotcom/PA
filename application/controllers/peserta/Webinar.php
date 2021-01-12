@@ -38,7 +38,11 @@ class Webinar extends CI_Controller
 		$email = $this->session->userdata('email');
 		$data['peserta'] = $this->db->get_where('peserta', [
 			'EMAIL_PS' => $email
-		])->row_array();
+        ])->row_array();
+        
+        $sql = $this->db->query("SELECT peserta_wbnr.ID_PS FROM peserta_wbnr, webinar WHERE peserta_wbnr.ID_WEBINAR = webinar.ID_WEBINAR AND
+        webinar.JUDUL_WEBINAR = '$JUDUL_WEBINAR'");
+        if ($sql->result() == NULL) {
 	
 		$data['tittle'] = "Form Daftar Webinar";
 		$data['webinar'] = $this->m_webinar->tampil_daftar_wbnr($JUDUL_WEBINAR)->result();
@@ -46,7 +50,10 @@ class Webinar extends CI_Controller
 		$this->load->view("peserta/template/v_navbar", $data);
 		$this->load->view("peserta/template/v_sidebar", $data);
 		$this->load->view("peserta/webinar/v_daftar_wbnr", $data);
-		$this->load->view("peserta/template/v_footer");
+        $this->load->view("peserta/template/v_footer");
+        } else {
+            redirect('mywebinar');
+        }
 	}
     
 	public function daftar_webinar()

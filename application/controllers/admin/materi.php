@@ -17,7 +17,7 @@ class Materi extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-        $data['tittle'] = "Materi";
+        $data['tittle'] = "Modul";
         $data['materi'] = $this->m_materi->get_materi($id);
         $data['tugas'] = $this->m_materi->get_tugas();
         // $data['sub'] = $this->m_materi->get_sub();

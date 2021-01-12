@@ -70,20 +70,23 @@
 											</div>
 											<div class="card-body">
 												<?php 
-												if ($ps->ST_LINK == 0) { ?>
-													Belum diizinkan mengakses link meeting
+												if ($ps->ST_POSTWEB == 1) {
+													if ($ps->ST_LINK == 0) { ?>
+														Belum diizinkan mengakses link meeting
 												<?php 
-												} else { ?>
-												<?= htmlspecialchars_decode($ps->LINK_ZOOM); ?>
-												<?php } ?>
+													} else { ?>
+														<?= htmlspecialchars_decode($ps->LINK_ZOOM);
+													}
+												} 
+												?>
 											</div>
 										</div>
 									</div>
 									<div class="card-body">
-										<?php if ($ps->ST_SRT == 0 && $ps->SRT_WEBINAR == NULL) { ?>
-										<a type="button" class="btn btn-primary" hidden href="<?= base_url('peserta/webinar/download_srt/'. $ps->SRT_WEBINAR); ?>">Download Sertifikat</a>
+										<?php if ($ps->ST_SRT == 1) { ?>
+											<a type="button" class="btn btn-primary" href="<?= base_url('peserta/webinar/download_srt/'. $ps->SRT_WEBINAR); ?>">Download Sertifikat</a>
 										<?php } else { ?>
-										<a type="button" class="btn btn-primary" href="<?= base_url('peserta/webinar/download_srt/'. $ps->SRT_WEBINAR); ?>">Download Sertifikat</a>
+											<a type="button" class="btn btn-primary btn-sm" href="#">Sertifikat belum dapat didownload</a>
 										<?php } ?>
 									</div>
 								</div>

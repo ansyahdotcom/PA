@@ -44,7 +44,6 @@
 						<div class="card card-primary card-outline">
 
 							<div class="card-body box-profil" id="imgedit">
-								<!-- <?= form_open_multipart('peserta/daftar_webinar'); ?> -->
 								<div class="form-group">
 									<div class="form-group text-center" style="position: relative;">
 										<span class="img-div">
@@ -246,7 +245,6 @@
 														class="fas fa-save"></i> Daftar Webinar</button>
 											</div>
 										</div>
-										<!-- <?= form_close() ?> -->
 									</div>
 								</div>
 							</div>

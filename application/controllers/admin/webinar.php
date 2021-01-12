@@ -79,10 +79,11 @@ class Webinar extends CI_Controller
             $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
             $JUDUL_WEBINAR = htmlspecialchars($this->input->post('JUDUL_WEBINAR'));
             $KONTEN_WEB = $this->input->post('KONTEN_WEB');
-            $FOTO_WEBINAR = htmlspecialchars($this->input->post('FOTO_WEBINAR'));
             $HARGA = htmlspecialchars($this->input->post('HARGA'));
             $PLATFORM = htmlspecialchars($this->input->post('PLATFORM'));
             $LINK_ZOOM = $this->input->post('LINK_ZOOM');
+            $TGL_BUKA = htmlspecialchars($this->input->post('TGL_BUKA'));
+            $TGL_TUTUP = htmlspecialchars($this->input->post('TGL_TUTUP'));
             $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
             $TGL_POSTWEB = date('Y-m-d');
             // untuk upload foto web
@@ -116,6 +117,8 @@ class Webinar extends CI_Controller
                     'HARGA' => $HARGA,
                     'PLATFORM' => $PLATFORM,
                     'LINK_ZOOM' => $LINK_ZOOM,
+                    'TGL_BUKA' => $TGL_BUKA,
+                    'TGL_TUTUP' => $TGL_TUTUP,
                     'TGL_WEB' => $TGL_WEB,
                     'TGL_POSTWEB' => $TGL_POSTWEB
                 );
@@ -310,6 +313,8 @@ class Webinar extends CI_Controller
         $HARGA = htmlspecialchars($this->input->post('HARGA'));
         $PLATFORM = htmlspecialchars($this->input->post('PLATFORM'));
         $LINK_ZOOM = $this->input->post('LINK_ZOOM');
+        $TGL_BUKA = htmlspecialchars($this->input->post('TGL_BUKA'));
+        $TGL_TUTUP = htmlspecialchars($this->input->post('TGL_TUTUP'));
         $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
         $TGL_POSTWEB = date('Y-m-d');
         // untuk upload foto webinar
@@ -361,6 +366,8 @@ class Webinar extends CI_Controller
             'PLATFORM' => $PLATFORM,
             'LINK_ZOOM' => $LINK_ZOOM,
             'TGL_WEB' => $TGL_WEB,
+            'TGL_BUKA' => $TGL_BUKA,
+            'TGL_TUTUP' => $TGL_TUTUP,
             'TGL_POSTWEB' => $TGL_POSTWEB
         );
 
