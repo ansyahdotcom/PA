@@ -9,7 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
               <li class="breadcrumb-item active"><?= $tittle; ?></li>
             </ol>
           </div>
@@ -25,8 +25,8 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Tabel <?= $tittle; ?></h3>
+            <div class="card-header bg-dark">
+              <h3 class="card-title text-bold">Tabel <?= $tittle; ?></h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -34,7 +34,7 @@
                 <thead>
                   <tr class="text-center">
                     <th>No</th>
-                    <th>Id</th>
+                    <th>ID Peserta</th>
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Status Akun</th>
@@ -83,7 +83,7 @@
                 <tfoot>
                   <tr class="text-center">
                     <th>No</th>
-                    <th>Id</th>
+                    <th>ID Peserta</th>
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Status Akun</th>
@@ -128,7 +128,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="id">Id</label>
+                    <label for="id">ID Peserta</label>
                     <input type="text" class="form-control text-bold" id="id" value="<?= $id; ?>" disabled>
                   </div>
                 </div>

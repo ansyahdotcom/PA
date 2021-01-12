@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
                         <li class="breadcrumb-item active"><?= $tittle; ?></li>
                     </ol>
                 </div>
@@ -25,8 +25,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Tabel <?= $tittle; ?></h3>
+                    <div class="card-header bg-dark">
+                        <h3 class="card-title text-bold">Tabel <?= $tittle; ?></h3>
                         <button class="btn btn-primary text-bold float-right" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus-circle"></i> <?= $tittle; ?></button>
                     </div>
                     <!-- /.card-header -->
