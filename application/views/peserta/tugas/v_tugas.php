@@ -71,13 +71,24 @@ $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array
 
                                 </tbody>
                             </table>
-                            <?php if($detail == null){?>
+                            <?php 
+                            $sekarang = time();
+                            $mulai = strtotime($detail['TIME_DT_TG']);
+                            $akhir = strtotime($tugas['DEADLINE']);
+                            if($sekarang >= $mulai && $sekarang <= $akhir) {?>
+                                <?php if($detail == null){?>
+                                <div class="text-center">
+                                    <a class="btn btn-info" href="<?=base_url()?>peserta/tugas/submit/<?=$tugas['ID_TG']?>" role="button">Submit Tugas</a>
+                                </div>
+                                <?php }else{ ?>
+                                <div class="text-center">
+                                    <a class="btn btn-info" href="<?=base_url()?>peserta/tugas/edit/<?=$tugas['ID_TG']?>" role="button">Edit Tugas</a>
+                                </div>
+                                <?php }?>
+                            <?php } else if($sekarang > $akhir){?>
                             <div class="text-center">
-                                <a class="btn btn-info" href="<?=base_url()?>peserta/tugas/submit/<?=$tugas['ID_TG']?>" role="button">Submit Tugas</a>
-                            </div>
-                            <?php }else{ ?>
-                            <div class="text-center">
-                                <a class="btn btn-info" href="<?=base_url()?>peserta/tugas/edit/<?=$tugas['ID_TG']?>" role="button">Edit Tugas</a>
+                                <a class="btn btn-info" href="<?=base_url()?>peserta/dashboard" role="button">Pergi ke Dashboard</a><br>
+                                <small>Mohon maaf, tugas sudah ditutup.</small>
                             </div>
                             <?php }?>
                         </div>
