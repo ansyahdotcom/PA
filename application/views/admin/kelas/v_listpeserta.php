@@ -25,10 +25,10 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-                    <div class="card-header bg-dark">
-                        <h3 class="card-title float-left text-bold">Kelas <?= $nmkelas['TITTLE']; ?></h3>
-						<a href="<?= base_url('admin/kelas'); ?>" class="btn btn-primary float-right"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
-                    </div>
+					<div class="card-header bg-dark">
+						<h3 class="card-title float-left text-bold">Kelas <?= $nmkelas['TITTLE']; ?></h3>
+						<a href="<?= base_url('admin/kelas'); ?>" class="btn btn-default float-right"><span class="text-dark"><i class="fas fa-arrow-circle-left"></i> Kembali</span></a>
+					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
 						<table id="example1" class="table table-bordered table-striped">
@@ -51,7 +51,7 @@
 										<td width="150px"><?= $l['PEKERJAAN']; ?></td>
 										<td>
 											<div class="progress" style="height: 30px">
-												<div class="progress-bar text-bold" role="progressbar" style="width: <?= ($jmltugas*(100/$jmltugas))-(($jmltugas-$submit)*(100/$jmltugas)); ?>%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><?= ($jmltugas*(100/$jmltugas))-(($jmltugas-$submit)*(100/$jmltugas)); ?>%</div>
+												<div class="progress-bar text-bold" role="progressbar" style="width: <?= ($jmltugas * (100 / $jmltugas)) - (($jmltugas - $submit) * (100 / $jmltugas)); ?>%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><?= ($jmltugas * (100 / $jmltugas)) - (($jmltugas - $submit) * (100 / $jmltugas)); ?>%</div>
 											</div>
 										</td>
 										<td class="text-center" width="170px">
@@ -61,16 +61,16 @@
 												'ID_KLS' => $l['ID_KLS']
 											])->row_array();
 
-											$progress = ($jmltugas*(100/$jmltugas))-(($jmltugas-$submit)*(100/$jmltugas));
+											$progress = ($jmltugas * (100 / $jmltugas)) - (($jmltugas - $submit) * (100 / $jmltugas));
 											?>
 											<div class="row">
 												<div class="col-md-12">
-													<?php if ($file_sertif == "" || $progress == 100) : $disabled="" ?>
+													<?php if ($file_sertif == "" || $progress == 100) : $disabled = "" ?>
 														<span class="btn btn-sm btn-secondary text-bold">
 															<i class="fas fa-file-pdf mr-2"></i>
 															Belum Menerima
 														</span>
-													<?php else : $disabled="disabled" ?>
+													<?php else : $disabled = "disabled" ?>
 														<a href="<?= base_url('assets/dist/img/sertifikat/' . $file_sertif['SERTIFIKAT']); ?>" target="_blank" class="btn btn-sm btn-success text-bold">
 															<i class="fas fa-file-pdf mr-2"></i>
 															Lihat Sertifikat

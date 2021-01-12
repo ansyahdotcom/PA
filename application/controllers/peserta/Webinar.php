@@ -52,7 +52,7 @@ class Webinar extends CI_Controller
 		$this->load->view("peserta/webinar/v_daftar_wbnr", $data);
         $this->load->view("peserta/template/v_footer");
         } else {
-            redirect('mywebinar');
+            redirect('webinar/mywebinar');
         }
 	}
     
@@ -62,7 +62,7 @@ class Webinar extends CI_Controller
 		$data['peserta'] = $this->db->get_where('peserta', [
             'EMAIL_PS' => $email
             ])->row_array();
-        // $data['tittle'] = "Form Daftar Webinar";
+        $data['tittle'] = "Form Daftar Webinar";
 
         $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
         $ID_PS = htmlspecialchars($this->input->post('ID_PS'));

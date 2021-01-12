@@ -117,9 +117,9 @@ class Webinar extends CI_Controller
                     'HARGA' => $HARGA,
                     'PLATFORM' => $PLATFORM,
                     'LINK_ZOOM' => $LINK_ZOOM,
-                    'TGL_BUKA' => $TGL_BUKA,
-                    'TGL_TUTUP' => $TGL_TUTUP,
-                    'TGL_WEB' => $TGL_WEB,
+                    'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
+                    'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
+                    'TGL_WEB' => date('Y-m-d H:i', strtotime($TGL_WEB)),
                     'TGL_POSTWEB' => $TGL_POSTWEB
                 );
 
@@ -365,9 +365,9 @@ class Webinar extends CI_Controller
             'HARGA' => $HARGA,
             'PLATFORM' => $PLATFORM,
             'LINK_ZOOM' => $LINK_ZOOM,
-            'TGL_WEB' => $TGL_WEB,
-            'TGL_BUKA' => $TGL_BUKA,
-            'TGL_TUTUP' => $TGL_TUTUP,
+            'TGL_WEB' => date('Y-m-d H:i', strtotime($TGL_WEB)),
+            'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
+            'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
             'TGL_POSTWEB' => $TGL_POSTWEB
         );
 

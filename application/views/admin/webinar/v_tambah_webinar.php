@@ -79,6 +79,7 @@
                             <!-- Platform -->
                             <label for="PLATFORM">Platform</label>
                             <select name="PLATFORM" id="PLATFORM" class="form-control" required>
+                                <option value="">--Pilih--</option>
                                 <option value="ZOOM">ZOOM</option>
                                 <option value="GOOGLE MEET">GOOGLE MEET</option>
                             </select>
@@ -89,20 +90,44 @@
                             <br>
                             <!-- Tanggal buka pendaftaran -->
                             <label for="TGL_BUKA">Tanggal Pembukaan Pendaftaran</label>
-                            <input type="date" class="form-control" name="TGL_BUKA" id="TGL_BUKA" required>
+                            <div class="input-group">
+                                <input type="text" data-toggle="datetimepicker" data-target=".pendaftaran" class="form-control pendaftaran" name="TGL_BUKA" id="TGL_BUKA" autocomplete="off" placeholder="dd/mm/yyyy 00:00" required>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                            </div>
                             <br>
                             <!-- Tanggal tutup pendaftaran -->
                             <label for="TGL_TUTUP">Tanggal Penutupan Pendaftaran</label>
-                            <input type="date" class="form-control" name="TGL_TUTUP" id="TGL_TUTUP" required>
+                            <div class="input-group">
+                                <input type="text" data-toggle="datetimepicker" data-target=".penutupan" class="form-control penutupan" name="TGL_TUTUP" id="TGL_TUTUP" autocomplete="off" placeholder="dd/mm/yyyy 00:00" required>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                            </div>
                             <br>
-                            <!-- Tanggal Webinar -->
+                            <!-- Tanggal mulai webinar -->
                             <label for="TGL_WEB">Tanggal Webinar</label>
-                            <input type="date" class="form-control" name="TGL_WEB" id="TGL_WEB" required>
+                            <div class="input-group">
+                                <input type="text" data-toggle="datetimepicker" data-target=".mulai2" class="form-control mulai2" name="TGL_WEB" id="TGL_WEB" autocomplete="off" placeholder="dd/mm/yyyy 00:00" required>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="far fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                            </div>
                             <br>
                             <label for="KONTEN_WEB">Deskripsi Webinar</label>
                             <textarea class="textarea" class="form-control" name="KONTEN_WEB" id="KONTEN_WEB" placeholder="Isi deskripsi disini..." required></textarea>
-                            <br><br>
-                            <button type="submit" class="btn btn-success btn-round">Simpan</button>
+                            <br>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary float-right"><i class="fas fa-save"></i> Simpan</button>
+                            <a href="<?= base_url('admin/webinar'); ?>" class="btn btn-default float-right"><i class="fas fa-arrow-circle-left"></i> Batal</a>
                         </div>
                     </form>
                     <!-- /.card-body -->

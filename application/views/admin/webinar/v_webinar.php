@@ -20,171 +20,166 @@
 	<!-- /.content-header -->
 	<!-- Main content -->
 	<section class="content">
-		<div class="card-header">
-			<div class="text-right">
-				<!-- dilihat tampilan webinarnya sebelum diposting -->
-				<a class="btn btn-primary" href="<?= base_url('admin/webinar/tambah_webinar'); ?>"><i class="fas fa-plus-circle"></i> <?= $tittle ?></a>
+		<div class="card">
+			<div class="card-header bg-dark">
+				<div class="text-right">
+					<!-- dilihat tampilan webinarnya sebelum diposting -->
+					<h3 class="card-title text-bold float-left">List Data Webinar</h3>
+					<a class="btn btn-primary" href="<?= base_url('admin/webinar/tambah_webinar'); ?>"><i class="fas fa-plus-circle"></i> <?= $tittle ?></a>
+				</div>
 			</div>
-		</div>
-		<?php foreach ($webinar as $wbnr) {
-			$ID_WEBINAR = $wbnr->ID_WEBINAR;
-		?>
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header">
-							<div class="user-block">
-								<span class="username m-0 text-lg">
-									<a class="" href="<?= base_url('admin/webinar/edit/' . $wbnr->JUDUL_WEBINAR . '/'); ?>"><?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></a>
-								</span>
-							</div>
-							<div class="text-right">
-								<a class="btn btn-secondary" href="<?= base_url('admin/webinar/listpeserta/' . $wbnr->JUDUL_WEBINAR); ?>"><i class="fas fa-users"></i> List Peserta</a>
-							</div>
-						</div>
-						<div class="card-body">
-							<div class="row">
-								<div class="col-sm-4">
-									<img class="card-img-top" src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_WEBINAR); ?>">
+			<?php foreach ($webinar as $wbnr) {
+				$ID_WEBINAR = $wbnr->ID_WEBINAR;
+			?>
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-header">
+								<div class="user-block">
+									<span class="username m-0 text-lg">
+										<a class="" href="<?= base_url('admin/webinar/edit/' . $wbnr->JUDUL_WEBINAR . '/'); ?>"><?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></a>
+									</span>
 								</div>
-								<div class="col-sm-8">
-									<table>
-										<tr>
-											<td><b>Pembicara</b> &nbsp;</td>
-											<td for="NM_ADM">:&nbsp; <?= $wbnr->NM_ADM; ?></td>
-										</tr>
-										<tr>
-											<td><b>Platform</b> &nbsp;</td>
-											<td for="PLATFORM">:&nbsp; <?= $wbnr->PLATFORM; ?></td>
-										</tr>
-										<tr>
-											<td><b>Harga</b> &nbsp;</td>
-											<td for="HARGA">:&nbsp; <?= $wbnr->HARGA; ?></td>
-										</tr>
-										<!-- <tr>
+								<div class="text-right">
+									<a class="btn btn-secondary" href="<?= base_url('admin/webinar/listpeserta/' . $wbnr->JUDUL_WEBINAR); ?>"><i class="fas fa-users"></i> List Peserta</a>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-sm-4">
+										<img class="card-img-top" src="<?= base_url('assets/fotowebinar/' . $wbnr->FOTO_WEBINAR); ?>">
+									</div>
+									<div class="col-sm-8">
+										<table>
+											<tr>
+												<td><b>Pembicara</b> &nbsp;</td>
+												<td for="NM_ADM">:&nbsp; <?= $wbnr->NM_ADM; ?></td>
+											</tr>
+											<tr>
+												<td><b>Platform</b> &nbsp;</td>
+												<td for="PLATFORM">:&nbsp; <?= $wbnr->PLATFORM; ?></td>
+											</tr>
+											<tr>
+												<td><b>Harga</b> &nbsp;</td>
+												<td for="HARGA">:&nbsp; <?= $wbnr->HARGA; ?></td>
+											</tr>
+											<!-- <tr>
 											<td><b>Tanggal Webinar</b> &nbsp;</td>
 											<td for="TGL_WEB">:&nbsp;
 												<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_WEB))); ?>
 											</td>
 										</tr> -->
-										<tr>
-											<td><b>Tanggal Pembukaan Pendaftaran</b> &nbsp;</td>
-											<td for="TGL_BUKA">:&nbsp;
-												<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_BUKA))); ?>
-											</td>
-										</tr>
-										<tr>
-											<td><b>Tanggal Penutupan Pendaftaran</b> &nbsp;</td>
-											<td for="TGL_TUTUP">:&nbsp;
-												<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_TUTUP))); ?>
-											</td>
-										</tr>
-									</table>
-								</div>
-								<br>
-								<div class="col-md-6 mt-5">
-									<div class="card">
-										<div class="card-header">
-											<label for="LINK_MEETING">Link Meeting</label>
-										</div>
-										<div class="card-body">
-											<?= htmlspecialchars_decode($wbnr->LINK_ZOOM); ?>
-										</div>
-										<div class="card-footer">
-											<?php
-											if ($wbnr->ST_POSTWEB == 1) {
-												if ($wbnr->ST_LINK == 0) { ?>
-													<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
-													data-toggle="modal" data-target="#modal_link<?= $ID_WEBINAR; ?>">
-													<i class="fas fa-arrow-circle-right"></i> Posting Link</button>
-												<?php 
-												} else { ?>
-													<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
-													data-toggle="modal" data-target="#modal_link<?= $ID_WEBINAR; ?>">
-													<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
+											<tr>
+												<td><b>Tanggal Pembukaan Pendaftaran</b> &nbsp;</td>
+												<td for="TGL_BUKA">:&nbsp;
+													<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_BUKA))); ?>
+												</td>
+											</tr>
+											<tr>
+												<td><b>Tanggal Penutupan Pendaftaran</b> &nbsp;</td>
+												<td for="TGL_TUTUP">:&nbsp;
+													<?= date('l, d F Y', strtotime(str_replace('.', '-', $wbnr->TGL_TUTUP))); ?>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<br>
+									<div class="col-md-6 mt-5">
+										<div class="card">
+											<div class="card-header">
+												<label for="LINK_MEETING">Link Meeting</label>
+											</div>
+											<div class="card-body">
+												<?= htmlspecialchars_decode($wbnr->LINK_ZOOM); ?>
+											</div>
+											<div class="card-footer">
 												<?php
+												if ($wbnr->ST_POSTWEB == 1) {
+													if ($wbnr->ST_LINK == 0) { ?>
+														<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_link<?= $ID_WEBINAR; ?>">
+															<i class="fas fa-arrow-circle-right"></i> Posting Link</button>
+													<?php
+													} else { ?>
+														<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_link<?= $ID_WEBINAR; ?>">
+															<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
+												<?php
+													}
 												}
-											} 
-											?>
+												?>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-md-6 mt-5">
-									<div class="card">
-										<div class="card-header">
-											<label for="SRT_WEBINAR">Sertifikat Webinar</label>
-										</div>
-										<div class="card-body">
-											<label><?= str_replace('_', ' ', $wbnr->SRT_WEBINAR); ?></label>
-										</div>
-										<div class="card-footer">
-											<?php
-											if ($wbnr->ST_POSTWEB == 0 && $wbnr->SRT_WEBINAR == NULL) {?>
-												<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Upload</button>
-												<?php } 
-											elseif ($wbnr->ST_POSTWEB == 0 && $wbnr->SRT_WEBINAR != NULL) { ?>
-												<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
-											<?php } 
-											elseif ($wbnr->ST_POSTWEB != 0 && $wbnr->SRT_WEBINAR == NULL) { ?>
-												<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Upload</button>
-											<?php } 
-											elseif ($wbnr->ST_POSTWEB !=0 && $wbnr->SRT_WEBINAR != NULL && $wbnr->ST_SRT == 0) { ?>
-											<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
+									<div class="col-md-6 mt-5">
+										<div class="card">
+											<div class="card-header">
+												<label for="SRT_WEBINAR">Sertifikat Webinar</label>
+											</div>
+											<div class="card-body">
+												<label><?= str_replace('_', ' ', $wbnr->SRT_WEBINAR); ?></label>
+											</div>
+											<div class="card-footer">
+												<?php
+												if ($wbnr->ST_POSTWEB == 0 && $wbnr->SRT_WEBINAR == NULL) { ?>
+													<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Upload</button>
+												<?php } elseif ($wbnr->ST_POSTWEB == 0 && $wbnr->SRT_WEBINAR != NULL) { ?>
+													<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
+												<?php } elseif ($wbnr->ST_POSTWEB != 0 && $wbnr->SRT_WEBINAR == NULL) { ?>
+													<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Upload</button>
+												<?php } elseif ($wbnr->ST_POSTWEB != 0 && $wbnr->SRT_WEBINAR != NULL && $wbnr->ST_SRT == 0) { ?>
+													<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
 
-											<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
-												<i class="fas fa-arrow-circle-right"></i> Bagikan Sertifikat</button>
-											<?php }
-											elseif ($wbnr->ST_POSTWEB !=0 && $wbnr->SRT_WEBINAR != NULL && $wbnr->ST_SRT != 0) { ?>
-											<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
+													<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
+														<i class="fas fa-arrow-circle-right"></i> Bagikan Sertifikat</button>
+												<?php } elseif ($wbnr->ST_POSTWEB != 0 && $wbnr->SRT_WEBINAR != NULL && $wbnr->ST_SRT != 0) { ?>
+													<button type="button" id="detail" class="btn btn-primary btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_srt<?= $ID_WEBINAR; ?>">Edit</button>
 
-											<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
-												<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
-											<?php } ?>
+													<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_sertifikat<?= $ID_WEBINAR; ?>">
+														<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
+												<?php } ?>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="card-footer">
-							<!-- Nyari status web trus ditampilkan sesuai status web -->
-							<?php
-							if ($wbnr->ST_POSTWEB == 0) {
-								echo '<label for="">Draf</label>';
-							} else {
-								echo '<label for="">Dipublikasikan</label>';
-							}
-							?>
-
-							<span class="float-right">
-								<!-- Nyari status web trus mau diposting apa nggak -->
+							<div class="card-footer">
+								<!-- Nyari status web trus ditampilkan sesuai status web -->
 								<?php
-								if ($wbnr->ST_POSTWEB == 0) { ?>
-									<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white"
-								data-toggle="modal" data-target="#modal_posting<?= $wbnr->ID_WEBINAR; ?>">
-								<i class="fas fa-arrow-circle-right"></i> Publikasikan</button>
-								<?php } else { ?>
-									<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white"
-								data-toggle="modal" data-target="#modal_posting<?= $wbnr->ID_WEBINAR; ?>">
-								<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
-								<?php }
+								if ($wbnr->ST_POSTWEB == 0) {
+									echo '<label for="">Draf</label>';
+								} else {
+									echo '<label for="">Dipublikasikan</label>';
+								}
 								?>
 
-								<a class="btn btn-secondary btn-sm" href="<?= base_url('admin/webinar/pratinjau/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"><i class="fas fa-eye"></i>
-									Pratinjau</a>
-								<!-- edit artikel -->
-								<a href="<?= base_url('admin/webinar/edit/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>">
-									<button type="button" class="btn btn-primary btn-circle btn-sm">
-										<i class="fas fa-edit" style="color: white"></i> Edit
-									</button>
-								</a>
-								<!-- hapus artikel -->
-								<button type="button" id="detail" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#modal_hapus<?= $wbnr->ID_WEBINAR; ?>" style="color : white"><i class="fas fa-trash"></i> Hapus</button>
-							</span>
+								<span class="float-right">
+									<!-- Nyari status web trus mau diposting apa nggak -->
+									<?php
+									if ($wbnr->ST_POSTWEB == 0) { ?>
+										<button type="button" id="detail" class="btn btn-warning btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_posting<?= $wbnr->ID_WEBINAR; ?>">
+											<i class="fas fa-arrow-circle-right"></i> Publikasikan</button>
+									<?php } else { ?>
+										<button type="button" id="detail" class="btn btn-success btn-sm btn-round" style="color: white" data-toggle="modal" data-target="#modal_posting<?= $wbnr->ID_WEBINAR; ?>">
+											<i class="fas fa-arrow-circle-left"></i> Kembalikan ke draf</button>
+									<?php }
+									?>
+
+									<a class="btn btn-secondary btn-sm" href="<?= base_url('admin/webinar/pratinjau/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"><i class="fas fa-eye"></i>
+										Pratinjau</a>
+									<!-- edit artikel -->
+									<a href="<?= base_url('admin/webinar/edit/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>">
+										<button type="button" class="btn btn-primary btn-circle btn-sm">
+											<i class="fas fa-edit" style="color: white"></i> Edit
+										</button>
+									</a>
+									<!-- hapus artikel -->
+									<button type="button" id="detail" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#modal_hapus<?= $wbnr->ID_WEBINAR; ?>" style="color : white"><i class="fas fa-trash"></i> Hapus</button>
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		<?php } ?>
+			<?php } ?>
+		</div>
 	</section>
 </div>
 
@@ -215,7 +210,7 @@ foreach ($webinar as $wbnr) {
 							<button class="btn btn-primary">Ya</button>
 						</div>
 					</form>
-				 <?php } else { ?>
+				<?php } else { ?>
 					<div class="modal-header">
 						<h3 class="modal-title" id="myModalLabel">Kembalikan ke Draf</h3>
 					</div>

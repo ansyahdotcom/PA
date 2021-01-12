@@ -8,7 +8,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('admin/dashboard'); ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('admin/kelas'); ?>">Data Kelas</a></li>
                         <li class="breadcrumb-item active"><?= $tittle; ?></li>
                     </ol>
                 </div>
@@ -19,14 +20,14 @@
     </section>
     <section class="content">
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title pt-2"> List Materi</h3>
+            <div class="card-header bg-dark">
+                <h3 class="card-title text-bold"> List Modul</h3>
                 <div class="card-tools">
                     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
                 <i class="fas fa-plus-circle"></i> Import Excel</button> -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
                 <i class="fas fa-plus-circle"></i> Modul</button>
-                <a href="<?= base_url('admin/kelas'); ?>" class="btn btn-outline-primary">
+                <a href="<?= base_url('admin/kelas'); ?>" class="btn btn-default">
                 <i class="fas fa-arrow-circle-left"></i> Kembali</a>
             </div>
             </div>

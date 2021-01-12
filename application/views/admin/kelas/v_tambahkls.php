@@ -24,8 +24,8 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
+                    <div class="card">
+                        <div class="card-header bg-dark">
                             <h3 class="card-title text-bold">Form <?= $tittle; ?></h3>
                         </div>
                         <!-- /.card-header -->

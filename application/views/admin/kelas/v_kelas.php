@@ -24,7 +24,8 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header bg-dark">
+						<h3 class="card-title text-bold float-left">Tabel <?= $tittle; ?></h3>
 						<a href="<?= base_url('admin/kelas/tambahkls'); ?>" class="btn btn-primary text-bold float-right"><i class="fas fa-plus-circle"></i> <?= $tittle; ?></a>
 					</div>
 					<!-- /.card-header -->

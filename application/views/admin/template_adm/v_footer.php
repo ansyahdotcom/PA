@@ -90,7 +90,7 @@
         var time = today.getHours() + ":" + today.getMinutes();
         var dateTime = date + ' ' + time;
 
-        // Tanggal pendaftaran dan penutupan kelas
+        // Tanggal pendaftaran dan penutupan v.1.0
         $('.pendaftaran').datetimepicker({
             format: 'DD MMMM YYYY HH:mm',
             // todayHighlight: false,
@@ -126,6 +126,11 @@
             $('.selesai').datetimepicker('minDate', e.date);
         });
 
+        $('.pendaftaran').on("change.datetimepicker", function(e) {
+            $('.mulai2').val("")
+            $('.mulai2').datetimepicker('minDate', e.date);
+        });
+
         $('.penutupan').datetimepicker({
             format: 'DD MMMM YYYY HH:mm',
             // todayHighlight: false,
@@ -150,14 +155,19 @@
             $('.mulai').val("")
             $('.mulai').datetimepicker('minDate', e.date);
         });
-
+        
         $('.penutupan').on("change.datetimepicker", function(e) {
             $('.selesai').val("")
             $('.selesai').datetimepicker('minDate', e.date);
         });
+
+        $('.penutupan').on("change.datetimepicker", function(e) {
+            $('.mulai2').val("")
+            $('.mulai2').datetimepicker('minDate', e.date);
+        });
         // End
 
-        // Tanggal mulai dan selesai kelas
+        // Tanggal mulai dan selesai v.1.0
         $('.mulai').datetimepicker({
             format: 'DD MMMM YYYY',
             // todayHighlight: false,
@@ -203,6 +213,28 @@
             }
         });
         // End
+
+        // Tanggal mulai v.2.0
+        $('.mulai2').datetimepicker({
+            format: 'DD MMMM YYYY HH:mm',
+            // todayHighlight: false,
+            minDate: dateTime,
+            buttons: {
+                showToday: true,
+                showClear: true,
+                showClose: true
+            },
+            icons: {
+                time: "fas fa-clock",
+                date: "fas fa-calendar-alt",
+                up: "fas fa-arrow-up",
+                down: "fas fa-arrow-down",
+                today: 'fas fa-calendar-check',
+                clear: 'fas fa-trash',
+                close: 'fas fa-times'
+            }
+        });
+        // End 
     });
 </script>
 
