@@ -22,7 +22,7 @@ class Kelas extends CI_Controller
 			'EMAIL_PS' => $email
 		])->row_array();
 
-		$data['tittle'] = "Daftar Kelas";
+		$data['tittle'] = "Daftar Kelas Belajar";
 
 		/** Function Search Data */
 		if (isset($_POST['btn-search'])) {

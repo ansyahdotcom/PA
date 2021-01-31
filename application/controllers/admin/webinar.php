@@ -8,8 +8,6 @@ class Webinar extends CI_Controller
         $this->load->model('admin/m_medsos');
         $this->load->model('admin/m_navbar');
         $this->load->model('admin/m_kebijakan');
-        // $this->load->library('upload');
-        // $this->load->library('form_validation');
         adm_logged_in();
         cekadm();
     }
@@ -302,7 +300,6 @@ class Webinar extends CI_Controller
             'EMAIL_ADM' =>
             $this->session->userdata('email')
         ])->row_array();
-        date_default_timezone_set('Asia/Jakarta');
 
         $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
         $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));

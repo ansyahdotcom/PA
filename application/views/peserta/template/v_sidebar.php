@@ -3,7 +3,9 @@
         <!-- Brand Logo -->
         <a href="<?= base_url('peserta/dashboard'); ?>" class="brand-link">
             <img src="<?= base_url(); ?>assets/dist/img/PA02.jpg" alt="PA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="text-uppercase">Preneur Academy</span>
+            <span class="brand-text font-weight-bold text-uppercase">
+                Preneur Academy
+            </span>
         </a>
 
         <!-- Sidebar -->
@@ -66,7 +68,7 @@
                         <a href="<?= base_url('peserta/webinar'); ?>" class="nav-link <?php if($this->uri->segment(2)=="webinar"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Daftar Webinar Baru
+                                Daftar Event Webinar
                             </p>
                         </a>
                     </li>
@@ -74,7 +76,7 @@
                         <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Daftar Kelas Baru
+                                Daftar Kelas Belajar
                             </p>
                         </a>
                     </li>

@@ -9,7 +9,7 @@
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item"><a href="<?= base_url('peserta/dashboard'); ?>">Home</a></li>
 						<li class="breadcrumb-item active"><?= $tittle; ?></li>
 					</ol>
 				</div>
@@ -60,44 +60,46 @@
 						$ktg = $k['KTGKLS'];
 						$tgl_daftar = strtotime($k['TGL_PENDAFTARAN']);
 						$tgl_penutupan = strtotime($k['TGL_PENUTUPAN']);
+						$tgl_mulai = strtotime($k['TGL_MULAI']);
+						$tgl_selesai = strtotime($k['TGL_SELESAI']);
 					?>
+
+						<?php
+						/** Untuk mengecek jumlah pendaftar */
+						$jml_pendaftar = $this->db->get_where('transaksi', [
+							'STATUS' => 200,
+							'ID_KLS' => $id
+						])->num_rows();
+						?>
 						<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
 							<div class="card bg-light">
-
-								<div class="card-header text-muted border-bottom-0 bg-primary">
-									Kelas
+								<!-- <div class="card-header text-bold border-bottom-0 bg-primary">
+									K E J A R
+								</div> -->
+								<div class="card overflow-hidden position-relative" style="width:auto;height:150px;">
+									<img src="<?= base_url('assets/dist/img/kelas/' . $gambar); ?>" alt="" class="img-responsive img-fluid position-absolute shadow" style="width:auto;top:-75px;bottom:-75px;">
+									<div class="pt-2 pl-2">
+										<span class="badge badge-primary right position-absolute shadow">Kelas Belajar</span>
+									</div>
 								</div>
-								<div class="position-relative card-body pt-3">
-									<?php
-									/** Untuk mengecek jumlah pendaftar */
-									$jml_pendaftar = $this->db->get_where('transaksi', [
-										'STATUS' => 200,
-										'ID_KLS' => $id
-									])->num_rows();
-									?>
-									<input type="hidden" name="idkls" value="<?= $id; ?>">
+								<div class="position-relative card-body pt-1">
 									<div class="row">
-										<div class="col-5 text-center">
-											<img src="<?= base_url('assets/dist/img/kelas/' . $gambar); ?>" alt="" class="img-responsive img-fluid img-rounded shadow">
+										<div class="col-6">
+											<small class="text-muted">
+												<i class="fas fa-user-tie"></i>
+												<span class="text-bold">Pendaftar <?= $jml_pendaftar; ?></span>
+											</small>
 										</div>
-										<div class="col-7">
-											<p class="lead text-bold"><?= $kelas; ?></p>
-											<!-- <p class="text-muted text-sm"><b>Deskripsi: </b> <?= htmlspecialchars_decode($deskripsi); ?> </p> -->
-											<!-- <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <?php
-												if ($ktg === "Dasar") {
-													$class = "text-success";
-												} elseif ($ktg === "Lanjutan") {
-													$class = "text-warning";
-												} elseif ($ktg === "Advance") {
-													$class = "text-danger";
-												}
-												?>
-                                                <li class="small <?= $class; ?>"><span class="fa-li">
-                                                        <i class="fas fa-lg fa-arrow-circle-up"></i></span> <span class="text-bold">Level:</span> <?= $ktg; ?>
-                                                </li>
-                                            </ul> -->
+										<div class="col-6 text-right">
+											<small class="text-muted">
+												<i class="fas fa-users"></i>
+												<span class="text-bold">Kuota <?= 50 - $jml_pendaftar; ?></span>
+											</small>
 										</div>
+									</div>
+									<input type="hidden" name="idkls" value="<?= $id; ?>">
+									<div class="">
+										<a href="" class="lead text-dark text-bold"><?= $kelas; ?></a>
 									</div>
 									<?php if ($tgl_daftar == "" && $tgl_penutupan == "" || $peserta['STATUS_BELI'] == 200) : ?>
 										<?php if ($tgl_daftar == "" && $tgl_penutupan == "") : ?>
@@ -114,7 +116,7 @@
 												<span class="btn btn-success text-justify text-bold btn-block">
 													<div class="col-md-12">
 														<i class="fas fa-info pr-2"></i>
-														Anda sudah terdaftar disalah satu kelas Preneur Academy, 
+														Anda sudah terdaftar disalah satu kelas Preneur Academy,
 														mohon selesaikan kelas anda agar bisa mendaftar ke kelas lainnya.
 													</div>
 												</span>
@@ -122,31 +124,16 @@
 										<?php endif; ?>
 									<?php else : ?>
 										<div class="row pt-2">
-											<span class="btn btn-outline-dark text-justify text-bold btn-block">
-												<div class="col-md-12">
-													<i class="far fa-calendar-check pr-2"></i>
-													Pendaftaran: <?= date('d/m/Y', $tgl_daftar); ?> -- <?= date('H:i', $tgl_daftar); ?> Sampai <?= date('d/m/Y', $tgl_penutupan); ?> -- <?= date('H:i', $tgl_penutupan); ?> 
-												</div>
+											<span class="col-md-12 alert alert-default-primary text-bold text-justify">
+												<i class="far fa-edit pr-2"></i>
+												Pendaftaran:
+												<p>
+													<?= date('d/m/Y', $tgl_daftar); ?> (<?= date('H:i', $tgl_daftar); ?>)
+													sampai <?= date('d/m/Y', $tgl_penutupan); ?> (<?= date('H:i', $tgl_penutupan); ?>)
+												</p>
 											</span>
 										</div>
 									<?php endif; ?>
-
-									<div class="row pt-2">
-										<span class="btn btn-outline-dark text-justify text-bold btn-block">
-											<div class="col-md-12">
-												<i class="fas fa-user-tie pr-2"></i>
-												Jumlah Pendaftar: <?= $jml_pendaftar; ?>
-											</div>
-										</span>
-									</div>
-									<div class="row pt-2">
-										<span class="btn btn-outline-dark text-justify text-bold btn-block">
-											<div class="col-md-12">
-												<i class="fas fa-users pr-2"></i>
-												Sisa Kuota: <?= 50 - $jml_pendaftar; ?>
-											</div>
-										</span>
-									</div>
 								</div>
 								<div class="card-footer">
 									<?php
@@ -156,15 +143,15 @@
 									<div class="text-center">
 										<!-- <?php if ($tgl_daftar > $tgl_now && $tgl_penutupan < $tgl_now) : ?>
 											<?php
-											if ($tgl_daftar > $tgl_now) :
-												$text = "Kelas ini belum membuka pendaftaran";
-												$btn = "btn-info";
-												$icon = "fas fa-info";
-											elseif ($tgl_penutupan < $tgl_now) :
-												$text = "Pendaftaran kelas ini telah di tutup";
-												$btn = "btn-danger";
-												$icon = "fas fa-ban";
-											endif;
+													if ($tgl_daftar > $tgl_now) :
+														$text = "Kelas ini belum membuka pendaftaran";
+														$btn = "btn-info";
+														$icon = "fas fa-info";
+													elseif ($tgl_penutupan < $tgl_now) :
+														$text = "Pendaftaran kelas ini telah di tutup";
+														$btn = "btn-danger";
+														$icon = "fas fa-ban";
+													endif;
 											?>
 											<div class="row">
 												<div class="col-md-12">
@@ -177,43 +164,51 @@
 												</div>
 											</div>
 										<?php else : ?> -->
-											<div class="row">
-												<div class="col-md-6 pt-2">
-													<span class="btn btn-sm bg-teal text-bold btn-block">
-														<i class="fas fa-money-check"></i>
-														Rp. <?= number_format($harga, 0, ".", "."); ?>
-													</span>
-												</div>
-												<?php
-												if ($jml_pendaftar == 50) :
-													$btn = "btn-danger";
-													$stts_btn = "disabled";
-													$text = "Kuota Habis";
-													$icon = "fas fa-ban";
-													$tag = "button";
-												else :
-													$btn = "btn-primary";
-													$stts_btn = "";
-													$text = "Beli Kelas";
-													$icon = "fas fa-cart-plus";
-													$tag = "a";
-												endif;
-												?>
-												<div class="col-md-6 pt-2">
-													<!-- <button class="btn btn-sm <?= $btn; ?> beli btn-block" id="<?= $id; ?>" data-toggle="modal" data-target="#cekout<?= $id; ?>" <?= $stts_btn; ?>>
+										<div class="row">
+											<div class="col-md-6 pt-2">
+												<span class="btn btn-sm btn-success btn-block text-bold">
+													<i class="fas fa-money-check"></i>
+													<strike>Rp. <?= number_format($harga, 0, ".", "."); ?></strike>
+												</span>
+											</div>
+											<div class="col-md-6 pt-2">
+												<span class="btn btn-sm btn-warning btn-block text-bold" title="Harga Donasi Seikhlasnya">
+													<i class="fas fa-wallet"></i>
+													Donasi
+												</span>
+											</div>
+										</div>
+										<?php
+													if ($jml_pendaftar == 50) :
+														$btn = "btn-danger";
+														$stts_btn = "disabled";
+														$text = "Kuota Habis";
+														$icon = "fas fa-ban";
+														$tag = "button";
+													else :
+														$btn = "btn-primary";
+														$stts_btn = "";
+														$text = "Beli Kelas";
+														$icon = "fas fa-cart-plus";
+														$tag = "a";
+													endif;
+										?>
+										<div class="row">
+											<div class="col-md-12 pt-2">
+												<!-- <button class="btn btn-sm <?= $btn; ?> beli btn-block" id="<?= $id; ?>" data-toggle="modal" data-target="#cekout<?= $id; ?>" <?= $stts_btn; ?>>
 															<i class="<?= $icon; ?>"></i> <?= $text; ?>
 														</button> -->
-													<?php if ($tgl_daftar == "" && $tgl_penutupan == "" || $peserta['STATUS_BELI'] == 200) : ?>
-														<button class="btn btn-sm btn-primary btn-block" disabled>
-															<i class="fas fa-cart-plus"></i> Beli Kelas
-														</button>
-													<?php else : ?>
-														<<?= $tag; ?> href="<?= base_url('peserta/transaksi/beli/' . $id); ?>" class="btn btn-sm <?= $btn; ?> btn-block" <?= $stts_btn; ?>>
-															<i class="<?= $icon; ?>"></i> <?= $text; ?>
-														</<?= $tag; ?>>
-													<?php endif; ?>
-												</div>
+												<?php if ($tgl_daftar == "" && $tgl_penutupan == "" || $peserta['STATUS_BELI'] == 200) : ?>
+													<button class="btn btn-sm btn-primary btn-block text-bold" disabled>
+														<i class="fas fa-cart-plus"></i> Beli Kelas
+													</button>
+												<?php else : ?>
+													<<?= $tag; ?> href="<?= base_url('peserta/transaksi/beli/' . $id); ?>" class="btn btn-sm <?= $btn; ?> btn-block text-bold"  title="Beli Kelas" <?= $stts_btn; ?>>
+														<i class="<?= $icon; ?>"></i> <?= $text; ?>
+													</<?= $tag; ?>>
+												<?php endif; ?>
 											</div>
+										</div>
 										<!-- <?php endif; ?> -->
 									</div>
 								</div>
