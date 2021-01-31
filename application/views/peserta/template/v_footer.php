@@ -65,7 +65,7 @@
 <!-- Jumlah pembayaran -->
 <script>
     function checklength(el) {
-        if(el.value.length < 5) {
+        if(el.value.length < 5 || el.value < 10000) {
             document.getElementById("notif").innerHTML = "Donasi minimal Rp. 10.000 !";
             $("#pay-button").prop("disabled", true);
         } else {
