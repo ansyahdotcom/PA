@@ -11,7 +11,7 @@ class legal extends CI_Controller
         $this->load->model('admin/m_kebijakan');
     }
 
-    public function legal($LINK_KB)
+    public function index($LINK_KB)
     {
         $data['legal'] = $this->m_landingpage->kebijakan();
         $data['footer'] = $this->m_medsos->get_data(); 

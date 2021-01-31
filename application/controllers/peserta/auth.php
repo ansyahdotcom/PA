@@ -31,9 +31,9 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			$data['judul'] = 'Preneur Academy | Masuk';
-			$this->load->view("landingpage/template/header", $data);
+			$this->load->view("landingpage/template/headerauth", $data);
 			$this->load->view("landingpage/auth/login");
-			$this->load->view("landingpage/template/footer");
+			$this->load->view("landingpage/template/footerauth");
 		} else {
 			$this->_login();
 		}
@@ -167,9 +167,9 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			$data['judul'] = 'Preneur Academy | Buat akun';
-			$this->load->view("landingpage/template/header", $data);
+			$this->load->view("landingpage/template/headerauth", $data);
 			$this->load->view("landingpage/auth/register", $data);
-			$this->load->view("landingpage/template/footer");
+			$this->load->view("landingpage/template/footerauth");
 		} else {
 			/** Proses insert ke database */
 			$name = htmlspecialchars($this->input->post('nama', true));
@@ -397,9 +397,9 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			$data['judul'] = 'Preneur Academy | Lupa Password';
-			$this->load->view("landingpage/template/header", $data);
+			$this->load->view("landingpage/template/headerauth", $data);
 			$this->load->view("landingpage/auth/forgot");
-			$this->load->view("landingpage/template/footer");
+			$this->load->view("landingpage/template/footerauth");
 		} else {
 			$email = htmlspecialchars($this->input->post('email', true));
 			$user = $this->m_auth->activacount($email);
@@ -490,9 +490,9 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			$data['judul'] = 'Preneur Academy | Password Baru';
-			$this->load->view("landingpage/template/header", $data);
+			$this->load->view("landingpage/template/headerauth", $data);
 			$this->load->view("landingpage/auth/recover");
-			$this->load->view("landingpage/template/footer");
+			$this->load->view("landingpage/template/footerauth");
 		} else {
 			$password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
 			$email = $this->session->userdata('reset_email');

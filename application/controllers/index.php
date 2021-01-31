@@ -62,7 +62,7 @@ class index extends CI_Controller
         $data['kebijakan'] = $this->m_kebijakan->get_data();
         $data['footer'] = $this->m_medsos->get_data();
         $data['judul'] = 'Preneur Academy | Blog';
-        $this->load->view("landingpage/template/headerblog", $data);
+        $this->load->view("landingpage/template/header", $data);
         $this->load->view("landingpage/lihat_post", $data);
         $this->load->view("landingpage/template/footer", $data);
     }
@@ -162,5 +162,11 @@ class index extends CI_Controller
     {
         $data['title'] = '403 Forbidden Page';
         $this->load->view('forbidden', $data);
+    }
+
+    public function notfound()
+    {
+        $data['title'] = '404 Page Not Found';
+        $this->load->view('notfound', $data);
     }
 }

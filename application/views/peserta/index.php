@@ -26,18 +26,18 @@
         <div class="col-sm-12">
           <div class="alert alert-primary alert-sm" role="alert">
             <div class="row">
-              <div class="col-sm-10">
-                <h5 class="alert-heading">Selamat Datang!</h5>
+              <div class="col-lg-2 col-md-3 col-sm-4 text-center">
+                <img src="<?= base_url(); ?>assets/dist/img/program/study.svg" width="150" alt="halo">
+              </div>
+              <div class="col-lg-10 col-md-9 col-sm-8 p-4">
+                <h6 class="alert-heading">Selamat Datang!</h6>
                 <p>Halo, <?= $peserta['NM_PS']; ?> anda login sebagai <?php if ($this->session->userdata('role') == 2) {
                   echo "Peserta";
-                } ?>. Jika kamu telah membayar dan belum diproses oleh admin, bisa hubungi CS.</p>
-              </div>
-              <div class="col-sm-2">
-                <img src="<?= base_url(); ?>assets/dist/img/program/study.svg" width="100" alt="halo">
+                } ?>. Untuk mengetahui mekanisme pembelajaran bisa menggunakan <a href="<?=base_url('peserta/faq')?>">FAQ</a> , atau download panduan melaui <a href="https://drive.google.com/file/d/1kSp6LAJMyQmdC7hxtRFbSmUJiYR8M4nk/view?usp=sharing" target="_blank">link ini</a>.</p>
               </div>
             </div>
             <hr>
-            <p class="mb-0">Untuk mengetahui mekanisme pembelajaran bisa menggunakan FAQ, atau download panduan melaui <a href="https://drive.google.com/file/d/1kSp6LAJMyQmdC7hxtRFbSmUJiYR8M4nk/view?usp=sharing" target="_blank">link ini</a>.</p>
+            <p class="mb-0 p-2 rounded alert alert-warning"><i class="fas fa-info-circle"></i> Jika kamu telah membayar dan terjadi kesalahan sistem, bisa hubungi CS dibawah.</p>
           </div>
         </div>
         <div class="col-lg-4 col-6">

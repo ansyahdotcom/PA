@@ -3,7 +3,7 @@
         <!-- Brand Logo -->
         <a href="<?= base_url('peserta/dashboard'); ?>" class="brand-link">
             <img src="<?= base_url(); ?>assets/dist/img/PA02.jpg" alt="PA Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-bold text-uppercase">
+            <span class="brand-text font-weight-400 text-uppercase">
                 Preneur Academy
             </span>
         </a>
@@ -54,7 +54,7 @@
 
                     <li class="nav-header">Pemberitahuan</li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/notifikasi'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/notifikasi'); ?>" class="nav-link <?php if($this->uri->segment(2)=="notifikasi"){echo "active";}?>">
                             <i class="nav-icon fas fa-bell"></i>
                             <p>
                                 Pemberitahuan
@@ -65,7 +65,7 @@
 
                     <li class="nav-header">Transaksi</li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/webinar'); ?>" class="nav-link <?php if($this->uri->segment(2)=="webinar"){echo "active";}?>">
+                        <a href="<?= base_url('peserta/webinar'); ?>" class="nav-link <?php if($this->uri->segment(2)=="webinar" && $this->uri->segment(3)== null){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Daftar Event Webinar
@@ -73,7 +73,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas"){echo "active";}?>">
+                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas" || $this->uri->segment(2)=="transaksi" && $this->uri->segment(3)=="beli"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Daftar Kelas Belajar
@@ -81,7 +81,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/transaksi'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/transaksi'); ?>" class="nav-link <?php if($this->uri->segment(2)=="transaksi" && $this->uri->segment(3)== null|| $this->uri->segment(2)=="transaksi" && $this->uri->segment(3)=="dettrn"){echo "active";}?>">
                             <i class="nav-icon fas fa-history"></i>
                             <p>
                                 Histori Transaksi
@@ -104,7 +104,7 @@
                     <li class="nav-header">Webinar</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/webinar/mywebinar'); ?>" class="nav-link <?php if($this->uri->segment(2)=="mywebinar"){echo "active";}?>">
+                        <a href="<?= base_url('peserta/webinar/mywebinar'); ?>" class="nav-link <?php if($this->uri->segment(3)=="mywebinar"){echo "active";}?>">
                             <i class="nav-icon fab fa-leanpub"></i>
                             <p>
                                 Webinar Saya
@@ -124,7 +124,7 @@
                     <li class="nav-header">Bantuan</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/faq'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/faq'); ?>" class="nav-link <?php if($this->uri->segment(2)=="faq"){echo "active";}?>">
                             <i class="nav-icon fas fa-question-circle"></i>
                             <p>
                                 FAQ
@@ -133,7 +133,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/ketentuan'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/ketentuan'); ?>" class="nav-link <?php if($this->uri->segment(2)=="ketentuan"){echo "active";}?>">
                             <i class="nav-icon fas fa-gavel"></i>
 
                             <p>
