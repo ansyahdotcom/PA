@@ -48,8 +48,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="hrg">Jumlah Donasi</label>
-                                            <input type="number" class="form-control" id="hrg" name="hrg" placeholder="Masukkan jumlah donasi yang ingin dibayarkan" required>
-                                            <small class="text-danger text-bold"><i>*) Jumlah donasi minimal Rp. 10.000</i></small>
+                                            <input onkeyup="checklength(this)" type="number" class="form-control" id="hrg" name="hrg" placeholder="Masukkan jumlah donasi yang ingin dibayarkan" minlength="5" required>
+                                            <!-- <small class="text-danger text-bold"><i>*) Jumlah donasi minimal Rp. 10.000</i></small> -->
+                                            <small class="text-danger text-bold" id="notif"></small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

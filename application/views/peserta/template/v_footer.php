@@ -62,6 +62,19 @@
 <!-- Midtrans -->
 <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-wB2hRL6nwYrfmF6b"></script>
 
+<!-- Jumlah pembayaran -->
+<script>
+    function checklength(el) {
+        if(el.value.length < 5) {
+            document.getElementById("notif").innerHTML = "Donasi minimal Rp. 10.000 !";
+            $("#pay-button").prop("disabled", true);
+        } else {
+            document.getElementById("notif").innerHTML = "";
+            $("#pay-button").prop("disabled", false);
+        }
+    }
+</script>
+
 <!-- Get jumlah notif -->
 <script>
     $(document).ready(function() {

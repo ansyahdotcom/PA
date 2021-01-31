@@ -45,16 +45,16 @@
                     }
                     ?>
                     <p>
-                        <?= $peserta['NM_PS']; ?> <?= $level; ?>
-
+                        <small><?= $level; ?></small>
+                        <?= $peserta['NM_PS']; ?> 
                     </p>
-                    <small>
+                    <!-- <small>
                         <?php if ($peserta['DATE_CREATE'] != 0) { ?>
                             Terdaftar <?= date('d F Y', $peserta['DATE_CREATE']); ?>
                         <?php } else { ?>
                             Terdaftar <span title='caption' class='badge badge-secondary'></span>
                         <?php } ?>
-                    </small>
+                    </small> -->
                 </li>
                 <!-- Menu Body -->
                 <!-- Menu Footer-->

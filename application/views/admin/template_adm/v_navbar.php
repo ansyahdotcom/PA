@@ -21,10 +21,10 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header jml-not1"></span>
                 <div class="dropdown-divider"></div>
-                    <p class="text-center text-sm text-muted kosong"></p>
-                    <div class="msg-not">
+                <p class="text-center text-sm text-muted kosong"></p>
+                <div class="msg-not">
 
-                    </div>
+                </div>
                 <div class="dropdown-divider"></div>
                 <a href="<?= base_url('admin/notifikasi'); ?>" class="dropdown-item dropdown-footer">Lihat semua pemberitahuan</a>
             </div>
@@ -38,23 +38,23 @@
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" class="img-circle elevation-2" alt="User Image">
+                    <img src="<?= base_url(); ?>assets/dist/img/admin/<?= $admin['FTO_ADM']; ?>" class="img-circle" alt="User Image">
                     <?php
                     if ($admin['ID_ROLE'] == 1) {
                         $level = "<span title='ADMIN' class='badge badge-danger'>ADMIN</span>";
                     }
                     ?>
                     <p>
-                        <?= $admin['NM_ADM']; ?> <?= $level; ?>
-
-                    </p>
-                    <small>
+                        <small><?= $level; ?></small>
+                        <?= $admin['NM_ADM']; ?>
+                    </p>    
+                    <!-- <small>
                         <?php if ($admin['DATE_ADM'] != 0) { ?>
                             Terdaftar Sejak <?= date('d F Y', $admin['DATE_ADM']); ?>
                         <?php } else { ?>
                             Terdaftar Sejak <span title='caption' class='badge badge-secondary'></span>
                         <?php } ?>
-                    </small>
+                    </small> -->
                 </li>
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
