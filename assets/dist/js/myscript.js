@@ -42,6 +42,11 @@ $(function() {
             icon: 'info',
             title: 'Akun anda diblokir untuk sementara, anda terdeteksi melakukan hal mencurigakan!',
         });
+    } else if (flashData == 'captcha') {
+        Toast.fire({
+            icon: 'error',
+            title: 'Jangan lupa checklist!',
+        });
     } else if(flashData == 'Ubah Profil'){
         Toast.fire({
             icon: 'success',

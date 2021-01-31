@@ -12,6 +12,9 @@
 	<!--  Bootstrap css file  -->
 	<link rel="stylesheet" href="<?= base_url();?>assets/dist/css/bootstrap.min.css">
 
+	<!-- Google Recaptcha -->
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="<?= base_url(); ?>assets/dist/img/favicon/favicon-32x32.png"
 		sizes="32x32" />

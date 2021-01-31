@@ -45,34 +45,72 @@ class Auth extends CI_Controller
 		$email = htmlspecialchars(($this->input->post('email')));
 		$password = htmlspecialchars(($this->input->post('password')));
 		$user = $this->m_auth->emailverif($email);
+		
+		// Menerima inputan post berupa checklist
+		$captcha_response = trim($this->input->post('g-recaptcha-response'));
 
-		if ($user) {
-			if ($user['ACTIVE'] == 1) {
-				if (password_verify($password, $user['PSW_PS'])) {
-					$data = [
-						'id_ps' => $user['ID_PS'],
-						'email' => $user['EMAIL_PS'],
-						'name' => $user['NM_PS'],
-						'role' => $user['ID_ROLE']
-					];
-					$this->session->set_userdata($data);
-					if ($user['ID_ROLE'] == 2) {
-						$this->session->set_flashdata('message', 'isLogin');
-						redirect('peserta/dashboard');
-					} 
+		// Mengecek apakah terdapat inputan atau tidak, jika tidak maka tampil notif
+		if($captcha_response != '')
+		{ 
+			// Screet-key recaptcha
+			$keySecret = '6LduckEaAAAAAKIDlV4mwAiTkndH3AneAGEwTDcY';
+
+			// Membuat variabel sebagai penampung data Key, untuk dicocokan dengan data dari recaptcha google
+			$check = array(
+				'secret'		=>	$keySecret,
+				'response'		=>	$this->input->post('g-recaptcha-response')
+			);
+
+			// Membuat HTTP Request untuk cek data validasi recaptcha
+			$startProcess = curl_init();
+
+			curl_setopt($startProcess, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+
+			curl_setopt($startProcess, CURLOPT_POST, true);
+
+			curl_setopt($startProcess, CURLOPT_POSTFIELDS, http_build_query($check));
+
+			curl_setopt($startProcess, CURLOPT_SSL_VERIFYPEER, false);
+
+			curl_setopt($startProcess, CURLOPT_RETURNTRANSFER, true);
+
+			// Eksekusi data
+			$receiveData = curl_exec($startProcess);
+
+			// Merubah format penulisan
+			$finalResponse = json_decode($receiveData, true);
+
+			if ($user) {
+				if ($user['ACTIVE'] == 1) {
+					if (password_verify($password, $user['PSW_PS'])) {
+						$data = [
+							'id_ps' => $user['ID_PS'],
+							'email' => $user['EMAIL_PS'],
+							'name' => $user['NM_PS'],
+							'role' => $user['ID_ROLE']
+						];
+						$this->session->set_userdata($data);
+						if ($user['ID_ROLE'] == 2) {
+							$this->session->set_flashdata('message', 'isLogin');
+							redirect('peserta/dashboard');
+						} 
+					} else {
+						$this->session->set_flashdata('message', 'email/pswwrong');
+						redirect('auth');
+					}
+				} elseif ($user['ACTIVE'] == 2) {
+					$this->session->set_flashdata('message', 'blocked');
+					redirect('auth');
 				} else {
-					$this->session->set_flashdata('message', 'email/pswwrong');
+					$this->session->set_flashdata('message', 'emailnotactivate');
 					redirect('auth');
 				}
-			} elseif ($user['ACTIVE'] == 2) {
-				$this->session->set_flashdata('message', 'blocked');
-				redirect('auth');
 			} else {
-				$this->session->set_flashdata('message', 'emailnotactivate');
+				$this->session->set_flashdata('message', 'emailnotreg');
 				redirect('auth');
 			}
-		} else {
-			$this->session->set_flashdata('message', 'emailnotreg');
+		}else {
+			$this->session->set_flashdata('message', 'captcha');
 			redirect('auth');
 		}
 	}

@@ -23,6 +23,9 @@
                             <label for="password">Kata Sandi</label>
                             <?= form_error('password', '<small class="text-danger p-3">', '</small>'); ?>
                         </div>
+                        <div class="form-label-group">
+                            <div class="g-recaptcha" data-sitekey="6LduckEaAAAAAPEdE-jeVYwnwUMnvPpalyhjHWuh"></div>
+                        </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Masuk</button>
                         <a class="d-block text-center mt-2 small" href="<?= base_url('register'); ?>">Belum punya akun?</a>
                         <a class="d-block text-center mt-2 small" href="<?= base_url('forgot'); ?>">Lupa kata sandi?</a>
