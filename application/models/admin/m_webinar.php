@@ -18,6 +18,12 @@ class M_webinar extends CI_Model
         return $hasil->ID_WEBINAR;
     }
 
+    function platform()
+    {
+        $data = $this->db->query("SELECT * FROM platform");
+        return $data;
+    }
+
     function insert($data, $table)
     {
         $this->db->insert($table, $data);

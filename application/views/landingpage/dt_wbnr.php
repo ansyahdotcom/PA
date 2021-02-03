@@ -14,17 +14,10 @@
 							<h4 class="display-4 title-text"><?= str_replace('-', ' ', $row->JUDUL_WEBINAR); ?></h4>
 							<p class="para text-dark">Oleh : <?= $row->NM_ADM?></p>
 							<h5 class="font-weight-bold"><?= $row->HARGA; ?></h5>
-							<?php 
-							$startdate = $row->TGL_WEB;
-							$today = strtotime("today midnight");
-							
-							if($today >= $startdate){
-								$this->session->set_flashdata('message', 'save');
-							} else {  ?>
-								<a href="<?= base_url('register')?>" class="btn button primary-button mt-5 float-right"><i
-										class="fas fa-shopping-cart"></i> Beli Webinar</a>
-							<?php }
-							?>
+							<?php if ($row->TGL_WEB >= date('Y-m-d H:i')) { ?>
+							<a href="<?= base_url('register')?>" class="btn button primary-button mt-5 float-right"><i
+									class="fas fa-shopping-cart"></i> Daftar Webinar</a>
+							<?php } ?>
 						</div>
 					</div>
 				</div>

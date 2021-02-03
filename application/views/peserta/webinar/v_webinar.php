@@ -38,30 +38,31 @@
 						<?php else : ?>
 							<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
 								<div class="card bg-light">
-									<!-- <div class="card-header text-bold border-bottom-0 bg-primary">
-										Event Webinar
-									</div> -->
-									<div class="overflow-hidden position-relative" style="width:auto;height:150px;">
-										<img class="img-responsive img-fluid position-absolute shadow" style="width:auto;top:-75px;bottom:-75px;" src="<?= base_url('assets/fotowebinar/') . $wbnr->FOTO_WEBINAR; ?>" alt="webinar" title="<?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?>">
-										<div class="pt-2 pl-2">
-											<span class="badge badge-primary right position-absolute shadow">Event Webinar</span>
-										</div>
+									<div class="overflow-hidden position-relative" >
+										<img class="card-img-top" src="<?= base_url('assets/fotowebinar/'). $wbnr->FOTO_WEBINAR;?>" alt="">
 									</div>
 									<div class="position-relative card-body pt-3">
-										<div class="row">
-											<div class="col-6">
-												<small class="text-muted">
-													<i class="fas fa-users"></i>
-													<span class="text-bold">Pendaftar 100</span>
-												</small>
+										<!-- <?php 
+										$count_id = $this->db->query("SELECT COUNT(ID_WEBINAR) AS ID_WEBINAR FROM peserta_wbnr WHERE ID_WEBINAR = '$ID_WEBINAR'");
+										foreach ($count_id->result() as $count) {
+											$ID_WEB = $count->ID_WEBINAR;
+										}
+										if ($wbnr->KUOTA_WEB != 0) { ?>
+											<div class="row">
+												<div class="col-6">
+													<small class="text-muted">
+														<i class="fas fa-users"></i>
+														<span class="text-bold">Pendaftar <?= $ID_WEB; ?></span>
+													</small>
+												</div>
+												<div class="col-6 text-right">
+													<small class="text-muted">
+														<i class="fas fa-users"></i>
+														<span class="text-bold">Kuota <?= $wbnr->KUOTA_WEB; ?></span>
+													</small>
+												</div>
 											</div>
-											<div class="col-6 text-right">
-												<small class="text-muted">
-													<i class="fas fa-users"></i>
-													<span class="text-bold">Kuota 200</span>
-												</small>
-											</div>
-										</div>
+										<?php } ?> -->
 										<div class="row justify-content-center">
 											<div class="row pt-2">
 												<span class="col-md-12 text-justify">
@@ -72,9 +73,9 @@
 										<div class="row pt-2">
 											<span class="col-md-12 alert alert-default-danger text-justify text-bold">
 												<i class="far fa-edit pr-2"></i>
-												Pendaftaran:
+												Pendaftaran
 												<p>
-													<?= date('d/m/Y', strtotime($wbnr->TGL_BUKA)); ?> (<?= date('H:i', strtotime($wbnr->TGL_BUKA)); ?>)
+													<!-- <?= date('d/m/Y', strtotime($wbnr->TGL_BUKA)); ?> (<?= date('H:i', strtotime($wbnr->TGL_BUKA)); ?>) -->
 													sampai <?= date('d/m/Y', strtotime($wbnr->TGL_TUTUP)); ?> (<?= date('H:i', strtotime($wbnr->TGL_TUTUP)); ?>)
 												</p>
 											</span>
