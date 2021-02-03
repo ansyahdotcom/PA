@@ -1,19 +1,27 @@
     <!-- GetButton.io widget -->
     <script type="text/javascript">
-        (function () {
-            var options = {
-                whatsapp: "+628978333856", // WhatsApp number
-                email: "turtleninjaaa77@gmail.com", // Email
-                call_to_action: "Ada pertanyaan?", // Call to action
-                button_color: "#932C8B", // Color of button
-                position: "right", // Position may be 'right' or 'left'
-                order: "whatsapp,email", // Order of buttons
-            };
-            var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
-            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-        })();
+(function() {
+    var options = {
+        whatsapp: "+628978333856", // WhatsApp number
+        email: "turtleninjaaa77@gmail.com", // Email
+        call_to_action: "Ada pertanyaan?", // Call to action
+        button_color: "#932C8B", // Color of button
+        position: "right", // Position may be 'right' or 'left'
+        order: "whatsapp,email", // Order of buttons
+    };
+    var proto = document.location.protocol,
+        host = "getbutton.io",
+        url = proto + "//static." + host;
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = url + '/widget-send-button/js/init.js';
+    s.onload = function() {
+        WhWidgetSendButton.init(host, proto, options);
+    };
+    var x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+})();
     </script>
     <!-- /GetButton.io widget -->
 
@@ -49,57 +57,57 @@
 
     <!-- Script -->
     <script>
-    $(function() {
-        //Add text editor
-        $('textarea#compose-textarea').summernote()
-    })
+$(function() {
+    //Add text editor
+    $('textarea#compose-textarea').summernote()
+})
     </script>
 
     <script>
-        jQuery('.owl-carousel').owlCarousel({
+jQuery('.owl-carousel').owlCarousel({
 
-            loop:true,
+    loop: true,
 
-            margin:10,
+    margin: 10,
 
-            dots: true,
+    dots: true,
 
-            autoplay: 3000, // time for slides changes
+    autoplay: 3000, // time for slides changes
 
-            smartSpeed: 1000, // duration of change of 1 slide
+    smartSpeed: 1000, // duration of change of 1 slide
 
-            responsiveClass:true,
+    responsiveClass: true,
 
-            responsive:{
+    responsive: {
 
-                0:{
+        0: {
 
-                    items:1
+            items: 1
 
-                },
+        },
 
-                600:{
+        600: {
 
-                    items:2
+            items: 2
 
-                },
+        },
 
-                1000:{
+        1000: {
 
-                    items:3,
+            items: 3,
 
-                    loop:true
+            loop: true
 
-                }
+        }
 
-            }
+    }
 
-            });
+});
     </script>
 
     <!--===============================================================================================-->
 
     </div>
-</body>
+    </body>
 
-</html>
+    </html>

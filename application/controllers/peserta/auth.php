@@ -6,18 +6,19 @@ class Auth extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
+		// $this->load->library('facebook');
 		$this->load->model('peserta/m_auth');
 		$this->load->model('admin/m_medsos');
-        $this->load->model('admin/m_navbar');
+		$this->load->model('admin/m_navbar');
 		$this->load->model('admin/m_kebijakan');
 	}
 
 	/** Menampilkan Login */
 	public function login()
 	{
-		$data['footer'] = $this->m_medsos->get_data(); 
-        $data['header'] = $this->m_navbar->get_navbar(); 
-        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+		$data['footer'] = $this->m_medsos->get_data();
+		$data['header'] = $this->m_navbar->get_navbar();
+		$data['kebijakan'] = $this->m_kebijakan->get_data();
 		if ($this->session->userdata('email')) {
 			redirect('peserta/dashboard');
 		}
@@ -45,13 +46,12 @@ class Auth extends CI_Controller
 		$email = htmlspecialchars(($this->input->post('email')));
 		$password = htmlspecialchars(($this->input->post('password')));
 		$user = $this->m_auth->emailverif($email);
-		
+
 		// Menerima inputan post berupa checklist
 		$captcha_response = trim($this->input->post('g-recaptcha-response'));
 
 		// Mengecek apakah terdapat inputan atau tidak, jika tidak maka tampil notif
-		if($captcha_response != '')
-		{ 
+		if ($captcha_response != '') {
 			// Screet-key recaptcha
 			$keySecret = '6LduckEaAAAAAKIDlV4mwAiTkndH3AneAGEwTDcY';
 
@@ -93,7 +93,7 @@ class Auth extends CI_Controller
 						if ($user['ID_ROLE'] == 2) {
 							$this->session->set_flashdata('message', 'isLogin');
 							redirect('peserta/dashboard');
-						} 
+						}
 					} else {
 						$this->session->set_flashdata('message', 'email/pswwrong');
 						redirect('auth');
@@ -109,18 +109,125 @@ class Auth extends CI_Controller
 				$this->session->set_flashdata('message', 'emailnotreg');
 				redirect('auth');
 			}
-		}else {
+		} else {
 			$this->session->set_flashdata('message', 'captcha');
 			redirect('auth');
+		}
+	}
+
+	// Membuat Auth Facebook
+	public function facebook_auth()
+	{
+
+		$settings['facebook_app_id']                = '2840323672909333';
+		$settings['facebook_app_secret']            = 'bf7431080a6a7d37d0ce1cdb88d43961';
+		$settings['facebook_login_redirect_url']    = 'facebook';
+		$settings['facebook_logout_redirect_url']   = 'peserta/auth/logout';
+		$settings['facebook_login_type']            = 'web';
+		$settings['facebook_permissions']           = array('email');
+		$settings['facebook_graph_version']         = 'v3.2';
+		$settings['facebook_auth_on_load']          = TRUE;
+
+		$this->load->library('facebook', $settings);
+
+		if ($this->facebook->is_authenticated()) {
+
+			$response = $this->facebook->is_authenticated();
+
+			if (!empty($response['error'])) {
+				redirect('auth');
+			}
+
+			$userProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,picture.width(100).height(100),email');
+
+			/**
+			 * Remove access_token
+			 */
+			$this->facebook->destroy_session();
+
+			/**
+			 * Checking Email if exist update and set session
+			 */
+			$read = $this->db->get_where('peserta', ['EMAIL_PS' => $userProfile['email']]);
+			if ($read->num_rows() > 0) {
+
+				$read_data = $read->row_array();
+
+				if ($read_data['ACTIVE'] == '2') {
+					return 'user_blocked';
+				}
+
+				$this->session->set_userdata(array(
+					'id_ps' => $read_data['ID_PS'],
+					'email' => $read_data['EMAIL_PS'],
+					'name' => $read_data['NM_PS'],
+					'role' => $read_data['ID_ROLE']
+				));
+				if ($read_data['ACTIVE'] == 2) {
+					$this->session->set_flashdata('message', 'blocked');
+					redirect('auth');
+				} else {
+					$this->session->set_flashdata('message', 'isLogin');
+					redirect('peserta/dashboard');
+				}
+			} else {
+				/**
+				 * Save Image
+				 */
+				$url = $userProfile['picture']['data']['url'];
+				$photoname = $userProfile['id'] . date('-YmdHis') . '.jpg';
+				file_put_contents('assets/dist/img/peserta/' . $photoname, file_get_contents($url));
+
+				/** Ambil id terakhir */
+				$getID = $this->m_auth->idps()->row_array();
+
+				/** Periksa apa ada data di tabel peserta */
+				$tabel = $this->m_auth->idps()->num_rows();
+				if ($tabel > 0) :
+					$id_ps = autonumber($getID['ID_PS'], 2, 8);
+				else :
+					$id_ps = 'PS00000001';
+				endif;
+
+				$register = [
+					'ID_PS' => $id_ps,
+					'NM_PS' => $userProfile['first_name'] . ' ' . $userProfile['last_name'],
+					'PSW_PS' => '',
+					'EMAIL_PS' => $userProfile['email'],
+					'HP_PS' => '',
+					'FTO_PS' => $photoname,
+					'ID_ROLE' => 2,
+					'ACTIVE' => 1,
+					'DATE_CREATE' => time(),
+					'STATUS_BELI' => 0
+				];
+
+				/**
+				 * Insert to database
+				 */
+				$insert = $this->m_auth->regpeserta($register);
+				if ($insert) {
+					$this->session->set_userdata(array(
+						'id_ps' => $insert,
+						'email' => $register['EMAIL_PS'],
+						'name' => $register['NM_PS'],
+						'role' => $register['ID_ROLE']
+					));
+					$this->session->set_flashdata('message', 'isLogin');
+					redirect('peserta/dashboard');
+				}
+			}
+		} else {
+			redirect($this->facebook->login_url());
 		}
 	}
 
 	/** Menampilkan Register */
 	public function register()
 	{
-		$data['footer'] = $this->m_medsos->get_data(); 
-        $data['header'] = $this->m_navbar->get_navbar(); 
-        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+		$data['footer'] = $this->m_medsos->get_data();
+		$data['header'] = $this->m_navbar->get_navbar();
+		$data['kebijakan'] = $this->m_kebijakan->get_data();
 		if ($this->session->userdata('email')) {
 			redirect('peserta/dashboard');
 		}
@@ -129,7 +236,7 @@ class Auth extends CI_Controller
 		$tabel = $this->m_auth->idps()->num_rows();
 
 		/** Ambil id terakhir */
-		$getID = $this->m_auth->idps()->row_array(); 
+		$getID = $this->m_auth->idps()->row_array();
 
 		if ($tabel > 0) :
 			$id_ps = autonumber($getID['ID_PS'], 2, 8);
@@ -206,7 +313,7 @@ class Auth extends CI_Controller
 				'LINK' => 'admin/peserta',
 				'IS_READ' => 0,
 				'ST_NOT' => 0,
-				'DATE_NOT' => date('Y-m-d H:i:s', $register['DATE_CREATE'])	
+				'DATE_NOT' => date('Y-m-d H:i:s', $register['DATE_CREATE'])
 			];
 
 			/** Insert ke database */
@@ -220,12 +327,9 @@ class Auth extends CI_Controller
 
 			$this->session->set_flashdata('message', 'isReg');
 			redirect('auth');
-			
-
 		}
-
 	}
-	
+
 
 	/**Konfigurasi kirim email */
 	private function _sendMail($token, $type)
@@ -295,7 +399,7 @@ class Auth extends CI_Controller
 				'LINK' => 'peserta/profil',
 				'IS_READ' => 0,
 				'ST_NOT' => 1,
-				'DATE_NOT' => date('Y-m-d H:i:s', time())	
+				'DATE_NOT' => date('Y-m-d H:i:s', time())
 			];
 
 			$notif1 = [
@@ -306,12 +410,12 @@ class Auth extends CI_Controller
 				'LINK' => 'admin/peserta',
 				'IS_READ' => 0,
 				'ST_NOT' => 0,
-				'DATE_NOT' => date('Y-m-d H:i:s', time())	
+				'DATE_NOT' => date('Y-m-d H:i:s', time())
 			];
 
 			/** kirim notif ke peserta */
 			$this->db->insert('notif', $notif);
-			
+
 			/** kirim notif ke admin */
 			$this->db->insert('notif', $notif1);
 
@@ -384,9 +488,9 @@ class Auth extends CI_Controller
 	/**Fungsi untuk meminta link form ubah password yang dikirim lewat email */
 	public function lupapsw()
 	{
-		$data['footer'] = $this->m_medsos->get_data(); 
-        $data['header'] = $this->m_navbar->get_navbar(); 
-        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+		$data['footer'] = $this->m_medsos->get_data();
+		$data['header'] = $this->m_navbar->get_navbar();
+		$data['kebijakan'] = $this->m_kebijakan->get_data();
 		if ($this->session->userdata('email')) {
 			redirect('peserta/dashboard');
 		}
@@ -469,9 +573,9 @@ class Auth extends CI_Controller
 	/**Fungsi untuk mengubah password */
 	public function recoverpsw()
 	{
-		$data['footer'] = $this->m_medsos->get_data(); 
-        $data['header'] = $this->m_navbar->get_navbar(); 
-        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+		$data['footer'] = $this->m_medsos->get_data();
+		$data['header'] = $this->m_navbar->get_navbar();
+		$data['kebijakan'] = $this->m_kebijakan->get_data();
 		if (!$this->session->userdata('reset_email')) {
 			redirect('auth');
 		}
