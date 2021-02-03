@@ -320,7 +320,6 @@ class Webinar extends CI_Controller
         $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
         $TGL_POSTWEB = date('Y-m-d');
         // untuk upload foto webinar
-        $upload_image = $_FILES['FOTO_WEBINAR']['name'];
 
         $upload_image = $_FILES['FOTO_WEBINAR']['name'];
         if ($upload_image) {
