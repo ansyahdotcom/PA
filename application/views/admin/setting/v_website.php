@@ -1,22 +1,26 @@
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-            <h1><?= $tittle; ?></h1>
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1><?= $tittle; ?></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active"><?= $tittle; ?></li>
+                    </ol>
+                </div>
             </div>
-            <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active"><?= $tittle; ?></li>
-            </ol>
-            </div>
-        </div>
-        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
         </div>
     </section>
 
     <section class="content">
+        <div class="alert alert-warning" role="alert">
+            <i class="fas fa-info-circle"></i> Fitur Restore Data belum berfungsi dengan baik. karena masih terlalu
+            rawan terhadap simbol-simbol
+        </div>
         <div id="main-wrapper">
             <div class="row">
                 <div class="col-sm-6">
@@ -29,9 +33,12 @@
                         <div class="card-body text-center">
                             <div class="gambar">
                                 <img src="<?= base_url(); ?>assets/dist/img/backup.svg" width="200" alt="halo">
-                                <p class="card-text text-sucess mb-5">Backup DB dapat digunakan untuk membuat backup database terkini.</p>
+                                <p class="card-text text-sucess mb-5">Backup DB dapat digunakan untuk membuat backup
+                                    database terkini.</p>
                             </div>
-                            <a href="<?= base_url('admin/website/backup_db');?>" class="btn btn-primary"><i class="fas fa-file-download"></i> Backup DB</a>
+                            <button href="<?= base_url('admin/website/backup_db'); ?>" class="btn btn-primary"
+                                data-toggle="modal" data-target="#modal"><i class="fas fa-file-download"></i> Backup
+                                DB</button>
                         </div>
                         <!-- /.card-body -->
                         <!-- <div class="card-footer">
@@ -47,15 +54,22 @@
                             </div> -->
                         </div>
                         <div class="card-body text-center">
-                            <div class="gambar">
-                                <img src="<?= base_url(); ?>assets/dist/img/restore.svg" width="200" alt="halo">
-                                <p class="card-text text-sucess mt-3 mb-4">Restore DB dapat digunakan meng-upload atau mengganti database.</p>
+                            <form action="<?php echo base_url('admin/website/import'); ?>" method="post"
+                                enctype="multipart/form-data">
+                                <div class="gambar">
+                                    <img src="<?= base_url(); ?>assets/dist/img/restore.svg" width="200" alt="halo">
+                                    <p class="card-text text-sucess mt-3 mb-4">Restore DB dapat digunakan meng-upload
+                                        atau
+                                        mengganti database.</p>
                                     <div class="form-group">
                                         <label for="file">Upload database (.sql)</label>
-                                        <input type="file" name="file" class="form-control-file" id="file">
+                                        <input type="file" name="data" class="form-control-file" id="file"
+                                            accept="text/plain,application/xml,text/x-sql,application/sql,text/sql,application/octet-stream, application/zip">
                                     </div>
-                                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-file-upload"></i> Restore DB</a>
-                            </div>
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-file-upload"></i>
+                                        Restore DB</button>
+                                </div>
+                            </form>
                         </div>
                         <!-- /.card-body -->
                         <!-- <div class="card-footer">
@@ -69,26 +83,25 @@
 </div>
 
 <div class="modal fade" id="modal">
-      <div class="modal-dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header bg-primary">
-            <h4 class="modal-title">Restore Data</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form action="<?php echo base_url().'admin/website/restore_db'?>" method="post" enctype="multipart/form-data">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">Backup Data</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
-              <div class="text-center">
-              <img src="<?= base_url(); ?>assets/dist/img/restore.svg" width="200" alt="halo">
-                <h4 class="mb-4">Apakah anda yakin untuk merubah database?</h4>
-              </div>
+                <div class="text-center">
+                    <img src="<?= base_url(); ?>assets/dist/img/restore.svg" width="200" alt="halo">
+                    <h4 class="mb-4">Apakah anda ingin mengunduh database?</h4>
+                </div>
             </div>
             <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-              <button type="submit" class="btn btn-danger"><i class="fas fa-file-upload"></i> Iya</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                <a href="<?= base_url('admin/website/backup_db'); ?>" class="btn btn-danger"><i
+                        class="fas fa-file-upload"></i> Iya</a>
             </div>
-          </form>
         </div>
-      </div>
     </div>
+</div>

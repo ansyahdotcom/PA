@@ -34,19 +34,19 @@ class Materi extends CI_Controller
         $ID_MT = htmlspecialchars($this->input->post('id_materi'));
         $NM_SUB = htmlspecialchars($this->input->post('nama'));
         $DETAIL_SUB = htmlspecialchars($this->input->post('detail'));
-        $FILE_SUB = htmlspecialchars($this->input->post('link'));
+        $FILE_SUB = $this->input->post('link');
         $ICON_SUB = htmlspecialchars($this->input->post('icon'));
-        
+
         $data = array(
             'NM_SUB' => $NM_SUB,
             'DETAIL_SUB' => $DETAIL_SUB,
-            'FILE_SUB' => $FILE_SUB, 
-            'ICON_SUB' => $ICON_SUB, 
-            'ID_MT' => $ID_MT 
+            'FILE_SUB' => $FILE_SUB,
+            'ICON_SUB' => $ICON_SUB,
+            'ID_MT' => $ID_MT
         );
         $this->m_materi->create($data, 'materi_sub');
         $this->session->set_flashdata('message', 'dataSuccess');
-    
+
         redirect("admin/materi/materikelas/$id");
     }
 
@@ -56,67 +56,67 @@ class Materi extends CI_Controller
         $ID_SUB = htmlspecialchars($this->input->post('id_sub'));
         $ID_MT = htmlspecialchars($this->input->post('id_materi'));
         $NM_SUB = htmlspecialchars($this->input->post('nama'));
-        $FILE_SUB = htmlspecialchars($this->input->post('link'));
+        $FILE_SUB = $this->input->post('link');
         $ICON_SUB = htmlspecialchars($this->input->post('icon'));
-        
-        $where= array(
+
+        $where = array(
             'ID_SUB' => $ID_SUB
         );
 
         $data = array(
             'NM_SUB' => $NM_SUB,
-            'FILE_SUB' => $FILE_SUB, 
-            'ICON_SUB' => $ICON_SUB, 
-            'ID_MT' => $ID_MT 
+            'FILE_SUB' => $FILE_SUB,
+            'ICON_SUB' => $ICON_SUB,
+            'ID_MT' => $ID_MT
         );
 
         $this->m_materi->update_($where, $data, 'materi_sub');
         $this->session->set_flashdata('message', 'edit');
-    
+
         redirect("admin/materi/materikelas/$id");
     }
 
     // CREATE FILE MATERI
-    public function upload_file() 
+    public function upload_file()
     {
         $id = htmlspecialchars($this->input->post('id_kelas'));
         $ID_MT = htmlspecialchars($this->input->post('id_materi'));
         $NM_SUB = htmlspecialchars($this->input->post('nama'));
         $ICON_SUB = htmlspecialchars($this->input->post('jenis'));
         $upload = $_FILES['file']['name'];
-            if ($upload) {
-                $config['upload_path'] = './assets/dist/materi/';
-                $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
-                $config['max_size'] = 5000;
-                $config['overwrite'] = TRUE;
-                // $config['max_width'] = 1500;
-                // $config['max_height'] = 1500;
+        if ($upload) {
+            $config['upload_path'] = './assets/dist/materi/';
+            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
+            $config['max_size'] = 5000;
+            $config['overwrite'] = TRUE;
+            // $config['max_width'] = 1500;
+            // $config['max_height'] = 1500;
 
-                $this->upload->initialize($config);
+            $this->upload->initialize($config);
 
-                if ($this->upload->do_upload('file')) {
-                    $new = $this->upload->data('file_name');
-                    $this->db->set('FILE_SUB', $new);
-                } else {
-                    $this->session->set_flashdata('message', 'gagal_upload');
-                    redirect("admin/materi/materikelas/$id");
-                }
+            if ($this->upload->do_upload('file')) {
+                $new = $this->upload->data('file_name');
+                $this->db->set('FILE_SUB', $new);
+            } else {
+                $this->session->set_flashdata('message', 'gagal_upload');
+                redirect("admin/materi/materikelas/$id");
             }
+        }
 
         $data = array(
             'NM_SUB' => $NM_SUB,
-            'ICON_SUB' => $ICON_SUB, 
+            'ICON_SUB' => $ICON_SUB,
             // 'FILE_SUB' => $FILE_SUB, 
-            'ID_MT' => $ID_MT 
+            'ID_MT' => $ID_MT
         );
-		$this->m_materi->upload_($data, 'materi_sub');
+        $this->m_materi->upload_($data, 'materi_sub');
         $this->session->set_flashdata('message', 'dataSuccess');
 
         redirect("admin/materi/materikelas/$id");
     }
 
     // UPDATE FILE MATERI
-    public function update_file() 
+    public function update_file()
     {
         $id = htmlspecialchars($this->input->post('id_kelas'));
         $ID_SUB = htmlspecialchars($this->input->post('id_sub'));
@@ -124,41 +124,42 @@ class Materi extends CI_Controller
         $ICON_SUB = htmlspecialchars($this->input->post('jenis'));
         $upload = $_FILES['file']['name'];
         if ($upload) {
-                $config['upload_path'] = './assets/dist/materi/';
-                $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
-                $config['max_size'] = 5000;
-                // $config['max_width'] = 1500;
-                // $config['max_height'] = 1500;
-                
-                $this->upload->initialize($config);
-                
-                if ($this->upload->do_upload('file')) {
-                    $new = $this->upload->data('file_name');
-                    $this->db->set('FILE_SUB', $new);
-                    $get = $this->db->get_where('materi_sub', ['ID_SUB' => $ID_SUB])->row();
-                    unlink(FCPATH. 'assets/dist/materi/' .$get->FILE_SUB);
-                } else {
-                    $this->session->set_flashdata('message', 'gagal_upload');
-                    redirect("admin/materi/materikelas/$id");
-                }
-            }
+            $config['upload_path'] = './assets/dist/materi/';
+            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
+            $config['max_size'] = 5000;
+            // $config['max_width'] = 1500;
+            // $config['max_height'] = 1500;
 
-            $data = array(
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $new = $this->upload->data('file_name');
+                $this->db->set('FILE_SUB', $new);
+                $get = $this->db->get_where('materi_sub', ['ID_SUB' => $ID_SUB])->row();
+                unlink(FCPATH . 'assets/dist/materi/' . $get->FILE_SUB);
+            } else {
+                $this->session->set_flashdata('message', 'gagal_upload');
+                redirect("admin/materi/materikelas/$id");
+            }
+        }
+
+        $data = array(
             'NM_SUB' => $NM_SUB,
-            'ICON_SUB' => $ICON_SUB, 
+            'ICON_SUB' => $ICON_SUB,
             // 'FILE_SUB' => $FILE_SUB,  
         );
-        
+
         $where = array(
             'ID_SUB' => $ID_SUB
         );
-		$this->m_materi->update_($where, $data, 'materi_sub');
+        $this->m_materi->update_($where, $data, 'materi_sub');
         $this->session->set_flashdata('message', 'dataSuccess');
-        
+
         redirect("admin/materi/materikelas/$id");
     }
-    
-    public function upload_tugas(){
+
+    public function upload_tugas()
+    {
         $id = htmlspecialchars($this->input->post('id_kelas'));
         $ID_TG = $this->m_materi->selectMaxID_TUGAS();
         if ($ID_TG == NULL) {
@@ -168,48 +169,48 @@ class Materi extends CI_Controller
             $IDTG = $noTG + 1;
             $ID_TG = 'TG' . sprintf("%05s", $IDTG);
         }
-        
+
         $ID_MT = htmlspecialchars($this->input->post('id_materi'));
         $NM_TG = htmlspecialchars($this->input->post('nama'));
         $ICON_TG = htmlspecialchars($this->input->post('jenis'));
         $DETAIL_TG = $this->input->post('deskripsi');
         $DEADLINE = htmlspecialchars($this->input->post('deadline'));
         $upload = $_FILES['file']['name'];
-            if ($upload) {
-                $config['upload_path'] = './assets/dist/tugas/';
-                $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
-                $config['max_size'] = 5000;
-                $config['overwrite'] = TRUE;
-                // $config['max_width'] = 1500;
-                // $config['max_height'] = 1500;
-                
-                $this->upload->initialize($config);
-                
-                if ($this->upload->do_upload('file')) {
-                    $new = $this->upload->data('file_name');
-                    $this->db->set('FILE_TG', $new);
-                } else {
-                    $this->session->set_flashdata('message', 'gagal_upload');
-                    redirect("admin/materi/materikelas/$id");
-                }
-            }
+        if ($upload) {
+            $config['upload_path'] = './assets/dist/tugas/';
+            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
+            $config['max_size'] = 5000;
+            $config['overwrite'] = TRUE;
+            // $config['max_width'] = 1500;
+            // $config['max_height'] = 1500;
 
-            $data = array(
-                'ID_TG' => $ID_TG,
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $new = $this->upload->data('file_name');
+                $this->db->set('FILE_TG', $new);
+            } else {
+                $this->session->set_flashdata('message', 'gagal_upload');
+                redirect("admin/materi/materikelas/$id");
+            }
+        }
+
+        $data = array(
+            'ID_TG' => $ID_TG,
             'NM_TG' => $NM_TG,
             'DETAIL_TG' => $DETAIL_TG,
             'DEADLINE' => $DEADLINE,
-            'ICON_TG' => $ICON_TG, 
+            'ICON_TG' => $ICON_TG,
             // 'FILE_TG' => $FILE_TG, 
-            'ID_MT' => $ID_MT 
+            'ID_MT' => $ID_MT
         );
-		$this->m_materi->upload_($data, 'tugas');
+        $this->m_materi->upload_($data, 'tugas');
         $this->session->set_flashdata('message', 'dataSuccess');
         $id = $this->input->post('id_kelas');
         redirect("admin/materi/materikelas/$id");
     }
 
-    public function update_tugas() 
+    public function update_tugas()
     {
         $id = htmlspecialchars($this->input->post('id_kelas'));
         $ID_TG = htmlspecialchars($this->input->post('id_tg'));
@@ -219,49 +220,50 @@ class Materi extends CI_Controller
         $DETAIL_TG = $this->input->post('deskripsi');
         $DEADLINE = htmlspecialchars($this->input->post('deadline'));
         $upload = $_FILES['file']['name'];
-            if ($upload) {
-                $config['upload_path'] = './assets/dist/materi/';
-                $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
-                $config['max_size'] = 5000;
-                // $config['max_width'] = 1500;
-                // $config['max_height'] = 1500;
+        if ($upload) {
+            $config['upload_path'] = './assets/dist/materi/';
+            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx';
+            $config['max_size'] = 5000;
+            // $config['max_width'] = 1500;
+            // $config['max_height'] = 1500;
 
-                $this->upload->initialize($config);
+            $this->upload->initialize($config);
 
-                if ($this->upload->do_upload('file')) {
-                    $new = $this->upload->data('file_name');
-                    $this->db->set('FILE_TG', $new);
-                    $get = $this->db->get_where('tugas', ['ID_TG' => $ID_TG])->row();
-                    unlink(FCPATH. 'assets/dist/tugas/' .$get->FILE_TG);
-                } else {
-                    $this->session->set_flashdata('message', 'gagal_upload');
-                    redirect("admin/materi/materikelas/$id");
-                }
+            if ($this->upload->do_upload('file')) {
+                $new = $this->upload->data('file_name');
+                $this->db->set('FILE_TG', $new);
+                $get = $this->db->get_where('tugas', ['ID_TG' => $ID_TG])->row();
+                unlink(FCPATH . 'assets/dist/tugas/' . $get->FILE_TG);
+            } else {
+                $this->session->set_flashdata('message', 'gagal_upload');
+                redirect("admin/materi/materikelas/$id");
             }
+        }
 
         $data = array(
             'NM_TG' => $NM_TG,
             'DETAIL_TG' => $DETAIL_TG,
             'DEADLINE' => $DEADLINE,
-            'ICON_TG' => $ICON_TG, 
+            'ICON_TG' => $ICON_TG,
             // 'FILE_TG' => $FILE_TG, 
-            'ID_MT' => $ID_MT   
+            'ID_MT' => $ID_MT
         );
-        
+
         $where = array(
             'ID_TG' => $ID_TG,
         );
-		$this->m_materi->update_($where, $data, 'tugas');
+        $this->m_materi->update_($where, $data, 'tugas');
         $this->session->set_flashdata('message', 'dataSuccess');
         $id = $this->input->post('id_kelas');
         redirect("admin/materi/materikelas/$id");
     }
 
-    function delete_tugas(){
-        $id = $this->input->post('id_kelas',TRUE);
-        $id_tg = $this->input->post('delete_id',TRUE);
+    function delete_tugas()
+    {
+        $id = $this->input->post('id_kelas', TRUE);
+        $id_tg = $this->input->post('delete_id', TRUE);
         $get = $this->db->get_where('tugas', ['ID_TG' => $id_tg])->row();
-        unlink(FCPATH. 'assets/dist/tugas/' .$get->FILE_TG);
+        unlink(FCPATH . 'assets/dist/tugas/' . $get->FILE_TG);
         $where = array(
             'ID_TG' => $id_tg
         );
@@ -269,13 +271,14 @@ class Materi extends CI_Controller
         $this->session->set_flashdata('message', 'dataDelete');
         redirect("admin/materi/materikelas/$id");
     }
-    
+
     // DELETE FILE MATERI
-    function delete_file(){
-        $id = $this->input->post('id_kelas',TRUE);
-        $id_sub = $this->input->post('delete_id',TRUE);
+    function delete_file()
+    {
+        $id = $this->input->post('id_kelas', TRUE);
+        $id_sub = $this->input->post('delete_id', TRUE);
         $get = $this->db->get_where('materi_sub', ['ID_SUB' => $id_sub])->row();
-        unlink(FCPATH. 'assets/dist/materi/' .$get->FILE_SUB);
+        unlink(FCPATH . 'assets/dist/materi/' . $get->FILE_SUB);
         $where = array(
             'ID_SUB' => $id_sub
         );
@@ -285,22 +288,24 @@ class Materi extends CI_Controller
     }
 
     //CREATE
-	function create(){
+    function create()
+    {
         $id = $this->input->post('id_kelas', TRUE);
-		$materi = $this->input->post('nama',TRUE);
-		$detail = $this->input->post('detail',TRUE);
-		$id_kelas = $id;
-        $this->m_materi->create_($materi,$detail,$id_kelas);
+        $materi = $this->input->post('nama', TRUE);
+        $detail = $this->input->post('detail', TRUE);
+        $id_kelas = $id;
+        $this->m_materi->create_($materi, $detail, $id_kelas);
         $this->session->set_flashdata('message', 'dataSuccess');
-		redirect("admin/materi/materikelas/$id");
-	}
-    
-	//UPDATE
-	function update(){
-        $id = $this->input->post('id_kelas',TRUE);
-        $id_mt = $this->input->post('id_edit',TRUE);
-        $nama = $this->input->post('nama',TRUE);
-        $detail = $this->input->post('detail',TRUE);
+        redirect("admin/materi/materikelas/$id");
+    }
+
+    //UPDATE
+    function update()
+    {
+        $id = $this->input->post('id_kelas', TRUE);
+        $id_mt = $this->input->post('id_edit', TRUE);
+        $nama = $this->input->post('nama', TRUE);
+        $detail = $this->input->post('detail', TRUE);
         $data = array(
             'NM_MT' => $nama,
             'DETAIL_MT' => $detail
@@ -308,20 +313,21 @@ class Materi extends CI_Controller
         $where = array(
             'ID_MT' => $id_mt
         );
-		$this->m_materi->update_($where, $data, 'materi');
+        $this->m_materi->update_($where, $data, 'materi');
         $this->session->set_flashdata('message', 'dataUpdate');
-		redirect("admin/materi/materikelas/$id");
-	}
+        redirect("admin/materi/materikelas/$id");
+    }
 
-	// DELETE
-	function delete(){
-        $id = $this->input->post('id_kelas',TRUE);
-        $id_mt = $this->input->post('delete_id',TRUE);
+    // DELETE
+    function delete()
+    {
+        $id = $this->input->post('id_kelas', TRUE);
+        $id_mt = $this->input->post('delete_id', TRUE);
         $where = array(
             'ID_MT' => $id_mt
         );
-		$this->m_materi->delete_($where, 'materi');
-		$this->session->set_flashdata('message', 'dataDelete');
-		redirect("admin/materi/materikelas/$id");
-	}
+        $this->m_materi->delete_($where, 'materi');
+        $this->session->set_flashdata('message', 'dataDelete');
+        redirect("admin/materi/materikelas/$id");
+    }
 }
