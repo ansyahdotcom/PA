@@ -66,10 +66,12 @@ class Profil extends CI_Controller
             $jeniskelamin = htmlspecialchars($this->input->post('jk'));
             $pekerjaan = htmlspecialchars($this->input->post('pekerjaan'));
             $agama = htmlspecialchars($this->input->post('agama'));
+            $HAPUS_FOTO = htmlspecialchars($this->input->post('HAPUS_FOTO'));
+            $new_image = $HAPUS_FOTO;
             // $kota = htmlspecialchars($this->input->post('kotaasal'));
 
             /** Proses Edit Gambar */
-            $upload_image = $_FILES['image']['name'];
+            $upload_image = $_FILES['FTO_PS']['name'];
 
             if ($upload_image) {
                 $config['allowed_types'] = 'gif|jpg|jpeg|png';
@@ -78,8 +80,8 @@ class Profil extends CI_Controller
 
                 $this->upload->initialize($config);
 
-                if ($this->upload->do_upload('image')) {
-                    $old_image = $data['peserta']['FTO_PS'];
+                if ($this->upload->do_upload('FTO_PS')) {
+                    $old_image = $HAPUS_FOTO;
                     if ($old_image != 'default.jpg') {
                         unlink(FCPATH . 'assets/dist/img/peserta/' . $old_image);
                     }
@@ -98,6 +100,7 @@ class Profil extends CI_Controller
                 'JK_PS' => $jeniskelamin,
                 'PEKERJAAN' => $pekerjaan,
                 'AGAMA_PS' => $agama,
+                'FTO_PS' => $new_image
                 // 'KOTA' => $kota,
             ];
 
