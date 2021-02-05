@@ -409,10 +409,23 @@ class Webinar extends CI_Controller
 
         $data['judul'] = "List Peserta";
         $data['list_ps'] = $this->m_webinar->list_ps($JUDUL_WEBINAR)->result();
+        $data['list_ps2'] = $this->m_webinar->list_ps2($JUDUL_WEBINAR)->result();
+        $data['JUDUL_WEBINAR'] = $JUDUL_WEBINAR;
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
         $this->load->view("admin/webinar/v_list_ps", $data);
         $this->load->view("admin/template_adm/v_footer");
+    }
+
+    public function hapus_peserta()
+    {
+        $ID_PS = htmlspecialchars($this->input->post('ID_PS'));
+        $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
+        $JUDUL_WEBINAR = htmlspecialchars($this->input->post('JUDUL_WEBINAR'));
+        
+        $this->m_webinar->delete_ps($ID_PS, $ID_WEBINAR);
+        $this->session->set_flashdata('message', 'hapus');
+        redirect('admin/Webinar/listpeserta/'. $JUDUL_WEBINAR);
     }
 }
