@@ -86,10 +86,12 @@
 								</datalist>
 								<br>
 								<label for="PLATFORM">Platform</label>
-								<select name="PLATFORM" id="PLATFORM" class="form-control" required>
+								<select name="PLATFORM" id="PLATFORM" class="form-control" required value="<?= $wbnr->PLATFORM; ?>">
 									<option value="">--Pilih--</option>
-									<option value="ZOOM">ZOOM</option>
-									<option value="GOOGLE MEET">GOOGLE MEET</option>
+									<?php foreach ($platform as $plt) { ?>
+										<option value="<?= $plt->NM_PLT; ?>" <?= $plt->NM_PLT == $wbnr->PLATFORM ? "selected" : null ?>>
+											<?= $plt->NM_PLT; ?></option>
+									<?php } ?>
 								</select>
 								<br>
 								<label for="LINK_ZOOM">Link Meeting</label>

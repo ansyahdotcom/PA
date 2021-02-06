@@ -92,186 +92,62 @@ class Webinar extends CI_Controller
                 $PEKERJAAN = $this->input->post('PEKERJAAN');
                 $AGAMA_PS = htmlspecialchars($this->input->post('AGAMA_PS'));
                 $ALASAN = htmlspecialchars($this->input->post('ALASAN'));
-                $DATE_PS_WBNR = date("h:i:s");
-                // untuk upload foto webinar
-                $config['upload_path']          = './assets/dist/img/peserta/';
-                $config['allowed_types']        = 'jpg|jpeg|JPG';
-                $config['max_size']             = 0;
-        
-                $this->load->library('upload');
+                $DATE_PS_WBNR = date("Y-m-d H:i:s");
+                $new_image = $HAPUS_FOTO;
+
+                /** Proses Edit Gambar */
+            $upload_image = $_FILES['FTO_PS']['name'];
+
+            if ($upload_image) {
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['max_size'] = '2048';
+                $config['upload_path'] = './assets/dist/img/peserta/';
+                $config['encrypt_name']; TRUE;
+
                 $this->upload->initialize($config);
-        
-                if ($FTO_PS != $HAPUS_FOTO){
-                    if ($this->upload->do_upload('FTO_PS')) {
-                        $upload_data = $this->upload->data();
-                        unlink(FCPATH. './assets/dist/img/peserta/'. $HAPUS_FOTO);
-                        $config['image_library'] = 'gd2';
-                        $config['quality'] = '100%';
-                        $config['width'] = 1000;
-                        $config['height'] = 1000;
-                        $config['source_image'] = './assets/dist/img/peserta/' . $upload_data['file_name'];
-                        $config['create_thumb'] = FALSE;
-                        $config['maintain_ratio'] = FALSE;
-                        $this->load->library('image_lib', $config);
-                        $this->image_lib->resize();
-        
-                        $where = array('ID_PS' => $ID_PS);
-        
-                        $data = array(
-                            'NM_PS' => $NM_PS,
-                            'HP_PS' => $HP_PS,
-                            'ALMT_PS' => $ALMT_PS,
-                            'FTO_PS' => $upload_data['file_name'],
-                            'JK_PS' => $JK_PS,
-                            'PEKERJAAN' => $PEKERJAAN,
-                            'AGAMA_PS' => $AGAMA_PS
-                        );
-                        $data2 = array(
-                            'ID_WEBINAR' => $ID_WEBINAR,
-                            'ID_PS' => $ID_PS,
-                            'ALASAN' => $ALASAN,
-                            'DATE_PS_WBNR' => $DATE_PS_WBNR
-                        );
-        
-                        $this->m_webinar->update($where, $data, 'peserta');
-                        $this->m_webinar->insert($data2, 'peserta_wbnr');
-        
-                        $this->session->set_flashdata('message', 'berhasil_daftar');
-                        redirect('peserta/webinar');
-                    } 
-                    else {
-                        $error = array('error' => $this->upload->display_errors());
-                        $this->load->view('peserta/webinar/v_webinar', $error);
+
+                if ($this->upload->do_upload('FTO_PS')) {
+                    $old_image = $HAPUS_FOTO;
+                    if ($old_image != 'default.jpg') {
+                        unlink(FCPATH . 'assets/dist/img/peserta/' . $old_image);
                     }
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('FTO_PS', $new_image);
                 } else {
-                    $where = array('ID_PS' => $ID_PS);
-        
-                    $data = array(
-                        'NM_PS' => $NM_PS,
-                        'HP_PS' => $HP_PS,
-                        'ALMT_PS' => $ALMT_PS,
-                        // 'FTO_PS' => $upload_data['file_name'],
-                        'JK_PS' => $JK_PS,
-                        'PEKERJAAN' => $PEKERJAAN,
-                        'AGAMA_PS' => $AGAMA_PS
-                    );
-    
-                    $data2 = array(
-                        'ID_WEBINAR' => $ID_WEBINAR,
-                        'ID_PS' => $ID_PS,
-                        'ALASAN' => $ALASAN,
-                        'DATE_PS_WBNR' => $DATE_PS_WBNR
-                    );
-    
-                    $this->m_webinar->update($where, $data, 'peserta');
-                    $this->m_webinar->insert($data2, 'peserta_wbnr');
-    
-                    // $this->session->set_flashdata('message', 'edit');
-                    redirect('peserta/webinar');
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect('peserta/webinar/daftar/'. $JUDUL_WEBINAR);
                 }
             }
-        } else {
-            redirect('webinar/mywebinar');
+                
+            $where = array('ID_PS' => $ID_PS);
+
+            $data = array(
+                'NM_PS' => $NM_PS,
+                'HP_PS' => $HP_PS,
+                'ALMT_PS' => $ALMT_PS,
+                'FTO_PS' => $new_image,
+                'JK_PS' => $JK_PS,
+                'PEKERJAAN' => $PEKERJAAN,
+                'AGAMA_PS' => $AGAMA_PS
+            );
+            $data2 = array(
+                'ID_WEBINAR' => $ID_WEBINAR,
+                'ID_PS' => $ID_PS,
+                'ALASAN' => $ALASAN,
+                'DATE_PS_WBNR' => $DATE_PS_WBNR
+            );
+
+            $this->m_webinar->update($where, $data, 'peserta');
+            $this->m_webinar->insert($data2, 'peserta_wbnr');
+
+            $this->session->set_flashdata('message', 'berhasil_daftar');
+            redirect('peserta/webinar/mywebinar');
+        
+            }
+        }  else {
+            redirect('peserta/webinar/mywebinar');
         }
     }
-
-    // public function daftar_webinar()
-    // {
-    //     $email = $this->session->userdata('email');
-    // 	$data['peserta'] = $this->db->get_where('peserta', [
-    //         'EMAIL_PS' => $email
-    //         ])->row_array();
-    //     $data['tittle'] = "Form Daftar Webinar";
-
-    //     $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
-    //     $ID_PS = htmlspecialchars($this->input->post('ID_PS'));
-    //     $FTO_PS = htmlspecialchars($this->input->post('FTO_PS'));
-    //     $HAPUS_FOTO = $this->input->post('HAPUS_FOTO');
-    //     $NM_PS = htmlspecialchars($this->input->post('NM_PS'));
-    //     $HP_PS = htmlspecialchars($this->input->post('HP_PS'));
-    //     $ALMT_PS = $this->input->post('ALMT_PS');
-    //     $JK_PS = htmlspecialchars($this->input->post('JK_PS'));
-    //     $PEKERJAAN = $this->input->post('PEKERJAAN');
-    //     $AGAMA_PS = htmlspecialchars($this->input->post('AGAMA_PS'));
-    //     $ALASAN = htmlspecialchars($this->input->post('ALASAN'));
-    //     $DATE_PS_WBNR = date("h:i:s");
-    //     // untuk upload foto webinar
-    //     $config['upload_path']          = './assets/dist/img/peserta/';
-    //     $config['allowed_types']        = 'jpg|jpeg|JPG';
-    //     $config['max_size']             = 0;
-
-    //     $this->load->library('upload');
-    //     $this->upload->initialize($config);
-
-    //     if ($FTO_PS != $HAPUS_FOTO){
-    //         if ($this->upload->do_upload('FTO_PS')) {
-    //             $upload_data = $this->upload->data();
-    //             unlink(FCPATH. './assets/dist/img/peserta/'. $HAPUS_FOTO);
-    //             $config['image_library'] = 'gd2';
-    //             $config['quality'] = '100%';
-    //             $config['width'] = 1000;
-    //             $config['height'] = 1000;
-    //             $config['source_image'] = './assets/dist/img/peserta/' . $upload_data['file_name'];
-    //             $config['create_thumb'] = FALSE;
-    //             $config['maintain_ratio'] = FALSE;
-    //             $this->load->library('image_lib', $config);
-    //             $this->image_lib->resize();
-
-    //             $where = array('ID_PS' => $ID_PS);
-
-    //             $data = array(
-    //                 'NM_PS' => $NM_PS,
-    //                 'HP_PS' => $HP_PS,
-    //                 'ALMT_PS' => $ALMT_PS,
-    //                 'FTO_PS' => $upload_data['file_name'],
-    //                 'JK_PS' => $JK_PS,
-    //                 'PEKERJAAN' => $PEKERJAAN,
-    //                 'AGAMA_PS' => $AGAMA_PS
-    //             );
-    //             $data2 = array(
-    //                 'ID_WEBINAR' => $ID_WEBINAR,
-    //                 'ID_PS' => $ID_PS,
-    //                 'ALASAN' => $ALASAN,
-    //                 'DATE_PS_WBNR' => $DATE_PS_WBNR
-    //             );
-
-    //             $this->m_webinar->update($where, $data, 'peserta');
-    //             $this->m_webinar->insert($data2, 'peserta_wbnr');
-
-    //             $this->session->set_flashdata('message', 'berhasil_daftar');
-    //             redirect('peserta/webinar');
-    //         } 
-    //         else {
-    //             $error = array('error' => $this->upload->display_errors());
-    //             $this->load->view('peserta/webinar/v_webinar', $error);
-    //         }
-    //     } else {
-    //         $where = array('ID_PS' => $ID_PS);
-
-    //             $data = array(
-    //                 'NM_PS' => $NM_PS,
-    //                 'HP_PS' => $HP_PS,
-    //                 'ALMT_PS' => $ALMT_PS,
-    //                 // 'FTO_PS' => $upload_data['file_name'],
-    //                 'JK_PS' => $JK_PS,
-    //                 'PEKERJAAN' => $PEKERJAAN,
-    //                 'AGAMA_PS' => $AGAMA_PS
-    //             );
-
-    //             $data2 = array(
-    //                 'ID_WEBINAR' => $ID_WEBINAR,
-    //                 'ID_PS' => $ID_PS,
-    //                 'ALASAN' => $ALASAN,
-    //                 'DATE_PS_WBNR' => $DATE_PS_WBNR
-    //             );
-
-    //             $this->m_webinar->update($where, $data, 'peserta');
-    //             $this->m_webinar->insert($data2, 'peserta_wbnr');
-
-    //             // $this->session->set_flashdata('message', 'edit');
-    //             redirect('peserta/webinar');
-    //     }
-    // }
 
     public function mywebinar()
     {

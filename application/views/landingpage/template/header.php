@@ -53,7 +53,7 @@
 		<header class="header_area navbar_fixed">
 			<div class="main-menu">
 				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e8e7e7;">
-					<a class="navbar-brand" href="<?=base_url('home');?>"><img
+					<a class="navbar-brand" href="<?=base_url();?>"><img
 							src="<?= base_url(); ?>assets/dist/img/logo.png" width="130" alt="logo"></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 						aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,7 @@
 							</li>
 							<?php endforeach;?>
 							<li class="nav-item">
-								<a class="nav-link" href="#Blog">Blog</a>
+								<a class="nav-link" href="<?= base_url()?>#Blog">Blog</a>
 							</li>
 						</ul>
 						<div class="mr-auto"></div>

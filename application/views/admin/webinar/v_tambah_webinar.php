@@ -80,9 +80,14 @@
                             <label for="PLATFORM">Platform</label>
                             <select name="PLATFORM" id="PLATFORM" class="form-control" required>
                                 <option value="">--Pilih--</option>
-                                <option value="ZOOM">ZOOM</option>
-                                <option value="GOOGLE MEET">GOOGLE MEET</option>
+                                <?php 
+                                foreach ($platform as $plt) { ?>
+                                <option value="<?= $plt->NM_PLT; ?>"><?= $plt->NM_PLT; ?></option>
+                                <?php } ?>
                             </select>
+                            <br>
+                            <label for="KUOTA_WEB">Kuota Peserta</label>
+                            <input type="number" name="KUOTA_WEB" class="form-control" placeholder=" Contoh : 100 ">
                             <br>
                             <label for="LINK_ZOOM">Link Meeting</label>
                             <textarea name="LINK_ZOOM" id="LINK_ZOOM" class="textarea" class="form-control" cols="30" rows="5" placeholder="Isikan link meeting disini" required autocomplete="off"></textarea>

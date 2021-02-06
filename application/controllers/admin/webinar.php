@@ -55,6 +55,8 @@ class Webinar extends CI_Controller
             $data['ID_WEBINAR'] = 'WB' . sprintf("%05s", $IDW);
         }
 
+        $data['platform'] = $this->m_webinar->platform()->result();
+
         // form validation
         $this->form_validation->set_rules('JUDUL_WEBINAR', 'Judul', 'required|trim', [
             'required' => 'Kolom judul harus diisi!'
@@ -79,6 +81,7 @@ class Webinar extends CI_Controller
             $KONTEN_WEB = $this->input->post('KONTEN_WEB');
             $HARGA = htmlspecialchars($this->input->post('HARGA'));
             $PLATFORM = htmlspecialchars($this->input->post('PLATFORM'));
+            $KUOTA_WEB = htmlspecialchars($this->input->post('KUOTA_WEB'));
             $LINK_ZOOM = $this->input->post('LINK_ZOOM');
             $TGL_BUKA = htmlspecialchars($this->input->post('TGL_BUKA'));
             $TGL_TUTUP = htmlspecialchars($this->input->post('TGL_TUTUP'));
@@ -88,7 +91,7 @@ class Webinar extends CI_Controller
             $config['upload_path']          = './assets/fotowebinar/';
             $config['allowed_types']        = 'jpg|jpeg|JPG';
             $config['max_size']             = 0;
-            // $config['encrypt_name']         = true;
+            $config['encrypt_name']         = true;
 
             $this->load->library('upload');
             $this->upload->initialize($config);
@@ -114,6 +117,7 @@ class Webinar extends CI_Controller
                     'FOTO_WEBINAR' => $upload_data['file_name'],
                     'HARGA' => $HARGA,
                     'PLATFORM' => $PLATFORM,
+                    'KUOTA_WEB' => $KUOTA_WEB,
                     'LINK_ZOOM' => $LINK_ZOOM,
                     'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
                     'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
@@ -286,6 +290,7 @@ class Webinar extends CI_Controller
         $where = array('JUDUL_WEBINAR' => $JUDUL_WEBINAR);
 
         $data['webinar'] = $this->m_webinar->tampil_edit($where, 'webinar')->result();
+        $data['platform'] = $this->m_webinar->platform()->result();
         // echo "askgfiu";
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
@@ -315,7 +320,6 @@ class Webinar extends CI_Controller
         $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
         $TGL_POSTWEB = date('Y-m-d');
         // untuk upload foto webinar
-        $upload_image = $_FILES['FOTO_WEBINAR']['name'];
 
         $upload_image = $_FILES['FOTO_WEBINAR']['name'];
         if ($upload_image) {
@@ -384,7 +388,7 @@ class Webinar extends CI_Controller
         ])->row_array();
         date_default_timezone_set('Asia/Jakarta');
 
-        $data['judul'] = "Webinar";
+        $data['judul'] = "Preneur Academy | Webinar";
         $data['footer'] = $this->m_medsos->get_data();
         $data['header'] = $this->m_navbar->get_navbar();
         $data['kebijakan'] = $this->m_kebijakan->get_data();
@@ -405,10 +409,23 @@ class Webinar extends CI_Controller
 
         $data['judul'] = "List Peserta";
         $data['list_ps'] = $this->m_webinar->list_ps($JUDUL_WEBINAR)->result();
+        $data['list_ps2'] = $this->m_webinar->list_ps2($JUDUL_WEBINAR)->result();
+        $data['JUDUL_WEBINAR'] = $JUDUL_WEBINAR;
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);
         $this->load->view("admin/template_adm/v_sidebar", $data);
         $this->load->view("admin/webinar/v_list_ps", $data);
         $this->load->view("admin/template_adm/v_footer");
+    }
+
+    public function hapus_peserta()
+    {
+        $ID_PS = htmlspecialchars($this->input->post('ID_PS'));
+        $ID_WEBINAR = htmlspecialchars($this->input->post('ID_WEBINAR'));
+        $JUDUL_WEBINAR = htmlspecialchars($this->input->post('JUDUL_WEBINAR'));
+        
+        $this->m_webinar->delete_ps($ID_PS, $ID_WEBINAR);
+        $this->session->set_flashdata('message', 'hapus');
+        redirect('admin/Webinar/listpeserta/'. $JUDUL_WEBINAR);
     }
 }

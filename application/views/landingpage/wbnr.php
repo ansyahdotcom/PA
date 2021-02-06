@@ -32,8 +32,7 @@
 						</div>
 						<div class="card-footer">
 							<div class="harga">
-								<h5 class="float-right font-weight-bold"><?= $wbnr->HARGA; ?>
-								</h5>
+								<h5 class="float-right font-weight-bold"><?= $wbnr->HARGA; ?></h5>
 							</div>
 							<!-- <span class="badge bg-warning">Kategori: <?= $wbnr->KTGKLS?></span> -->
 						</div>

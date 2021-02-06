@@ -14,7 +14,7 @@
 							<p class="para text-dark">Oleh : <?= $row->NM_ADM?></p>
 							<h5 class="font-weight-bold"><?= $row->HARGA; ?></h5>
 							<a href="<?= base_url('register')?>" class="btn button primary-button mt-5 float-right"><i
-									class="fas fa-shopping-cart"></i> Beli Webinar</a>
+									class="fas fa-shopping-cart"></i> Daftar Webinar</a>
 						</div>
 					</div>
 				</div>

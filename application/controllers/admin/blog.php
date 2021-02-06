@@ -108,43 +108,51 @@ class Blog extends CI_Controller
             $ID_POST = htmlspecialchars($this->input->post('ID_POST'));
             $ID_ADM = htmlspecialchars($this->input->post('ID_ADM'));
             $JUDUL_POST = htmlspecialchars($this->input->post('JUDUL_POST'));
+            $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
             $ID_CT = htmlspecialchars($this->input->post('ID_CT'));
             $ID_TAGS = $this->input->post('ID_TAGS');
-            $FOTO_POST = htmlspecialchars($this->input->post('FOTO_POST'));
             $KONTEN_POST = $this->input->post('KONTEN_POST');
             $TGL_POST = date('Y-m-d');
             $UPDT_TRAKHIR = date('Y-m-d');
             // untuk upload foto blog
-            $config['upload_path']          = './assets/fotoblog/';
-            $config['allowed_types']        = 'jpg|jpeg|JPG';
-            $config['max_size']             = 0;
-            // $config['encrypt_name']         = true;
+            $upload_image = $_FILES['FOTO_POST']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'jpg|jpeg';
+                $config['max_size'] = '0';
+                $config['upload_path']  = './assets/fotoblog/fotowebi/';
+                // $config['encrypt_name'] = TRUE;
 
-            $this->load->library('upload');
-            $this->upload->initialize($config);
+                $this->upload->initialize($config);
 
-            if ($this->upload->do_upload('FOTO_POST')) {
-                $upload_data = $this->upload->data();
-                //Compress Image buat foto web
-                $config['image_library'] = 'gd2';
-                $config['width'] = 1600;
-                $config['height'] = 900;
-                $config['source_image'] = './assets/fotoblog/' . $upload_data['file_name'];
-                $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = FALSE;
-                $config['quality'] = '100%';
-                $config['width'] = 600;
-                $config['height'] = 400;
-                $config['new_image'] = './assets/fotoblog/fotoweb/' . $upload_data['file_name'];
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
+                if (!$this->upload->do_upload('FOTO_POST')) {
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect("admin/webinar");
+                } else {
+                    $upload_data = $this->upload->data();
+                    //Compress Image buat foto web
+                    $config['image_library'] = 'gd2';
+                    $config['width'] = 1600;
+                    $config['height'] = 900;
+                    $config['source_image'] = './assets/fotoblog/fotowebi/' . $upload_data['file_name'];
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = FALSE;
+                    // $config['quality'] = '100%';
+                    // $config['width'] = 600;
+                    // $config['height'] = 400;
+                    // $config['new_image'] = './assets/fotoblog/fotowebi/' . $upload_data['file_name'];
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+
+                    $upload_image = $this->upload->data('file_name');
+                }
+            } 
 
                 $data = array(
                     'ID_POST' => $ID_POST,
                     'ID_ADM' => $ID_ADM,
                     'JUDUL_POST' => str_replace(' ', '-', $JUDUL_POST),
                     'ID_CT' => $ID_CT,
-                    'FOTO_POST' => $upload_data['file_name'],
+                    'FOTO_POST' => $upload_image,
                     'KONTEN_POST' => $KONTEN_POST,
                     'TGL_POST' => $TGL_POST,
                     'UPDT_TRAKHIR' => $UPDT_TRAKHIR
@@ -162,10 +170,6 @@ class Blog extends CI_Controller
 
                 $this->session->set_flashdata('message', 'save');
                 redirect('admin/blog');
-            } else {
-                $error = array('error' => $this->upload->display_errors());
-                $this->load->view('admin/blog', $error);
-            }
         }
     }
 

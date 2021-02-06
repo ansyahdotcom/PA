@@ -69,7 +69,7 @@
 											</div>
 											<div class="col-md-7">
 												<div class="form-group">
-													<label class="control-label">Upload File</label>
+													<label class="control-label">Upload Foto</label>
 													<div class="preview-zone hidden">
 														<div class="box box-solid">
 															<div class="box-header with-border">

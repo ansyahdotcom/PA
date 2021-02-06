@@ -15,14 +15,17 @@
                         <div class="col-md-3 mb-md-0 mb-3">
                         <h5 class="text-uppercase">Menu</h5>
                         <ul class="list-unstyled">
+                            <li>
                             <?php foreach ($header as $h) :
                             $name = $h['NM_NV'];
                             $link = $h['LINK_NV'];
                             ?>
-                            <li>
-                            <a href="<?= $link;?>"><?= $name;?></a>
+                                <li>
+                                    <a href="<?= $link;?>"><?= $name;?></a>
+                                </li>
+                                <?php endforeach;?>
+                                <a href="#Blog">Blog</a>
                             </li>
-                            <?php endforeach;?>
                         </ul>
                         </div>
                         <div class="col-md-3 mb-md-0 mb-3">
@@ -45,7 +48,7 @@
                                 $name = $k['NM_KB'];
                                 $link = $k['LINK_KB'];
                                 ?>
-                                <a class="mt-4 mb-4 mr-2 ml-2" href="<?= $link;?>" target="_blank"><?= $name;?></a>
+                                <a class="mt-4 mb-4 mr-2 ml-2" href="<?= base_url('legal/p/'.$link);?>" target="_blank"><?= $name;?></a>
                             <?php endforeach;?>
                     <p class="para mt-4">
                         Copyright ©<?= date('Y')?> All rights reserved by

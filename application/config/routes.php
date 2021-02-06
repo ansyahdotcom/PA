@@ -51,7 +51,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 $route['default_controller'] = 'index';
 // $route['default_controller'] = 'welcome';
-$route['404_override'] = '';
+$route['404_override'] = 'index/notfound';
 $route['block'] = 'index/block';
 $route['translate_uri_dashes'] = FALSE;
 //$route['admin'] = 'admin/overview';
@@ -63,6 +63,8 @@ $route['translate_uri_dashes'] = FALSE;
  */
 $route['home'] = 'index';
 $route['auth'] = 'peserta/auth/login';
+$route['facebook'] = 'peserta/auth/facebook_auth';
+$route['google'] = 'peserta/auth/google_auth';
 $route['register'] = 'peserta/auth/register';
 $route['forgot'] = 'peserta/auth/lupapsw';
 $route['repass'] = 'peserta/auth/ubahpassword';
@@ -72,10 +74,11 @@ $route['webinar'] = 'index/webinar';
 $route['blog'] = 'index/post';
 $route['peserta/faq'] = 'peserta/bantuan/faq';
 $route['peserta/ketentuan'] = 'peserta/bantuan/ketentuan';
-$route [ 'class/detail/(:num)' ]  =  'index/dt_kls/$1' ;
-$route [ 'webinar/detail/(:any)' ]  =  'index/dt_webinar/$1' ;
-$route [ 'blog/detail/(:any)' ]  =  'index/lihat_post/$1' ;
-$route [ 'mywebinar' ]  =  'peserta/webinar/mywebinar' ;
+$route['class/detail/(:num)']  =  'index/dt_kls/$1';
+$route['legal/p/(:any)']  =  'legal/index/$1';
+$route['webinar/detail/(:any)']  =  'index/dt_webinar/$1';
+$route['blog/detail/(:any)']  =  'index/lihat_post/$1';
+$route['mywebinar']  =  'peserta/webinar/mywebinar';
 
 /**
  * ==================================================================
