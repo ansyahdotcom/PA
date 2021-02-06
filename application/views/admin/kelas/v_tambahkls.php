@@ -161,8 +161,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="harga">Harga</label>
-                                            <input type="number" class="form-control" name="harga" placeholder="harga" value="<?= set_value('harga'); ?>" autocomplete="off" required>
-                                            <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
+                                            <input onkeyup="price(this)" type="number" class="form-control" name="harga" id="harga" placeholder="harga" value="<?= set_value('harga'); ?>" autocomplete="off" required>
+                                            <!-- <?= form_error('harga', '<small class="text-danger">', '</small>'); ?> -->
+                                            <small class="text-danger text-bold" id="notif"></small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -181,7 +182,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="email">Deskripsi</label>
-                                            <textarea class="form-control" name="deskripsi" style="weight: 300px" required></textarea>
+                                            <textarea class="form-control" name="deskripsi" style="weight: 300px" required><?= set_value('deskripsi'); ?></textarea>
                                             <?= form_error('deskripsi', '<small class="text-danger">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -189,7 +190,7 @@
                             </div>
                             <div class="card-footer text-right">
                                 <a href="<?= base_url('admin/kelas'); ?>" class="btn btn-default"><i class="fas fa-arrow-circle-left"></i> Kembali</a>
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                                <button type="submit" class="btn btn-primary" id="save-btn"><i class="fas fa-save"></i> Simpan</button>
                             </div>
                         </form>
                     </div>

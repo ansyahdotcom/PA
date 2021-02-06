@@ -67,6 +67,19 @@
 <!-- <script src="<?= base_url(); ?>assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script> -->
 <!-- <script src="<?= base_url(); ?>assets/dist/js/jquery-3.4.1.min.js"></script> -->
 
+<!-- Harga kelas -->
+<script>
+    function price(el) {
+        if (el.value < 10000) {
+            $('#notif').text('Masukkan harga minimal Rp. 10.000 !');
+            $('#save-btn').prop('disabled', true);
+        } else {
+            $('#notif').text('');
+            $('#save-btn').prop('disabled', false);
+        }
+    }
+</script>
+
 <!-- Time picker -->
 <script>
     $(function() {
@@ -155,7 +168,7 @@
             $('.mulai').val("")
             $('.mulai').datetimepicker('minDate', e.date);
         });
-        
+
         $('.penutupan').on("change.datetimepicker", function(e) {
             $('.selesai').val("")
             $('.selesai').datetimepicker('minDate', e.date);

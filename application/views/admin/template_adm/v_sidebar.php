@@ -60,22 +60,28 @@
                             </li>
                         </ul>
                     </li>
-                    
+
                     <li class="nav-header">Pemberitahuan</li>
                     <li class="nav-item">
-                        <a href="<?= base_url('admin/notifikasi'); ?>" class="nav-link">
+                        <a href="<?= base_url('admin/notifikasi'); ?>" class="nav-link
+                            <?php if ($this->uri->segment(2) == "notifikasi") {
+                                echo "active";
+                            } ?>">
                             <i class="nav-icon fas fa-bell"></i>
                             <p>
                                 Pemberitahuan
                                 <span class="badge badge-danger right pemberitahuan"></span>
                             </p>
                         </a>
-                    </li>                
+                    </li>
 
                     <li class="nav-header">Transaksi</li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('admin/transaksi'); ?>" class="nav-link">
+                        <a href="<?= base_url('admin/transaksi'); ?>" class="nav-link
+                            <?php if ($this->uri->segment(2) == "transaksi") {
+                                echo "active";
+                            } ?>">
                             <i class="nav-icon fas fa-receipt"></i>
                             <p>
                                 Transaksi
@@ -118,8 +124,8 @@
                             <li class="nav-item">
                                 <a href="<?= base_url('admin/#'); ?>" class="nav-link 
                                 <?php if ($this->uri->segment(2) == "") {
-                                        echo "active";
-                                    } ?>">
+                                    echo "active";
+                                } ?>">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Pengumpulan Tugas</p>
                                 </a>

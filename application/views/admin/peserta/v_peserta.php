@@ -110,6 +110,11 @@
     $email = $p['EMAIL_PS'];
     $status = $p['ACTIVE'];
     $hp = $p['HP_PS'];
+    $alamat = $p['ALMT_PS'];
+    $jk = $p['JK_PS'];
+    $pekerjaan = $p['PEKERJAAN'];
+    $agama = $p['AGAMA_PS'];
+    $foto = $p['FTO_PS'];
     $date = $p['DATE_CREATE'];
   ?>
 
@@ -125,6 +130,11 @@
           </div>
           <form role="form">
             <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="card overflow-hidden position-relative" style="width: 275px;height: 275px;">
+                  <img src="<?= base_url('assets/dist/img/peserta/' . $foto); ?>" class="img-resposive img-rounded position-absolute shadow" alt="Profile picture" style="width: 375px;left: -75px;right: -75px;">
+                </div>
+              </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
@@ -155,22 +165,65 @@
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <b>Member sejak:</b> <span class="badge-pill bg-primary text-bold"><?= date('d F Y', $date); ?></span>
+                  <div class="form-group">
+                    <label for="pekerjaan">Pekerjaan</label>
+                    <input type="text" class="form-control text-bold" id="pekerjaan" placeholder="Pekerjaan" value="<?= $pekerjaan; ?>" disabled>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">Jenis Kelamin</label>
+                    <div class="form-group clearfix">
+                      <div class="icheck-primary d-inline">
+                        <input type="radio" id="jk1" name="jk1" <?= $jk == "Laki-laki" ? "checked" : "" ?> disabled>
+                        <label for="jk2">
+                          Laki-laki
+                        </label>
+                      </div>
+                      <div class="icheck-primary d-inline ml-5">
+                        <input type="radio" id="jk2" name="jk2" <?= $jk == "Perempuan" ? "checked" : "" ?> disabled>
+                        <label for="jk2">
+                          Perempuan
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="Agama">Agama</label>
+                    <input type="text" class="form-control text-bold" id="agama" placeholder="Agama" value="<?= $agama; ?>" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <textarea class="form-control text-bold" rows="3" placeholder="Alamat" disabled><?= $alamat; ?></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <b>Member sejak:</b> <span class="badge badge-primary text-bold"><?= date('d F Y', $date); ?></span>
                 </div>
                 <div class="col-md-6">
                   <b>Status akun:</b>
                   <?php if ($status == 0) { ?>
-                    <span class="badge-pill bg-danger"><b>Belum Aktivasi</b></span>
+                    <span class="badge bg-danger"><b>Belum Aktivasi</b></span>
                   <?php } elseif ($status == 1) { ?>
-                    <span class="badge-pill bg-success"><b>Sudah Aktif</b></span>
+                    <span class="badge bg-success"><b>Sudah Aktif</b></span>
                   <?php } else { ?>
-                    <span class="badge-pill bg-dark"><b>Terblokir</b></span>
+                    <span class="badge bg-dark"><b>Terblokir</b></span>
                   <?php } ?>
                 </div>
               </div>
             </div>
             <div class="modal-footer justify-content-right">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+              <button type="button" class="btn btn-danger text-bold" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i> Tutup</button>
             </div>
           </form>
         </div>

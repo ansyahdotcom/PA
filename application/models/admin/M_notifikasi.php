@@ -21,9 +21,11 @@
             return $this->db->get()->row_array();
         }
 
-        public function not_kosong()
+        public function not_kosong($id_adm)
         {
-            return $this->db->get('notif')->num_rows();
+            return $this->db->get_where('notif', [
+                'ID_US' => $id_adm
+            ])->num_rows();
         }
 
         public function jml_not()

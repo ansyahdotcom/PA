@@ -43,10 +43,10 @@
 
               <ul class="list-group">
                 <li class="list-group-item">
-                  <b>Hak akses</b> <span class="badge-pill bg-danger text-bold float-right"><?= $admin['ROLE'] ?></span>
+                  <b>Hak akses</b> <span class="badge badge-danger text-bold float-right"><?= $admin['ROLE'] ?></span>
                 </li>
                 <li class="list-group-item">
-                  <b>Terdaftar Sejak</b> <span class="badge-pill bg-primary text-bold float-right"><?= $tgl; ?></span>
+                  <b>Terdaftar</b> <span class="badge bg-primary text-bold float-right"><?= $tgl; ?></span>
                 </li>
               </ul>
               <!-- <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button> -->
@@ -147,11 +147,11 @@
                   </div>
                   <div class="form-group row">
                     <label for="alamat" class="col-sm-3 col-form-label">Terakhir update</label>
-                    <div class="input-group mb-1 col-sm-9">
+                    <div class="mb-1 col-sm-9">
                       <?php if ($admin['UPDATE_ADM'] == 0) : ?>
-                        <span class="badge-pill bg-secondary text-bold">--</span>
+                        <span class="badge bg-secondary text-bold">--</span>
                       <?php else : ?>
-                        <span class="badge-pill bg-warning text-bold"><?= date('d F Y', $admin['UPDATE_ADM']); ?></span>
+                        <span class="badge badge-dark text-bold"><?= date('d F Y', $admin['UPDATE_ADM']); ?></span>
                       <?php endif; ?>
                     </div>
                     <div class="offset-sm-2">
@@ -209,11 +209,11 @@
                     </div>
                     <div class="form-group row">
                       <label for="alamat" class="col-sm-3 col-form-label">Terakhir update</label>
-                      <div class="input-group mb-1 col-sm-9">
+                      <div class="mb-1 col-sm-9">
                         <?php if ($admin['UPDATE_PSWADM'] == 0) : ?>
-                          <span class="badge-pill bg-secondary text-bold">--</span>
+                          <span class="badge bg-secondary text-bold">--</span>
                         <?php else : ?>
-                          <span class="badge-pill bg-warning text-bold"><?= date('d F Y', $admin['UPDATE_PSWADM']); ?></span>
+                          <span class="badge bg-dark text-bold"><?= date('d F Y', $admin['UPDATE_PSWADM']); ?></span>
                         <?php endif; ?>
                       </div>
                       <div class="offset-sm-2">

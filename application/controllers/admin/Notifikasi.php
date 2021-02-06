@@ -15,13 +15,14 @@ class Notifikasi extends CI_Controller
         $data['admin'] = $this->db->get_where('admin', [
             'EMAIL_ADM' => $email
         ])->row_array();
+        $id_adm = $data['admin']['ID_ADM'];
         $data['tittle'] = 'Pemberitahuan';
 
         /** Mengambil data notifikasi */
         $data['notif'] = $this->m_notifikasi->get_not();
 
         /** Jika notifikasi kosong */
-        $data['notkosong'] = $this->m_notifikasi->not_kosong();
+        $data['notkosong'] = $this->m_notifikasi->not_kosong($id_adm);
 
         $this->load->view("admin/template_adm/v_header", $data);
         $this->load->view("admin/template_adm/v_navbar", $data);

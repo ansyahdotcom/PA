@@ -54,7 +54,7 @@
 
                     <li class="nav-header">Pemberitahuan</li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/notifikasi'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/notifikasi'); ?>" class="nav-link <?php if($this->uri->segment(2)=="notifikasi"){echo "active";}?>">
                             <i class="nav-icon fas fa-bell"></i>
                             <p>
                                 Pemberitahuan
@@ -73,7 +73,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas"){echo "active";}?>">
+                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2) =="kelas" || $this->uri->segment(3) == "beli"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
                                 Daftar Kelas Belajar
@@ -81,7 +81,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/transaksi'); ?>" class="nav-link">
+                        <a href="<?= base_url('peserta/transaksi'); ?>" class="nav-link <?php if($this->uri->segment(2) == "transaksi"){echo "active";}?>">
                             <i class="nav-icon fas fa-history"></i>
                             <p>
                                 Histori Transaksi

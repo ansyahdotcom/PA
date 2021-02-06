@@ -12,7 +12,7 @@
     <form action="<?= base_url('admin/auth'); ?>" method="post">
       <div class="mb-3">
         <div class="input-group">
-          <input type="email" class="form-control" name="email" placeholder="Email" autofocus>
+          <input type="email" class="form-control" name="email" value="<?= set_value('email'); ?>" placeholder="Email" autofocus>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope logos"></span>
