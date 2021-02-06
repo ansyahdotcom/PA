@@ -28,20 +28,17 @@
 					<div class="card card-primary card-outline">
 						<div class="card-body box-profile" id="img">
 							<div class="text-center">
-								<img class="img-fluid img-thumbnail"
-									src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" alt="User profile picture">
+								<img class="img-fluid img-thumbnail" src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" alt="User profile picture">
 							</div>
 
 							<h3 class="profile-username text-center text-bold"><?= $peserta['NM_PS']; ?></h3>
 
 							<ul class="list-group">
 								<li class="list-group-item">
-									<b>Hak akses</b> <span
-										class="badge-pill bg-danger text-bold float-right"><?= $peserta['ROLE']; ?></span>
+									<b>Hak akses</b> <span class="badge bg-warning text-bold float-right"><?= $peserta['ROLE']; ?></span>
 								</li>
 								<li class="list-group-item">
-									<b>Terdaftar</b> <span
-										class="badge-pill bg-primary text-bold float-right"><?= date('d M Y', $peserta['DATE_CREATE']); ?></span>
+									<b>Terdaftar</b> <span class="badge bg-primary text-bold float-right"><?= date('d M Y', $peserta['DATE_CREATE']); ?></span>
 								</li>
 							</ul>
 							<!-- <button type="button" class="btn btn-primary btn-block" id="btn-ubhgbr"><i class="fas fa-images"></i> Ubah Gambar</button> -->
@@ -57,16 +54,11 @@
 											<label class="sm-0 text-primary"><small>(Klik gambar di bawah untuk mengganti)</small></label>
 										</div>
 										<div>
-                    <img src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>"
-													onClick="triggerClick()" id="daftarDisplay" width="200px"
-													alt="User profile picture">
+											<img src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" onClick="triggerClick()" id="daftarDisplay" width="200px" alt="User profile picture">
 										</div>
 									</span>
-									<input type="file" name="FTO_PS" value="<?= $peserta['FTO_PS']; ?>"
-											id="daftarImage" class="form-control" style="display: none;"
-										  accept="image/x-png,image/jpeg"
-											onChange="displayImage(this)">
-                  <input type="hidden" name="HAPUS_FOTO" value="<?= $peserta['FTO_PS']; ?>">
+									<input type="file" name="FTO_PS" value="<?= $peserta['FTO_PS']; ?>" id="daftarImage" class="form-control" style="display: none;" accept="image/x-png,image/jpeg" onChange="displayImage(this)">
+									<input type="hidden" name="HAPUS_FOTO" value="<?= $peserta['FTO_PS']; ?>">
 									<?= form_error('image', '<small class="text-danger pl-3">', '</small>'); ?>
 									<label class="text-bold text-gray">Foto Profil</label>
 									<div>
@@ -86,22 +78,17 @@
 						<div class="card-header p-0 border-bottom-0">
 							<ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
 								<li class="nav-item">
-									<a class="nav-link active tittle" id="custom-tabs-four-home-tab" data-toggle="pill"
-										href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home"
-										aria-selected="true">Profil</a>
+									<a class="nav-link active tittle" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Profil</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
-										href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages"
-										aria-selected="false">Ubah Password</a>
+									<a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Ubah Password</a>
 								</li>
 							</ul>
 						</div>
 						<div class="card-body">
 							<div class="tab-content" id="custom-tabs-four-tabContent">
 								<!-- Profil -->
-								<div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel"
-									aria-labelledby="custom-tabs-four-home-tab">
+								<div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
 									<!-- <form class="form-horizontal" action="<?= base_url('peserta/profil'); ?>" method="POST"> -->
 									<div class="form-group row">
 										<label for="nama" class="col-sm-3 col-form-label">Nama</label>
@@ -109,8 +96,7 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text"><i class="fas fa-user"></i></span>
 											</div>
-											<input type="text" class="form-control" id="nm" name="nmps" placeholder="Nama Lengkap"
-												value="<?= $peserta['NM_PS']; ?>" disabled>
+											<input type="text" class="form-control" id="nm" name="nmps" placeholder="Nama Lengkap" value="<?= $peserta['NM_PS']; ?>" disabled>
 										</div>
 										<div class="offset-sm-3">
 											<?= form_error('nmps', '<small class="text-danger">', '</small>'); ?>
@@ -122,8 +108,7 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 											</div>
-											<input type="email" class="form-control" id="em" name="email" placeholder="Email"
-												value="<?= $peserta['EMAIL_PS']; ?>" disabled>
+											<input type="email" class="form-control" id="em" name="email" placeholder="Email" value="<?= $peserta['EMAIL_PS']; ?>" disabled>
 										</div>
 										<div class="offset-sm-3">
 											<?= form_error('email', '<small class="text-danger">', '</small>'); ?>
@@ -135,8 +120,7 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text"><i class="fas fa-phone"></i></span>
 											</div>
-											<input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone"
-												value="<?= $peserta['HP_PS']; ?>" disabled>
+											<input type="number" class="form-control" id="hp" name="hp" placeholder="No Handphone" value="<?= $peserta['HP_PS']; ?>" disabled>
 										</div>
 										<div class="offset-sm-3">
 											<?= form_error('hp', '<small class="text-danger">', '</small>'); ?>
@@ -148,8 +132,7 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
 											</div>
-											<input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat"
-												value="<?= $peserta['ALMT_PS']; ?>" disabled>
+											<input type="text" class="form-control" id="almt" name="alamat" placeholder="Alamat" value="<?= $peserta['ALMT_PS']; ?>" disabled>
 										</div>
 										<div class="offset-sm-3">
 											<?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
@@ -181,8 +164,7 @@
 											</div>
 											<select name="pekerjaan" id="pekerjaan" class="custom-select form-control" disabled>
 												<option selected>--Pilih--</option>
-												<option value="Pelajar/Mahasiswa"
-													<?= $peserta['PEKERJAAN'] == "Pelajar/Mahasiswa" ? "selected" : "" ?>>Pelajar/Mahasiswa
+												<option value="Pelajar/Mahasiswa" <?= $peserta['PEKERJAAN'] == "Pelajar/Mahasiswa" ? "selected" : "" ?>>Pelajar/Mahasiswa
 												</option>
 												<option value="Wiraswasta" <?= $peserta['PEKERJAAN'] == "Wiraswasta" ? "selected" : "" ?>>
 													Wiraswasta</option>
@@ -239,8 +221,7 @@
                   </div> -->
 									<div class="form-group row">
 										<div class="offset-sm-3 col-sm-9">
-											<button type="button" class="btn btn-default" id="btn-cancel" hidden><i
-													class="fas fa-arrow-alt-circle-left"></i> Batal</button>
+											<button type="button" class="btn btn-default" id="btn-cancel" hidden><i class="fas fa-arrow-alt-circle-left"></i> Batal</button>
 											<button type="submit" class="btn btn-primary" id="btn-save" hidden><i class="fas fa-save"></i>
 												Simpan</button>
 											<button type="button" class="btn btn-primary" id="btn-edit"><i class="fas fa-edit"></i>
@@ -251,8 +232,7 @@
 								</div>
 
 								<!-- Ubah Password -->
-								<div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
-									aria-labelledby="custom-tabs-four-messages-tab">
+								<div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
 									<form class="form-horizontal" action="<?= base_url('peserta/profil/editpsw'); ?>" method="POST">
 										<div class="form-group row">
 											<label for="pswlma" class="col-sm-3 col-form-label">Password Sekarang</label>
@@ -260,8 +240,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fas fa-lock"></i></span>
 												</div>
-												<input type="password" class="form-control" id="pswlma" name="pswlma"
-													placeholder="Password Sekarang">
+												<input type="password" class="form-control" id="pswlma" name="pswlma" placeholder="Password Sekarang">
 											</div>
 											<div class="offset-sm-3">
 												<?= form_error('pswlma', '<small class="text-danger">', '</small>'); ?>
@@ -273,8 +252,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fas fa-lock"></i></span>
 												</div>
-												<input type="password" class="form-control" id="pswbru" name="pswbru"
-													placeholder="Password Baru">
+												<input type="password" class="form-control" id="pswbru" name="pswbru" placeholder="Password Baru">
 											</div>
 											<div class="offset-sm-3">
 												<?= form_error('pswbru', '<small class="text-danger">', '</small>'); ?>
@@ -286,8 +264,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fas fa-lock"></i></span>
 												</div>
-												<input type="password" class="form-control" id="pswbru1" name="pswbru1"
-													placeholder="Ulangi Password Baru">
+												<input type="password" class="form-control" id="pswbru1" name="pswbru1" placeholder="Ulangi Password Baru">
 											</div>
 											<div class="offset-sm-3">
 												<?= form_error('pswbru1', '<small class="text-danger">', '</small>'); ?>

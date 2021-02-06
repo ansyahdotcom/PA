@@ -104,7 +104,8 @@
               <?php elseif ($cekmyclass['STATUS_BELI'] == 201) : ?>
                 <a href="<?= base_url('peserta/transaksi'); ?>">
               <?php elseif ($cekmyclass['STATUS_BELI'] == 200) : ?>
-                <a href="<?= $myclass['PERMALINK']; ?>">
+								<?php $id = $myclass['ID_KLS']; ?>
+                <a href="<?= base_url("peserta/mymateri/materi/" . $id) ?>">
               <?php endif; ?>
                   <div class="kelas">
                     <?php if ($cekmyclass['STATUS_BELI'] == 0) : ?>

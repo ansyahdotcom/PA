@@ -83,10 +83,9 @@
                                                 </span> <?= $myclass['KTGKLS']; ?>
                                             </span> -->
                                             <?php 
-                                                $link = $myclass['PERMALINK']; 
                                                 $id = $myclass['ID_KLS'];
                                             ?>
-                                            <a href="<?= base_url("peserta/mymateri/materi/" . $link . "/$id") ?>" class="btn btn-primary btn-block text-bold">Masuk Kelas</a>
+                                            <a href="<?= base_url("peserta/mymateri/materi/" . $id) ?>" class="btn btn-primary btn-block text-bold">Masuk Kelas</a>
                                         </div>
                                     </div>
                                 </div>

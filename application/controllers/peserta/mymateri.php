@@ -9,7 +9,7 @@ class Mymateri extends CI_Controller
         cekpsrt();
     }
 
-    public function materi($link,$id)
+    public function materi($id)
     {
         $email = $this->session->userdata('email');
         $data['peserta'] = $this->db->get_where('peserta', [

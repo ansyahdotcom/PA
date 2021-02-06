@@ -115,7 +115,7 @@
             $result = $this->db->query(
                 "SELECT * FROM materi, kelas, detail_materi WHERE detail_materi.ID_MT = materi.ID_MT  
                 AND detail_materi.ID_KLS = kelas.ID_KLS
-                AND kelas.ID_KLS=$id");
+                AND kelas.ID_KLS='$id'");
             return $result;
         }
 

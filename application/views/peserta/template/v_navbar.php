@@ -41,7 +41,7 @@
                     <img src="<?= base_url(); ?>assets/dist/img/peserta/<?= $peserta['FTO_PS']; ?>" class="img-circle elevation-2" alt="User Image">
                     <?php
                     if ($peserta['ID_ROLE'] == 2) {
-                        $level = "<span title='peserta' class='badge badge-danger'>PESERTA</span>";
+                        $level = "<span title='peserta' class='badge badge-warning'>PESERTA</span>";
                     }
                     ?>
                     <p>
