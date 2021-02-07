@@ -28,7 +28,7 @@
 							$pst = 0;
                             foreach ($pesertaa as $ps) {
                                 $pst = $ps->ID_PS; }
-                                if ($pst != NULL) : 
+                                if ($pst != NULL && $ps->TGL_WEB >= date('Y-m-d')) : 
 									foreach ($pesertaa as $ps) : ?>
 							<div class="col-md">
 								<div class="card-body p-5 mt-4">
@@ -36,10 +36,10 @@
 
 									<div class="col-sm-8">
 										<table>
-											<tr>
+											<!-- <tr>
 												<td><b>Pembicara</b> &nbsp;</td>
 												<td for="NM_ADM">:&nbsp; <?= $ps->NM_ADM; ?></td>
-											</tr>
+											</tr> -->
 											<tr>
 												<td><b>Tanggal Webinar</b> &nbsp;</td>
 												<td for="TGL_WEB">:&nbsp;
@@ -113,13 +113,32 @@
 							<h4>Histori Webinar</h4>
 						</div>
 						<div class="card-body">
-						<?php 
-						if ($pst == 0) {
-							echo "-"; }
-						?>
-						<table>
-							
-						</table>
+							<table class="table table-bordered table-striped"">
+								<thead>
+									<tr>
+										<th>No.</th>
+										<th>Webinar</th>
+										<th>Tanggal</th>
+										<!-- <th>Aksi</th> -->
+									</tr>
+								</thead>
+								<tbody>
+							<?php 
+							$i= 1;
+							foreach ($pesertaa as $ps) :
+								$TGL_WEB = $ps->TGL_WEB;
+
+								if ($TGL_WEB <= date('Y-m-d')) : ?>
+									<tr>
+										<td><?= $i++; ?></td>
+										<td><?= str_replace('-', ' ', $ps->JUDUL_WEBINAR); ?></td>
+										<td><?= date('l, d F Y', strtotime(str_replace('.', '-', $ps->TGL_WEB))); ?></td>
+										<!-- <td>Download</td> -->
+									</tr>
+								<?php endif; ?>
+							<?php endforeach; ?>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>

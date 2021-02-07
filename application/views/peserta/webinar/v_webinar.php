@@ -67,11 +67,11 @@
 										</span>
 									</div>
 									<div class="col-7">
-										<a class="btn btn-block btn-sm btn-primary text-bold beli" id="ID_WEBINAR"
-											href="<?= base_url('peserta/webinar/daftar/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"
-											title="Daftar">
-											<i class="fas fa-cart-plus text-bold"></i> Daftar Webinar
-										</a>
+										<button type="button" class="btn btn-block btn-sm btn-primary text-bold"
+											title="Daftar" data-toggle="modal"
+											data-target="#modal_daftar<?= $wbnr->ID_WEBINAR; ?>"
+											style="color : white"><i class="fas fa-cart-plus text-bold"></i> Daftar
+											Webinar</button>
 									</div>
 								</div>
 							</div>
@@ -102,3 +102,39 @@
 	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<?php 
+foreach ($webinar as $wbnr) : 
+	$ID_WEBINAR = $wbnr->ID_WEBINAR;
+?>
+<div class="modal fade" id="modal_daftar<?= $ID_WEBINAR; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 id="myModalLabel" class="lead text-bold text-dark">
+					<?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></h2>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-6">
+						<img class="card-img-top" src="<?= base_url('assets/fotowebinar/'). $wbnr->FOTO_WEBINAR;?>"
+							alt="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<p><?= htmlspecialchars_decode($wbnr->KONTEN_WEB); ?></p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Batal</button>
+				<a class="btn btn-primary text-bold beli" id="ID_WEBINAR"
+					href="<?= base_url('peserta/webinar/daftar/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"
+					title="Daftar">
+					<i class="fas fa-cart-plus text-bold"></i> Daftar </a>
+			</div>
+		</div>
+	</div>
+</div>
+<?php endforeach; ?>
