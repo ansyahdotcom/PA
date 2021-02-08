@@ -146,7 +146,7 @@ class Auth extends CI_Controller
 			$this->facebook->destroy_session();
 
 			/**
-			 * Checking Email if exist update and set session
+			 * Checking Email jika email telah ada maka dibuat session
 			 */
 			$read = $this->db->get_where('peserta', ['EMAIL_PS' => $userProfile['email']]);
 			if ($read->num_rows() > 0) {
@@ -203,7 +203,7 @@ class Auth extends CI_Controller
 				];
 
 				/**
-				 * Insert to database
+				 * Insert ke database
 				 */
 				$insert = $this->m_auth->regpeserta($register);
 				if ($insert) {
@@ -219,6 +219,113 @@ class Auth extends CI_Controller
 			}
 		} else {
 			redirect($this->facebook->login_url());
+		}
+	}
+
+	// Menggunakan google auth
+	public function google_auth()
+	{
+
+		$settings['client_id']        = '957966632057-qi76k843ntkrngb3dil2a2dbk18garni.apps.googleusercontent.com';
+		$settings['client_secret']    = 'wnlgn5_cRVgz69Zwgwn1GG_G';
+		$settings['redirect_uri']     = base_url('google');
+		$settings['application_name'] = 'Preneur Academy';
+		$settings['api_key']          = '';
+		$settings['scopes']           = array();
+
+		$this->load->library('google', $settings);
+
+		if (isset($_GET['code'])) {
+
+			// menggunakan google authentikasi 
+			if ($this->google->getAuthenticate()) {
+
+				/**
+				 * Mendapatkan (Get) user info dari google
+				 */
+				$userProfile = $this->google->getUserInfo();
+
+				/**
+				 * Reset OAuth access token 
+				 */
+				$this->google->revokeToken();
+
+				/**
+				 * Checking Email jika email telah ada maka dibuat session
+				 */
+				$read = $this->db->get_where('peserta', ['EMAIL_PS' => $userProfile['email']]);
+				if ($read->num_rows() > 0) {
+
+					$read_data = $read->row_array();
+
+					if ($read_data['ACTIVE'] == '2') {
+						return 'user_blocked';
+					}
+
+					$this->session->set_userdata(array(
+						'id_ps' => $read_data['ID_PS'],
+						'email' => $read_data['EMAIL_PS'],
+						'name' => $read_data['NM_PS'],
+						'role' => $read_data['ID_ROLE']
+					));
+					if ($read_data['ACTIVE'] == 2) {
+						$this->session->set_flashdata('message', 'blocked');
+						redirect('auth');
+					} else {
+						$this->session->set_flashdata('message', 'isLogin');
+						redirect('peserta/dashboard');
+					}
+				} else {
+
+					/**
+					 * Save Image
+					 */
+					$url = $userProfile['picture'];
+					$photoname = $userProfile['id'] . date('-YmdHis') . '.jpg';
+					file_put_contents('assets/dist/img/peserta/' . $photoname, file_get_contents($url));
+
+					/** Ambil id terakhir */
+					$getID = $this->m_auth->idps()->row_array();
+
+					/** Periksa apa ada data di tabel peserta */
+					$tabel = $this->m_auth->idps()->num_rows();
+					if ($tabel > 0) :
+						$id_ps = autonumber($getID['ID_PS'], 2, 8);
+					else :
+						$id_ps = 'PS00000001';
+					endif;
+
+					$register = [
+						'ID_PS' => $id_ps,
+						'NM_PS' => $userProfile['name'],
+						'PSW_PS' => '',
+						'EMAIL_PS' => $userProfile['email'],
+						'HP_PS' => '',
+						'FTO_PS' => $photoname,
+						'ID_ROLE' => 2,
+						'ACTIVE' => 1,
+						'DATE_CREATE' => time(),
+						'STATUS_BELI' => 0
+					];
+
+					/**
+					 * Insert to database
+					 */
+					$insert = $this->m_auth->regpeserta($register);
+					if ($insert) {
+						$this->session->set_userdata(array(
+							'id_ps' => $insert,
+							'email' => $register['EMAIL_PS'],
+							'name' => $register['NM_PS'],
+							'role' => $register['ID_ROLE']
+						));
+						$this->session->set_flashdata('message', 'isLogin');
+						redirect('peserta/dashboard');
+					}
+				}
+			}
+		} else {
+			redirect($this->google->loginURL());
 		}
 	}
 

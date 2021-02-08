@@ -65,18 +65,10 @@
 
                     <li class="nav-header">Transaksi</li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/webinar'); ?>" class="nav-link <?php if($this->uri->segment(2)=="webinar" && $this->uri->segment(3)== null){echo "active";}?>">
-                            <i class="nav-icon fas fa-book"></i>
-                            <p>
-                                Daftar Event Webinar
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas" || $this->uri->segment(2)=="transaksi" && $this->uri->segment(3)=="beli"){echo "active";}?>">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Daftar Kelas Belajar
+                                Daftar Kelas
                             </p>
                         </a>
                     </li>
@@ -104,6 +96,15 @@
                     <li class="nav-header">Webinar</li>
 
                     <li class="nav-item">
+                        <a href="<?= base_url('peserta/webinar'); ?>" class="nav-link <?php if($this->uri->segment(2)=="webinar" && $this->uri->segment(3)== null){echo "active";}?>">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Daftar Event Webinar
+                            </p>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
                         <a href="<?= base_url('peserta/webinar/mywebinar'); ?>" class="nav-link <?php if($this->uri->segment(3)=="mywebinar"){echo "active";}?>">
                             <i class="nav-icon fab fa-leanpub"></i>
                             <p>
@@ -112,14 +113,6 @@
                             </p>
                         </a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a href="<?= base_url('peserta/#'); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-tasks"></i>
-                            <p>
-                                Proyek
-                            </p>
-                        </a>
-                    </li> -->
 
                     <li class="nav-header">Bantuan</li>
 

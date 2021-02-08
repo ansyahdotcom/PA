@@ -39,16 +39,16 @@
                             <hr class="my-2">
                             <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Daftar dengan Google</button> -->
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <a href="<?= base_url('facebook'); ?>"
                                         class="btn btn-lg btn-facebook btn-block text-uppercase"><i
                                             class="fab fa-facebook-f mr-2"></i> Facebook</a>
                                 </div>
-                                <!-- <div class="col-sm-6">
+                                <div class="col-sm-6">
                                     <a href="<?= base_url('google'); ?>"
                                         class="btn btn-lg btn-google btn-block text-uppercase"><i
                                             class="fab fa-google mr-2"></i> Google</a>
-                                </div> -->
+                                </div>
                             </div>
                         </form>
                     </div>
