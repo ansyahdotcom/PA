@@ -307,7 +307,7 @@ class Auth extends CI_Controller
 
 			$notif = [
 				'GLOBAL_ID' => $register['ID_PS'],
-				'ID_US' => $register['ID_PS'],
+				'ID_US' => 'ADM',
 				'TITTLE_NOT' => 'Pendaftar baru',
 				'MSG_NOT' => 'Ada pendaftar baru, atas nama ' . $register['NM_PS'] . '.',
 				'LINK' => 'admin/peserta',
@@ -329,7 +329,6 @@ class Auth extends CI_Controller
 			redirect('auth');
 		}
 	}
-
 
 	/**Konfigurasi kirim email */
 	private function _sendMail($token, $type)
@@ -390,35 +389,6 @@ class Auth extends CI_Controller
 		";
 
 		if ($type == 'verify') {
-			/** Insert ke tabel notif */
-			$notif = [
-				'GLOBAL_ID' => $name['user']['ID_PS'],
-				'ID_US' => $name['user']['ID_PS'],
-				'TITTLE_NOT' => 'Selamat datang!',
-				'MSG_NOT' => 'Selamat bergabung di Preneur Academy',
-				'LINK' => 'peserta/profil',
-				'IS_READ' => 0,
-				'ST_NOT' => 1,
-				'DATE_NOT' => date('Y-m-d H:i:s', time())
-			];
-
-			$notif1 = [
-				'GLOBAL_ID' => $name['user']['ID_PS'],
-				'ID_US' => $name['user']['ID_PS'],
-				'TITTLE_NOT' => 'Aktivasi akun',
-				'MSG_NOT' => 'Pendaftar dengan nama ' . $name['user']['NM_PS'] . ' berhasil mangaktivasi akun.',
-				'LINK' => 'admin/peserta',
-				'IS_READ' => 0,
-				'ST_NOT' => 0,
-				'DATE_NOT' => date('Y-m-d H:i:s', time())
-			];
-
-			/** kirim notif ke peserta */
-			$this->db->insert('notif', $notif);
-
-			/** kirim notif ke admin */
-			$this->db->insert('notif', $notif1);
-
 			$this->email->subject('Verifikasi Akun Baru');
 			$this->email->message($AktivasiEmail);
 			$this->email->set_mailtype('html');
@@ -440,6 +410,9 @@ class Auth extends CI_Controller
 	{
 		$email = $this->input->get('email');
 		$token = $this->input->get('token');
+		$name['user'] = $this->db->get_where('peserta', [
+			'EMAIL_PS' => $email
+		])->row_array();
 
 		$user = $this->m_auth->emailverif($email);
 
@@ -457,6 +430,36 @@ class Auth extends CI_Controller
 					$this->db->delete('token', [
 						'EMAIL' => $email
 					]);
+
+					/** Insert ke tabel notif */
+					$notif = [
+						'GLOBAL_ID' => $name['user']['ID_PS'],
+						'ID_US' => $name['user']['ID_PS'],
+						'TITTLE_NOT' => 'Selamat datang!',
+						'MSG_NOT' => 'Selamat bergabung di Preneur Academy',
+						'LINK' => 'peserta/profil',
+						'IS_READ' => 0,
+						'ST_NOT' => 1,
+						'DATE_NOT' => date('Y-m-d H:i:s', time())
+					];
+		
+					$notif1 = [
+						'GLOBAL_ID' => $name['user']['ID_PS'],
+						'ID_US' => 'ADM',
+						'TITTLE_NOT' => 'Aktivasi akun',
+						'MSG_NOT' => 'Pendaftar dengan nama ' . $name['user']['NM_PS'] . ' berhasil mangaktivasi akun.',
+						'LINK' => 'admin/peserta',
+						'IS_READ' => 0,
+						'ST_NOT' => 0,
+						'DATE_NOT' => date('Y-m-d H:i:s', time())
+					];
+		
+					/** kirim notif ke peserta */
+					$this->db->insert('notif', $notif);
+		
+					/** kirim notif ke admin */
+					$this->db->insert('notif', $notif1);
+					
 					$this->session->set_flashdata('message', 'Activate');
 					redirect('auth');
 				} else {

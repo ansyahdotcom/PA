@@ -21,10 +21,10 @@
             return $this->db->get()->row_array();
         }
 
-        public function not_kosong($id_adm)
+        public function not_kosong()
         {
             return $this->db->get_where('notif', [
-                'ID_US' => $id_adm
+                'ID_US' => 'ADM'
             ])->num_rows();
         }
 
