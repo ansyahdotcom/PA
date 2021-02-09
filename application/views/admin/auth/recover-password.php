@@ -17,11 +17,11 @@
     <form action="<?= base_url('admin/auth/recoverpsw'); ?>" method="post">
       <div class="input-group mb-3">
         <div class="input-group">
-          <input type="password" class="form-control" name="password" placeholder="Password baru">
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password baru">
           <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock logos"></span>
-            </div>
+            <button type="button" class="input-group-text" id="show-hide">
+              <span class="fas fa-eye logos" id="icon"></span>
+            </button>
           </div>
         </div>
         <div>
@@ -31,11 +31,11 @@
 
       <div class="input-group mb-3">
         <div class="input-group">
-          <input type="password" class="form-control" name="newpassword" placeholder="Konfirmasi password baru">
+          <input type="password" class="form-control" name="newpassword" id="password2" placeholder="Konfirmasi password baru">
           <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock logos"></span>
-            </div>
+            <button type="button" class="input-group-text" id="show-hide2">
+              <span class="fas fa-eye logos" id="icon2"></span>
+            </button>
           </div>
         </div>
         <div>

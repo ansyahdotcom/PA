@@ -13,6 +13,37 @@
 <!-- Showing Sweet Alert -->
 <script src="<?= base_url(); ?>assets/dist/js/myscript.js"></script>
 
+<!-- Show hide password -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#show-hide").click(function() {
+			$("#icon").toggleClass('fa-eye-slash');
+
+			var input = $("#password");
+
+			if (input.attr("type") === "password") {
+				input.attr("type", "text");
+			} else {
+				input.attr("type", "password");
+			}
+		});
+	});
+
+	$(document).ready(function() {
+		$("#show-hide2").click(function() {
+			$("#icon2").toggleClass('fa-eye-slash');
+
+			var input = $("#password2");
+
+			if (input.attr("type") === "password") {
+				input.attr("type", "text");
+			} else {
+				input.attr("type", "password");
+			}
+		});
+	});
+</script>
+
 </body>
 
 </html>

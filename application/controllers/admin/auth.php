@@ -236,7 +236,7 @@ class Auth extends CI_Controller
 
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|matches[newpassword]', [
 			'required' => 'Kolom ini harus diisi',
-			'min_length' => 'Password terlalu pendek',
+			'min_length' => 'Password minimal berjumlah 8 karakter',
 			'matches' => ''
 		]);
 
