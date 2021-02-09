@@ -128,7 +128,8 @@
                                         <div class="card-body text-center">
                                             <h5 class="card-title font-weight-bold">Join Komunitas</h5>
                                             <p class="card-text">Ikut berperan dalam perubahan.</p>
-                                            <a class="btn button primary-button" href="#">Bergabung Sekarang</a>
+                                            <a class="btn button primary-button"
+                                                href="<?= base_url('community') ?>">Bergabung Sekarang</a>
                                         </div>
                                     </div>
                                 </div>

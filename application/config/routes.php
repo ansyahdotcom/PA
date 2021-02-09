@@ -74,6 +74,7 @@ $route['class'] = 'index/kelas';
 $route['webinar'] = 'index/webinar';
 $route['blog'] = 'index/post';
 $route['about'] = 'index/about';
+$route['search'] = 'index/search/';
 $route['community'] = 'index/comm';
 $route['peserta/faq'] = 'peserta/bantuan/faq';
 $route['peserta/ketentuan'] = 'peserta/bantuan/ketentuan';

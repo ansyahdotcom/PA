@@ -60,6 +60,30 @@
     </div>
 </footer>
 
+<div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <form method="GET" action="<?= base_url('search'); ?>">
+                            <div class="input-group mb-3">
+                                <input class="form-control" type="text" name="keyword" placeholder="Cari postingan..."
+                                    autocomplete="off">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- GetButton.io widget -->
 <script type="text/javascript">
 (function() {

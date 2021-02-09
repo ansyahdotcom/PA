@@ -7,6 +7,7 @@ class Blog extends CI_Controller
         $this->load->model('admin/m_blog');
         $this->load->model('admin/m_medsos');
         $this->load->model('admin/m_navbar');
+        $this->load->model('m_landingpage');
         $this->load->model('admin/m_kebijakan');
         $this->load->library('upload');
         // $this->load->library('form_validation');
@@ -145,31 +146,31 @@ class Blog extends CI_Controller
 
                     $upload_image = $this->upload->data('file_name');
                 }
-            } 
+            }
 
-                $data = array(
+            $data = array(
+                'ID_POST' => $ID_POST,
+                'ID_ADM' => $ID_ADM,
+                'JUDUL_POST' => str_replace(' ', '-', $JUDUL_POST),
+                'ID_CT' => $ID_CT,
+                'FOTO_POST' => $upload_image,
+                'KONTEN_POST' => $KONTEN_POST,
+                'TGL_POST' => $TGL_POST,
+                'UPDT_TRAKHIR' => $UPDT_TRAKHIR
+            );
+
+            $this->m_blog->insert($data, 'post');
+
+            for ($i = 0; $i < count($ID_TAGS); $i++) {
+                $dt_tags = array(
                     'ID_POST' => $ID_POST,
-                    'ID_ADM' => $ID_ADM,
-                    'JUDUL_POST' => str_replace(' ', '-', $JUDUL_POST),
-                    'ID_CT' => $ID_CT,
-                    'FOTO_POST' => $upload_image,
-                    'KONTEN_POST' => $KONTEN_POST,
-                    'TGL_POST' => $TGL_POST,
-                    'UPDT_TRAKHIR' => $UPDT_TRAKHIR
+                    'ID_TAGS' => $ID_TAGS[$i]
                 );
+                $this->m_blog->insert($dt_tags, 'detail_tags');
+            }
 
-                $this->m_blog->insert($data, 'post');
-
-                for ($i = 0; $i < count($ID_TAGS); $i++) {
-                    $dt_tags = array(
-                        'ID_POST' => $ID_POST,
-                        'ID_TAGS' => $ID_TAGS[$i]
-                    );
-                    $this->m_blog->insert($dt_tags, 'detail_tags');
-                }
-
-                $this->session->set_flashdata('message', 'save');
-                redirect('admin/blog');
+            $this->session->set_flashdata('message', 'save');
+            redirect('admin/blog');
         }
     }
 
@@ -369,6 +370,7 @@ class Blog extends CI_Controller
         $data['footer'] = $this->m_medsos->get_data();
         $data['header'] = $this->m_navbar->get_navbar();
         $data['kebijakan'] = $this->m_kebijakan->get_data();
+        $data['list'] = $this->m_landingpage->list();
         $data['blog'] = $this->m_blog->tampil_dt_blog($JUDUL_POST, 'post')->result();
         $data['detail_tags'] = $this->m_blog->tampil_dt_tags($JUDUL_POST, 'detail_tags')->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();

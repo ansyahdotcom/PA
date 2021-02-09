@@ -29,8 +29,14 @@
                         </label>
                         <small class="text-muted">minimum pembayaran Rp. 10.000</small>
                         <hr>
+                        <?php if ($this->session->userdata('role') == '2') :
+							?>
+                        <a href="<?= base_url('peserta/kelas') ?>" class="btn button primary-button float-right"><i
+                                class="fas fa-shopping-cart"></i> Beli Kelas</a>
+                        <?php else : ?>
                         <a href="<?= base_url('register') ?>" class="btn button primary-button float-right"><i
                                 class="fas fa-shopping-cart"></i> Beli Kelas</a>
+                        <?php endif; ?>
                         <a href="<?= base_url('class'); ?>" class="btn button secondary-button float-left"><i
                                 class="fas fa-arrow-left"></i>
                             Kembali</a>

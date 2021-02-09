@@ -66,10 +66,6 @@ class index extends CI_Controller
                                     FROM post, category, admin
                                     WHERE post.ID_CT = category.ID_CT AND admin.ID_ADM = post.ID_ADM
                                     AND category.NM_CT = '$NM_CT'");
-        $data['kategori'] = $this->m_blog->tampil_kategori()->result();
-        $data['header'] = $this->m_navbar->get_navbar();
-        $data['kebijakan'] = $this->m_kebijakan->get_data();
-        $data['footer'] = $this->m_medsos->get_data();
         $data['POST'] = $query->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
         $data['header'] = $this->m_navbar->get_navbar();

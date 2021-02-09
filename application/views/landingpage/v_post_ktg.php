@@ -28,7 +28,8 @@
                     </div>
                     <hr>
                     <div class="widget d-flex">
-                        <p class="mr-2 ml-2"><i class="fas fa-clock text-primary"></i> <?= $row->TGL_POST ?></p>
+                        <p class="mr-2 ml-2"><i class="fas fa-clock text-primary"></i>
+                            <?= date(' d F Y', strtotime($row->TGL_POST)) ?></p>
                         <p class="ml-2 mr-2">
                             <i class="fas fa-comments text-primary"></i> <a
                                 href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST)); ?>#disqus_thread"></a>
