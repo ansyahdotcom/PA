@@ -111,9 +111,9 @@
                                                         <i class="fas fa-circle-notch bg-primary"></i>
                                                         <div class="timeline-item">
                                                             <div class="callout callout-info">
-                                                                <h5 class="text-bold">Kurikulum 6 Semester</h5>
+                                                                <h5 class="text-bold">Kurikulum 1 Semester</h5>
 
-                                                                <p>Kurikulum 6 semester atau setara 3 tahun, dengan teori dan praktek.</p>
+                                                                <p>Kurikulum 1 semester atau setara 6 bulan, dengan teori dan praktek.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -123,7 +123,7 @@
                                                             <div class="callout callout-warning">
                                                                 <h5 class="text-bold">Materi</h5>
 
-                                                                <p>Terdapat 7 materi dalam kelas ini.</p>
+                                                                <p>Terdapat materi dalam kelas ini.</p>
                                                             </div>
                                                         </div>
                                                     </div>

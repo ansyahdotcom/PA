@@ -51,7 +51,7 @@
 										<td width="150px"><?= $l['PEKERJAAN']; ?></td>
 										<td>
 											<div class="progress" style="height: 30px">
-												<div class="progress-bar text-bold" role="progressbar" style="width: <?= ($jmltugas * (100 / $jmltugas)) - (($jmltugas - $submit) * (100 / $jmltugas)); ?>%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><?= ($jmltugas * (100 / $jmltugas)) - (($jmltugas - $submit) * (100 / $jmltugas)); ?>%</div>
+												<div class="progress-bar text-bold" role="progressbar" style="width: <?= floor(($jmltugas * (100 / $jmltugas)) - (($jmltugas - $submit) * (100 / $jmltugas))); ?>%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><?= floor(($jmltugas * (100 / $jmltugas)) - (($jmltugas - $submit) * (100 / $jmltugas))); ?>%</div>
 											</div>
 										</td>
 										<td class="text-center" width="170px">
@@ -80,15 +80,13 @@
 											</div>
 										</td>
 										<td class="text-center" width="150px">
-											<!-- <div class="row">
+											<div class="row">
 												<div class="col-md-12">
-													<button class="btn btn-sm btn-primary text-bold btn-block" data-toggle="modal" data-target="#"><i class="fas fa-edit"></i>
+													<button class="btn btn-sm btn-primary text-bold btn-block"><i class="fas fa-edit"></i>
 														Detail
 													</button>
 												</div>
-											</div> -->
-											<div class="row">
-												<div class="col-md-12">
+												<div class="col-md-12 pt-2">
 													<button class="btn btn-sm btn-warning text-bold btn-block" data-toggle="modal" data-target="#modal_hapus<?= $l['ID_PS']; ?>" <?= $disabled; ?>><i class="fas fa-certificate"></i>
 														Upload Sertifikat
 													</button>
@@ -127,7 +125,7 @@
 	<div class="modal fade" id="modal_hapus<?= $l['ID_PS']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header bg-primary">
 					<h3 class="modal-title" id="myModalLabel">Upload Sertifikat</h3>
 				</div>
 				<?php echo form_open_multipart('admin/kelas/sertifikat/' . $l['ID_KLS']); ?>

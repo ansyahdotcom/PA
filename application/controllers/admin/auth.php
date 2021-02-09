@@ -55,7 +55,7 @@ class Auth extends CI_Controller
 					if ($user['ID_ROLE'] == 1) {
 						$this->session->set_flashdata('message', 'isLogin');
 						redirect('admin/dashboard');
-					} 
+					}
 				} else {
 					$this->session->set_flashdata('message', 'email/pswwrong');
 					redirect('authadm');
@@ -74,14 +74,14 @@ class Auth extends CI_Controller
 	private function _sendEmail($token, $type)
 	{
 		$config = [
-			'protocol' => 'smtp',
+			'protocol' 	=> 'smtp',
 			'smtp_hodt' => 'ssl://smtp.googlemail.com',
 			'smtp_user' => 'turtleninjaaa77@gmail.com',
 			'smtp_pass' => '@12Turtleninja',
 			'smtp_port' => 587,
-			'mailtype' => 'html',
-			'charset' => 'utf-8',
-			'newline' => "\r\n"
+			'mailtype' 	=> 'html',
+			'charset' 	=> 'utf-8',
+			'newline' 	=> "\r\n"
 		];
 
 		$this->load->library('email', $config);
@@ -145,7 +145,7 @@ class Auth extends CI_Controller
 		if ($this->session->userdata('email')) {
 			redirect('admin/dashboard');
 		}
-		
+
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email', [
 			'required' => 'Kolom ini harus diisi',
 			'valid_email' => 'Email tidak valid'

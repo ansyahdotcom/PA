@@ -146,7 +146,7 @@ class Auth extends CI_Controller
 			$this->facebook->destroy_session();
 
 			/**
-			 * Checking Email if exist update and set session
+			 * Checking Email jika email telah ada maka dibuat session
 			 */
 			$read = $this->db->get_where('peserta', ['EMAIL_PS' => $userProfile['email']]);
 			if ($read->num_rows() > 0) {
@@ -203,7 +203,7 @@ class Auth extends CI_Controller
 				];
 
 				/**
-				 * Insert to database
+				 * Insert ke database
 				 */
 				$insert = $this->m_auth->regpeserta($register);
 				if ($insert) {
@@ -219,6 +219,113 @@ class Auth extends CI_Controller
 			}
 		} else {
 			redirect($this->facebook->login_url());
+		}
+	}
+
+	// Menggunakan google auth
+	public function google_auth()
+	{
+
+		$settings['client_id']        = '957966632057-qi76k843ntkrngb3dil2a2dbk18garni.apps.googleusercontent.com';
+		$settings['client_secret']    = 'wnlgn5_cRVgz69Zwgwn1GG_G';
+		$settings['redirect_uri']     = base_url('google');
+		$settings['application_name'] = 'Preneur Academy';
+		$settings['api_key']          = '';
+		$settings['scopes']           = array();
+
+		$this->load->library('google', $settings);
+
+		if (isset($_GET['code'])) {
+
+			// menggunakan google authentikasi 
+			if ($this->google->getAuthenticate()) {
+
+				/**
+				 * Mendapatkan (Get) user info dari google
+				 */
+				$userProfile = $this->google->getUserInfo();
+
+				/**
+				 * Reset OAuth access token 
+				 */
+				$this->google->revokeToken();
+
+				/**
+				 * Checking Email jika email telah ada maka dibuat session
+				 */
+				$read = $this->db->get_where('peserta', ['EMAIL_PS' => $userProfile['email']]);
+				if ($read->num_rows() > 0) {
+
+					$read_data = $read->row_array();
+
+					if ($read_data['ACTIVE'] == '2') {
+						return 'user_blocked';
+					}
+
+					$this->session->set_userdata(array(
+						'id_ps' => $read_data['ID_PS'],
+						'email' => $read_data['EMAIL_PS'],
+						'name' => $read_data['NM_PS'],
+						'role' => $read_data['ID_ROLE']
+					));
+					if ($read_data['ACTIVE'] == 2) {
+						$this->session->set_flashdata('message', 'blocked');
+						redirect('auth');
+					} else {
+						$this->session->set_flashdata('message', 'isLogin');
+						redirect('peserta/dashboard');
+					}
+				} else {
+
+					/**
+					 * Save Image
+					 */
+					$url = $userProfile['picture'];
+					$photoname = $userProfile['id'] . date('-YmdHis') . '.jpg';
+					file_put_contents('assets/dist/img/peserta/' . $photoname, file_get_contents($url));
+
+					/** Ambil id terakhir */
+					$getID = $this->m_auth->idps()->row_array();
+
+					/** Periksa apa ada data di tabel peserta */
+					$tabel = $this->m_auth->idps()->num_rows();
+					if ($tabel > 0) :
+						$id_ps = autonumber($getID['ID_PS'], 2, 8);
+					else :
+						$id_ps = 'PS00000001';
+					endif;
+
+					$register = [
+						'ID_PS' => $id_ps,
+						'NM_PS' => $userProfile['name'],
+						'PSW_PS' => '',
+						'EMAIL_PS' => $userProfile['email'],
+						'HP_PS' => '',
+						'FTO_PS' => $photoname,
+						'ID_ROLE' => 2,
+						'ACTIVE' => 1,
+						'DATE_CREATE' => time(),
+						'STATUS_BELI' => 0
+					];
+
+					/**
+					 * Insert to database
+					 */
+					$insert = $this->m_auth->regpeserta($register);
+					if ($insert) {
+						$this->session->set_userdata(array(
+							'id_ps' => $insert,
+							'email' => $register['EMAIL_PS'],
+							'name' => $register['NM_PS'],
+							'role' => $register['ID_ROLE']
+						));
+						$this->session->set_flashdata('message', 'isLogin');
+						redirect('peserta/dashboard');
+					}
+				}
+			}
+		} else {
+			redirect($this->google->loginURL());
 		}
 	}
 
@@ -254,10 +361,11 @@ class Auth extends CI_Controller
 			'is_unique' => 'Email ini sudah terdaftar'
 		]);
 
-		$this->form_validation->set_rules('nomorwa', 'Nomorwa', 'required|trim|min_length[11]|max_length[13]', [
+		$this->form_validation->set_rules('nomorwa', 'Nomorwa', 'required|trim|min_length[11]|max_length[13]|is_natural', [
 			'required' => 'Kolom ini harus diisi',
-			'min_length' => 'Format yang anda masukkan salah',
-			'max_length' => 'Format yang anda masukkan salah'
+			'min_length' => 'Format nomor whatsapp yang anda masukkan salah',
+			'max_length' => 'Format nomor whatsapp yang anda masukkan salah',
+			'is_natural' => 'Harus berisi angka'
 		]);
 
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password1]', [
@@ -268,7 +376,7 @@ class Auth extends CI_Controller
 
 		$this->form_validation->set_rules('password1', 'Password1', 'required|trim|min_length[8]|matches[password]', [
 			'required' => 'Kolom ini harus diisi',
-			'min_length' => 'Password terlalu pendek',
+			'min_length' => '',
 			'matches' => 'Konfirmasi password salah'
 		]);
 
@@ -307,7 +415,7 @@ class Auth extends CI_Controller
 
 			$notif = [
 				'GLOBAL_ID' => $register['ID_PS'],
-				'ID_US' => $register['ID_PS'],
+				'ID_US' => 'ADM',
 				'TITTLE_NOT' => 'Pendaftar baru',
 				'MSG_NOT' => 'Ada pendaftar baru, atas nama ' . $register['NM_PS'] . '.',
 				'LINK' => 'admin/peserta',
@@ -329,7 +437,6 @@ class Auth extends CI_Controller
 			redirect('auth');
 		}
 	}
-
 
 	/**Konfigurasi kirim email */
 	private function _sendMail($token, $type)
@@ -390,35 +497,6 @@ class Auth extends CI_Controller
 		";
 
 		if ($type == 'verify') {
-			/** Insert ke tabel notif */
-			$notif = [
-				'GLOBAL_ID' => $name['user']['ID_PS'],
-				'ID_US' => $name['user']['ID_PS'],
-				'TITTLE_NOT' => 'Selamat datang!',
-				'MSG_NOT' => 'Selamat bergabung di Preneur Academy',
-				'LINK' => 'peserta/profil',
-				'IS_READ' => 0,
-				'ST_NOT' => 1,
-				'DATE_NOT' => date('Y-m-d H:i:s', time())
-			];
-
-			$notif1 = [
-				'GLOBAL_ID' => $name['user']['ID_PS'],
-				'ID_US' => $name['user']['ID_PS'],
-				'TITTLE_NOT' => 'Aktivasi akun',
-				'MSG_NOT' => 'Pendaftar dengan nama ' . $name['user']['NM_PS'] . ' berhasil mangaktivasi akun.',
-				'LINK' => 'admin/peserta',
-				'IS_READ' => 0,
-				'ST_NOT' => 0,
-				'DATE_NOT' => date('Y-m-d H:i:s', time())
-			];
-
-			/** kirim notif ke peserta */
-			$this->db->insert('notif', $notif);
-
-			/** kirim notif ke admin */
-			$this->db->insert('notif', $notif1);
-
 			$this->email->subject('Verifikasi Akun Baru');
 			$this->email->message($AktivasiEmail);
 			$this->email->set_mailtype('html');
@@ -440,6 +518,9 @@ class Auth extends CI_Controller
 	{
 		$email = $this->input->get('email');
 		$token = $this->input->get('token');
+		$name['user'] = $this->db->get_where('peserta', [
+			'EMAIL_PS' => $email
+		])->row_array();
 
 		$user = $this->m_auth->emailverif($email);
 
@@ -457,6 +538,36 @@ class Auth extends CI_Controller
 					$this->db->delete('token', [
 						'EMAIL' => $email
 					]);
+
+					/** Insert ke tabel notif */
+					$notif = [
+						'GLOBAL_ID' => $name['user']['ID_PS'],
+						'ID_US' => $name['user']['ID_PS'],
+						'TITTLE_NOT' => 'Selamat datang!',
+						'MSG_NOT' => 'Selamat bergabung di Preneur Academy',
+						'LINK' => 'peserta/profil',
+						'IS_READ' => 0,
+						'ST_NOT' => 1,
+						'DATE_NOT' => date('Y-m-d H:i:s', time())
+					];
+		
+					$notif1 = [
+						'GLOBAL_ID' => $name['user']['ID_PS'],
+						'ID_US' => 'ADM',
+						'TITTLE_NOT' => 'Aktivasi akun',
+						'MSG_NOT' => 'Pendaftar dengan nama ' . $name['user']['NM_PS'] . ' berhasil mangaktivasi akun.',
+						'LINK' => 'admin/peserta',
+						'IS_READ' => 0,
+						'ST_NOT' => 0,
+						'DATE_NOT' => date('Y-m-d H:i:s', time())
+					];
+		
+					/** kirim notif ke peserta */
+					$this->db->insert('notif', $notif);
+		
+					/** kirim notif ke admin */
+					$this->db->insert('notif', $notif1);
+					
 					$this->session->set_flashdata('message', 'Activate');
 					redirect('auth');
 				} else {

@@ -65,14 +65,6 @@
 
                     <li class="nav-header">Transaksi</li>
                     <li class="nav-item">
-                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas" || $this->uri->segment(2)=="transaksi" && $this->uri->segment(3)=="beli"){echo "active";}?>">
-                            <i class="nav-icon fas fa-book"></i>
-                            <p>
-                                Daftar Kelas
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="<?= base_url('peserta/transaksi'); ?>" class="nav-link <?php if($this->uri->segment(2)=="transaksi" && $this->uri->segment(3)== null|| $this->uri->segment(2)=="transaksi" && $this->uri->segment(3)=="dettrn"){echo "active";}?>">
                             <i class="nav-icon fas fa-history"></i>
                             <p>
@@ -82,7 +74,14 @@
                     </li>
 
                     <li class="nav-header">Kelas</li>
-
+                    <li class="nav-item">
+                        <a href="<?= base_url('peserta/kelas'); ?>" class="nav-link <?php if($this->uri->segment(2)=="kelas" || $this->uri->segment(2)=="transaksi" && $this->uri->segment(3)=="beli"){echo "active";}?>">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Daftar Kelas Belajar
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="<?= base_url('peserta/myclass'); ?>" class="nav-link <?php if($this->uri->segment(2)=="myclass" || $this->uri->segment(2)=="mymateri"){echo "active";}?>">
                             <i class="nav-icon fab fa-leanpub"></i>

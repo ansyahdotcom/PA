@@ -286,7 +286,7 @@ class Transaksi extends CI_Controller
 		/** Insert ke tabel notifikasi */
 		$notif = array(
 			'GLOBAL_ID' => $data['eID'],
-			'ID_US' => $data['ID_PS'],
+			'ID_US' => 'ADM',
 			'TITTLE_NOT' => 'Transaksi baru',
 			'MSG_NOT' => 'Order id ' . $data['ID_TRN'] . ', atas nama ' . $peserta['NM_PS']  . '.',
 			'LINK' => 'admin/transaksi/detpending/' . $data['eID'],

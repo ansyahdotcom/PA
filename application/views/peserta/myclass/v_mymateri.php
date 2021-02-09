@@ -41,7 +41,7 @@
 						$nama = $mtr['NM_MT'];
 					?>
 						<div class="card">
-							<div class="card-header">
+							<div class="card-header bg-dark">
 								<h3 class="card-title pt-2"><?= $nama; ?></h3>
 							</div>
 							<div class="card-body">
@@ -83,10 +83,10 @@
 											<div class="status mt-2">
 												<?php if ($detail != null) { ?>
 													<h5 class="card-title badge badge-success m-2">Sudah mengerjakan</h5>
-													<h5 class="card-title badge badge-warning m-2"><i class="fas fa-stopwatch"></i> <?= $detail['TIME_DT_TG'] ?></h5>
+													<h5 class="card-title badge badge-warning m-2 text-bold"><i class="fas fa-stopwatch"></i> Dikumpulkan: <?= date('d M Y H:i', strtotime($detail['TIME_DT_TG'])); ?></h5>
 												<?php } else { ?>
 													<h5 class="card-title badge badge-secondary m-2">Belum mengerjakan</h5>
-													<h5 class="card-title badge badge-warning m-2"><i class="fas fa-stopwatch"></i> <?= $i['DEADLINE'] ?></h5>
+													<h5 class="card-title badge badge-danger m-2 text-bold"><i class="fas fa-stopwatch"></i> Batas Pengumpulan: <?= date('d M Y H:i', strtotime($i['DEADLINE'])); ?></h5>
 												<?php } ?>
 											</div>
 											<div class="card-header">
