@@ -60,9 +60,9 @@
                                               width="50"></td>
                                       <td><?= $link; ?></td>
                                       <td class="text-center" width="270px">
-                                          <button class="btn btn-sm btn-primary" data-toggle="modal"
-                                              data-target="#modalDetail<?= $id; ?>"><i class="fas fa-eye"></i>
-                                              <b>Detail</b></button>
+                                          <a class="btn btn-sm btn-primary" target="_blank"
+                                              href="<?= base_url('legal/p/' . $link); ?>"><i class="fas fa-eye"></i>
+                                              Pratinjau</a>
                                           <button class="btn btn-sm btn-warning" data-toggle="modal"
                                               data-target="#modalEdit<?= $id; ?>"><i class="fas fa-edit"></i>
                                               <b>Edit</b></button>
@@ -260,62 +260,6 @@
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <input type="hidden" name="id_kb" value="<?= $id; ?>" required>
                       <button type="submit" class="btn btn-primary"><i class="far fa-save"></i> Simpan</button>
-                  </div>
-              </form>
-          </div>
-      </div>
-  </div>
-
-  <div class="modal fade" id="modalDetail<?= $id; ?>" tabindex="-1">
-      <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-              <div class="modal-header bg-primary">
-                  <h5 class="modal-title">Ubah Kebijakan</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <form action="<?php echo base_url() . 'admin/kebijakan/update' ?>" method="post"
-                  enctype="multipart/form-data">
-                  <div class="modal-body">
-                      <div class="form-group">
-                          <label for="nama">Judul</label>
-                          <input type="text" name="nama" value="<?= $nama; ?>" class="form-control"
-                              placeholder="Nama Menu" readonly>
-                          <small class="form-text text-success">Contoh: Kebijakan Pribadi(Privacy Policy)</small>
-                      </div>
-                      <div class="form-group">
-                          <label for="icon">Gambar</label>
-                          <div class="container">
-                              <div class="row justify-content-center">
-                                  <div class="col-md-4">
-                                      <div class="card">
-                                          <img src="<?= base_url(); ?>assets/dist/img/kebijakan/<?= $img; ?>"
-                                              class="card-img-top" alt="gambar-foto">
-                                          <div class="card-body">
-                                              <h6 class="card-title"><?= $img; ?></h6>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="link">Link</label>
-                          <input type="text" name="link" value="<?= $link; ?>" class="form-control"
-                              placeholder="Link Pintasan" readonly>
-                          <small class="form-text text-success">Contoh:
-                              <?= base_url(); ?><b>terms-and-conditions</b></small>
-                      </div>
-                      <div class="form-group">
-                          <label for="isi">Isi Konten</label>
-                          <input type="text" name="isi" value="<?= $isi; ?>" class="form-control"
-                              placeholder="Link Pintasan" readonly>
-                          <small class="form-text text-success">Berisi keterangan kebijakan</small>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   </div>
               </form>
           </div>

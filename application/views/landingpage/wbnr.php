@@ -1,110 +1,168 @@
-		<!-- Header -->
-		<!-- <header class="bg-warning py-5 mb-5">
-			<div class="container h-100">
-				<div class="row h-100 align-items-center">
-					<div class="col-lg-12">
-						<div class="site-buttons p-5">
-							<div class="d-flex flex-row flex-wrap">
-								<div class="kelas mr-5">
-									<h1 class="display-4 title-text">Kelas Online</h1>
-									<p class="lead mb-5 para">Pada halaman ini terdapat list kelas online.</p>
-								</div>
-								<img src="<?= base_url(); ?>assets/dist/img/program/study.svg" width="500" alt="gambar kelas"
-									class="img-fluid ml-5">
-							</div>
-						</div>
-					</div>
-				</div>
-		</header> -->
+<!--  ======================= Awalan Area Utama ================================ -->
+<main class="site-main">
+    <section class="bg-warning" id="hero">
+        <div class="container mt-lg-5 mt-md-5 mt-sm-5">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 col-md-12 mt-5 site-title" data-aos="fade-right">
+                    <div class="kelas">
+                        <h1 class="display-4 title-text font-weight-bold mt-2">
+                            Webinar
+                        </h1>
+                        <p class="para font-weight-bold mt-2 mb-5">Terdapat beberapa list webinar.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 text-center banner-image mb-2" data-aos="fade-left">
+                    <img src="<?= base_url(); ?>assets/dist/img/webinar.svg" width="200" alt="gambar kelas"
+                        class="img-fluid" id="animated">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  ======================= Batas Banner =======================  -->
 
-		<!-- Page Content -->
-		<div class="container p-5 mt-5 mb-5">
-		    <div class="row">
-		        <?php foreach ($webinar as $wbnr) : ?>
-		        <div class="col-md-4 mb-5">
-		            <div class="card h-100">
-		                <img class="card-img-top" src="<?= base_url('assets/fotowebinar/') . $wbnr->FOTO_WEBINAR; ?>" alt="">
-		                <div class="card-body">
-		                    <h4 class="card-title"><?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></h4>
-		                    <div class="deskripsi">
-		                        <!-- <p class="para text-dark">Disusun oleh : <?= $wbnr->NM_ADM ?></p> -->
-		                    </div>
-		                </div>
-		                <div class="card-footer">
-		                    <div class="harga">
-		                        <h5 class="float-right font-weight-bold"><?= $wbnr->HARGA; ?></h5>
-		                    </div>
-		                    <!-- <span class="badge bg-warning">Kategori: <?= $wbnr->KTGKLS ?></span> -->
-		                </div>
-		                <a href="<?= base_url('webinar/detail/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"
-		                    class="btn btn-primary font-weight-bold text-uppercase m-2">Lihat Detail</a>
-		            </div>
-		        </div>
-		        <?php endforeach; ?>
-		    </div>
-		</div>
+    <!-- Page Content -->
+    <div class="container p-5 mt-5 mb-5">
+        <div class="row">
+            <?php if ($webinar == null) : ?>
+            <!-- Jika Belum Terdapat data -->
+            <div class="col-md">
+                <div class="card-body text-center mt-4">
+                    <img src="<?= base_url('assets/icon/noList.svg'); ?>" alt="noData"
+                        class="img-rounded img-responsive img-fluid" width="100">
+                </div>
+                <div class="card-body pt-0 mt-4">
+                    <h3 class="text-center text-bold text-muted">Belum terdapat webinar</h3>
+                </div>
+            </div>
+            <?php else : ?>
+            <?php foreach ($webinar as $wbnr) : ?>
+            <div class="col-lg-4 col-sm-12 mb-5">
+                <div class="card h-100 border-light shadow" data-aos="fade-down">
+                    <img class="rounded" src="<?= base_url('assets/fotowebinar/') . $wbnr->FOTO_WEBINAR; ?>"
+                        alt="gambar-kelas">
+                    <div class="gambar card-img-overlay align-items-center">
+                        <span class="float-right btn btn-success font-weight-bold">Gratis
+                        </span>
+                    </div>
+                    <a href="<?= base_url('webinar-detail/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"
+                        class="button primary-button font-weight-bold text-uppercase m-2 text-center">Lihat Detail</a>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
 
-		<hr>
-		<!--  ========================= Awalan About ==========================  -->
+    <hr>
 
-		<section class="about-area mt-5" id="about-area">
-		    <div class="container-fluid">
-		        <div class="row p-5">
-		            <div class="col-lg-6 col-md-12">
-		                <div class="about-image">
-		                    <img src="<?= base_url(); ?>assets/dist/img/celebration.svg" width="500" alt="About us"
-		                        class="img-fluid">
-		                </div>
-		            </div>
-		            <div class="col-lg-6 col-md-12 about-title">
-		                <h2 class="text-uppercase pt-5">
-		                    <span>Apa Itu</span>
-		                    <span>Preneur Academy?</span>
-		                </h2>
-		                <div class="paragraph py-4 w-75">
-		                    <p class="para">
-		                        merupakan ruang edukasi, ekosistem, dan komunitas wirausaha (E2KWU) yang mendorong
-		                        pemberdayaan potensi diri untuk memberi manfaat pada lingkungannya melalui kegiatan
-		                        kewirausahaan yang berkelanjutan.
-		                    </p>
-		                    <p class="para">
-		                        Preneur Academy dirancang dengan pendekatan <b>training</b>, <b>mentoring</b>,
-		                        <b>consulting</b>, dan <b>coaching (TM2C)</b>
-		                        dalam proses pembelajaran.
-		                    </p>
-		                </div>
-		                <!-- <button type="button" class="btn button primary-button text-uppercase">Tentang Kami</button> -->
-		            </div>
-		        </div>
-		    </div>
-		</section>
+    <!--  ========================= Awalan About ==========================  -->
 
-		<!--  ========================= Batas About ==========================  -->
+    <section class="about-area p-5 mt-5 mb-5" id="about-area">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-lg-6 col-md-12" data-aos="fade-up">
+                    <div class="about-image">
+                        <img src="<?= base_url(); ?>assets/dist/img/celebration.svg" alt="About us" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 about-title" data-aos="fade-down">
+                    <h3 class="text-uppercase font-weight-bold pt-5">
+                        <span>Apa Itu</span>
+                        <span>Preneur Academy?</span>
+                    </h3>
+                    <div class="paragraph py-4 w-100">
+                        <p class="para">
+                            merupakan ruang edukasi, ekosistem, dan komunitas wirausaha (E2KWU) yang mendorong
+                            pemberdayaan potensi diri untuk memberi manfaat pada lingkungannya melalui kegiatan
+                            kewirausahaan yang berkelanjutan.
+                        </p>
+                        <p class="para">
+                            Preneur Academy dirancang dengan pendekatan <b>training</b>, <b>mentoring</b>,
+                            <b>consulting</b>, dan <b>coaching (TM2C)</b>
+                            dalam proses pembelajaran.
+                        </p>
+                    </div>
+                    <button type="button" class="btn button primary-button text-uppercase">Tentang Kami</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<!--  ========================== Subscribe me Area ============================  -->
-		<section class="newsletter mt-5">
-		    <div class="container">
-		        <div class="row justify-content-center">
-		            <div class="col-md-10 text-center jumbotron bg-primary p-12 shadow">
-		                <img src="<?= base_url(); ?>assets/dist/img/subscribe.svg" width="200" alt="gambar-envelope">
-		                <div class="content text-center mt-5">
-		                    <h2 class="text-white">SUBSCRIBE</h2>
-		                    <p class="text-white">Dengan meng-klik subscribe artinya anda menyetujui layanan langganan ke
-		                        website ini.</p>
-		                    <div class="input-group p-5 mt-5 mb-5">
-		                        <input type="email" class="form-control mr-2 mb-2" placeholder="Enter your email">
-		                        <span class="input-group-btn">
-		                            <button class="btn btn-warning ml-2 mb-2" type="submit">Subscribe Now</button>
-		                        </span>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-		        <path fill="#FFC107" fill-opacity="1"
-		            d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-		        </path>
-		    </svg>
-		</section>
-		<!--  ========================== Batas Subscribe Area ============================  -->
+    <!--  ========================= Batas About ==========================  -->
+
+    <!--  ========================= Awalan FAQ ==========================  -->
+    <section id="faq" class="about-area faq faq-kls mt-5 mb-5">
+        <div class="container" data-aos="fade-up">
+            <div class="row text-center">
+                <div class="col-12">
+                    <div class="about-title">
+                        <h3 class="title-h1">FAQ</h3>
+                        <p class="para text-dark">
+                            Berikut beberapa list pertanyaan yang sering diajukan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-list">
+            <ul>
+                <li data-aos="fade-up" data-aos="fade-up" data-aos-delay="100">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse"
+                        href="#faq-list-1">Apa itu webinar? <i class="bx bx-chevron-down icon-show"></i><i
+                            class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
+                        <p>
+                            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
+                            non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
+                            purus non.
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="200">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2"
+                        class="collapsed">Bagaimana cara mendaftar webinar di Preneur Academy? <i
+                            class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-2" class="collapse" data-parent=".faq-list">
+                        <p>
+                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
+                            velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
+                            donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
+                            cursus turpis massa tincidunt dui.
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="300">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-3"
+                        class="collapsed">Siapa saja yang boleh mengikuti webinar? <i
+                            class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-3" class="collapse" data-parent=".faq-list">
+                        <p>
+                            Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus
+                            pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
+                            Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis
+                            tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="400">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-4"
+                        class="collapsed">Apa yang saya dapat jika saya mendaftar webinar di Preneur Academy? <i
+                            class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-4" class="collapse" data-parent=".faq-list">
+                        <p>
+                            Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in
+                            est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
+                            suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </section>
+    <!--  ========================= Batas FAQ ==========================  -->
+</main>

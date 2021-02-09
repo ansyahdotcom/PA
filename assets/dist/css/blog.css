@@ -60,11 +60,6 @@
 	font-size: .875rem;
 }
 
-.card-img-right {
-	height: 100%;
-	border-radius: 0 3px 3px 0;
-}
-
 .flex-auto {
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;

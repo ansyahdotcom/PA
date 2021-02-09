@@ -77,7 +77,8 @@ $route['peserta/faq'] = 'peserta/bantuan/faq';
 $route['peserta/ketentuan'] = 'peserta/bantuan/ketentuan';
 $route['class-detail/(:any)']  =  'index/dt_kls/$1';
 $route['legal/p/(:any)']  =  'legal/index/$1';
-$route['webinar/detail/(:any)']  =  'index/dt_webinar/$1';
+$route['webinar-detail/(:any)']  =  'index/dt_webinar/$1';
+$route['blog/kategori/(:any)']  =  'index/kategori/$1';
 $route['blog/detail/(:any)']  =  'index/lihat_post/$1';
 $route['mywebinar']  =  'peserta/webinar/mywebinar';
 

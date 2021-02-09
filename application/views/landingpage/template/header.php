@@ -54,7 +54,6 @@
 </head>
 
 <body>
-
     <div class="container-all">
         <header class="header_area navbar_fixed">
             <div class="main-menu">
@@ -68,9 +67,9 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <?php foreach ($header as $h) :
-								$name = $h['NM_NV'];
-								$link = $h['LINK_NV'];
-							?>
+                                $name = $h['NM_NV'];
+                                $link = $h['LINK_NV'];
+                            ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="<?= base_url($link) ?>"><?= $name ?></a>
                             </li>

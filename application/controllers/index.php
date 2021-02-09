@@ -28,19 +28,6 @@ class index extends CI_Controller
 
     public function post()
     {
-
-        $config['total_rows'] = $this->db->count_all_results();
-        $data['rows'] = $config['total_rows'];
-        $config['per_page'] = 3;
-        // $config['num_links'] = 3;
-
-        /** Initialize library pagination */
-        $this->pagination->initialize($config);
-        $data['start'] = $this->uri->segment(3);
-
-        /** Mengambil data kelas */
-        $data['kls'] = $this->m_landingpage->get_blog_list($config['per_page'], $data['start']);
-
         $data['blog'] = $this->m_landingpage->tampil_blog_web()->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
         $data['header'] = $this->m_navbar->get_navbar();
@@ -62,7 +49,7 @@ class index extends CI_Controller
         $data['kebijakan'] = $this->m_kebijakan->get_data();
         $data['footer'] = $this->m_medsos->get_data();
         $data['judul'] = 'Preneur Academy | Blog';
-        $this->load->view("landingpage/template/header", $data);
+        $this->load->view("landingpage/template/headerblog", $data);
         $this->load->view("landingpage/lihat_post", $data);
         $this->load->view("landingpage/template/footer", $data);
     }
@@ -74,10 +61,10 @@ class index extends CI_Controller
         $data['judul'] = $NM_CT;
         $data['nm_ct'] = $NM_CT;
         // $data['kategori'] = $this->m_landingpage->category($NM_CT)->result();
-        $query = $this->db->query("SELECT post.ID_POST, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST, 
+        $query = $this->db->query("SELECT admin.ID_ADM, admin.FTO_ADM, admin.NM_ADM, post.ID_POST, post.JUDUL_POST, post.KONTEN_POST, post.TGL_POST, 
                                     post.FOTO_POST, post.ST_POST, post.ID_CT, category.NM_CT
-                                    FROM post, category
-                                    WHERE post.ID_CT = category.ID_CT
+                                    FROM post, category, admin
+                                    WHERE post.ID_CT = category.ID_CT AND admin.ID_ADM = post.ID_ADM
                                     AND category.NM_CT = '$NM_CT'");
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
         $data['header'] = $this->m_navbar->get_navbar();
