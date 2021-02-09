@@ -82,7 +82,11 @@
 										<div class="card bg-blue col-sm-12 mt-2">
 											<div class="status mt-2">
 												<?php if ($detail != null) { ?>
+													<?php if($detail['STATUS'] == 'Sudah Mengumpulkan'){?>
 													<h5 class="card-title badge badge-success m-2">Sudah mengerjakan</h5>
+													<?php }else{?>
+													<h5 class="card-title badge badge-danger m-2">Sudah mengerjakan</h5>
+													<?php }?>
 													<h5 class="card-title badge badge-warning m-2 text-bold"><i class="fas fa-stopwatch"></i> Dikumpulkan: <?= date('d M Y H:i', strtotime($detail['TIME_DT_TG'])); ?></h5>
 												<?php } else { ?>
 													<h5 class="card-title badge badge-secondary m-2">Belum mengerjakan</h5>
