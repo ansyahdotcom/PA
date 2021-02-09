@@ -87,53 +87,44 @@ class Webinar extends CI_Controller
             $TGL_TUTUP = htmlspecialchars($this->input->post('TGL_TUTUP'));
             $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
             $TGL_POSTWEB = date('Y-m-d');
-            // untuk upload foto web
-            $config['upload_path']          = './assets/fotowebinar/';
-            $config['allowed_types']        = 'jpg|jpeg|JPG';
-            $config['max_size']             = 0;
-            $config['encrypt_name']         = true;
+            /** Proses Edit Gambar */
+            $upload_image = $_FILES['FOTO_WEBINAR']['name'];
 
-            $this->load->library('upload');
-            $this->upload->initialize($config);
+            if ($upload_image) {
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['upload_path'] = './assets/fotowebinar/';
+                $config['encrypt_name']; TRUE;
 
-            if ($this->upload->do_upload('FOTO_WEBINAR')) {
-                $upload_data = $this->upload->data();
-                //Compress Image buat foto web
-                $config['image_library'] = 'gd2';
-                $config['quality'] = '110%';
-                $config['width'] = 500;
-                $config['height'] = 500;
-                $config['source_image'] = './assets/fotowebinar/' . $upload_data['file_name'];
-                $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = FALSE;
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
+                $this->upload->initialize($config);
 
-                $data = array(
-                    'ID_WEBINAR' => $ID_WEBINAR,
-                    'ID_ADM' => $ID_ADM,
-                    'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
-                    'KONTEN_WEB' => $KONTEN_WEB,
-                    'FOTO_WEBINAR' => $upload_data['file_name'],
-                    'HARGA' => $HARGA,
-                    'PLATFORM' => $PLATFORM,
-                    'KUOTA_WEB' => $KUOTA_WEB,
-                    'LINK_ZOOM' => $LINK_ZOOM,
-                    'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
-                    'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
-                    'TGL_WEB' => date('Y-m-d H:i', strtotime($TGL_WEB)),
-                    'TGL_POSTWEB' => $TGL_POSTWEB
-                );
-
-                $this->m_webinar->insert($data, 'webinar');
-
-                // $this->session->set_flashdata('message', 'blSuccess');
-                $this->session->set_flashdata('message', 'save');
-                redirect('admin/Webinar');
-            } else {
-                $error = array('error' => $this->upload->display_errors());
-                $this->load->view('admin/webinar', $error);
+                if ($this->upload->do_upload('FOTO_WEBINAR')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('FOTO_WEBINAR', $new_image);
+                } else {
+                    $this->session->set_flashdata('message', 'gagal_upload');
+                    redirect('admin/webinar');
+                }
             }
+                
+            $data = array(
+                'ID_WEBINAR' => $ID_WEBINAR,
+                'ID_ADM' => $ID_ADM,
+                'JUDUL_WEBINAR' => str_replace(' ', '-', $JUDUL_WEBINAR),
+                'KONTEN_WEB' => $KONTEN_WEB,
+                'FOTO_WEBINAR' => $new_image,
+                'HARGA' => $HARGA,
+                'PLATFORM' => $PLATFORM,
+                'KUOTA_WEB' => $KUOTA_WEB,
+                'LINK_ZOOM' => $LINK_ZOOM,
+                'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
+                'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
+                'TGL_WEB' => date('Y-m-d H:i', strtotime($TGL_WEB)),
+                'TGL_POSTWEB' => $TGL_POSTWEB
+            );
+
+            $this->m_webinar->insert($data, 'webinar');
+            $this->session->set_flashdata('message', 'save');
+            redirect('admin/webinar');
         }
     }
 

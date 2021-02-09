@@ -36,10 +36,6 @@
 
 									<div class="col-sm-8">
 										<table>
-											<!-- <tr>
-												<td><b>Pembicara</b> &nbsp;</td>
-												<td for="NM_ADM">:&nbsp; <?= $ps->NM_ADM; ?></td>
-											</tr> -->
 											<tr>
 												<td><b>Tanggal Webinar</b> &nbsp;</td>
 												<td for="TGL_WEB">:&nbsp;
@@ -133,7 +129,6 @@
 										<td><?= $i++; ?></td>
 										<td><?= str_replace('-', ' ', $ps->JUDUL_WEBINAR); ?></td>
 										<td><?= date('l, d F Y', strtotime(str_replace('.', '-', $ps->TGL_WEB))); ?></td>
-										<!-- <td>Download</td> -->
 									</tr>
 								<?php endif; ?>
 							<?php endforeach; ?>

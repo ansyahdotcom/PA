@@ -229,7 +229,7 @@
     			<div class="row text-center">
     				<div class="col-12">
     					<div class="about-title" id="Blog">
-    						<h1 class="text-uppercase title-h1">Blog</h1>
+    						<a class="text-uppercase title-h1" style="text-decoration:none" href="<?= base_url('blog');?>">Blog</a>
     						<p class="para">
     							Berikut beberapa artikel terpopuler.
     						</p>

@@ -59,7 +59,7 @@
 									} ?>
 								</div>
 								<div class="col-sm-3">
-									<img class="card-img-top" alt="tidak ada foto.." src="<?= base_url('assets/fotoblog/fotoweb/' . $blg->FOTO_POST); ?>">
+									<img class="card-img-top" alt="tidak ada foto.." src="<?= base_url('assets/fotoblog/' . $blg->FOTO_POST); ?>">
 
 								</div>
 								<div class="col-sm-8">

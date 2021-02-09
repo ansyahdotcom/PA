@@ -58,10 +58,6 @@
 								</div>
 								<div class="col-sm-8">
 									<table>
-										<!-- <tr>
-											<td><b>Pembicara</b> &nbsp;</td>
-											<td for="NM_ADM">:&nbsp; <?= $wbnr->NM_ADM; ?></td>
-										</tr> -->
 										<tr>
 											<td><b>Platform</b> &nbsp;</td>
 											<td for="PLATFORM">:&nbsp; <?= $wbnr->PLATFORM; ?></td>
