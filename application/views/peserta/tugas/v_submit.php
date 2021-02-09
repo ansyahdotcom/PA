@@ -41,7 +41,7 @@
                                     <small class="form-text text-success">Unggah file materi. *maximal ukuran 5mb</small>
                                 </div>
                                 <div class="text-center">
-                                    <button class="btn btn-info" type="submit">Submit Tugas</button>
+                                    <button class="btn btn-primary" type="submit"><i class="fas fa-upload"></i> Submit Tugas</button>
                                 </div>
                             </form>
                         </div>

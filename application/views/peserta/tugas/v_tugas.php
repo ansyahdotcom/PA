@@ -9,8 +9,10 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active"><?= $tittle; ?></li>
+						<li class="breadcrumb-item"><a href="<?= base_url('peserta/dashboard'); ?>">Home</a></li>
+						<li class="breadcrumb-item"><a href="<?= base_url('peserta/myclass'); ?>">Kelas Saya</a></li>
+						<li class="breadcrumb-item"><a href="<?= base_url('peserta/mymateri/materi'); ?>">Materi kelas</a></li>
+						<li class="breadcrumb-item active"><?= $tittle; ?></li>
                     </ol>
                 </div>
             </div>
@@ -40,7 +42,7 @@ $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array
                                     <tr>
                                         <?php if($detail == null){?>
                                         <td class="text-right">Status pengumpulan :</td>
-                                        <td><span class="badge badge-pill badge-primary">Belum mengumpulkan</span></td>
+                                        <td><span class="badge badge-pill badge-secondary">Belum mengumpulkan</span></td>
                                         <?php }else{ ?>
                                         <td class="text-right">Status pengumpulan :</td>
                                         <td><span class="badge badge-pill badge-success"><?=$detail['STATUS']?></span></td>
@@ -52,12 +54,12 @@ $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array
                                         <td>--</td>
                                         <?php }else{ ?>
                                         <td class="text-right">Waktu Pengumpulan :</td>
-                                        <td><?=$detail['TIME_DT_TG']?></td>
+                                        <td><?= date('d M Y H:i', strtotime($detail['TIME_DT_TG'])); ?></td>
                                         <?php }?>
                                     </tr>
                                     <tr>
-                                        <td class="text-right">Deadline Tugas :</td>
-                                        <td><?=$tugas['DEADLINE']?></td>
+                                        <td class="text-right">Batas Pengumpulan :</td>
+                                        <td><?= date('d M Y H:i', strtotime($tugas['DEADLINE'])); ?></td>
                                     </tr>
                                     <tr>
                                     <?php if($detail == null){?>
@@ -78,17 +80,17 @@ $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array
                             if($sekarang >= $mulai && $sekarang <= $akhir) {?>
                                 <?php if($detail == null){?>
                                 <div class="text-center">
-                                    <a class="btn btn-info" href="<?=base_url()?>peserta/tugas/submit/<?=$tugas['ID_TG']?>" role="button">Submit Tugas</a>
+                                    <a class="btn btn-primary" href="<?=base_url()?>peserta/tugas/submit/<?=$tugas['ID_TG']?>" role="button"><i class="fas fa-upload"></i> Submit Tugas</a>
                                 </div>
                                 <?php }else{ ?>
                                 <div class="text-center">
-                                    <a class="btn btn-info" href="<?=base_url()?>peserta/tugas/edit/<?=$tugas['ID_TG']?>" role="button">Edit Tugas</a>
+                                    <a class="btn btn-primary" href="<?=base_url()?>peserta/tugas/edit/<?=$tugas['ID_TG']?>" role="button"><i class="fas fa-edit"></i> Edit Tugas</a>
                                 </div>
                                 <?php }?>
                             <?php } else if($sekarang > $akhir){?>
                             <div class="text-center">
-                                <a class="btn btn-info" href="<?=base_url()?>peserta/dashboard" role="button">Pergi ke Dashboard</a><br>
-                                <small>Mohon maaf, tugas sudah ditutup.</small>
+                                <a class="btn btn-primary" href="<?=base_url()?>peserta/dashboard" role="button"><i class="fas fa-tachometer-alt"></i> Pergi ke Dashboard</a><br>
+                                <small class="text-danger text-bold">Mohon maaf, pegumpulan tugas sudah ditutup.</small>
                             </div>
                             <?php }?>
                         </div>

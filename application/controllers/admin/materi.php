@@ -199,7 +199,7 @@ class Materi extends CI_Controller
             'ID_TG' => $ID_TG,
             'NM_TG' => $NM_TG,
             'DETAIL_TG' => $DETAIL_TG,
-            'DEADLINE' => $DEADLINE,
+            'DEADLINE' => date('Y-m-d H:i', strtotime($DEADLINE)),
             'ICON_TG' => $ICON_TG,
             // 'FILE_TG' => $FILE_TG, 
             'ID_MT' => $ID_MT
@@ -243,7 +243,7 @@ class Materi extends CI_Controller
         $data = array(
             'NM_TG' => $NM_TG,
             'DETAIL_TG' => $DETAIL_TG,
-            'DEADLINE' => $DEADLINE,
+            'DEADLINE' => date('Y-m-d H:i', strtotime($DEADLINE)),
             'ICON_TG' => $ICON_TG,
             // 'FILE_TG' => $FILE_TG, 
             'ID_MT' => $ID_MT

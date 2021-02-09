@@ -361,10 +361,11 @@ class Auth extends CI_Controller
 			'is_unique' => 'Email ini sudah terdaftar'
 		]);
 
-		$this->form_validation->set_rules('nomorwa', 'Nomorwa', 'required|trim|min_length[11]|max_length[13]', [
+		$this->form_validation->set_rules('nomorwa', 'Nomorwa', 'required|trim|min_length[11]|max_length[13]|is_natural', [
 			'required' => 'Kolom ini harus diisi',
-			'min_length' => 'Format yang anda masukkan salah',
-			'max_length' => 'Format yang anda masukkan salah'
+			'min_length' => 'Format nomor whatsapp yang anda masukkan salah',
+			'max_length' => 'Format nomor whatsapp yang anda masukkan salah',
+			'is_natural' => 'Harus berisi angka'
 		]);
 
 		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[password1]', [
@@ -375,7 +376,7 @@ class Auth extends CI_Controller
 
 		$this->form_validation->set_rules('password1', 'Password1', 'required|trim|min_length[8]|matches[password]', [
 			'required' => 'Kolom ini harus diisi',
-			'min_length' => 'Password terlalu pendek',
+			'min_length' => '',
 			'matches' => 'Konfirmasi password salah'
 		]);
 
