@@ -144,6 +144,28 @@ class index extends CI_Controller
         $this->load->view("landingpage/template/footer", $data);
     }
 
+    public function about()
+    {
+        $data['footer'] = $this->m_medsos->get_data();
+        $data['header'] = $this->m_navbar->get_navbar();
+        $data['kebijakan'] = $this->m_kebijakan->get_data();
+        $data['judul'] = 'Preneur Academy | Tentang Kami';
+        $this->load->view("landingpage/template/header", $data);
+        $this->load->view("landingpage/about", $data);
+        $this->load->view("landingpage/template/footer", $data);
+    }
+
+    public function comm()
+    {
+        $data['footer'] = $this->m_medsos->get_data();
+        $data['header'] = $this->m_navbar->get_navbar();
+        $data['kebijakan'] = $this->m_kebijakan->get_data();
+        $data['judul'] = 'Preneur Academy | Tentang Kami';
+        $this->load->view("landingpage/template/header", $data);
+        $this->load->view("landingpage/comm", $data);
+        $this->load->view("landingpage/template/footer", $data);
+    }
+
     public function block()
     {
         $data['title'] = '403 Forbidden Page';

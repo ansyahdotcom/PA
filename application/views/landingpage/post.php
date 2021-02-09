@@ -65,7 +65,8 @@
                     <?php foreach ($kategori as $ls) { ?>
                     <ul class="unstyle list-group shadow mb-1">
                         <li class="list-group-item para"><i class="fa fa-folder text-info"></i> <a
-                                href="<?= base_url('blog/kategori/' . $ls->NM_CT); ?>"><?= $ls->NM_CT; ?></a></li>
+                                href="<?= base_url('blog/kategori/' . strtolower($ls->NM_CT)); ?>"><?= $ls->NM_CT; ?></a>
+                        </li>
                     </ul>
                     <?php } ?>
                 </div>

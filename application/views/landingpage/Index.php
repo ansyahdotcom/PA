@@ -67,7 +67,8 @@
                                 dalam proses pembelajaran.
                             </p>
                         </div>
-                        <button type="button" class="btn button primary-button text-uppercase">Tentang Kami</button>
+                        <a href="<?= base_url('about'); ?>" class="btn button primary-button text-uppercase">Tentang
+                            Kami</a>
                     </div>
                 </div>
             </div>
@@ -117,7 +118,8 @@
                                         <div class="card-body text-center">
                                             <h5 class="card-title font-weight-bold">Join Komunitas</h5>
                                             <p class="card-text">Ikut berperan dalam perubahan.</p>
-                                            <a class="btn button primary-button" href="#">Bergabung Sekarang</a>
+                                            <a class="btn button primary-button"
+                                                href="<?= base_url('community') ?>">Bergabung Sekarang</a>
                                         </div>
                                     </div>
                                 </div>
@@ -148,11 +150,11 @@
                         data-aos-delay="100">
                         <div class="icon-box shadow p-2">
                             <div class="icon">
-                                <img src="<?= base_url(); ?>assets/dist/img/services/book.svg" class="img-fluid p-5"
-                                    alt="Services-1">
+                                <img src="<?= base_url(); ?>assets/dist/img/services/business.svg" width="220"
+                                    class="img-fluid p-5" alt="Services-1">
                             </div>
                             <h4>Program 1.001 Wirausaha Baru</h4>
-                            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                            <!-- <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p> -->
                         </div>
                     </div>
 
@@ -164,29 +166,29 @@
                                     alt="Services-2">
                             </div>
                             <h4>Kurikulum pengajaran 6 semester</h4>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+                            <!-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p> -->
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
                         data-aos-delay="300">
                         <div class="icon-box shadow p-2">
                             <div class="icon">
-                                <img src="<?= base_url(); ?>assets/dist/img/services/book.svg" class="img-fluid p-5"
-                                    alt="Services-3">
+                                <img src="<?= base_url(); ?>assets/dist/img/services/realtime.svg" width="220"
+                                    class="img-fluid p-5" alt="Services-3">
                             </div>
                             <h4>Pendampingan Seumur Hidup</h4>
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+                            <!-- <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p> -->
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
                         data-aos-delay="400">
                         <div class="icon-box shadow p-2">
                             <div class="icon">
-                                <img src="<?= base_url(); ?>assets/dist/img/services/book.svg" class="img-fluid p-5"
-                                    alt="Services-4">
+                                <img src="<?= base_url(); ?>assets/dist/img/services/graduate.svg" width="230"
+                                    class="img-fluid p-5" alt="Services-4">
                             </div>
                             <h4>E-Sertifikat Webinar dan Kelas Online</h4>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+                            <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p> -->
                         </div>
                     </div>
                 </div>
@@ -217,9 +219,8 @@
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
                             <p>
-                                Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                                non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
-                                purus non.
+                                Bapak Agus Hadi Prayitno selaku pendiri dari preneur academy. beliau juga merupakan
+                                pendiri D'Gejrot yang bergerak dibidang kuliner..
                             </p>
                         </div>
                     </li>
@@ -229,12 +230,11 @@
                             class="collapsed">Apa visi dan misi Preneur Academy? <i
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-2" class="collapse" data-parent=".faq-list">
-                            <p>
-                                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                                velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                                donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                                cursus turpis massa tincidunt dui.
-                            </p>
+                            <p class="mb-1">- Menciptakan sebanyak mungkin wirausaha baru</p>
+                            <p class="mb-1">- Edukasi dan ekosistem bagi setiap orang yang ingin mengembangkan potensi
+                                dirinya
+                                menjadi wirausaha</p>
+                            <p>- Komunitas yang dapat memberi manfaat dan dampak luar biasa untuk negeri</p>
                         </div>
                     </li>
 
@@ -244,10 +244,9 @@
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-3" class="collapse" data-parent=".faq-list">
                             <p>
-                                Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus
-                                pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
-                                Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis
-                                tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                                Tempat paling menyenangkan untuk setiap orang yang ingin menumbuhkan jiwa kewirausahaan
+                                dan memberdayakan potensi dirinya untuk memulai dan mengembangkan usahanya sampai
+                                berkelanjutan.
                             </p>
                         </div>
                     </li>
@@ -258,22 +257,8 @@
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-4" class="collapse" data-parent=".faq-list">
                             <p>
-                                Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in
-                                est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                                suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
-                            </p>
-                        </div>
-                    </li>
-
-                    <li data-aos="fade-up" data-aos-delay="500">
-                        <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5"
-                            class="collapsed">Saya tidak mempunyai keahlian IT apakah saya bisa mendaftar? <i
-                                class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                        <div id="faq-list-5" class="collapse" data-parent=".faq-list">
-                            <p>
-                                Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo
-                                integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc
-                                eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                                Anda medapatkan ilmu dalam berwirausaha, serta sertifikat dari kegiatan kelas dan
+                                webinar.
                             </p>
                         </div>
                     </li>
@@ -294,7 +279,7 @@
                             <a class="text-uppercase text-dark title-h1" style="text-decoration:none"
                                 href="<?= base_url('blog'); ?>">Blog</a>
                             <p class="para">
-                                Berikut beberapa artikel terpopuler.
+                                Berikut beberapa artikel terkini.
                             </p>
                         </div>
                     </div>

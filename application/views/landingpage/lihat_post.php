@@ -14,15 +14,16 @@
                             <div class="awal">
                                 <h2 class="m-3 font-weight-bold"><?= str_replace('-', ' ', $blg->JUDUL_POST); ?></h2>
                                 <div class="ket m-3">
-                                    <i class="fas fa-calendar"></i><?= date(' d F Y', strtotime($blg->TGL_POST)); ?>
-                                    <i class="fa fa-folder"></i>
+                                    <i
+                                        class="fas fa-clock text-primary"></i><?= date(' d F Y', strtotime($blg->TGL_POST)); ?>
+                                    <i class="fa fa-folder text-info"></i>
                                     <a class=""
-                                        href="<?= base_url('index/kategori/' . $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
-                                    <i class="fas fa-tag ml-2"></i>
+                                        href="<?= base_url('blog/kategori/' . strtolower($blg->NM_CT)); ?>"><?= $blg->NM_CT; ?></a>
+                                    <i class="fas fa-tag text-success ml-2"></i>
                                     <?php $i = 1;
                     foreach ($detail_tags as $dt) { ?>
                                     <a class=""
-                                        href="<?= base_url('index/tag/' . $dt->NM_TAGS); ?>"><?= $dt->NM_TAGS; ?><?= $i == count((array) $detail_tags) ? '' : ', ' ?></a>
+                                        href="<?= base_url('blog/tag/' . strtolower($dt->NM_TAGS)); ?>"><?= $dt->NM_TAGS; ?><?= $i == count((array) $detail_tags) ? '' : ', ' ?></a>
                                     <?php $i++;
                     } ?>
                                 </div>
@@ -31,15 +32,15 @@
                             <hr>
                             <div class="float-right"><i class="fas fa-flipboard"></i>
                                 <!-- <br> -->
-                                <i class="fa fa-folder"></i>
+                                <i class="fa fa-folder text-info"></i>
                                 <a class=""
-                                    href="<?= base_url('index/kategori/' . $blg->NM_CT); ?>"><?= $blg->NM_CT; ?></a>
-                                <i class="fas fa-tag ml-2"></i>
+                                    href="<?= base_url('blog/kategori/' . strtolower($blg->NM_CT)); ?>"><?= $blg->NM_CT; ?></a>
+                                <i class="fas fa-tag ml-2 text-success"></i>
                                 <?php
                   $i = 1;
                   foreach ($detail_tags as $dt) { ?>
                                 <a class=""
-                                    href="<?= base_url('index/tag/' . $dt->NM_TAGS); ?>"><?= $dt->NM_TAGS; ?><?= $i == count((array) $detail_tags) ? '' : ', ' ?></a>
+                                    href="<?= base_url('blog/tag/' . strtolower($dt->NM_TAGS)); ?>"><?= $dt->NM_TAGS; ?><?= $i == count((array) $detail_tags) ? '' : ', ' ?></a>
                                 <?php $i++;
                   } ?>
                             </div>
