@@ -89,18 +89,18 @@
             
             $this->form_validation->set_rules('pswlma', 'Lma', 'trim|required|min_length[8]', [
                 'required' => 'kolom ini harus diisi',
-                'min_length' => 'password terlalu pendek'
+                'min_length' => 'Password minimal berjumlah 8 karakter'
             ]);
 
             $this->form_validation->set_rules('pswbru', 'bru', 'trim|required|matches[pswbru1]|min_length[8]', [
                 'required' => 'kolom ini harus diisi',
-                'min_length' => 'password terlalu pendek',
+                'min_length' => 'Password minimal berjumlah 8 karakter',
                 'matches' => ''
             ]);
 
             $this->form_validation->set_rules('pswbru1', 'bru1', 'trim|required|matches[pswbru]|min_length[8]', [
                 'required' => 'kolom ini harus diisi',
-                'min_length' => 'password terlalu pendek',
+                'min_length' => 'Password minimal berjumlah 8 karakter',
                 'matches' => 'konfirmasi password tidak sesuai'
             ]);
 
