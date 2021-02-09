@@ -220,7 +220,7 @@
                         <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
                             <p>
                                 Bapak Agus Hadi Prayitno selaku pendiri dari preneur academy. beliau juga merupakan
-                                pendiri D'Gejrot yang bergerak dibidang kuliner..
+                                pendiri D'Gejrot yang bergerak dibidang kuliner.
                             </p>
                         </div>
                     </li>
