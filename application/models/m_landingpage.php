@@ -1,4 +1,4 @@
-<?php 
+<?php
 class M_landingpage extends CI_Model
 {
 
@@ -14,7 +14,8 @@ class M_landingpage extends CI_Model
         return $data;
     }
 
-    function get_blog_list($limit, $start){
+    function get_blog_list($limit, $start)
+    {
         $query = $this->db->get('post', $limit, $start);
         return $query;
     }
@@ -28,7 +29,7 @@ class M_landingpage extends CI_Model
     // pratinjau
     function tampil_dt_blog($JUDUL_POST)
     {
-        $data=$this->db->query("SELECT post.ID_POST, post.ID_CT, post.JUDUL_POST, post.KONTEN_POST, 
+        $data = $this->db->query("SELECT post.ID_POST, post.ID_CT, post.JUDUL_POST, post.KONTEN_POST, 
                                 post.TGL_POST, post.FOTO_POST, post.UPDT_TRAKHIR, post.ST_POST, category.NM_CT 
                                 FROM post, category
                                 WHERE post.ID_CT = category.ID_CT
@@ -38,7 +39,7 @@ class M_landingpage extends CI_Model
 
     function legal($LINK_KB)
     {
-        $data=$this->db->query("SELECT * FROM kebijakan WHERE kebijakan.LINK_KB = '$LINK_KB'");
+        $data = $this->db->query("SELECT * FROM kebijakan WHERE kebijakan.LINK_KB = '$LINK_KB'");
         return $data;
     }
 
@@ -50,7 +51,7 @@ class M_landingpage extends CI_Model
         $this->db->order_by('ID_POST', 'DESC');
         return $this->db->get()->result();
     }
-    
+
     // tampil tags yg bawahnya judul
     function tampil_dt_tags($JUDUL_POST)
     {
@@ -61,7 +62,7 @@ class M_landingpage extends CI_Model
                                 AND post.JUDUL_POST = '$JUDUL_POST'");
         return $data;
     }
-    
+
     // tampil artikel yg kategori sama
     function category($NM_CT)
     {
@@ -92,18 +93,18 @@ class M_landingpage extends CI_Model
         return $data;
     }
 
-    function dt_kls($ID_KLS)
+    function dt_kls($PERMALINK)
     {
-        $data = $this->db->query("SELECT * FROM kelas, ktg_kelas,admin WHERE kelas.ID_KTGKLS = ktg_kelas.ID_KTGKLS AND admin.ID_ADM = kelas.ID_ADM AND ID_KLS = '$ID_KLS'");
+        $data = $this->db->query("SELECT * FROM kelas, ktg_kelas,admin WHERE kelas.ID_KTGKLS = ktg_kelas.ID_KTGKLS AND admin.ID_ADM = kelas.ID_ADM AND kelas.PERMALINK = '$PERMALINK'");
         return $data;
     }
-    
+
     function materi($ID_KLS)
     {
         $data = $this->db->query("SELECT * FROM materi, materi_sub, kelas WHERE materi.ID_MT = materi_sub.ID_MT AND ID_KLS = '$ID_KLS' ORDER BY materi.ID_MT DESC ");
         return $data;
     }
-    
+
     function webinar()
     {
         $data = $this->db->query("SELECT * FROM webinar, admin WHERE webinar.ID_ADM = admin.ID_ADM AND webinar.ST_POSTWEB = 1 ORDER BY webinar.TGL_WEB DESC");
@@ -116,4 +117,3 @@ class M_landingpage extends CI_Model
         return $data;
     }
 }
-?>

@@ -80,8 +80,8 @@ class index extends CI_Controller
                                     WHERE post.ID_CT = category.ID_CT
                                     AND category.NM_CT = '$NM_CT'");
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
-        $data['header'] = $this->m_navbar->get_navbar(); 
-        $data['kebijakan'] = $this->m_kebijakan->get_data(); 
+        $data['header'] = $this->m_navbar->get_navbar();
+        $data['kebijakan'] = $this->m_kebijakan->get_data();
         $data['footer'] = $this->m_medsos->get_data();
         $data['POST'] = $query->result();
         $data['kategori'] = $this->m_blog->tampil_kategori()->result();
@@ -120,14 +120,13 @@ class index extends CI_Controller
         $this->load->view("landingpage/template/footer", $data);
     }
 
-    public function dt_kls($ID_KLS)
+    public function dt_kls($PERMALINK)
     {
         $data['footer'] = $this->m_medsos->get_data();
         $data['header'] = $this->m_navbar->get_navbar();
         $data['kebijakan'] = $this->m_kebijakan->get_data();
         $data['judul'] = 'Preneur Academy | Kelas';
-        $data['kelas'] = $this->m_landingpage->dt_kls($ID_KLS)->result();
-        $data['materi'] = $this->m_landingpage->materi($ID_KLS)->result();
+        $data['kelas'] = $this->m_landingpage->dt_kls($PERMALINK)->result();
         $this->load->view("landingpage/template/header", $data);
         $this->load->view("landingpage/dt_kls", $data);
         $this->load->view("landingpage/template/footer", $data);
