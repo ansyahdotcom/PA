@@ -44,9 +44,13 @@ $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array
                                         <td class="text-right">Status pengumpulan :</td>
                                         <td><span class="badge badge-pill badge-secondary">Belum mengumpulkan</span></td>
                                         <?php }else{ ?>
+                                        <?php if($detail['STATUS'] == 'Sudah Mengumpulkan'){?>
                                         <td class="text-right">Status pengumpulan :</td>
                                         <td><span class="badge badge-pill badge-success"><?=$detail['STATUS']?></span></td>
-                                        <?php }?>
+                                        <?php }else{?>
+                                        <td class="text-right">Status pengumpulan :</td>
+                                        <td><span class="badge badge-pill badge-danger"><?=$detail['STATUS']?></span></td>
+                                        <?php } }?>
                                     </tr>
                                     <tr>
                                     <?php if($detail == null){?>
@@ -76,8 +80,7 @@ $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array
                             <?php 
                             $sekarang = time();
                             $mulai = strtotime($detail['TIME_DT_TG']);
-                            $akhir = strtotime($tugas['DEADLINE']);
-                            if($sekarang >= $mulai && $sekarang <= $akhir) {?>
+                            $akhir = strtotime($tugas['DEADLINE']);?>
                                 <?php if($detail == null){?>
                                 <div class="text-center">
                                     <a class="btn btn-primary" href="<?=base_url()?>peserta/tugas/submit/<?=$tugas['ID_TG']?>" role="button"><i class="fas fa-upload"></i> Submit Tugas</a>
@@ -87,12 +90,6 @@ $detail = $this->db->get_where('detil_tugas', ['ID_TG' => $id_tugas])->row_array
                                     <a class="btn btn-primary" href="<?=base_url()?>peserta/tugas/edit/<?=$tugas['ID_TG']?>" role="button"><i class="fas fa-edit"></i> Edit Tugas</a>
                                 </div>
                                 <?php }?>
-                            <?php } else if($sekarang > $akhir){?>
-                            <div class="text-center">
-                                <a class="btn btn-primary" href="<?=base_url()?>peserta/dashboard" role="button"><i class="fas fa-tachometer-alt"></i> Pergi ke Dashboard</a><br>
-                                <small class="text-danger text-bold">Mohon maaf, pegumpulan tugas sudah ditutup.</small>
-                            </div>
-                            <?php }?>
                         </div>
                     </div>
                 </div>

@@ -119,21 +119,21 @@ class Blog extends CI_Controller
             if ($upload_image) {
                 $config['allowed_types'] = 'jpg|jpeg';
                 $config['max_size'] = '0';
-                $config['upload_path']  = './assets/fotoblog/fotowebi/';
-                // $config['encrypt_name'] = TRUE;
+                $config['upload_path']  = './assets/fotoblog/';
+                $config['encrypt_name'] = TRUE;
 
                 $this->upload->initialize($config);
 
                 if (!$this->upload->do_upload('FOTO_POST')) {
                     $this->session->set_flashdata('message', 'gagal_upload');
-                    redirect("admin/webinar");
+                    redirect("admin/blog");
                 } else {
                     $upload_data = $this->upload->data();
                     //Compress Image buat foto web
                     $config['image_library'] = 'gd2';
                     $config['width'] = 1600;
                     $config['height'] = 900;
-                    $config['source_image'] = './assets/fotoblog/fotowebi/' . $upload_data['file_name'];
+                    $config['source_image'] = './assets/fotoblog/' . $upload_data['file_name'];
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     // $config['quality'] = '100%';

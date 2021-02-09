@@ -1,5 +1,6 @@
 <footer class="main-footer">
-	<strong>Copyright &copy; <?= date('Y'); ?> <a href="<?= base_url('admin/dashboard') ?>">Preneur Academy</a>.</strong>
+	<strong>Copyright &copy; <?= date('Y'); ?> <a href="<?= base_url('admin/dashboard') ?>">Preneur
+			Academy</a>.</strong>
 	All rights reserved.
 	<div class="float-right d-none d-sm-inline-block">
 		<b>Version</b> 1.0.0
@@ -386,11 +387,14 @@
 			dataType: 'json',
 			success: function(data) {
 				var notif = '';
-				var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+				var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+					'Dec'
+				];
 				for (var i = 0; i < data.length; i++) {
 					var icon = '';
 					var d = new Date(data[i].DATE_NOT);
-					if (data[i].TITTLE_NOT == "Transaksi baru" || data[i].TITTLE_NOT == "Transaksi sukses dibayar" || data[i].TITTLE_NOT == "Transaksi dibatalkan") {
+					if (data[i].TITTLE_NOT == "Transaksi baru" || data[i].TITTLE_NOT ==
+						"Transaksi sukses dibayar" || data[i].TITTLE_NOT == "Transaksi dibatalkan") {
 						icon = "fas fa-money-check";
 					} else if (data[i].TITTLE_NOT == "Aktivasi akun") {
 						icon = "fas fa-user-check";
@@ -400,7 +404,9 @@
 
 					notif += `  <a href="<?= base_url('admin/notifikasi/read_msg/'); ?>` + data[i].ID_NOT + `" class="dropdown-item">
                                     <i class="` + icon + ` mr-2"></i>` + data[i].TITTLE_NOT + `
-                                    <span class="float-right text-muted text-sm">` + d.getDate() + `-` + months[d.getMonth()] + `-` + d.getFullYear() + `</br>` + d.getHours() + `:` + d.getMinutes() + `</span>
+                                    <span class="float-right text-muted text-sm">` + d.getDate() + `-` + months[d
+							.getMonth()] + `-` + d.getFullYear() + `</br>` + d.getHours() + `:` + d
+						.getMinutes() + `</span>
                                     <p class="text-muted text-bold">` + data[i].MSG_NOT + `</p>
                                     <input type="hidden" name="nID" value="` + data[i].ID_NOT + `">
                                 </a>
@@ -446,7 +452,8 @@
 				var diskon = '';
 				diskon += '<option value="0" selected>--Pilih diskon--</option>'
 				for (var i = 0; i < data.length; i++) {
-					diskon += '<option value=' + data[i].ID_DISKON + '>' + data[i].NM_DISKON + ' (' + data[i].DISKON * 100 + '%)</option>'
+					diskon += '<option value=' + data[i].ID_DISKON + '>' + data[i].NM_DISKON + ' (' + data[i]
+						.DISKON * 100 + '%)</option>'
 				}
 				$(".slct-diskon").html(diskon);
 			}
@@ -688,40 +695,10 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$("#show-hide").click(function() {
+		$("#key-click").click(function() {
 			$("#icon").toggleClass('fa-eye-slash');
 
-			var input = $("#password");
-
-			if (input.attr("type") === "password") {
-				input.attr("type", "text");
-			} else {
-				input.attr("type", "password");
-			}
-		});
-	});
-
-	$(document).ready(function() {
-
-		$("#show-hide2").click(function() {
-			$("#icon2").toggleClass('fa-eye-slash');
-
-			var input = $("#password2");
-
-			if (input.attr("type") === "password") {
-				input.attr("type", "text");
-			} else {
-				input.attr("type", "password");
-			}
-		});
-	});
-
-	$(document).ready(function() {
-
-		$("#show-hide3").click(function() {
-			$("#icon3").toggleClass('fa-eye-slash');
-
-			var input = $("#password3");
+			var input = $("#key1");
 
 			if (input.attr("type") === "password") {
 				input.attr("type", "text");
@@ -786,6 +763,30 @@
 			theme: 'bootstrap4'
 		})
 	})
+</script>
+
+<script>
+	$(document).ready(function() {
+		$('#nmkls').keyup(function() {
+			var title = $(this).val().toLowerCase().replace(/[&\/\\#^, +()$~%.'":*?<>{}]/g, '-');
+			$('#permalink').val(title);
+		});
+
+		$('#inkls').keyup(function() {
+			var title = $(this).val().toLowerCase().replace(/[&\/\\#^, +()$~%.'":*?<>{}]/g, '-');
+			$('#edit-link').val(title);
+		});
+
+		$('#nama').keyup(function() {
+			var title = $(this).val().toLowerCase().replace(/[&\/\\#^, +()$~%.'":*?<>{}]/g, '-');
+			$('#link').val(title);
+		});
+
+		$('#edit-nm').keyup(function() {
+			var title = $(this).val().toLowerCase().replace(/[&\/\\#^, +()$~%.'":*?<>{}]/g, '-');
+			$('#edit-link').val(title);
+		});
+	});
 </script>
 
 </body>

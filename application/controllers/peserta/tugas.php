@@ -37,6 +37,9 @@ class Tugas extends CI_Controller{
         $id_ps = htmlspecialchars($this->input->post('ID_PS'));
         $id = htmlspecialchars($this->input->post('ID_TG'));
         $time = date('Y-m-d H:i:s');
+        $deadline = $this->db->get_where('tugas', ['ID_TG' => $id])->row()->DEADLINE; 
+        $sekarang = new DateTime($time);
+        $tenggang = new DateTime($deadline);
         $materi = $this->db->get_where('tugas', ['ID_TG' => $id])->row()->ID_MT;
         $upload = $_FILES['file']['name'];
             if ($upload) {
@@ -56,13 +59,17 @@ class Tugas extends CI_Controller{
                     echo $this->upload->display_errors();
                 }
             }
-
+            if($sekarang > $tenggang){
+                $status = "Telat Mengumpulkan";
+            }else{
+                $status = "Sudah Mengumpulkan";
+            }
         $data = array(
             'ID_PS' => $id_ps,
             'ID_TG' => $id,
             'ID_MT' => $materi,
             'TIME_DT_TG' => $time,
-            'STATUS' => 'Sudah Mengumpulkan'
+            'STATUS' => $status,
         );
 		$this->db->insert('detil_tugas', $data);
         $this->session->set_flashdata('message', 'dataSuccess');
