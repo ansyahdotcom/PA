@@ -90,6 +90,7 @@ class Kelas extends CI_Controller
 			$namakls = htmlspecialchars($this->input->post('namakls'));
 			$tgl_daftar = htmlspecialchars($this->input->post('tgl_daftar'));
 			$tgl_penutupan = htmlspecialchars($this->input->post('tgl_penutupan'));
+			$permalink = htmlspecialchars($this->input->post('permalink'));
 			$tgl_mulai = htmlspecialchars($this->input->post('tgl_mulai'));
 			$tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
 			$lok_kls = htmlspecialchars($this->input->post('lok_kls'));
@@ -144,6 +145,7 @@ class Kelas extends CI_Controller
 				'TITTLE' => $namakls,
 				'TGL_PENDAFTARAN' => date('Y-m-d H:i', strtotime($tgl_daftar)),
 				'TGL_PENUTUPAN' => date('Y-m-d H:i', strtotime($tgl_penutupan)),
+				'PERMALINK' => $permalink,
 				'TGL_MULAI' => date('Y-m-d', strtotime($tgl_mulai)),
 				'TGL_SELESAI' => date('Y-m-d', strtotime($tgl_selesai)),
 				'LOK_KLS' => $lok_kls,
@@ -201,6 +203,7 @@ class Kelas extends CI_Controller
 			$nama = htmlspecialchars($this->input->post('namakls'));
 			$tgl_daftar = htmlspecialchars($this->input->post('tgl_daftar'));
 			$tgl_penutupan = htmlspecialchars($this->input->post('tgl_penutupan'));
+			$permalink = htmlspecialchars($this->input->post('link'));
 			$tgl_mulai = htmlspecialchars($this->input->post('tgl_mulai'));
 			$tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
 			$lok_kls = htmlspecialchars($this->input->post('lok_kls'));
@@ -254,6 +257,7 @@ class Kelas extends CI_Controller
 				'TITTLE' => $nama,
 				'TGL_PENDAFTARAN' => date('Y-m-d H:i', strtotime($tgl_daftar)),
 				'TGL_PENUTUPAN' => date('Y-m-d H:i', strtotime($tgl_penutupan)),
+				'PERMALINK' => $permalink,
 				'TGL_MULAI' => date('Y-m-d', strtotime($tgl_mulai)),
 				'TGL_SELESAI' => date('Y-m-d', strtotime($tgl_selesai)),
 				'LOK_KLS' => $lok_kls,

@@ -47,12 +47,12 @@
                               <tbody>
                                   <?php $no = 1; ?>
                                   <?php foreach ($data as $p) :
-                    $id = $p['ID_KB'];
-                    $nama = $p['NM_KB'];
-                    $img = $p['IMG_KB'];
-                    $link = $p['LINK_KB'];
-                    $isi = $p['ISI_KB'];
-                  ?>
+                                        $id = $p['ID_KB'];
+                                        $nama = $p['NM_KB'];
+                                        $img = $p['IMG_KB'];
+                                        $link = $p['LINK_KB'];
+                                        $isi = $p['ISI_KB'];
+                                    ?>
                                   <tr>
                                       <td class="text-center" width="100px"><?= $no; ?></td>
                                       <td><?= $nama; ?></td>
@@ -170,12 +170,12 @@
 
 
   <?php foreach ($data as $p) :
-    $id = $p['ID_KB'];
-    $nama = $p['NM_KB'];
-    $img = $p['IMG_KB'];
-    $link = $p['LINK_KB'];
-    $isi = $p['ISI_KB'];
-  ?>
+        $id = $p['ID_KB'];
+        $nama = $p['NM_KB'];
+        $img = $p['IMG_KB'];
+        $link = $p['LINK_KB'];
+        $isi = $p['ISI_KB'];
+    ?>
 
   <div class="modal fade" id="modalEdit<?= $id; ?>" tabindex="-1">
       <div class="modal-dialog modal-xl">
@@ -191,7 +191,7 @@
                   <div class="modal-body">
                       <div class="form-group">
                           <label for="nama">Judul</label>
-                          <input type="text" name="nama" value="<?= $nama; ?>" class="form-control"
+                          <input type="text" id="edit-nm" name="nama" value="<?= $nama; ?>" class="form-control"
                               placeholder="Nama Menu">
                           <small class="form-text text-success">Contoh: Kebijakan Pribadi(Privacy Policy)</small>
                           <?= form_error('nama', '<small class="text-danger col-md">', '</small>'); ?>
@@ -241,8 +241,9 @@
                       </div>
                       <div class="form-group">
                           <label for="link">Link</label>
-                          <input type="text" name="link" value="<?= $link; ?>" class="form-control"
-                              placeholder="Link Pintasan">
+                          <input type="text" id="edit-link" name="link" value="<?= $link; ?>" class="form-control"
+                              placeholder="Link Pintasan"
+                              style="background-color: #F8F8F8;outline-color: none;border:0;color:blue;">
                           <small class="form-text text-success">Contoh:
                               <?= base_url(); ?><b>terms-and-conditions</b></small>
                           <?= form_error('link', '<small class="text-danger col-md">', '</small>'); ?>
@@ -252,7 +253,7 @@
                           <textarea class="textarea" name="isi" placeholder="Isi Konten"
                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $isi; ?></textarea>
                           <small class="form-text text-success">Berisi keterangan kebijakan</small>
-                          <?= form_error('link', '<small class="text-danger col-md">', '</small>'); ?>
+                          <?= form_error('isi', '<small class="text-danger col-md">', '</small>'); ?>
                       </div>
                   </div>
                   <div class="modal-footer">

@@ -134,7 +134,6 @@
 
         <section class="services-area">
             <div class="container" data-aos="fade-up">
-
                 <div class="row">
                     <div class="col-lg-12 text-center services-title">
                         <h3 class="text-uppercase font-weight-bold">Mengapa harus Preneur Academy ?</h3>
@@ -168,7 +167,6 @@
                             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
                         data-aos-delay="300">
                         <div class="icon-box shadow p-2">
@@ -180,24 +178,6 @@
                             <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
                         </div>
                     </div>
-
-<<<<<<< Updated upstream
-    	<section class="about-area">
-    		<div class="container">
-    			<div class="row text-center">
-    				<div class="col-12">
-    					<div class="about-title" id="Blog">
-    						<a class="text-uppercase title-h1" style="text-decoration:none" href="<?= base_url('blog');?>">Blog</a>
-    						<p class="para">
-    							Berikut beberapa artikel terpopuler.
-    						</p>
-    					</div>
-    				</div>
-    			</div>
-			</div>
-			
-			<div class="container carousel py-lg-5">
-=======
                     <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
                         data-aos-delay="400">
                         <div class="icon-box shadow p-2">
@@ -209,10 +189,7 @@
                             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
                         </div>
                     </div>
-
                 </div>
-
-            </div>
         </section>
 
         <!--  ====================== Batas Fitur =============================  -->
@@ -236,7 +213,7 @@
                 <ul>
                     <li data-aos="fade-up" data-aos="fade-up" data-aos-delay="100">
                         <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse"
-                            href="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i
+                            href="#faq-list-1">Siapa pendiri dari Preneur Academy? <i
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
                             <p>
@@ -249,7 +226,7 @@
 
                     <li data-aos="fade-up" data-aos-delay="200">
                         <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2"
-                            class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i
+                            class="collapsed">Apa visi dan misi Preneur Academy? <i
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-2" class="collapse" data-parent=".faq-list">
                             <p>
@@ -263,7 +240,7 @@
 
                     <li data-aos="fade-up" data-aos-delay="300">
                         <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-3"
-                            class="collapsed">Dolor sit amet consectetur adipiscing elit? <i
+                            class="collapsed">Apa perbedaan Preneur Academy dengan yang lainnya? <i
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-3" class="collapse" data-parent=".faq-list">
                             <p>
@@ -277,7 +254,7 @@
 
                     <li data-aos="fade-up" data-aos-delay="400">
                         <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-4"
-                            class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i
+                            class="collapsed">Apa yang saya dapatkan di preneur academy? <i
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-4" class="collapse" data-parent=".faq-list">
                             <p>
@@ -290,9 +267,8 @@
 
                     <li data-aos="fade-up" data-aos-delay="500">
                         <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-5"
-                            class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis
-                            nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i
-                                class="bx bx-chevron-up icon-close"></i></a>
+                            class="collapsed">Saya tidak mempunyai keahlian IT apakah saya bisa mendaftar? <i
+                                class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-5" class="collapse" data-parent=".faq-list">
                             <p>
                                 Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo
@@ -325,7 +301,6 @@
                 </div>
             </div>
             <div class="container carousel py-lg-5 text-center">
->>>>>>> Stashed changes
                 <div class="owl-carousel owl-theme">
                     <?php foreach ($blog as $blg) { ?>
                     <div class="client row bg-light" data-aos="zoom-in">

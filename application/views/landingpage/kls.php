@@ -24,8 +24,8 @@
     <div class="container p-5 mt-5 mb-5">
         <div class="row">
             <?php foreach ($kelas as $k) : ?>
-            <div class="col-lg-3 col-md-6 col-sm-12 mr-2 ml-2 mb-5 shadow">
-                <div class="card h-100 border-light" data-aos="fade-down">
+            <div class="col-md-3 col-sm-12 mb-5">
+                <div class="card h-100 border-light shadow" data-aos="fade-down">
                     <img class="rounded" src="<?= base_url('assets/dist/img/kelas/') . $k->GBR_KLS; ?>"
                         alt="gambar-kelas">
                     <div class="gambar card-img-overlay align-items-center">
