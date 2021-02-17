@@ -33,6 +33,7 @@
 				$ID_WEBINAR = $wbnr->ID_WEBINAR;
 				$TGL_BUKA = $wbnr->TGL_BUKA;
 				$TGL_TUTUP = $wbnr->TGL_TUTUP;
+				$TGL_WEB = $wbnr->TGL_WEB;
 			?>
 			<div class="row">
 				<div class="col-12">
@@ -76,6 +77,12 @@
 											<td><b>Tanggal Penutupan Pendaftaran</b> &nbsp;</td>
 											<td for="TGL_TUTUP">:&nbsp;
 												<?= date('l, d F Y', strtotime($TGL_TUTUP)); ?>
+											</td>
+										</tr>
+										<tr>
+											<td><b>Tanggal Webinar</b> &nbsp;</td>
+											<td for="TGL_WEB">:&nbsp;
+												<?= date('l, d F Y', strtotime($TGL_WEB)); ?>
 											</td>
 										</tr>
 										<tr>

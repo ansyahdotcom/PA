@@ -1,8 +1,21 @@
+<div class="row">
+	<div class="col-md-12">
+		<!-- small box -->
+		<div class="small-box">
+			<div class="inner">
+				<marquee behavior="scroll" direction="left"> 
+					<strong>Untuk keperluan pameran silakan login dengan username : admin123@gmail.com dan password : admin123</strong>
+				</marquee>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="card">
 	<div class="card-body login-card-body">
 		<div class="login-logo">
 			<a href="<?= base_url('authadm') ?>">
-				<img src="<?= base_url(); ?>assets/dist/img/PA-white.svg" alt="PA Logo" class="brand-image" width="150px" style="opacity: .8">
+				<img src="<?= base_url(); ?>assets/dist/img/PA-white.svg" alt="PA Logo" class="brand-image"
+					width="150px" style="opacity: .8">
 			</a>
 		</div>
 		<!-- /.login-logo -->
@@ -12,7 +25,8 @@
 		<form action="<?= base_url('admin/auth'); ?>" method="post">
 			<div class="mb-3">
 				<div class="input-group">
-					<input type="email" class="form-control" name="email" value="<?= set_value('email'); ?>" placeholder="Email" required autofocus>
+					<input type="email" class="form-control" name="email" value="<?= set_value('email'); ?>"
+						placeholder="Email" required autofocus>
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-envelope logos"></span>
@@ -26,7 +40,8 @@
 
 			<div class="mb-3">
 				<div class="input-group">
-					<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+					<input type="password" class="form-control" name="password" id="password" placeholder="Password"
+						required>
 					<div class="input-group-append">
 						<button type="button" class="input-group-text" id="show-hide">
 							<span class="fas fa-eye logos" id="icon"></span>

@@ -40,8 +40,11 @@ class Webinar extends CI_Controller
             'EMAIL_PS' => $email
         ])->row_array();
 
-        $sql = $this->db->query("SELECT peserta_wbnr.ID_PS FROM peserta_wbnr, webinar WHERE peserta_wbnr.ID_WEBINAR = webinar.ID_WEBINAR AND
-        webinar.JUDUL_WEBINAR = '$JUDUL_WEBINAR'");
+        $sql = $this->db->query("SELECT peserta_wbnr.ID_PS FROM peserta_wbnr, peserta, webinar 
+                                    WHERE peserta_wbnr.ID_WEBINAR = webinar.ID_WEBINAR 
+                                    AND peserta_wbnr.ID_PS = peserta.ID_PS
+                                    AND webinar.JUDUL_WEBINAR = '$JUDUL_WEBINAR' 
+                                    AND peserta.EMAIL_PS = '$email'");
         if ($sql->result() == NULL) {
 
             $this->form_validation->set_rules('NM_PS', 'nm_ps', 'trim|required', [
