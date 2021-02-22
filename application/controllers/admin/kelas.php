@@ -95,10 +95,9 @@ class Kelas extends CI_Controller
 			$tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
 			$lok_kls = htmlspecialchars($this->input->post('lok_kls'));
 			$hari = htmlspecialchars($this->input->post('hari'));
-			$jam_mulai = htmlspecialchars($this->input->post('jam_mulai'));
-			$jam_selesai = htmlspecialchars($this->input->post('jam_selesai'));
 			$kategori = htmlspecialchars($this->input->post('ktg'));
 			$harga = htmlspecialchars($this->input->post('harga'));
+			$kuota_kls = htmlspecialchars($this->input->post('kuota_kls'));
 			$deskripsi = $this->input->post('deskripsi');
 
 			/** upload gambar */
@@ -150,11 +149,10 @@ class Kelas extends CI_Controller
 				'TGL_SELESAI' => date('Y-m-d', strtotime($tgl_selesai)),
 				'LOK_KLS' => $lok_kls,
 				'HARI' => $hari,
-				'JAM_MULAI' => $jam_mulai,
-				'JAM_SELESAI' => $jam_selesai,
 				'GBR_KLS' => $image,
 				'DESKRIPSI' => $deskripsi,
 				'PRICE' => $harga,
+				'KUOTA_KLS' => $kuota_kls,
 				'STAT' => 0,
 				'DATE_KLS' => time(),
 				'UPDATE_KLS' => 0
@@ -177,6 +175,7 @@ class Kelas extends CI_Controller
 
 		/** Mengambil data kelas */
 		$data['kelas'] = $this->m_kelas->detilkls($id);
+		$data['kategori_kls'] = $this->m_kelas->getktg();
 
 		$this->form_validation->set_rules('namakls', 'Namakls', 'required|trim', [
 			'required' => 'Kolom ini harus diisi'
@@ -208,9 +207,8 @@ class Kelas extends CI_Controller
 			$tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
 			$lok_kls = htmlspecialchars($this->input->post('lok_kls'));
 			$hari = htmlspecialchars($this->input->post('hari'));
-			$jam_mulai = htmlspecialchars($this->input->post('jam_mulai'));
-			$jam_selesai = htmlspecialchars($this->input->post('jam_selesai'));
 			$harga = htmlspecialchars($this->input->post('harga'));
+			$kuota_kls = htmlspecialchars($this->input->post('kuota_kls'));
 			$kategori = htmlspecialchars($this->input->post('ktg'));
 			$deskripsi = $this->input->post('deskripsi');
 			$oldimg = $this->input->post('old');
@@ -262,11 +260,10 @@ class Kelas extends CI_Controller
 				'TGL_SELESAI' => date('Y-m-d', strtotime($tgl_selesai)),
 				'LOK_KLS' => $lok_kls,
 				'HARI' => $hari,
-				'JAM_MULAI' => $jam_mulai,
-				'JAM_SELESAI' => $jam_selesai,
 				'GBR_KLS' => $new_image,
 				'DESKRIPSI' => $deskripsi,
 				'PRICE' => $harga,
+				'KUOTA_KLS' => $kuota_kls,
 				'ID_DISKON' => 0,
 				'ID_KTGKLS' => $kategori,
 				'UPDATE_KLS' => time(),

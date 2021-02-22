@@ -7,17 +7,6 @@
 					<a class="navbar-brand" href="<?= base_url(); ?>">
 						<img src="<?= base_url(); ?>assets/dist/img/logo.png" width="100" alt="logo"></a>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="small-box">
-							<div class="inner">
-								<marquee behavior="scroll" direction="left">
-									<strong>Untuk keperluan pameran silakan login dengan username : peserta123@gmail.com dan password : peserta123</strong> 
-                                </marquee>
-							</div>
-						</div>
-					</div>
-				</div>
 				<div class="card row card-signin flex-row">
 					<div class="col-md-6 d-none d-md-flex">
 						<img src="<?= base_url('assets/dist/img/combi.svg'); ?>" class="card-img" width="50"

@@ -158,40 +158,6 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="jam_mulai">Jam Mulai Kelas</label>
-                                            <div class="input-group">
-                                                <input class="form-control jam_mulai" data-toggle="datetimepicker"
-                                                    data-target=".jam_mulai" type="text" name="jam_mulai"
-                                                    placeholder="00:00" value="<?= set_value('jam_mulai'); ?>"
-                                                    autocomplete="off" required>
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-clock"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="jam_selesai">Jam Selesai Kelas</label>
-                                            <div class="input-group">
-                                                <input class="form-control jam_selesai" data-toggle="datetimepicker"
-                                                    data-target=".jam_selesai" type="text" name="jam_selesai"
-                                                    placeholder="00:00" value="<?= set_value('jam_selesai'); ?>"
-                                                    autocomplete="off" required>
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-clock"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
                                             <label for="harga">Harga</label>
                                             <input onkeyup="price(this)" type="number" class="form-control" name="harga"
                                                 id="harga" placeholder="harga" value="<?= set_value('harga'); ?>"
@@ -201,6 +167,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kuota_kls">Kuota</label>
+                                            <input type="number" class="form-control" name="kuota_kls" id="kuota_kls"
+                                                placeholder="Kuota kelas" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="email">Gambar Kelas</label>
                                             <div class="input-group mb-3">

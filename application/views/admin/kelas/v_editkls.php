@@ -28,9 +28,8 @@
     $tgl_selesai = $kelas['TGL_SELESAI'];
     $lok_kls = $kelas['LOK_KLS'];
     $hari = $kelas['HARI'];
-    $jam_mulai = $kelas['JAM_MULAI'];
-    $jam_selesai = $kelas['JAM_SELESAI'];
     $harga = $kelas['PRICE'];
+    $kuota_kls = $kelas['KUOTA_KLS'];
     $kategori = $kelas['KTGKLS'];
     $status = $kelas['STAT'];
     $deskripsi = $kelas['DESKRIPSI'];
@@ -140,8 +139,11 @@
                                     <div class="col-md-6 row-ktgkls" hidden>
                                         <div class="form-group">
                                             <label for="ktg">Kategori Kelas</label>
-                                            <select name="ktg" id="inkls" class="custom-select slct-ktg" required>
-
+                                            <select name="ktg" class="form-control" required>
+                                            <?php foreach ($kategori_kls as $ktg) { ?>
+										        <option value="<?= $ktg['ID_KTGKLS']; ?>" <?= $ktg['ID_KTGKLS'] == $ktg['ID_KTGKLS'] ? "selected" : null ?>>
+											    <?= $ktg['KTGKLS']; ?></option>
+									            <?php } ?>
                                             </select>
                                         </div>
                                     </div>
@@ -285,40 +287,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="jam_mulai">Jam Mulai Kelas</label>
-                                            <div class="input-group">
-                                                <input type="text" data-toggle="datetimepicker" data-target=".jam_mulai"
-                                                    class="form-control jam_mulai" value="<?= $jam_mulai; ?>" id="inkls"
-                                                    name="jam_mulai" autocomplete="off" placeholder="00:00" disabled>
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-clock"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="jam_selesai">Jam Selesai Kelas</label>
-                                            <div class="input-group">
-                                                <input type="text" data-toggle="datetimepicker"
-                                                    data-target=".jam_selesai" class="form-control jam_selesai"
-                                                    value="<?= $jam_selesai; ?>" id="inkls" name="jam_selesai"
-                                                    autocomplete="off" placeholder="00:00" disabled>
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="far fa-clock"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 edit1">
+                                    <div class="col-md-6 edit1">
                                         <div class="form-group">
                                             <label for="harga">Harga</label>
                                             <input type="text" class="form-control" id="inkls" name="harga"
@@ -328,12 +297,26 @@
                                             <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 edit" hidden>
+                                    <div class="col-md-6 edit" hidden>
                                         <div class="form-group">
                                             <label for="harga">Harga</label>
                                             <input type="number" class="form-control" id="inkls" name="harga"
                                                 placeholder="harga" value="<?= $harga; ?>" disabled required>
                                             <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 edit1">
+                                        <div class="form-group">
+                                            <label for="kuota_kls">Kuota</label>
+                                            <input type="number" class="form-control" id="inkls" name="kuota_kls"
+                                            placeholder="Kuota kelas" value="<?= $kuota_kls; ?>" disabled required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 edit" hidden>
+                                        <div class="form-group">
+                                            <label for="kuota_kls">Kuota</label>
+                                            <input type="number" class="form-control" id="inkls" name="kuota_kls"
+                                            placeholder="Kuota kelas" value="<?= $kuota_kls; ?>" disabled required>
                                         </div>
                                     </div>
                                     <input type="text" value="<?= $gambar; ?>" name="old" hidden>

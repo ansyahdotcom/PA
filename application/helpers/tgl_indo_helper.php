@@ -203,3 +203,41 @@
             return $nama_hari.','.$tgl.' '.$bulan.' '.$thn;
         }
     }
+
+    if (!function_exists('tanggal_indo')) {
+        function tanggal_indo($tanggal, $cetak_hari = false){
+            date_default_timezone_set('Asia/Jakarta');
+            $hari = array ( 1 =>    'Senin',
+                    'Selasa',
+                    'Rabu',
+                    'Kamis',
+                    'Jumat',
+                    'Sabtu',
+                    'Minggu'
+                );
+							
+        $bulan = array (1 =>   'Januari',
+                    'Februari',
+                    'Maret',
+                    'April',
+                    'Mei',
+                    'Juni',
+                    'Juli',
+                    'Agustus',
+                    'September',
+                    'Oktober',
+                    'November',
+                    'Desember'
+                );
+        $split0 = explode(' ', $tanggal);
+        $tgl = $split0[0];
+        $split = explode('-', $tgl);
+        $tgl_indo = $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+        
+        if ($cetak_hari) {
+            $num = date('N', strtotime($tanggal));
+            return $hari[$num] . ', ' . $tgl_indo;
+        }
+        return $tgl_indo;
+        }
+    }

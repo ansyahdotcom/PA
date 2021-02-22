@@ -70,19 +70,19 @@
 										<tr>
 											<td><b>Tanggal Pembukaan Pendaftaran</b> &nbsp;</td>
 											<td for="TGL_BUKA">:&nbsp;
-												<?= date('l, d F Y', strtotime($TGL_BUKA)); ?>
+												<?= tanggal_indo($TGL_BUKA, true); ?>
 											</td>
 										</tr>
 										<tr>
 											<td><b>Tanggal Penutupan Pendaftaran</b> &nbsp;</td>
 											<td for="TGL_TUTUP">:&nbsp;
-												<?= date('l, d F Y', strtotime($TGL_TUTUP)); ?>
+												<?= tanggal_indo($TGL_TUTUP, true); ?>
 											</td>
 										</tr>
 										<tr>
 											<td><b>Tanggal Webinar</b> &nbsp;</td>
 											<td for="TGL_WEB">:&nbsp;
-												<?= date('l, d F Y', strtotime($TGL_WEB)); ?>
+												<?= tanggal_indo($TGL_WEB, true); ?>
 											</td>
 										</tr>
 										<tr>

@@ -1,15 +1,3 @@
-<div class="row">
-	<div class="col-md-12">
-		<!-- small box -->
-		<div class="small-box">
-			<div class="inner">
-				<marquee behavior="scroll" direction="left"> 
-					<strong>Untuk keperluan pameran silakan login dengan username : admin123@gmail.com dan password : admin123</strong>
-				</marquee>
-			</div>
-		</div>
-	</div>
-</div>
 <div class="card">
 	<div class="card-body login-card-body">
 		<div class="login-logo">

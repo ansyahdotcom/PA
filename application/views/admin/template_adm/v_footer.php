@@ -125,25 +125,25 @@
 			}
 		});
 
-		$('.pendaftaran').on("change.datetimepicker", function(e) {
-			$('.penutupan').val("")
-			$('.penutupan').datetimepicker('minDate', e.date);
-		});
+		// $('.pendaftaran').on("change.datetimepicker", function(e) {
+		// 	$('.penutupan').val("")
+		// 	$('.penutupan').datetimepicker('minDate', e.date);
+		// });
 
-		$('.pendaftaran').on("change.datetimepicker", function(e) {
-			$('.mulai').val("")
-			$('.mulai').datetimepicker('minDate', e.date);
-		});
+		// $('.pendaftaran').on("change.datetimepicker", function(e) {
+		// 	$('.mulai').val("")
+		// 	$('.mulai').datetimepicker('minDate', e.date);
+		// });
 
-		$('.pendaftaran').on("change.datetimepicker", function(e) {
-			$('.selesai').val("")
-			$('.selesai').datetimepicker('minDate', e.date);
-		});
+		// $('.pendaftaran').on("change.datetimepicker", function(e) {
+		// 	$('.selesai').val("")
+		// 	$('.selesai').datetimepicker('minDate', e.date);
+		// });
 
-		$('.pendaftaran').on("change.datetimepicker", function(e) {
-			$('.mulai2').val("")
-			$('.mulai2').datetimepicker('minDate', e.date);
-		});
+		// $('.pendaftaran').on("change.datetimepicker", function(e) {
+		// 	$('.mulai2').val("")
+		// 	$('.mulai2').datetimepicker('minDate', e.date);
+		// });
 
 		$('.penutupan').datetimepicker({
 			format: 'DD MMMM YYYY HH:mm',
@@ -165,20 +165,20 @@
 			}
 		});
 
-		$('.penutupan').on("change.datetimepicker", function(e) {
-			$('.mulai').val("")
-			$('.mulai').datetimepicker('minDate', e.date);
-		});
+		// $('.penutupan').on("change.datetimepicker", function(e) {
+		// 	$('.mulai').val("")
+		// 	$('.mulai').datetimepicker('minDate', e.date);
+		// });
 
-		$('.penutupan').on("change.datetimepicker", function(e) {
-			$('.selesai').val("")
-			$('.selesai').datetimepicker('minDate', e.date);
-		});
+		// $('.penutupan').on("change.datetimepicker", function(e) {
+		// 	$('.selesai').val("")
+		// 	$('.selesai').datetimepicker('minDate', e.date);
+		// });
 
-		$('.penutupan').on("change.datetimepicker", function(e) {
-			$('.mulai2').val("")
-			$('.mulai2').datetimepicker('minDate', e.date);
-		});
+		// $('.penutupan').on("change.datetimepicker", function(e) {
+		// 	$('.mulai2').val("")
+		// 	$('.mulai2').datetimepicker('minDate', e.date);
+		// });
 		// End
 
 		// Tanggal mulai dan selesai v.1.0
@@ -202,10 +202,10 @@
 			}
 		});
 
-		$('.mulai').on("change.datetimepicker", function(e) {
-			$('.selesai').val("")
-			$('.selesai').datetimepicker('minDate', e.date);
-		});
+		// $('.mulai').on("change.datetimepicker", function(e) {
+		// 	$('.selesai').val("")
+		// 	$('.selesai').datetimepicker('minDate', e.date);
+		// });
 
 		$('.selesai').datetimepicker({
 			format: 'DD MMMM YYYY',
