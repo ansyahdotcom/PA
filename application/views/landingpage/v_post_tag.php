@@ -1,6 +1,6 @@
 </div>
 <main role="main" class="container mt-5">
-    <div class="row p-5">
+    <div class="row py-5">
         <div class="col-md-8 blog-main">
             <h3 class="pb-4 mb-4 border-bottom">
                 <i class="fa fa-tag text-success"></i> <?= $nm_tags; ?>
@@ -19,12 +19,13 @@
             </div>
             <?php else : ?>
             <?php foreach ($tag as $row) : ?>
-            <div class="blog-post card mb-4">
+            <div class="blog-post border-light shadow card mb-4">
                 <img class="card-img-top" src="<?= base_url('assets/fotoblog/' . $row->FOTO_POST); ?>"
                     alt="gambar-posting">
                 <div class="card-body">
                     <div class="judul">
-                        <h3 class="card-title font-weight-bold"><?= str_replace('-', ' ', $row->JUDUL_POST); ?></h3>
+                        <a style="text-decoration : none;" href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST)); ?>">
+                        <h3 class="card-title font-weight-bold"><?= str_replace('-', ' ', $row->JUDUL_POST); ?></h3></a>
                     </div>
                     <hr>
                     <div class="widget d-flex">
@@ -36,36 +37,24 @@
                         </p>
                     </div>
                     <p class="card-text"><?php
-													$aa = 200;
-													$konten = htmlspecialchars_decode($row->KONTEN_POST);
-													$em = str_replace('<em>', '', $konten);
-													$strong = str_replace('<strong>', '', $em);
-													$count = strlen($strong);
-													if ($count > $aa) {
-														$char = $strong[$aa - 1];
-														while ($char != ' ') {
-															$char = $strong[--$aa];
-														}
-														echo substr($strong, 0, $aa) . ' ...';
-													} else {
-														echo $strong;
-													}
-													?></p>
-                </div>
-                <div class="card-footer text-muted">
-                    <div class="row">
-                        <div class="col-sm-1">
-                            <img class="rounded-circle" width="50"
-                                src="<?= base_url('assets/dist/img/admin/') . $row->FTO_ADM; ?>" alt="foto penyusun">
-                        </div>
-                        <div class="col-sm-3">
-                            <p class="text-dark mt-2 text-center"><?= $row->NM_ADM ?></p>
-                        </div>
-                        <div class="col-sm-8 text-right">
-                            <a href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST)); ?>"
-                                class="btn btn-primary float right">Read More &rarr;</a>
-                        </div>
-                    </div>
+						$aa = 200;
+						$konten = htmlspecialchars_decode($row->KONTEN_POST);
+						$em = str_replace('<em>', '', $konten);
+						$strong = str_replace('<strong>', '', $em);
+						$count = strlen($strong);
+						if ($count > $aa) {
+							$char = $strong[$aa - 1];
+							while ($char != ' ') {
+								$char = $strong[--$aa];
+							}
+							echo substr($strong, 0, $aa) . ' ...';
+						} else {
+							echo $strong;
+						}
+						?>
+					<a class="font-weight-bold" style="text-decoration : none;"
+                        href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST)); ?>">read more</a>
+					</p>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -74,12 +63,12 @@
         </div>
         <div class="col-md-4 mb-2">
             <div class="card mb-4 border-light shadow">
-                <div class="card-header"><i class="fas fa-fire-alt text-danger"></i> Kategori</div>
+                <div class="card-header"><i class="fas fa-folder text-danger"></i> Kategori</div>
                 <div class="card-body">
                     <?php foreach ($kategori as $ls) { ?>
                     <ul class="unstyle list-group shadow mb-1">
                         <li class="list-group-item para"><a
-                                href="<?= base_url('blog/kategori/' . $ls->NM_CT); ?>"><?= $ls->NM_CT; ?></a></li>
+                                href="<?= base_url('blog/kategori/' . strtolower($ls->NM_CT)); ?>"><?= $ls->NM_CT; ?></a></li>
                     </ul>
                     <?php } ?>
                 </div>
@@ -105,11 +94,12 @@
                 <div class="card-header font-weight-bold"><i class="fas fa-newspaper text-info"></i>
                     Berlangganan newsletter?</div>
                 <div class="card-body">
-                    <form>
-                        <label for="defaultFormEmailEx" class="grey-text">Email Anda</label>
-                        <input type="email" id="defaultFormLoginEmailEx" class="form-control">
-
-                        <div class="text-center mt-4">
+                    <form method="POST" action="<?= base_url('subscribe');?>">
+                        <div><?php echo $this->session->flashdata('message'); ?></div>
+                            <input type="hidden" name="url" value="<?= base_url('blog/tag/'. strtolower($nm_tags)); ?>"required>
+                            <label for="email" class="grey-text">Email Anda</label>
+                            <input type="email" name="email" placeholder="Your Email" id="email" class="form-control">
+                            <div class="text-center mt-4">
                             <button class="btn btn-info btn-md" type="submit"><i class="fas fa-paper-plane"></i>
                                 Daftar</button>
                         </div>

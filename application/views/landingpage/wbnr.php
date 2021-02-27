@@ -8,7 +8,6 @@
                         <h1 class="display-4 title-text font-weight-bold mt-2">
                             Webinar
                         </h1>
-                        <p class="para font-weight-bold mt-2 mb-5">Terdapat beberapa list webinar.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 text-center banner-image mb-2" data-aos="fade-left">
@@ -40,12 +39,34 @@
                 <div class="card h-100 border-light shadow" data-aos="fade-down">
                     <img class="rounded" src="<?= base_url('assets/fotowebinar/') . $wbnr->FOTO_WEBINAR; ?>"
                         alt="gambar-kelas">
-                    <div class="gambar card-img-overlay align-items-center">
-                        <span class="float-right btn btn-success font-weight-bold">Gratis
-                        </span>
+                    <!--<div class="gambar card-img-overlay align-items-center">-->
+                    <!--    <small class="float-right font-weight-bold">Gratis</small>-->
+                    <!--</div>-->
+                    <div class="card-body">
+                        <a style="text-decoration : none;" href="<?= base_url('webinar-detail/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"
+                            ><h4 class="font-weight-bold"><?= str_replace('-', ' ', $wbnr->JUDUL_WEBINAR); ?></h4></a>
+                        <p class= "mt-4">
+                            <?php
+                                $aa = 100;
+                                $konten = htmlspecialchars_decode($wbnr->KONTEN_WEB);
+                                $em = str_replace('<em>', '', $konten);
+                                $strong = str_replace('<strong>', '', $em);
+                                $count = strlen($strong);
+                                if ($count > $aa) {
+                                    $char = $strong[$aa - 1];
+                                    while ($char != ' ') {
+                                        $char = $strong[--$aa];
+                                    }
+                                    echo substr($strong, 0, $aa) . ' ...';
+                                } else {
+                                    echo $strong;
+                                }
+                                ?>
+                        <a style="text-decoration : none;" href="<?= base_url('webinar-detail/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"
+                            class="font-weight-bold">Selengkapnya</a>
+                        </p>
+                        <small class="text-muted"><i class= "fas fa-calendar"></i>&nbsp; <?= tanggal_indo($wbnr->TGL_WEB, TRUE); ?> &nbsp; pukul <?= jam_indo($wbnr->TGL_WEB); ?></small>
                     </div>
-                    <a href="<?= base_url('webinar-detail/' . strtolower($wbnr->JUDUL_WEBINAR)); ?>"
-                        class="button primary-button font-weight-bold text-uppercase m-2 text-center">Lihat Detail</a>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -72,7 +93,7 @@
                     </h3>
                     <div class="paragraph py-4 w-100">
                         <p class="para">
-                            merupakan ruang edukasi, ekosistem, dan komunitas wirausaha (E2KWU) yang mendorong
+                            Merupakan ruang edukasi, ekosistem, dan komunitas wirausaha (E2KWU) yang mendorong
                             pemberdayaan potensi diri untuk memberi manfaat pada lingkungannya melalui kegiatan
                             kewirausahaan yang berkelanjutan.
                         </p>
@@ -113,9 +134,8 @@
                             class="bx bx-chevron-up icon-close"></i></a>
                     <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
                         <p>
-                            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                            non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
-                            purus non.
+                            Webinar adalah istilah umum dalam dunia kajian yang merujuk kepada kegiatan seminar yang
+                            dilakukan secara daring, menggunakan situs web atau aplikasi tertentu berbasis internet.
                         </p>
                     </div>
                 </li>
@@ -126,10 +146,21 @@
                             class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                     <div id="faq-list-2" class="collapse" data-parent=".faq-list">
                         <p>
-                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                            velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                            donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                            cursus turpis massa tincidunt dui.
+                            - Pertama daftar ke akun baru jika belum punya akun atau langsung masuk dengan akun social
+                            media anda.
+                        </p>
+                        <p>
+                            - Selanjutnya login masuk akun, jika anda masuk menggunakan akun social media. maka anda
+                            tidak perlu mendaftar akun.
+                        </p>
+                        <p>
+                            - Selanjutnya lanjut ke Daftar Webinar dan pilih webinar yang anda inginkan.
+                        </p>
+                        <p>
+                            - Selanjutnya isi data diri yang dibutuhkan untuk mengikuti webinar.
+                        </p>
+                        <p>
+                            - Jika sudah terdaftar, anda dapat mengakses webinar di Webinar Saya.
                         </p>
                     </div>
                 </li>
@@ -140,10 +171,7 @@
                             class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                     <div id="faq-list-3" class="collapse" data-parent=".faq-list">
                         <p>
-                            Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus
-                            pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
-                            Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis
-                            tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                            Webinar ini bersifat umum yang artinya siapapun boleh mengikuti webinar.
                         </p>
                     </div>
                 </li>
@@ -154,9 +182,7 @@
                             class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                     <div id="faq-list-4" class="collapse" data-parent=".faq-list">
                         <p>
-                            Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in
-                            est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                            suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                            Ilmu berwirausaha dan ilmu bisnis yang lain. serta sertifikat online webinar.
                         </p>
                     </div>
                 </li>

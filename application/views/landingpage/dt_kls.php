@@ -6,7 +6,7 @@
             <div class="row bg-warning rounded shadow">
                 <div class="col-md-6 col-sm-12 mb-4 text-center" data-aos="fade-up">
                     <img src="<?= base_url('assets/dist/img/kelas/') . $row->GBR_KLS; ?>" width="400"
-                        class="img-fluid mt-5 ml-5" alt="gambar-kelas">
+                        class="img-fluid mt-5" alt="gambar-kelas">
                 </div>
                 <div class="col-md-6 col-sm-12 mb-4" data-aos="fade-down">
                     <div class="p-4">
@@ -20,27 +20,32 @@
                             </span>
                             <span class="btn btn-sm btn-info text-bold">
                                 <i class="fas fa-wallet"></i>
-                                Donasi</span>
+                                Bayar Semampunya</span>
                         </p>
 
-                        <p class="lead font-weight-bold">Keterangan</p>
-                        <label for="keterangan" class="btn btn-primary">
-                            Untuk harga yang dibayarkan kami menggunakan sistem pembayaran berupa Donasi.
+                        <label for="keterangan" class="btn btn-primary btn-sm">
+                            Sesuai dengan kemampuan finansial Anda
                         </label>
-                        <small class="text-muted">minimum pembayaran Rp. 10.000</small>
                         <hr>
-                        <?php if ($this->session->userdata('role') == '2') :
-							?>
-                        <a href="<?= base_url('peserta/kelas') ?>" class="btn button primary-button float-right"><i
-                                class="fas fa-shopping-cart"></i> Beli Kelas</a>
-                        <?php else : ?>
-                        <a href="<?= base_url('register') ?>" class="btn button primary-button float-right"><i
-                                class="fas fa-shopping-cart"></i> Beli Kelas</a>
-                        <?php endif; ?>
-                        <a href="<?= base_url('class'); ?>" class="btn button secondary-button float-left"><i
-                                class="fas fa-arrow-left"></i>
-                            Kembali</a>
-
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 col-sm-12">
+                                <a href="<?= base_url('class'); ?>" class="btn button bg-light text-center"><i
+                                        class="fas fa-arrow-left"></i>
+                                    Kembali</a>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <?php if ($this->session->userdata('role') == '2') :
+        							?>
+                                <a href="<?= base_url('peserta/kelas') ?>" class="btn button bg-light text-center"><i
+                                        class="fas fa-shopping-cart"></i> Beli Kelas</a>
+                                <?php elseif($this->session->userdata('role') == '1') : ?>
+                                
+                                <?php else : ?>
+                                <a href="<?= base_url('register') ?>" class="btn button bg-light text-center"><i
+                                        class="fas fa-shopping-cart"></i> Beli Kelas</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,9 +60,6 @@
                 <div class="col-12">
                     <div class="about-title">
                         <h3 class="title-h1" data-aos="fade-up">Informasi Kelas</h3>
-                        <!-- <p class="para text-dark">
-                            Deskripsi kelas beserta tanggal kelas.
-                        </p> -->
                     </div>
                 </div>
             </div>
@@ -70,25 +72,22 @@
                     </div>
                     <div class="card-body">
                         <p><?= $row->DESKRIPSI; ?>.</p>
-                        <p class="card-text">Tanggal Pelaksanaan</p>
-                        <p class="font-weight-bold">
-                            <?= 'Mulai : ' . date('d F Y', strtotime($row->TGL_MULAI)); ?></p>
-                        <p class="font-weight-bold">
-                            <?= 'Selesai : ' . date('d F Y', strtotime($row->TGL_SELESAI)); ?>
-                        </p>
                     </div>
                 </div>
-                <div class="card border-light shadow col-md-2 mr-1 ml-1" data-aos="fade-left">
+                <div class="card border-light shadow col-md-3 mr-1 ml-1" data-aos="fade-left">
                     <div class="card-header">
-                        <h5>Instruktur</h5>
+                        <h5>Detail Kelas</h5>
                     </div>
-                    <div class="card-body h-100 border-light">
-                        <img class="rounded text-center" width="150"
-                            src="<?= base_url('assets/dist/img/admin/') . $row->FTO_ADM; ?>" alt="gambar-kelas">
-                        <div class="card-body text-center">
-                            <h5 class="card-title font-weight-bold"><?= $row->NM_ADM ?></h5>
-                        </div>
-                        <h6 class="text-center">Coach</h6>
+                    <div class="card-body border-light">
+                        <h6 class="">Mulai</h6>
+                        <p class="font-weight-bold"><?= tanggal_indo($row->TGL_MULAI, true); ?></p>
+                        <h6 class="">Selesai</h6>
+                        <p class="font-weight-bold"><?= tanggal_indo($row->TGL_SELESAI, true); ?></p>
+                        <h6 class="">Harga Kelas + Sertifikat</h6>
+                        <del class="font-weight-bold">Rp. <?= number_format($row->PRICE, 0, ".", "."); ?></del>
+                        <p class="text-muted">
+                            <small>* Bayar sesuai dengan finansial Anda</small>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -122,9 +121,24 @@
                             class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                     <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
                         <p>
-                            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                            non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
-                            purus non.
+                        <p>
+                            - Pertama daftar ke akun baru jika belum punya akun atau langsung masuk dengan akun social
+                            media anda.
+                        </p>
+                        <p>
+                            - Selanjutnya login masuk akun, jika anda masuk menggunakan akun social media. maka anda
+                            tidak perlu mendaftar akun.
+                        </p>
+                        <p>
+                            - Selanjutnya lanjut ke Daftar Kelas dan pilih kelas yang anda inginkan. Pastikan anda
+                            melihat kouta kelas tersebut telah penuh atau tidak.
+                        </p>
+                        <p>
+                            - Selanjutnya selesaikan pembayaran yang tersedia.
+                        </p>
+                        <p>
+                            - Jika sudah terverifikasi membayar, Anda bisa mengikuti kegiatan belajar dan mengajar.
+                        </p>
                         </p>
                     </div>
                 </li>
@@ -135,10 +149,7 @@
                             class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                     <div id="faq-list-2" class="collapse" data-parent=".faq-list">
                         <p>
-                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                            velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                            donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                            cursus turpis massa tincidunt dui.
+                            Segera lakukan konfirmasi pembayaran jika terdapat kesalahan sistem.
                         </p>
                     </div>
                 </li>
@@ -149,10 +160,7 @@
                             class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                     <div id="faq-list-3" class="collapse" data-parent=".faq-list">
                         <p>
-                            Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus
-                            pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
-                            Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis
-                            tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                            Sistem kami mengharuskan anda untuk menyelesaikan satu kelas untuk bisa ke kelas lainnya.
                         </p>
                     </div>
                 </li>

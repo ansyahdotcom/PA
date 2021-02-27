@@ -5,7 +5,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0 text-dark"><?= $tittle; ?></h1>
+					<h1 class="m-0 text-dark"><?= $tittle; ?> Kelas <?= str_replace('-', ' ', $nmkelas['TITTLE']); ?></h1>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -19,15 +19,40 @@
 		<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 	</div>
 	<!-- /.content-header -->
-
+	<?php 
+	$nm_kl = $nmkelas['TITTLE'];
+	$count_id = $this->db->query("SELECT COUNT(detail_kelas.ID_KLS) AS ID_KLS FROM kelas, detail_kelas WHERE kelas.ID_KLS = detail_kelas.ID_KLS AND kelas.TITTLE = '$nm_kl'");
+	foreach ($count_id->result() as $count) {
+		$ID_KL = $count->ID_KLS;
+	} 
+	// foreach ($list_ps2 as $list2) {
+	// 	$KUOTA_WEB = $list2->KUOTA_WEB;
+	// }
+	?>
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
 			<div class="col-12">
 				<div class="card">
-					<div class="card-header bg-dark">
-						<h3 class="card-title float-left text-bold">Kelas <?= $nmkelas['TITTLE']; ?></h3>
-						<a href="<?= base_url('admin/kelas'); ?>" class="btn btn-default float-right"><span class="text-dark"><i class="fas fa-arrow-circle-left"></i> Kembali</span></a>
+					<div class="card-header">
+						<div class="row">
+							<div class="col-6">
+								<h6 class="text-muted">
+									<i class="fas fa-users"></i>
+									<span class="text-bold">Pendaftar = <?= $ID_KL; ?></span>
+								</h6>
+								<!-- <?php if ($KUOTA_WEB != 0) { ?>
+								<h6 class="text-muted">
+									<i class="fas fa-users"></i>
+									<span class="text-bold">Kuota = <?= $KUOTA_WEB; ?></span>
+								</h6>
+								<?php } ?> -->
+							</div>
+							<div class="col-6">
+								<a href="<?= base_url('admin/kelas'); ?>" class="btn btn-default float-right">
+									<span class="text-dark"><i class="fas fa-arrow-circle-left"></i> Kembali</span></a>
+							</div>
+						</div>	
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">

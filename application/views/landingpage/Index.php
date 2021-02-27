@@ -1,7 +1,5 @@
     <!--  ======================= Awalan Area Utama ================================ -->
     <main class="site-main">
-
-
         <!--  ======================= Awalan Banner=======================  -->
         <section class="bg-warning site-banner" id="hero">
             <div class="container mt-lg-2 mt-md-2 mt-sm-2">
@@ -11,8 +9,8 @@
                             <h2 id="text" class="text-uppercase mt-2 mb-5 text-center">Social Enterprise
                                 Based Academy
                             </h2>
-                            <!-- <h4 class="para font-weight-bold mt-2 mb-5">Kembangkan karirmu sebagai wirausahawan
-                            profesional.</h4> -->
+                            <!-- <h4 class="para font-weight-bold mt-2 mb-5">Kembangkan karirmu sebagai wirausahawan-->
+                            <!--profesional.</h4>-->
                         </div>
                         <div class="site-buttons">
                             <div class="d-flex flex-row flex-wrap justify-content-center">
@@ -51,13 +49,13 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 about-title" data-aos="fade-down">
-                        <h3 class="text-uppercase font-weight-bold pt-5">
+                        <h3 class="text-uppercase text-center font-weight-bold pt-5">
                             <span>Apa Itu</span>
                             <span>Preneur Academy?</span>
                         </h3>
                         <div class="paragraph py-4 w-100">
                             <p class="para">
-                                merupakan ruang edukasi, ekosistem, dan komunitas wirausaha (E2KWU) yang mendorong
+                                Merupakan ruang edukasi, ekosistem, dan komunitas wirausaha (E2KWU) yang mendorong
                                 pemberdayaan potensi diri untuk memberi manfaat pada lingkungannya melalui kegiatan
                                 kewirausahaan yang berkelanjutan.
                             </p>
@@ -78,20 +76,21 @@
 
         <!--  ========================= Awalan Program ==========================  -->
 
-        <section class="program-area">
-            <div class="container" data-aos="fade-up">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-12 mb-5 text-center">
-                        <h3 class="text-uppercase font-weight-bold">Program Kami di Preneur Academy
+        <section class="about-area p-5 mt-5 mb-5" id="about-area">
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-lg-6 col-md-12 about-title" data-aos="fade-up">
+                        <h3 class="text-uppercase text-center font-weight-bold pt-5">
+                            <span>Program kami di</span>
+                            <span>Preneur Academy?</span>
                         </h3>
-                    </div>
-                    <div class="col-md-6 col-sm-12" data-aos="fade-right">
                         <div class="about-image">
-                            <img src="<?= base_url(); ?>assets/dist/img/setup.svg" alt="About us" class="img-fluid">
+                            <img src="<?= base_url(); ?>assets/dist/img/setup.svg" alt="About us"
+                                class="img-fluid">
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-12 program-title" data-aos="fade-left">
-                        <div class="program">
+                    <div class="col-lg-6 col-md-12 mt-5" data-aos="fade-down">
+                        <div class="paragraph py-4 w-100">
                             <div class="card mb-3 bg-warning shadow border-light" style="max-width: 540px;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
@@ -116,7 +115,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body text-center">
-                                            <h5 class="card-title font-weight-bold">Join Komunitas</h5>
+                                            <h5 class="card-title font-weight-bold">Gabung Komunitas</h5>
                                             <p class="card-text">Ikut berperan dalam perubahan.</p>
                                             <a class="btn button primary-button"
                                                 href="<?= base_url('community') ?>">Bergabung Sekarang</a>
@@ -127,6 +126,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
 
         <!--  ========================= Batas Program ==========================  -->
@@ -165,7 +165,7 @@
                                 <img src="<?= base_url(); ?>assets/dist/img/services/book.svg" class="img-fluid p-5"
                                     alt="Services-2">
                             </div>
-                            <h4>Kurikulum pengajaran 6 semester</h4>
+                            <h4>Kurikulum pengajaran 6 bulan</h4>
                             <!-- <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p> -->
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                                 <img src="<?= base_url(); ?>assets/dist/img/services/graduate.svg" width="230"
                                     class="img-fluid p-5" alt="Services-4">
                             </div>
-                            <h4>E-Sertifikat Webinar dan Kelas Online</h4>
+                            <h4>E-Sertifikat Webinar dan Kelas Enterpreneur</h4>
                             <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p> -->
                         </div>
                     </div>
@@ -215,12 +215,11 @@
                 <ul>
                     <li data-aos="fade-up" data-aos="fade-up" data-aos-delay="100">
                         <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse"
-                            href="#faq-list-1">Siapa pendiri dari Preneur Academy? <i
+                            href="#faq-list-1">Siapa founder dari Preneur Academy? <i
                                 class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
                             <p>
-                                Bapak Agus Hadi Prayitno selaku pendiri dari preneur academy. beliau juga merupakan
-                                pendiri D'Gejrot yang bergerak dibidang kuliner.
+                                Agus Hadi Prayitno, S.Pt., M.Sc., CPC. atau yang akrab disapa dengan Coach HP selaku founder dari Preneur Academy. Beliau juga dosen di Program Studi Manajemen Bisnis Unggas, Jurusan Peternakan, Politeknik Negeri Jember.
                             </p>
                         </div>
                     </li>
@@ -285,7 +284,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container carousel py-lg-5 text-center">
+            <div class="container carousel py-lg-5">
                 <div class="owl-carousel owl-theme">
                     <?php foreach ($blog as $blg) { ?>
                     <div class="client row bg-light" data-aos="zoom-in">
@@ -297,13 +296,14 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="card-body">
-                                        <h6 class="card-title"><?= str_replace('-', ' ', $blg->JUDUL_POST); ?></h6>
-                                        <p class="card-text"><small
-                                                class="text-muted"><?= date('d F Y', strtotime($blg->TGL_POST)); ?></small>
-                                        </p>
+                                    <a style="text-decoration : none;" href="<?= base_url('blog/detail/' . strtolower($blg->JUDUL_POST)); ?>">
+                                        <h4 class="card-title font-weight-bold">
+                                            <?= str_replace('-', ' ', $blg->JUDUL_POST); ?>
+                                        </h4>
+                                    </a>
                                         <p>
                                             <?php
-                                                $aa = 75;
+                                                $aa = 100;
                                                 $konten = htmlspecialchars_decode($blg->KONTEN_POST);
                                                 $em = str_replace('<em>', '', $konten);
                                                 $strong = str_replace('<strong>', '', $em);
@@ -318,10 +318,9 @@
                                                     echo $strong;
                                                 }
                                                 ?>
+                                        <a class="font-weight-bold" style="text-decoration : none;"
+                                            href="<?= base_url('blog/detail/' . strtolower($blg->JUDUL_POST)); ?>">read more</a>
                                         </p>
-                                        <a class="btn btn-primary"
-                                            href="<?= base_url('blog/detail/' . strtolower($blg->JUDUL_POST)); ?>">Lihat
-                                            Post</a>
                                     </div>
                                 </div>
                             </div>
@@ -329,7 +328,7 @@
                     </div>
                     <?php } ?>
                 </div>
-                <div class="blog" data-aos="fade-down">
+                <div class="blog text-center" data-aos="fade-down">
                     <a href="<?= base_url('blog') ?>" class="btn button primary-button"><i
                             class="fas fa-chevron-right"></i> Lihat
                         Lebih Banyak</a>
@@ -349,12 +348,20 @@
                             <h2 class="text-white">SUBSCRIBE</h2>
                             <p class="text-white">Dengan meng-klik subscribe artinya anda menyetujui layanan langganan
                                 ke website ini.</p>
-                            <div class="input-group p-5">
-                                <input type="email" class="form-control mr-2 mb-2" placeholder="Enter your email">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning ml-2 mb-2" type="submit">Subscribe Now</button>
-                                </span>
+                            <form method="POST" action="<?= base_url('subscribe');?>">
+                            <div class="input-group justify-content-center p-5">
+                            <div><?php echo $this->session->flashdata('message'); ?></div>
+                                <div class="row">
+                                    <input type="hidden" name="url" value="<?= base_url(); ?>"required>
+                                    <div class="col-sm-12">
+                                        <input type="email" name="email" class="form-control mr-2 ml-1 mb-2" placeholder="Enter your email" required>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-warning ml-2 mr-1 mb-2" type="submit">Subscribe Now</button>
+                                    </div>
+                                </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

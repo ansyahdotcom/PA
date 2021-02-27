@@ -1,26 +1,40 @@
+ 
 </div>
 <main role="main" class="container mt-5">
-    <div class="row p-5">
+    <div class="row py-5">
         <div class="col-md-8 blog-main">
             <h3 class="pb-4 mb-4 border-bottom">
                 <i class="fas fa-fire-alt text-danger"></i> Artikel Terbaru
             </h3>
             <!--  ======================= Awalan Blog post ============================== -->
+            <?php if ($blog == null) : ?>
+            <!-- Jika Belum Terdapat data -->
+            <div class="col-md">
+                <div class="card-body text-center mt-4">
+                    <img src="<?= base_url('assets/icon/noList.svg'); ?>" alt="noData"
+                        class="img-rounded img-responsive img-fluid" width="100">
+                </div>
+                <div class="card-body pt-0 mt-4">
+                    <h3 class="text-center text-bold text-muted">Belum terdapat postingan.</h3>
+                </div>
+            </div>
+            <?php else : ?>
             <?php foreach ($blog as $row) : ?>
-            <div class="blog-post card mb-4">
+            <div class="blog-post border-light shadow card mb-4">
                 <img class="card-img-top" src="<?= base_url('assets/fotoblog/' . $row->FOTO_POST); ?>"
                     alt="gambar-posting">
                 <div class="card-body">
                     <div class="judul">
-                        <h3 class="card-title font-weight-bold"><?= str_replace('-', ' ', $row->JUDUL_POST); ?></h3>
+                        <a style="text-decoration : none;" href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST)); ?>">
+                        <h3 class="card-title font-weight-bold"><?= str_replace('-', ' ', $row->JUDUL_POST); ?></h3></a>
                     </div>
                     <hr>
                     <div class="widget d-flex">
                         <p class="mr-2 ml-2"><i class="fas fa-clock text-primary"></i>
-                            <?= date(' d F Y', strtotime($row->TGL_POST)) ?></p>
+                            <?= tanggal_indo($row->TGL_POST, false) ?></p>
                         <p class="ml-2 mr-2">
                             <i class="fas fa-comments text-primary"></i> <a
-                                href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST)); ?>#disqus_thread"></a>
+                                href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST.'#disqus_thread')); ?>"></a>
                         </p>
                     </div>
                     <p class="card-text"><?php
@@ -38,30 +52,18 @@
                                                 } else {
                                                     echo $strong;
                                                 }
-                                                ?></p>
-                </div>
-                <div class="card-footer text-muted">
-                    <div class="row">
-                        <div class="col-sm-1">
-                            <img class="rounded-circle" width="50"
-                                src="<?= base_url('assets/dist/img/admin/') . $row->FTO_ADM; ?>" alt="foto penyusun">
-                        </div>
-                        <div class="col-sm-3">
-                            <p class="text-dark mt-2 text-center"><?= $row->NM_ADM ?></p>
-                        </div>
-                        <div class="col-sm-8 text-right">
-                            <a href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST)); ?>"
-                                class="btn btn-primary float right">Read More &rarr;</a>
-                        </div>
-                    </div>
+                                                ?>  <a class="font-weight-bold" style="text-decoration : none; " href="<?= base_url('blog/detail/' . strtolower($row->JUDUL_POST)); ?>">read more</a> </p>
+                                                
+                                
                 </div>
             </div>
             <?php endforeach; ?>
+            <?php endif; ?>
             <!--  ======================= Batas Blog post ============================== -->
         </div>
         <div class="col-md-4 mb-2">
             <div class="card mb-4 border-light shadow">
-                <div class="card-header"><i class="fas fa-fire-alt text-danger"></i> Kategori</div>
+                <div class="card-header"><i class="fas fa-folder text-danger"></i> Kategori</div>
                 <div class="card-body">
                     <?php foreach ($kategori as $ls) { ?>
                     <ul class="unstyle list-group shadow mb-1">
@@ -93,10 +95,11 @@
                 <div class="card-header font-weight-bold"><i class="fas fa-newspaper text-info"></i>
                     Berlangganan newsletter?</div>
                 <div class="card-body">
-                    <form>
-                        <label for="defaultFormEmailEx" class="grey-text">Email Anda</label>
-                        <input type="email" id="defaultFormLoginEmailEx" class="form-control">
-
+                    <form method="POST" action="<?= base_url('subscribe');?>">
+                    <div><?php echo $this->session->flashdata('message'); ?></div>
+                        <input type="hidden" name="url" value="<?= base_url('blog'); ?>"required>
+                        <label for="email" class="grey-text">Email Anda</label>
+                        <input type="email" name="email" placeholder="Your Email" id="email" class="form-control">
                         <div class="text-center mt-4">
                             <button class="btn btn-info btn-md" type="submit"><i class="fas fa-paper-plane"></i>
                                 Daftar</button>

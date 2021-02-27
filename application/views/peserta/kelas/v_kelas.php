@@ -58,10 +58,11 @@
 						$gambar = $k['GBR_KLS'];
 						$deskripsi = $k['DESKRIPSI'];
 						$ktg = $k['KTGKLS'];
-						$tgl_daftar = strtotime($k['TGL_PENDAFTARAN']);
-						$tgl_penutupan = strtotime($k['TGL_PENUTUPAN']);
-						$tgl_mulai = strtotime($k['TGL_MULAI']);
-						$tgl_selesai = strtotime($k['TGL_SELESAI']);
+						$kuota_kls = $k['KUOTA_KLS'];
+						$tgl_daftar = $k['TGL_PENDAFTARAN'];
+						$tgl_penutupan = $k['TGL_PENUTUPAN'];
+						$tgl_mulai = $k['TGL_MULAI'];
+						$tgl_selesai = $k['TGL_SELESAI'];
 					?>
 
 						<?php
@@ -73,13 +74,10 @@
 						?>
 						<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
 							<div class="card bg-light">
-								<!-- <div class="card-header text-bold border-bottom-0 bg-primary">
-									K E J A R
-								</div> -->
 								<div class="card overflow-hidden position-relative" style="width:auto;height:150px;">
 									<img src="<?= base_url('assets/dist/img/kelas/' . $gambar); ?>" alt="" class="img-responsive img-fluid position-absolute shadow" style="width:auto;top:-75px;bottom:-75px;">
 									<div class="pt-2 pl-2">
-										<span class="badge badge-primary right position-absolute shadow">Kelas Belajar</span>
+										<span class="badge badge-primary right position-absolute shadow"><?= $ktg; ?></span>
 									</div>
 								</div>
 								<div class="position-relative card-body pt-1">
@@ -93,7 +91,7 @@
 										<div class="col-6 text-right">
 											<small class="text-muted">
 												<i class="fas fa-users"></i>
-												<span class="text-bold">Kuota <?= 50 - $jml_pendaftar; ?></span>
+												<span class="text-bold">Kuota <?= $kuota_kls - $jml_pendaftar; ?></span>
 											</small>
 										</div>
 									</div>
@@ -116,8 +114,10 @@
 												<span class="btn btn-success text-justify text-bold btn-block">
 													<div class="col-md-12">
 														<i class="fas fa-info pr-2"></i>
-														Anda sudah terdaftar disalah satu kelas Preneur Academy,
-														mohon selesaikan kelas anda agar bisa mendaftar ke kelas lainnya.
+														<small>
+															Anda sudah terdaftar disalah satu kelas Preneur Academy,
+															mohon selesaikan kelas anda agar bisa mendaftar ke kelas lainnya.
+														</small> 
 													</div>
 												</span>
 											</div>
@@ -126,10 +126,10 @@
 										<div class="row pt-2">
 											<span class="col-md-12 alert alert-default-primary text-bold text-justify">
 												<i class="far fa-edit pr-2"></i>
-												Pendaftaran:
+												Mulai kelas:
 												<p>
-													<?= date('d/m/Y', $tgl_daftar); ?> (<?= date('H:i', $tgl_daftar); ?>)
-													sampai <?= date('d/m/Y', $tgl_penutupan); ?> (<?= date('H:i', $tgl_penutupan); ?>)
+													<?= tanggal_indo($tgl_mulai, false); ?>
+													sampai <?= tanggal_indo($tgl_penutupan, false); ?>
 												</p>
 											</span>
 										</div>

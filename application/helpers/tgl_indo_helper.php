@@ -203,7 +203,7 @@
             return $nama_hari.','.$tgl.' '.$bulan.' '.$thn;
         }
     }
-
+    
     if (!function_exists('tanggal_indo')) {
         function tanggal_indo($tanggal, $cetak_hari = false){
             date_default_timezone_set('Asia/Jakarta');
@@ -216,7 +216,7 @@
                     'Minggu'
                 );
 							
-        $bulan = array (1 =>   'Januari',
+            $bulan = array (1 =>   'Januari',
                     'Februari',
                     'Maret',
                     'April',
@@ -239,5 +239,13 @@
             return $hari[$num] . ', ' . $tgl_indo;
         }
         return $tgl_indo;
+        }
+    }
+    
+    if (!function_exists('jam_indo')) {
+        function jam_indo($jam) {
+            $split = explode(' ', $jam);
+            $jam1 = $split[1]; 
+            return $jam1;
         }
     }

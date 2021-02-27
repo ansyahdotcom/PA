@@ -1,6 +1,6 @@
 </div>
 <main class="mt-5">
-    <div class="container">
+    <div class="container py-5">
         <section class="mt-4">
             <?php foreach ($blog as $blg) { ?>
             <div class="row">
@@ -14,23 +14,23 @@
                             <div class="awal">
                                 <h2 class="m-3 font-weight-bold"><?= str_replace('-', ' ', $blg->JUDUL_POST); ?></h2>
                                 <div class="ket m-3">
-                                    <i
-                                        class="fas fa-clock text-primary"></i><?= date(' d F Y', strtotime($blg->TGL_POST)); ?>
+                                    <i class="fas fa-clock text-primary"></i>&nbsp<?= tanggal_indo($blg->TGL_POST, false); ?> &nbsp;
                                     <i class="fa fa-folder text-info"></i>
-                                    <a class=""
-                                        href="<?= base_url('blog/kategori/' . strtolower($blg->NM_CT)); ?>"><?= $blg->NM_CT; ?></a>
+                                        <a class="" href="<?= base_url('blog/kategori/' . strtolower($blg->NM_CT)); ?>"><?= $blg->NM_CT; ?></a>
                                     <i class="fas fa-tag text-success ml-2"></i>
                                     <?php $i = 1;
-                    foreach ($detail_tags as $dt) { ?>
+                                    foreach ($detail_tags as $dt) { ?>
                                     <a class=""
                                         href="<?= base_url('blog/tag/' . strtolower($dt->NM_TAGS)); ?>"><?= $dt->NM_TAGS; ?><?= $i == count((array) $detail_tags) ? '' : ', ' ?></a>
                                     <?php $i++;
-                    } ?>
+                                    } ?>
+                                    <i class="fas fa-comments text-primary ml-2"></i> <a
+                                    href="<?= base_url('blog/detail/' . strtolower($blg->JUDUL_POST.'#disqus_thread')); ?>"></a>
                                 </div>
                             </div>
                             <p class="h5 my-4"><?= htmlspecialchars_decode($blg->KONTEN_POST) ?></p>
                             <hr>
-                            <div class="float-right"><i class="fas fa-flipboard"></i>
+                            <div class="text-right mb-1"><i class="fas fa-flipboard"></i>
                                 <!-- <br> -->
                                 <i class="fa fa-folder text-info"></i>
                                 <a class=""
@@ -44,6 +44,13 @@
                                 <?php $i++;
                   } ?>
                             </div>
+                            <div>
+                            <p class="font-weight-bold">Bagikan postingan</p>
+                            <!-- ShareThis BEGIN -->
+                            <div class="sharethis-inline-share-buttons"></div>
+                            <!-- ShareThis END -->
+                            </div>
+        
 
                         </div>
 
@@ -57,7 +64,7 @@
                     $icon = $f['IC_MS'];
                     $link = $f['LINK_MS'];
                   ?>
-                                <a href="<?= $link; ?>" target="_blank">
+                                <a style="text-decoration : none;" href="<?= $link; ?>" target="_blank">
                                     <i class="<?= $icon; ?> mr-2"></i>
                                 </a>
                                 <?php endforeach; ?>
@@ -100,7 +107,7 @@
                                     <img class="d-flex mr-3" src="<?= base_url('assets/fotoblog/' . $ls->FOTO_POST); ?>"
                                         alt="post-blog" width="100">
                                     <div class="media-body">
-                                        <a href="">
+                                        <a style="text-decoration : none;" href="<?= base_url('blog/detail/' . strtolower($ls->JUDUL_POST)); ?>">
                                             <h5 class="mt-0 mb-1 font-weight-bold">
                                                 <?= str_replace('-', ' ', $ls->JUDUL_POST); ?></h5>
                                         </a>
@@ -135,15 +142,20 @@
                         <div class="card-header font-weight-bold"><i class="fas fa-newspaper text-info"></i>
                             Berlangganan newsletter?</div>
                         <div class="card-body">
-                            <form>
-                                <label for="defaultFormEmailEx" class="grey-text">Email Anda</label>
-                                <input type="email" id="defaultFormLoginEmailEx" class="form-control">
-
+                            <?php foreach($blog as $blg){ 
+                                $judul= $blg->JUDUL_POST;
+                            ?>
+                            <form method="POST" action="<?= base_url('subscribe');?>">
+                            <div><?php echo $this->session->flashdata('message'); ?></div>
+                                <input type="hidden" name="url" value="<?= base_url('blog/detail/'. strtolower($judul)); ?>"required>
+                                <label for="email" class="grey-text">Email Anda</label>
+                                <input type="email" name="email" placeholder="Your Email" id="email" class="form-control">
                                 <div class="text-center mt-4">
                                     <button class="btn btn-info btn-md" type="submit"><i class="fas fa-paper-plane"></i>
                                         Daftar</button>
                                 </div>
                             </form>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
