@@ -45,17 +45,6 @@
 										</span>
 									</div>
 								</div>
-								<div class="row pt-2">
-									<span class="col-md-12 alert alert-default-danger text-justify text-bold">
-										<i class="far fa-edit pr-2"></i>
-										Pendaftaran
-										<p>
-											<!-- <?= date('d/m/Y', strtotime($wbnr->TGL_BUKA)); ?> (<?= date('H:i', strtotime($wbnr->TGL_BUKA)); ?>) -->
-											sampai <?= date('d/m/Y', strtotime($wbnr->TGL_TUTUP)); ?>
-											(<?= date('H:i', strtotime($wbnr->TGL_TUTUP)); ?>)
-										</p>
-									</span>
-								</div>
 							</div>
 							<div class="card-footer">
 								<div class="row">

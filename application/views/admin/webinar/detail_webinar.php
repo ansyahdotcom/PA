@@ -1,69 +1,138 @@
-<header class="bg-warning py-5 mt-5 mb-5">
-	<div class="container h-100">
-		<div class="row h-100 align-items-center">
-			<a href="<?= base_url('admin/webinar');?>" class="btn button secondary-button float-left"><i
-					class="fas fa-arrow-left"></i> Kembali</a>
-			<?php foreach ($webinar as $row) { ?>
-			<div class="col-lg-12">
-				<div class="site-buttons p-5">
-					<div class="d-flex flex-row flex-wrap">
-						<img src="<?= base_url('assets/fotowebinar/'). $row->FOTO_WEBINAR;?>" width="500"
-							alt="gambar kelas" class="img-fluid ml-5">
-						<div class="kelas ml-5">
-							<h4 class="display-4 title-text"><?= str_replace('-', ' ', $row->JUDUL_WEBINAR); ?></h4>
-							<p class="para text-dark">Oleh : <?= $row->NM_ADM?></p>
-							<h5 class="font-weight-bold"><?= $row->HARGA; ?></h5>
-							<a href="<?= base_url('register')?>" class="btn button primary-button mt-5 float-right"><i
-									class="fas fa-shopping-cart"></i> Daftar Webinar</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-</header>
+<!--  ======================= Awalan Area Utama ================================ -->
+<main class="site-main">
+    <section class="header">
+        <div class="container mt-lg-5 mt-md-5 mt-sm-5 py-4">
+            <?php foreach ($webinar as $row) { ?>
+            <div class="row bg-warning rounded shadow">
+                <div class="col-md-6 col-sm-12 mb-4 text-center" data-aos="fade-up">
+                    <img src="<?= base_url('assets/fotowebinar/') . $row->FOTO_WEBINAR; ?>" width="400"
+                        class="img-fluid mt-5" alt="gambar-kelas">
+                </div>
+                <div class="col-md-6 col-sm-12 mb-4" data-aos="fade-down">
+                    <div class="p-4">
+                        <!-- <div class="mb-2">
+                            <span class="badge badge-primary text-light"><?= $row->PLATFORM ?></span>
+                        </div> -->
+                        <h5 class="font-roboto font-weight-bold mt-4"><?= str_replace('-', ' ', $row->JUDUL_WEBINAR); ?></h5>
+                        <p class="lead">
+                            <span class="btn btn-sm btn-light text-bold">
+                                <?= $row->HARGA; ?>
+                            </span>
+                        </p>
+                        <hr>
+                        <a href="<?= base_url('admin/webinar'); ?>" class="btn button secondary-button float-left"><i
+                                class="fas fa-arrow-left"></i>
+                            Kembali</a>
 
-<div class="container mt-2 mb-2">
-	<div class="card">
-		<!-- <div class="card-header" id="headingOne">
-			<h3 class="card-title pt-2"> Deskripsi</h3>
-		</div> -->
-		<div class="card-body">
-			<p><?= htmlspecialchars_decode($row->KONTEN_WEB); ?></p>
-			<!-- <p class="card-text">Tanggal Pelaksanaan</p> -->
-			<!-- <p class="font-weight-bold"><?= date('d F Y', strtotime($row->TGL_WEB)); ?></p> -->
-		</div>
-	</div>
-</div>
+                    </div>
+                </div>
+            </div>
+    </section>
 
-<?php } ?>
+    <hr>
 
-<hr>
+    <!--  ========================= Awalan Deskripsi ==========================  -->
+    <section id="faq" class="about-area faq faq-kls mb-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <div class="about-title">
+                        <h3 class="title-h1" data-aos="fade-up">Informasi Webinar</h3>
+                        <!-- <p class="para text-dark">
+                            Deskripsi kelas beserta tanggal kelas.
+                        </p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="deskripsi">
+            <div class="row justify-content-center mt-2 mb-2">
+                <div class="card border-light shadow col-md-8 mr-1 ml-1" data-aos="fade-right">
+                    <div class="card-header">
+                        <h5>Deskripsi</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><?= htmlspecialchars_decode($row->KONTEN_WEB); ?>.</p>
+                    </div>
+                </div>
+                <div class="card border-light shadow col-md-2 mr-1 ml-1" data-aos="fade-left">
+                    <div class="card-header">
+                        <h5>Pembicara</h5>
+                    </div>
+                    <div class="card-body h-100 border-light text-center">
+                        <img class="rounded text-center" width="150"
+                            src="<?= base_url('assets/dist/img/admin/') . $row->FTO_ADM; ?>" alt="gambar-kelas">
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold"><?= $row->NM_ADM ?></h5>
+                        </div>
+                        <h6 class="text-center">Coach HP</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  ========================= Batas Deskripsi ==========================  -->
+    <?php } ?>
+    </div>
 
 
-<!--  ========================== Subscribe me Area ============================  -->
-<section class="newsletter mt-5">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-10 text-center jumbotron bg-primary p-12 shadow">
-				<img src="<?=base_url();?>assets/dist/img/subscribe.svg" width="200" alt="gambar-envelope">
-				<div class="content text-center mt-5">
-					<h2 class="text-white">SUBSCRIBE</h2>
-					<p class="text-white">Dengan meng-klik subscribe artinya anda menyetujui layanan langganan ke
-						website ini.</p>
-					<div class="input-group p-5 mt-5 mb-5">
-						<input type="email" class="form-control mr-2 mb-2" placeholder="Enter your email">
-						<span class="input-group-btn">
-							<button class="btn btn-warning ml-2 mb-2" type="submit">Subscribe Now</button>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-		<path fill="#FFC107" fill-opacity="1"
-			d="M0,256L48,229.3C96,203,192,149,288,154.7C384,160,480,224,576,218.7C672,213,768,139,864,128C960,117,1056,171,1152,197.3C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-		</path>
-	</svg>
-</section>
-<!--  ========================== Batas Subscribe Area ============================  -->
+    <!--  ========================= Awalan FAQ ==========================  -->
+    <section id="faq" class="about-area faq faq-kls mt-5 mb-5">
+        <div class="container" data-aos="fade-up">
+            <div class="row text-center">
+                <div class="col-12">
+                    <div class="about-title">
+                        <h3 class="title-h1">FAQ</h3>
+                        <p class="para text-dark">
+                            Berikut beberapa list pertanyaan yang sering diajukan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-list">
+            <ul>
+                <li data-aos="fade-up" data-aos="fade-up" data-aos-delay="100">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" class="collapse"
+                        href="#faq-list-1">Bagaimana cara mengikuti webinar ini? <i
+                            class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-1" class="collapse show" data-parent=".faq-list">
+                        <p>
+                            - Pertama daftar ke akun baru jika belum punya akun atau langsung masuk dengan akun social
+                            media anda.
+                        </p>
+                        <p>
+                            - Selanjutnya login masuk akun, jika anda masuk menggunakan akun social media. maka anda
+                            tidak perlu mendaftar akun.
+                        </p>
+                        <p>
+                            - Selanjutnya lanjut ke Daftar Webinar dan pilih webinar yang anda inginkan.
+                        </p>
+                        <p>
+                            - Selanjutnya isi data diri yang dibutuhkan untuk mengikuti webinar.
+                        </p>
+                        <p>
+                            - Jika sudah terdaftar, anda dapat mengakses webinar di Webinar Saya.
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="200">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-toggle="collapse" href="#faq-list-2"
+                        class="collapsed">Bagaimana cara mengambil sertifikat webinar ini? <i
+                            class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-2" class="collapse" data-parent=".faq-list">
+                        <p>
+                            Untuk sertifikat hasil webinar akan di posting setelah webinar selesai, bagi siapa pun yang
+                            terdaftar akan mendapat sertifikat.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        </div>
+    </section>
+    <!--  ========================= Batas FAQ ==========================  -->
+</main>

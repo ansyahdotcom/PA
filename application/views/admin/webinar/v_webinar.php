@@ -68,21 +68,9 @@
 											<td for="HARGA">:&nbsp; <?= $wbnr->HARGA; ?></td>
 										</tr>
 										<tr>
-											<td><b>Tanggal Pembukaan Pendaftaran</b> &nbsp;</td>
-											<td for="TGL_BUKA">:&nbsp;
-												<?= tanggal_indo($TGL_BUKA, true); ?>
-											</td>
-										</tr>
-										<tr>
-											<td><b>Tanggal Penutupan Pendaftaran</b> &nbsp;</td>
-											<td for="TGL_TUTUP">:&nbsp;
-												<?= tanggal_indo($TGL_TUTUP, true); ?>
-											</td>
-										</tr>
-										<tr>
 											<td><b>Tanggal Webinar</b> &nbsp;</td>
 											<td for="TGL_WEB">:&nbsp;
-												<?= tanggal_indo($TGL_WEB, true); ?>
+												<?= tanggal_indo($TGL_WEB, true) . ' pukul ' . jam_indo($TGL_WEB); ?>
 											</td>
 										</tr>
 										<tr>
@@ -94,18 +82,18 @@
 												?>
 											</td>
 										</tr>
-										<tr>
+										<!-- <tr>
 											<td>
 												<small class="form-text text-success">
 												<?php 
-												if ($TGL_TUTUP >= date("Y-m-d H:i:s")) {
+												if ($TGL_TUTUP > date("Y-m-d H:i:s", +1)) {
 													echo "akan segera dilaksanakan";
 												} else {
 													echo "sudah dilaksanakan";
 												}?>
 												</small>
 											</td>
-										</tr>
+										</tr> -->
 									</table>
 								</div>
 								<br>

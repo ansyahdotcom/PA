@@ -83,8 +83,8 @@ class Webinar extends CI_Controller
             $PLATFORM = htmlspecialchars($this->input->post('PLATFORM'));
             $KUOTA_WEB = htmlspecialchars($this->input->post('KUOTA_WEB'));
             $LINK_ZOOM = $this->input->post('LINK_ZOOM');
-            $TGL_BUKA = htmlspecialchars($this->input->post('TGL_BUKA'));
-            $TGL_TUTUP = htmlspecialchars($this->input->post('TGL_TUTUP'));
+            // $TGL_BUKA = htmlspecialchars($this->input->post('TGL_BUKA'));
+            // $TGL_TUTUP = htmlspecialchars($this->input->post('TGL_TUTUP'));
             $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
             $TGL_POSTWEB = date('Y-m-d');
             /** Proses Edit Gambar */
@@ -116,8 +116,8 @@ class Webinar extends CI_Controller
                 'PLATFORM' => $PLATFORM,
                 'KUOTA_WEB' => $KUOTA_WEB,
                 'LINK_ZOOM' => $LINK_ZOOM,
-                'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
-                'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
+                // 'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
+                // 'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
                 'TGL_WEB' => date('Y-m-d H:i', strtotime($TGL_WEB)),
                 'TGL_POSTWEB' => $TGL_POSTWEB
             );
@@ -306,8 +306,8 @@ class Webinar extends CI_Controller
         $HARGA = htmlspecialchars($this->input->post('HARGA'));
         $PLATFORM = htmlspecialchars($this->input->post('PLATFORM'));
         $LINK_ZOOM = $this->input->post('LINK_ZOOM');
-        $TGL_BUKA = htmlspecialchars($this->input->post('TGL_BUKA'));
-        $TGL_TUTUP = htmlspecialchars($this->input->post('TGL_TUTUP'));
+        // $TGL_BUKA = htmlspecialchars($this->input->post('TGL_BUKA'));
+        // $TGL_TUTUP = htmlspecialchars($this->input->post('TGL_TUTUP'));
         $TGL_WEB = htmlspecialchars($this->input->post('TGL_WEB'));
         $TGL_POSTWEB = date('Y-m-d');
         // untuk upload foto webinar
@@ -358,8 +358,8 @@ class Webinar extends CI_Controller
             'PLATFORM' => $PLATFORM,
             'LINK_ZOOM' => $LINK_ZOOM,
             'TGL_WEB' => date('Y-m-d H:i', strtotime($TGL_WEB)),
-            'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
-            'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
+            // 'TGL_BUKA' => date('Y-m-d H:i', strtotime($TGL_BUKA)),
+            // 'TGL_TUTUP' => date('Y-m-d H:i', strtotime($TGL_TUTUP)),
             'TGL_POSTWEB' => $TGL_POSTWEB
         );
 

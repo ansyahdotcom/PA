@@ -103,88 +103,12 @@
 		var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 		var time = today.getHours() + ":" + today.getMinutes();
 		var dateTime = date + ' ' + time;
+		var dateMulai = new Date($('.editMulai').val());
+		var dateSelesai = new Date($('.editSelesai').val());
 
-		// Tanggal pendaftaran dan penutupan v.1.0
-		$('.pendaftaran').datetimepicker({
-			format: 'DD MMMM YYYY HH:mm',
-			// todayHighlight: false,
-			minDate: dateTime,
-			buttons: {
-				showToday: true,
-				showClear: true,
-				showClose: true
-			},
-			icons: {
-				time: "fas fa-clock",
-				date: "fas fa-calendar-alt",
-				up: "fas fa-arrow-up",
-				down: "fas fa-arrow-down",
-				today: 'fas fa-calendar-check',
-				clear: 'fas fa-trash',
-				close: 'fas fa-times'
-			}
-		});
-
-		// $('.pendaftaran').on("change.datetimepicker", function(e) {
-		// 	$('.penutupan').val("")
-		// 	$('.penutupan').datetimepicker('minDate', e.date);
-		// });
-
-		// $('.pendaftaran').on("change.datetimepicker", function(e) {
-		// 	$('.mulai').val("")
-		// 	$('.mulai').datetimepicker('minDate', e.date);
-		// });
-
-		// $('.pendaftaran').on("change.datetimepicker", function(e) {
-		// 	$('.selesai').val("")
-		// 	$('.selesai').datetimepicker('minDate', e.date);
-		// });
-
-		// $('.pendaftaran').on("change.datetimepicker", function(e) {
-		// 	$('.mulai2').val("")
-		// 	$('.mulai2').datetimepicker('minDate', e.date);
-		// });
-
-		$('.penutupan').datetimepicker({
-			format: 'DD MMMM YYYY HH:mm',
-			// todayHighlight: false,
-			minDate: dateTime,
-			buttons: {
-				showToday: true,
-				showClear: true,
-				showClose: true
-			},
-			icons: {
-				time: "fas fa-clock",
-				date: "fas fa-calendar-alt",
-				up: "fas fa-arrow-up",
-				down: "fas fa-arrow-down",
-				today: 'fas fa-calendar-check',
-				clear: 'fas fa-trash',
-				close: 'fas fa-times'
-			}
-		});
-
-		// $('.penutupan').on("change.datetimepicker", function(e) {
-		// 	$('.mulai').val("")
-		// 	$('.mulai').datetimepicker('minDate', e.date);
-		// });
-
-		// $('.penutupan').on("change.datetimepicker", function(e) {
-		// 	$('.selesai').val("")
-		// 	$('.selesai').datetimepicker('minDate', e.date);
-		// });
-
-		// $('.penutupan').on("change.datetimepicker", function(e) {
-		// 	$('.mulai2').val("")
-		// 	$('.mulai2').datetimepicker('minDate', e.date);
-		// });
-		// End
-
-		// Tanggal mulai dan selesai v.1.0
-		$('.mulai').datetimepicker({
+		// tambah tanggal mulai dan selesai v.1.0
+		$('.tmbhmulai').datetimepicker({
 			format: 'DD MMMM YYYY',
-			// todayHighlight: false,
 			minDate: dateTime,
 			buttons: {
 				showToday: true,
@@ -200,17 +124,50 @@
 				clear: 'fas fa-trash',
 				close: 'fas fa-times'
 			}
+			
 		});
 
-		// $('.mulai').on("change.datetimepicker", function(e) {
-		// 	$('.selesai').val("")
-		// 	$('.selesai').datetimepicker('minDate', e.date);
-		// });
+		// $('.editMulai').defaultDate(dateMulai);
+		$('.editMulai').datetimepicker({
+			format: 'DD MMMM YYYY',
+			buttons: {
+				showToday: true,
+				showClear: true,
+				showClose: true
+			},
+			icons: {
+				time: "fas fa-clock",
+				date: "fas fa-calendar-alt",
+				up: "fas fa-arrow-up",
+				down: "fas fa-arrow-down",
+				today: 'fas fa-calendar-check',
+				clear: 'fas fa-trash',
+				close: 'fas fa-times'
+			}
 
+		});
+		
 		$('.selesai').datetimepicker({
 			format: 'DD MMMM YYYY',
-			// todayHighlight: false,
 			minDate: dateTime,
+			buttons: {
+				showToday: true,
+				showClear: true,
+				showClose: true
+			},
+			icons: {
+				time: "fas fa-clock",
+				date: "fas fa-calendar-alt",
+				up: "fas fa-arrow-up",
+				down: "fas fa-arrow-down",
+				today: 'fas fa-calendar-check',
+				clear: 'fas fa-trash',
+				close: 'fas fa-times'
+			}
+		});
+
+		$('.editSelesai').datetimepicker({
+			format: 'DD MMMM YYYY',
 			buttons: {
 				showToday: true,
 				showClear: true,
@@ -689,6 +646,23 @@
 			reader.readAsDataURL(b.files[0]);
 		}
 	}
+</script>
+
+<!-- Upload gambar -->
+<script>
+    function triggerClick(b) {
+        document.querySelector('#daftarImage').click();
+    }
+
+    function displayImage(b) {
+        if (b.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(b) {
+                document.querySelector('#daftarDisplay').setAttribute('src', b.target.result);
+            }
+            reader.readAsDataURL(b.files[0]);
+        }
+    }
 </script>
 
 <!-- Show Hide password -->

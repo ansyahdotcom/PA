@@ -93,28 +93,6 @@
                             <textarea name="LINK_ZOOM" id="LINK_ZOOM" class="textarea" class="form-control" cols="30" rows="5" placeholder="Isikan link meeting disini" required autocomplete="off"></textarea>
                             <?= form_error('PLATFORM', '<small class="text-danger">', '</small>'); ?>
                             <br>
-                            <!-- Tanggal buka pendaftaran -->
-                            <label for="TGL_BUKA">Tanggal Pembukaan Pendaftaran</label>
-                            <div class="input-group">
-                                <input type="text" data-toggle="datetimepicker" data-target=".pendaftaran" class="form-control pendaftaran" name="TGL_BUKA" id="TGL_BUKA" autocomplete="off" placeholder="dd/mm/yyyy 00:00" required>
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="far fa-calendar-alt"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <br>
-                            <!-- Tanggal tutup pendaftaran -->
-                            <label for="TGL_TUTUP">Tanggal Penutupan Pendaftaran</label>
-                            <div class="input-group">
-                                <input type="text" data-toggle="datetimepicker" data-target=".penutupan" class="form-control penutupan" name="TGL_TUTUP" id="TGL_TUTUP" autocomplete="off" placeholder="dd/mm/yyyy 00:00" required>
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="far fa-calendar-alt"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <br>
                             <!-- Tanggal mulai webinar -->
                             <label for="TGL_WEB">Tanggal Webinar</label>
                             <div class="input-group">

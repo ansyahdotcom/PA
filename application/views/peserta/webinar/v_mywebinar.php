@@ -30,7 +30,7 @@
                                 $pst = $ps->ID_PS; }
                                 if ($pst != NULL && $ps->TGL_WEB >= date('Y-m-d')) : 
 									foreach ($pesertaa as $ps) : ?>
-							<div class="col-md">
+							<div class="col-md-12">
 								<div class="card-body p-5 mt-4">
 									<h3><?= str_replace('-', ' ', $ps->JUDUL_WEBINAR); ?></h3>
 
@@ -78,6 +78,7 @@
 										</div>
 									</div>
 								</div>
+							<hr>
 							</div>
 							<?php endforeach; ?>
 							<?php else : ?>
@@ -115,7 +116,6 @@
 										<th>No.</th>
 										<th>Webinar</th>
 										<th>Tanggal</th>
-										<!-- <th>Aksi</th> -->
 									</tr>
 								</thead>
 								<tbody>
@@ -128,7 +128,7 @@
 									<tr>
 										<td><?= $i++; ?></td>
 										<td><?= str_replace('-', ' ', $ps->JUDUL_WEBINAR); ?></td>
-										<td><?= date('l, d F Y', strtotime(str_replace('.', '-', $ps->TGL_WEB))); ?></td>
+										<td><?= tanggal_indo($TGL_WEB, TRUE); ?></td>
 									</tr>
 								<?php endif; ?>
 							<?php endforeach; ?>
